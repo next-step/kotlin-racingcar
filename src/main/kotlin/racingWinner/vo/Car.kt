@@ -8,8 +8,10 @@ class Car(val name: String, var position: Int) {
         require(name.length <= MAXIMUM_NAME_LENGTH) { "자동차의 이름은 5자를 초과할 수 없습니다." }
     }
 
-    fun move() {
-        this.position += 1
+    fun moveOrNot(movable: () -> Boolean) {
+        if (movable()) {
+            this.position += 1
+        }
     }
 
     companion object {

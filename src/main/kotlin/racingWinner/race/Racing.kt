@@ -9,13 +9,7 @@ object Racing {
 
     fun startRacing(cars: List<Car>, movable: () -> Boolean) {
         for (car in cars) {
-            move(movable, car)
-        }
-    }
-
-    private fun move(movable: () -> Boolean, car: Car) {
-        if (movable()) {
-            car.move()
+            car.moveOrNot(movable)
         }
     }
 }
