@@ -5,7 +5,7 @@ class OperatorCalculatorState(private val number: Int) : CalculatorState {
         val operator = Operator.from(value)
         return OperandCalculatorState(number, operator)
     }
-    
+
     override fun result(): Int {
         return number
     }
