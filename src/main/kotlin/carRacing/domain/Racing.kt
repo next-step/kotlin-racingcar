@@ -15,7 +15,7 @@ class Racing(private val carList: List<Car>) {
 
     private fun start(carList: List<Car>, tryCount: Int): List<Car> {
         var resultCarList: List<Car> = listOf()
-        for (i in 0 until tryCount) {
+        repeat(tryCount) {
             resultCarList = process(carList)
             OutputView().printMessages(*carList.map { "${it.name} : ${it.getPosition()}" }.toTypedArray())
         }
