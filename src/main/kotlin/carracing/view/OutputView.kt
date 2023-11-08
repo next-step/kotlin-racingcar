@@ -1,6 +1,6 @@
 package carracing.view
 
-import carracing.model.model.Snapshot
+import carracing.domain.Snapshot
 
 private const val MOVEMENT = "-"
 
