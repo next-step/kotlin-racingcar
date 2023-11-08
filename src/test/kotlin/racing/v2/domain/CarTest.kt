@@ -18,7 +18,7 @@ class `자동차 프러퍼티 테스트` : StringSpec({
     }
 
     "자동차의 이름이 5글자가 초과하면 예외가 발생한다." {
-        listOf("5글자보다큼", "이건일곱글자임", "여덟글자라서예외").forEach{
+        listOf("5글자보다큼", "이건일곱글자임", "여덟글자라서예외").forEach {
             shouldThrow<IllegalArgumentException> {
                 Car(it)
             }.message shouldBe "자동차 이름은 5자를 초과할 수 없습니다."
@@ -42,7 +42,7 @@ class `자동차 전진 테스트` : BehaviorSpec({
             listOf(4, 5, 6, 7, 8, 9).forEach { number ->
                 Then("자동차 위치는 1 증가한다.") {
                     val originPosition = 알렉스_자동차.position
-                    알렉스_자동차.moveForward(CarDrivingPolicy(number))
+                    알렉스_자동차.moveForward(CarDrivingPolicy(FixedNumberGenerator(number)))
                     알렉스_자동차.position shouldBe originPosition + 1
                 }
             }
@@ -52,7 +52,7 @@ class `자동차 전진 테스트` : BehaviorSpec({
             listOf(1, 2, 3).forEach { number ->
                 Then("자동차 위치는 기존과 동일하다") {
                     val originPosition = 알렉스_자동차.position
-                    알렉스_자동차.moveForward(CarDrivingPolicy(number))
+                    알렉스_자동차.moveForward(CarDrivingPolicy(FixedNumberGenerator(number)))
                     알렉스_자동차.position shouldBe originPosition
                 }
             }

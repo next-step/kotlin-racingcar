@@ -1,11 +1,12 @@
 package racing.v2.domain
 
-class CarDrivingPolicy(val number: Int) : DrivingPolicy {
+class CarDrivingPolicy(private val generator: NumberGenerator = RandomNumberGenerator) : DrivingPolicy {
     override fun canForward(): Boolean {
-        return number >= FORWARD_THRESHOLD
+        return generator.generate(UPPER_BOUND) >= FORWARD_THRESHOLD
     }
 
     companion object {
         private const val FORWARD_THRESHOLD = 4
+        private const val UPPER_BOUND = 10
     }
 }

@@ -3,9 +3,8 @@ package racing.v2.domain
 class CarGame(
     private val cars: List<Car>,
     private var tryCount: Int,
-    private val randomGenerator: RandomGenerator
+    private val drivingPolicy: DrivingPolicy = CarDrivingPolicy()
 ) {
-
     fun startRound() {
         moveAllCarsOnce()
         tryCount--
@@ -13,7 +12,7 @@ class CarGame(
 
     private fun moveAllCarsOnce() {
         cars.forEach {
-            it.moveForward(CarDrivingPolicy(randomGenerator.nextInt(10)))
+            it.moveForward(drivingPolicy)
         }
     }
 

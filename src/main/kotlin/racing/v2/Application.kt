@@ -2,7 +2,6 @@ package racing.v2
 
 import racing.v2.domain.Car
 import racing.v2.domain.CarGame
-import racing.v2.domain.CarGameRandomGenerator
 import racing.v2.view.InputView
 import racing.v2.view.ResultView
 
@@ -31,7 +30,7 @@ private fun playGame(
     cars: List<Car>,
     tryCount: Int
 ): CarGame {
-    val carGame = CarGame(cars, tryCount, CarGameRandomGenerator)
+    val carGame = CarGame(cars, tryCount)
 
     while (carGame.hasMoreRounds()) {
         carGame.startRound()

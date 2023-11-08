@@ -35,7 +35,7 @@ private fun `알렉스_단독_자동차게임_생성`(number: Int): Pair<Car, Ca
     val alex_자동차 = Car("alex")
     val `자동차_목록` = listOf(alex_자동차)
     val `시도_횟수` = 1
-    val `자동차게임` = CarGame(`자동차_목록`, `시도_횟수`, FakeCarGameRandomGenerator(number))
+    val `자동차게임` = CarGame(`자동차_목록`, `시도_횟수`, CarDrivingPolicy(FixedNumberGenerator(number)))
     return Pair(alex_자동차, 자동차게임)
 }
 
@@ -76,14 +76,14 @@ class `CarGame_findWinners_테스트` : BehaviorSpec({
 
 private fun `게임_생성_후_우승자_조회`(alexNum: Int, jasonNum: Int, hongNum: Int): List<Car> {
     val `자동차_목록` = listOf(Car("alex", alexNum), Car("jason", jasonNum), Car("hong", hongNum))
-    val `자동차게임` = CarGame(`자동차_목록`, 0, FakeCarGameRandomGenerator(4))
+    val `자동차게임` = CarGame(`자동차_목록`, 0, CarDrivingPolicy(FixedNumberGenerator(4)))
     return 자동차게임.findWinners()
 }
 
 class `CarGame_시도횟수_테스트` : BehaviorSpec({
     Given("자동차 게임에서 시도횟수가 1일 때") {
         val 시도횟수 = 1
-        val 자동차게임 = CarGame(listOf(Car("alex")), 시도횟수, FakeCarGameRandomGenerator(4))
+        val 자동차게임 = CarGame(listOf(Car("alex")), 시도횟수, CarDrivingPolicy(FixedNumberGenerator(4)))
 
         When("게임 라운드를 1회 진행한 경우") {
             자동차게임.startRound()

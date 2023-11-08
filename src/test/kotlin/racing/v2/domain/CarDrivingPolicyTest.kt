@@ -15,7 +15,7 @@ class CarDrivingPolicyTest : StringSpec({
             row(8),
             row(9),
         ) { number: Int ->
-            CarDrivingPolicy(number).canForward() shouldBe true
+            CarDrivingPolicy(FixedNumberGenerator(number)).canForward() shouldBe true
         }
     }
 
@@ -25,7 +25,7 @@ class CarDrivingPolicyTest : StringSpec({
             row(2),
             row(3),
         ) { number: Int ->
-            CarDrivingPolicy(number).canForward() shouldBe false
+            CarDrivingPolicy(FixedNumberGenerator(number)).canForward() shouldBe false
         }
     }
 })
