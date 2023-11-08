@@ -1,25 +1,18 @@
 package carRacing.domain
 
-import carRacing.view.OutputView
-
 class Racing(private val carList: List<Car>) {
-    fun getRaceResult(tryCount: Int): List<Car> = start(this.carList, tryCount)
+    fun getRaceResult(tryCount: Int): RacingResult = start(this.carList, tryCount)
 
-    private fun getWinners(carList: List<Car>): List<Car> {
-        val maxPosition: Int = carList.maxBy { it.position }.position
+    private fun start(carList: List<Car>, tryCount: Int): RacingResult {
+        val racingResult: RacingResult = RacingResult()
 
-        return carList.filter { it.position == maxPosition }
-    }
-
-    fun getWinnerNames(carList: List<Car>): List<String> = getWinners(carList).map { it.name }
-
-    private fun start(carList: List<Car>, tryCount: Int): List<Car> {
         repeat(tryCount) {
-            process(carList)
-            OutputView().printMessages(*carList.map { "${it.name} : ${it.getPosition()}" }.toTypedArray())
+            val copyCarList: List<Car> = process(carList).map { it.copy() }
+
+            racingResult.add(copyCarList)
         }
 
-        return carList
+        return racingResult
     }
 
     private fun process(carList: List<Car>): List<Car> {

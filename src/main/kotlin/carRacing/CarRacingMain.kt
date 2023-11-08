@@ -2,10 +2,12 @@ package carRacing
 
 import carRacing.domain.Car
 import carRacing.domain.Racing
+import carRacing.domain.RacingResult
 import carRacing.enum.Message
 import carRacing.serviceimpl.RandomMovementCarFactory
 import carRacing.view.InputView
 import carRacing.view.MessageGenerator
+import carRacing.view.OutputView
 
 fun main() {
     val messageGenerator: MessageGenerator = MessageGenerator()
@@ -20,9 +22,10 @@ fun main() {
     val carList: List<Car> = RandomMovementCarFactory().createCarList(carNameList)
 
     val racing = Racing(carList)
-    val racingResult: List<Car> = racing.getRaceResult(tryCount)
-    val winnerNameList: List<String> = racing.getWinnerNames(racingResult)
+    val racingResult: RacingResult = racing.getRaceResult(tryCount)
 
-    println()
-    println(messageGenerator.getMessage(Message.WINNER, winnerNameList.joinToString(", ")))
+    val outputView: OutputView = OutputView()
+    racingResult.getRacingResultHistory().forEach(outputView::printCarNameAndPosition)
+
+    println(messageGenerator.getMessage(Message.WINNER, racingResult.getWinnerNames().joinToString(", ")))
 }
