@@ -2,9 +2,14 @@ package racingcar
 
 data class Car(
     var location: Int = CAR_DEFAULT_LOCATION,
+    val name: String,
     private val engine: Engine = RandomPowerEngine(),
 ) {
-    fun move() {
+    init {
+        require(this.name.length <= CAR_MAX_NAME_LENGTH) { "자동차 이름은 최대 ${CAR_MAX_NAME_LENGTH}글자 입니다" }
+    }
+
+    fun moveOrStop() {
         val power = engine.powerUp()
         location += if (isMovablePower(power)) 1 else 0
     }
@@ -21,5 +26,6 @@ data class Car(
         private const val MOVABLE_MAX_POWER = 9
         private const val MOVABLE_MIN_POWER = 4
         private const val CAR_LOCATION_PATH_SYMBOL = "-"
+        private const val CAR_MAX_NAME_LENGTH = 5
     }
 }
