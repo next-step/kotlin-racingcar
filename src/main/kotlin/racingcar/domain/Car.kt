@@ -1,15 +1,15 @@
 package racingcar.domain
 
 data class Car(
-    private val name: String,
-    private var position: Int = 0,
+    val name: String,
 ) {
 
-    val carName: String
-        get() = this.name
+    var position: Int = 0
+        private set
 
-    val currentPosition: Int
-        get() = this.position
+    constructor(name: String, position: Int) : this(name) {
+        this.position = position
+    }
 
     fun move(value: Int) {
         if (value >= FORWARD_CONDITION) {

@@ -5,7 +5,7 @@ class Winner(
 ) {
 
     fun evaluate(): List<RacingSituation> {
-        val maxPosition = finalRacingSituations.maxOfOrNull { it.currentPosition }
-        return finalRacingSituations.filter { it.currentPosition == maxPosition }
+        val maxPosition = finalRacingSituations.maxOfOrNull { it.car.position }
+        return finalRacingSituations.filter { it.car.position == maxPosition }
     }
 }

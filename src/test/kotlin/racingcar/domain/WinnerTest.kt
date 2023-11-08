@@ -9,12 +9,12 @@ class WinnerTest {
     fun `우승자를 가린다`() {
         val winner = Winner(
             listOf(
-                RacingSituation("pobi", 1),
-                RacingSituation("crong", 1),
-                RacingSituation("honux", 0)
+                RacingSituation(Car("pobi", 1)),
+                RacingSituation(Car("crong", 1)),
+                RacingSituation(Car("honux", 0))
             )
         )
 
-        assertEquals(listOf(RacingSituation("pobi", 1), RacingSituation("crong", 1)), winner.evaluate())
+        assertEquals(listOf(RacingSituation(Car("pobi", 1)), RacingSituation(Car("crong", 1))), winner.evaluate())
     }
 }
