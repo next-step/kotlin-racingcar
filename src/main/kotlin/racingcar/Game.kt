@@ -1,10 +1,10 @@
 package racingcar
 
 class Game(
-    carNumber: Int,
+    carNames: List<String>,
     private val tryCount: Int,
 ) {
-    private val cars: Array<Car> = Array(carNumber) { Car() }
+    private val cars: List<Car> = carNames.map { Car(name = it) }
 
     fun run(): List<GameResult> {
         val gameResult = mutableListOf<GameResult>()
@@ -16,7 +16,7 @@ class Game(
 
     private fun runGameOneStage(): GameResult {
         cars.forEach { car ->
-            car.move()
+            car.moveOrStop()
         }
         return GameResult(cars.map { it.copy() })
     }

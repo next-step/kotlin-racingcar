@@ -1,9 +1,9 @@
 package racingcar
 
 fun main() {
-    val carNumber = readCarNumber()
+    val carNames = readCarNames()
     val tryCount = readTryCount()
-    val game = Game(carNumber, tryCount)
+    val game = Game(carNames, tryCount)
     val gameResults = game.run()
     printGameResult(gameResults)
 }
