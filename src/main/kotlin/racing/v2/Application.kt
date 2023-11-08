@@ -7,15 +7,15 @@ import racing.v2.view.InputView
 import racing.v2.view.ResultView
 
 fun main() {
-    val cars: List<Car> = requestCars()
+    val carsStr: String = requestCars()
     val tryCount: Int = requestTryCount()
 
     ResultView.printResultStart()
-    val carGame = playGame(cars, tryCount)
+    val carGame = playGame(Car.ofList(carsStr), tryCount)
     ResultView.printWinner(carGame.findWinners())
 }
 
-private fun requestCars(): List<Car> {
+private fun requestCars(): String {
     InputView.printCarNamesPrompt()
     val carsStr = InputView.getUserInput()
     return InputView.validateCars(carsStr)

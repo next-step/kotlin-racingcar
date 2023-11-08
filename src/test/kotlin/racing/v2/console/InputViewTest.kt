@@ -3,15 +3,9 @@ package racing.v2.console
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import racing.v2.domain.Car
 import racing.v2.view.InputView
 
 class InputViewTest : StringSpec({
-    "자동차 이름들은 쉽표(,)를 기준으로 구분된다." {
-        val cars: List<Car> = InputView.validateCars("pobi,crong,honux,alex")
-        cars.size shouldBe 4
-    }
-
     "자동차 이름이 입력되지 않으면 예외가 발생한다." {
         shouldThrow<IllegalArgumentException> {
             InputView.validateCars(null)
