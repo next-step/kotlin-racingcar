@@ -21,7 +21,7 @@ Kotlin in Action 을 읽으면서 학습한 내용이 미션에 어떻게 적용
 
 package example
 
-var opCount = 0 // getter 메서드가 노출된다
+var opCount = 0 // getter, setter 함수가 노출된다
 
 const val UNIX_LINE_SEPARATOR = "\n" // public static final 필드로 컴파일된다
 
