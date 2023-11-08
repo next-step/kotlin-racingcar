@@ -2,7 +2,6 @@ package carRacing
 
 import carRacing.enum.ErrorCode
 import carRacing.view.MessageGenerator
-import carRacing.view.VARIABLE_PATTERN
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -53,7 +52,7 @@ class MessageGeneratorTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> {
             return ErrorCode.values()
                 .filter { errorCode ->
-                    !errorCode.message.contains(VARIABLE_PATTERN)
+                    !errorCode.message.contains(MessageGenerator.Companion.VARIABLE_PATTERN)
                 }
                 .map { Arguments.of(it) }
                 .toList()

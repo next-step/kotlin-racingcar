@@ -3,8 +3,6 @@ package carRacing.view
 import carRacing.enum.ErrorCode
 import carRacing.enum.Message
 
-val VARIABLE_PATTERN: Regex = Regex("\\[\\d+\\]")
-
 class MessageGenerator {
     fun getErrorMessage(errorCode: ErrorCode, vararg variables: String): String = formatMessage(errorCode.message, *variables)
 
@@ -24,5 +22,9 @@ class MessageGenerator {
         }
 
         return formattedMessage
+    }
+
+    companion object {
+        val VARIABLE_PATTERN: Regex = Regex("\\[\\d+\\]")
     }
 }
