@@ -10,7 +10,7 @@ fun main() {
     val carNames = InputView.inputCarNames()
     val countOfTry = InputView.inputCountOfTry()
 
-    val racingCarController = RacingCarController(countOfTry, RacingGame.of(carNames))
+    val racingCarController = RacingCarController(countOfTry, carNames, RacingGame())
     val allRacingSituations = racingCarController.start()
     val winners = racingCarController.evaluate(Winner(allRacingSituations.last()))
 
