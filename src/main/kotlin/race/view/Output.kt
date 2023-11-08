@@ -5,7 +5,7 @@ import race.domain.SimpleCars
 
 class Output {
     fun printStatus(cars: SimpleCars) {
-        cars.carList.forEach { println("${it.name} : ${visualizeLocation(it)}") }
+        cars.carList.forEach { println("${it.carName.name} : ${visualizeLocation(it)}") }
         println("######################")
     }
 
@@ -14,7 +14,7 @@ class Output {
     }
 
     fun printResult(cars: List<SimpleCar>) {
-        val winners = cars.joinToString(", ") { it.name }
+        val winners = cars.joinToString(", ") { it.carName.name }
 
         println("$winners 가 최종 우승했습니다.")
     }

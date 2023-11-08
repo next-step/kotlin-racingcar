@@ -9,16 +9,16 @@ class SimpleCarsTest {
         val carNames = arrayOf("t1", "t2", "t3")
         val cars = SimpleCars(listOf(*carNames))
 
-        Assertions.assertThat(cars.findWinners().map { it.name }).contains(*carNames)
+        Assertions.assertThat(cars.findWinners().map { it.carName.name }).contains(*carNames)
 
         cars.carList.first().move(SimpleCar.MOVE_THRESHOLD)
         Assertions.assertThat(cars.findWinners().size).isEqualTo(1)
-        Assertions.assertThat(cars.findWinners().first().name).isEqualTo(carNames.first())
+        Assertions.assertThat(cars.findWinners().first().carName.name).isEqualTo(carNames.first())
 
         cars.carList.last().move(SimpleCar.MOVE_THRESHOLD)
         Assertions.assertThat(cars.findWinners().size).isEqualTo(2)
         Assertions.assertThat(
-            cars.findWinners().joinToString(", ") { it.name }
+            cars.findWinners().joinToString(", ") { it.carName.name }
         ).isEqualTo("${carNames.first()}, ${carNames.last()}")
     }
 }
