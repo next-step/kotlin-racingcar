@@ -14,13 +14,12 @@ class Racing(private val carList: List<Car>) {
     fun getWinnerNames(carList: List<Car>): List<String> = getWinners(carList).map { it.name }
 
     private fun start(carList: List<Car>, tryCount: Int): List<Car> {
-        var resultCarList: List<Car> = listOf()
         repeat(tryCount) {
-            resultCarList = process(carList)
+            process(carList)
             OutputView().printMessages(*carList.map { "${it.name} : ${it.getPosition()}" }.toTypedArray())
         }
 
-        return resultCarList
+        return carList
     }
 
     private fun process(carList: List<Car>): List<Car> {
