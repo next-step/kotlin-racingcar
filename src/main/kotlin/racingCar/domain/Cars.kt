@@ -1,28 +1,45 @@
 package racingCar.domain
 
+import racingCar.domain.strategy.MoveStrategy
+import racingCar.domain.strategyImpl.RandomStrategy
 import racingCar.error.ErrorMessage
-import racingCar.view.OutputView
 
-class Cars {
+class Cars(private val moveStrategy: MoveStrategy = RandomStrategy(), carList: List<Car> = emptyList()) {
 
-    fun moveCar(cars: List<Car>, tryCount: Int) {
+    var carList: List<Car> = carList
+        private set
+
+    var carHisList: MutableList<Car> = mutableListOf()
+        private set
+
+    fun initCars(inputCars: String, delimiter: String = COMMA) {
+        val split = inputCars.split(delimiter)
+        split.forEach { require(it.length <= LIMIT_CAR_NAME) { ErrorMessage.NAME_TOO_LONG } }
+
+        val carsNames: List<String> = split
+        carList = carsNames.map { Car(name = it, moveStrategy = moveStrategy) }
+    }
+
+    fun carsMove(tryCount: Int) {
         repeat(tryCount) {
-            cars.forEach { it.conditionalMove() }
-            OutputView.printCar(cars)
+            carList.forEach {
+                it.move()
+                saveCarLog(it.copy())
+            }
         }
     }
 
-    fun getCars(inputCars: String): List<Car> {
-        val split = inputCars.split(",")
-        split.forEach { require(it.length <= 5) { ErrorMessage.NAME_TOO_LONG } }
-
-        val carsNames: List<String> = split
-        return carsNames.map { Car(it) }
+    private fun saveCarLog(car: Car) {
+        carHisList.add(car)
     }
 
-    fun getWinners(carList: List<Car>): String {
+    fun getWinners(): List<Car> {
         val maxMoveCount = carList.maxByOrNull { it.moveCount }?.moveCount
-        val winners: List<Car> = carList.filter { it.moveCount == maxMoveCount }
-        return winners.joinToString(", ") { it.name }
+        return carList.filter { it.moveCount == maxMoveCount }
+    }
+
+    companion object {
+        private const val LIMIT_CAR_NAME = 5
+        private const val COMMA = ","
     }
 }
