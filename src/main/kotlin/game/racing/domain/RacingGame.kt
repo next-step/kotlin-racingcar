@@ -1,21 +1,15 @@
 package game.racing.domain
 
-import game.racing.view.InputView
+import game.racing.util.getRandomValue
 import game.racing.view.ResultView
 
-class RacingGame(private val carManger: CarManger) {
+class RacingGame(private val racingManager: RacingManager, private val tryNumber: Int) {
     fun start() {
-        val tryNumber = InputView.inputTryNumber()
-
         ResultView.printResultIntroduction()
         repeat(tryNumber) {
-            carManger.moveCars()
-            ResultView.printResult(carManger.cars)
+            racingManager.moveCars { getRandomValue() }
+            ResultView.printResult(racingManager.cars)
         }
+        ResultView.printWinner(racingManager.determineWinner())
     }
-}
-
-fun main() {
-    val racingGame = RacingGame(CarManger(CarFactory.generateCarByNumberOfCar(InputView.inputNumberOfCar())))
-    racingGame.start()
 }

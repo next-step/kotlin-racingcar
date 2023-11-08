@@ -1,11 +1,10 @@
 package game.racing.domain
 
 object CarFactory {
-    fun generateCarByNumberOfCar(numberOfCar: Int): List<Car> {
-        val cars = mutableListOf<Car>()
-        repeat(numberOfCar) {
-            cars.add(Car())
-        }
-        return cars
+    private const val CAR_NAME_DELIMITER = ","
+
+    fun generateCarByCarNames(carNames: String): List<Car> {
+        val carNameList = carNames.split(CAR_NAME_DELIMITER)
+        return carNameList.map { Car(it) }
     }
 }
