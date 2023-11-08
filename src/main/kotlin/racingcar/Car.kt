@@ -15,7 +15,7 @@ data class Car(
     }
 
     override fun toString(): String {
-        return CAR_LOCATION_PATH_SYMBOL.repeat(location)
+        return "$name : " + CAR_LOCATION_PATH_SYMBOL.repeat(location)
     }
 
     private fun isMovablePower(power: Int) =
