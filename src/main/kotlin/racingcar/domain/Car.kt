@@ -3,13 +3,12 @@ package racingcar.domain
 data class Car(
     var location: Int = CAR_DEFAULT_LOCATION,
     val name: String,
-    private val engine: Engine = RandomPowerEngine(),
 ) {
     init {
         require(this.name.length <= CAR_MAX_NAME_LENGTH) { "자동차 이름은 최대 ${CAR_MAX_NAME_LENGTH}글자 입니다" }
     }
 
-    fun moveOrStop() {
+    fun moveOrStop(engine: Engine) {
         val power = engine.powerUp()
         if (isMovablePower(power)) {
             location++

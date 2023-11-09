@@ -12,7 +12,7 @@ class RacingGame(
 
     private fun runGameOneStage(): RacingGameResult {
         cars.forEach { car ->
-            car.moveOrStop()
+            car.moveOrStop(RandomPowerEngine())
         }
         return RacingGameResult(cars.map { it.copy() })
     }

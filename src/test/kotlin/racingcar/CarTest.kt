@@ -25,14 +25,14 @@ class CarTest : FunSpec({
             row(8, 1),
             row(9, 1),
         ) { (power, expected) ->
-            val car = Car(name = "hojun", engine = { power })
-            car.moveOrStop()
+            val car = Car(name = "hojun")
+            car.moveOrStop { power }
             car.location shouldBe expected
         }
     }
 
     context("자동차의 상태를 출력하면 이름, 위치가 함께 출력된다.") {
-        val car = Car(name = "hojun", engine = { 5 }, location = 3)
+        val car = Car(name = "hojun", location = 3)
         car.toString() shouldBe "hojun : ---"
     }
 })
