@@ -7,26 +7,6 @@ class OutputView {
 
     private val messageGenerator: MessageGenerator = MessageGenerator()
 
-    fun printMessageInBox(message: String) {
-        println("====================================")
-        println(message)
-        println("====================================")
-    }
-
-    fun printMessagesInBox(vararg messages: String) {
-        println("====================================")
-        printMessages(*messages)
-        println("====================================")
-    }
-
-    fun printMessages(vararg messages: String) {
-        for (message in messages) {
-            println(message)
-        }
-
-        println()
-    }
-
     fun printCarNameAndPosition(carList: List<Car>) {
         for (car in carList) {
             printCarNameAndPosition(car)
