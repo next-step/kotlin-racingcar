@@ -15,4 +15,6 @@ class SimpleCars(carNames: List<String>) {
     fun moveAll() {
         carList.forEach { it.move((0..9).random()) }
     }
+
+    fun forEach(block: (SimpleCar) -> Unit) = carList.forEach(block)
 }

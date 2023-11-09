@@ -5,7 +5,7 @@ import race.domain.SimpleCars
 
 class Output {
     fun printStatus(cars: SimpleCars) {
-        cars.carList.forEach { println("${it.carName.name} : ${visualizeLocation(it)}") }
+        cars.forEach { println("${it.carName.name} : ${visualizeLocation(it)}") }
         println("######################")
     }
 
