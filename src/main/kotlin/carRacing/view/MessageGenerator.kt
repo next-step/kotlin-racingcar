@@ -17,9 +17,7 @@ class MessageGenerator {
             throw IllegalArgumentException(getErrorMessage(ErrorCode.MISMATCHED_VARIABLE_COUNT))
         }
 
-        for ((idx, variable) in variables.withIndex()) {
-            formattedMessage = formattedMessage.replace("[$idx]", variable)
-        }
+        variables.forEachIndexed { idx, variable -> formattedMessage = formattedMessage.replace("[$idx]", variable) }
 
         return formattedMessage
     }
