@@ -6,7 +6,7 @@ enum class Operator(val symbol: String, private val operation: IntOperation) {
     MULTIPLY("*", { number1, number2 -> number1 * number2 }),
     DIVIDE("/", { number1, number2 ->
         if (number2 == 0) throw IllegalArgumentException("0으로 나눌 수 없습니다")
-        else number1 / number2
+        number1 / number2
     });
 
     fun operate(number1: Int, number2: Int): Int {
