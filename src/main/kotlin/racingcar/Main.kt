@@ -1,14 +1,14 @@
 package racingcar
 
-import racingcar.domain.Game
-import racingcar.view.printGameResult
+import racingcar.domain.RacingGame
+import racingcar.view.printRacingGameResult
 import racingcar.view.readCarNames
 import racingcar.view.readTryCount
 
 fun main() {
     val carNames = readCarNames()
     val tryCount = readTryCount()
-    val game = Game(carNames, tryCount)
-    val gameResults = game.run()
-    printGameResult(gameResults)
+    val racingGame = RacingGame(carNames, tryCount)
+    val racingGameResults = racingGame.run()
+    printRacingGameResult(racingGameResults)
 }

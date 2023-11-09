@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class GameResult(val cars: List<Car>) {
+class RacingGameResult(val cars: List<Car>) {
 
     fun getWinners(): List<Car> {
         val maxLocation = cars.maxBy { it.location }.location

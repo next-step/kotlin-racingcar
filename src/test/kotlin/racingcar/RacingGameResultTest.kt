@@ -3,9 +3,9 @@ package racingcar
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import racingcar.domain.Car
-import racingcar.domain.GameResult
+import racingcar.domain.RacingGameResult
 
-class GameResultTest : ShouldSpec({
+class RacingGameResultTest : ShouldSpec({
     context("자동차 경주 우승자는") {
         should("가장 많이 이동한 자동차다") {
             val cars = listOf(
@@ -13,7 +13,7 @@ class GameResultTest : ShouldSpec({
                 Car(location = 3, name = "crong"),
                 Car(location = 4, name = "honux")
             )
-            val winner = GameResult(cars).getWinners().first()
+            val winner = RacingGameResult(cars).getWinners().first()
             winner.location shouldBe 4
         }
 
@@ -23,7 +23,7 @@ class GameResultTest : ShouldSpec({
                 Car(location = 4, name = "crong"),
                 Car(location = 4, name = "honux")
             )
-            val winners = GameResult(cars).getWinners()
+            val winners = RacingGameResult(cars).getWinners()
             winners.size shouldBe 2
         }
     }
