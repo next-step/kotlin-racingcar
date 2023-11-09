@@ -23,7 +23,7 @@ data class Car(
         power in MOVABLE_MIN_POWER..MOVABLE_MAX_POWER
 
     companion object {
-        private const val CAR_DEFAULT_LOCATION = 0
+        const val CAR_DEFAULT_LOCATION = 0
         private const val MOVABLE_MAX_POWER = 9
         private const val MOVABLE_MIN_POWER = 4
         private const val CAR_LOCATION_PATH_SYMBOL = "-"
