@@ -2,6 +2,8 @@ package racingcar
 
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
+import racingcar.domain.Car
+import racingcar.domain.GameResult
 
 class GameResultTest : ShouldSpec({
     context("자동차 경주 우승자는") {

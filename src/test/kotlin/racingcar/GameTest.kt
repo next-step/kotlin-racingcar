@@ -3,6 +3,7 @@ package racingcar
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
+import racingcar.domain.Game
 
 class GameTest : ShouldSpec({
     context("N대의 자동차를 M번 이동하는 게임이 시작되면") {

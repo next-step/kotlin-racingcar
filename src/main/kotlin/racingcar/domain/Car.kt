@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 data class Car(
     var location: Int = CAR_DEFAULT_LOCATION,

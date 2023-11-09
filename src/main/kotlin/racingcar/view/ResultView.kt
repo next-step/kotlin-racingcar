@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.GameResult
 
 private const val RESULT_MESSAGE = "실행 결과"
 

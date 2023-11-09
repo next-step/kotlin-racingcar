@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class GameResult(val cars: List<Car>) {
 
