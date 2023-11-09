@@ -7,11 +7,7 @@ class RacingGame(
     private val cars: List<Car> = carNames.map { Car(name = it) }
 
     fun run(): List<RacingGameResult> {
-        val racingGameResult = mutableListOf<RacingGameResult>()
-        for (stage in (0 until tryCount)) {
-            racingGameResult.add(runGameOneStage())
-        }
-        return racingGameResult
+        return List(tryCount) { runGameOneStage() }
     }
 
     private fun runGameOneStage(): RacingGameResult {
