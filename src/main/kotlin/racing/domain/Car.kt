@@ -1,11 +1,7 @@
 package racing.domain
 
-private const val MAXIMUM_NAME_LENGTH = 5
-private const val DEFAULT_POSITION = 1
-private const val MOVABLE_MINIMUM = 4
-private const val MOVING_DISTANCE = 1
-
 class Car private constructor(
+    private val condition: CarRacingCondition,
     val name: String,
     position: Int
 ) {
@@ -19,19 +15,25 @@ class Car private constructor(
         }
     }
 
-    fun moveOrStop(condition: Int) {
-        if (isMove(condition)) {
+    fun moveOrStop() {
+        if (condition.canMove()) {
             move()
         }
     }
-
-    private fun isMove(condition: Int): Boolean = condition >= MOVABLE_MINIMUM
 
     private fun move() {
         position += MOVING_DISTANCE
     }
 
     companion object {
-        fun of(name: String, position: Int = DEFAULT_POSITION): Car = Car(name, position)
+        private const val MAXIMUM_NAME_LENGTH = 5
+        private const val DEFAULT_POSITION = 1
+        private const val MOVING_DISTANCE = 1
+
+        fun of(
+            condition: CarRacingCondition,
+            name: String,
+            position: Int = DEFAULT_POSITION,
+        ): Car = Car(condition, name, position)
     }
 }

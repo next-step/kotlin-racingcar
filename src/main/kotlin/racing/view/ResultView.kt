@@ -1,6 +1,6 @@
 package racing.view
 
-import racing.domain.Car
+import racing.domain.CarRacingRecord
 import racing.domain.CarRacingResult
 
 object ResultView {
@@ -16,14 +16,14 @@ object ResultView {
         winners.printRacingWinner()
     }
 
-    private fun List<Car>.printRacingResultPerRound() {
+    private fun List<CarRacingRecord>.printRacingResultPerRound() {
         forEach { car ->
             car.printRacingResultPerRound()
         }
         println()
     }
 
-    private fun Car.printRacingResultPerRound() {
+    private fun CarRacingRecord.printRacingResultPerRound() {
         println("$name : ${transformResult(position)}")
     }
 

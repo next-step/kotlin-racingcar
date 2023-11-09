@@ -1,7 +1,6 @@
 package racing.domain
 
 class CarRacing private constructor(
-    private val numberStrategy: NumberStrategy,
     private val recorder: CarRacingRecordStrategy,
     private val cars: List<Car>,
 ) {
@@ -18,7 +17,7 @@ class CarRacing private constructor(
         return CarRacingResult(cars, results, winners)
     }
 
-    private fun raceWithRecordResult(cars: List<Car>, tryCount: Int): List<List<Car>> {
+    private fun raceWithRecordResult(cars: List<Car>, tryCount: Int): List<List<CarRacingRecord>> {
         return List(tryCount) {
             cars.racePerRound()
             recorder.recordRacingResultPerRound(cars)
@@ -27,15 +26,20 @@ class CarRacing private constructor(
 
     private fun List<Car>.racePerRound() {
         forEach { car ->
-            car.moveOrStop(numberStrategy.getNumber())
+            car.moveOrStop()
         }
     }
 
     companion object {
         fun of(
-            numberStrategy: NumberStrategy,
+            condition: CarRacingCondition,
             recorder: CarRacingRecordStrategy,
             carNames: List<String>,
-        ): CarRacing = CarRacing(numberStrategy, recorder, carNames.map { name -> Car.of(name) })
+        ): CarRacing = CarRacing(recorder, cars = carNames.map { name -> Car.of(condition, name) })
+
+        fun of(
+            recorder: CarRacingRecordStrategy,
+            cars: List<Car>,
+        ): CarRacing = CarRacing(recorder, cars = cars)
     }
 }

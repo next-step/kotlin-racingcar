@@ -9,7 +9,7 @@ import io.kotest.matchers.collections.shouldHaveAtLeastSize
 import io.kotest.matchers.shouldBe
 
 class CarRacingTest : BehaviorSpec({
-    val numberStrategy: NumberStrategy = RandomNumberStrategy
+    val condition: CarRacingCondition = CarRacingConditionImpl
     val recorder: CarRacingRecordStrategy = CarRacingRecorder
 
     given("자동차 0대로") {
@@ -17,7 +17,7 @@ class CarRacingTest : BehaviorSpec({
         `when`("자동차 경주를 하면") {
             then("예외가 발생한다") {
                 shouldThrowWithMessage<IllegalArgumentException>("자동차가 0대이면 자동차 경주를 할 수 없습니다.") {
-                    CarRacing.of(numberStrategy, recorder, carNames)
+                    CarRacing.of(condition, recorder, carNames)
                 }
             }
         }
@@ -30,7 +30,7 @@ class CarRacingTest : BehaviorSpec({
             row(listOf("pobi", "crong", "honux"), 10)
         ) { carNames, tryCount ->
             `when`("자동차 게임을 하면") {
-                val (cars, results, winners) = CarRacing.of(numberStrategy, recorder, carNames).race(tryCount)
+                val (cars, results, winners) = CarRacing.of(condition, recorder, carNames).race(tryCount)
                 then("몇 대의 자동차로 몇 번의 이동한 결과를 반환한다") {
                     results shouldBeSameSizeAs List(tryCount) { cars }
                 }
@@ -40,6 +40,23 @@ class CarRacingTest : BehaviorSpec({
                 then("우승자는 가장 많이 움직인 자동차이다") {
                     winners shouldBe CarRacingRecorder.findWinners(cars)
                 }
+            }
+        }
+    }
+
+    given("자동차 경주 게임을 종료한 결과") {
+        val carRacing = CarRacing.of(
+            recorder,
+            cars = listOf(
+                Car.of(CarRacingMoveCondition, name = "pobi"),
+                Car.of(CarRacingStopCondition, name = "crong"),
+                Car.of(CarRacingMoveCondition, name = "honux"),
+            )
+        )
+        `when`("pobi = 10, crong = 0, honux = 10 이라면") {
+            val result = carRacing.race(tryCount = 10)
+            then("우승자는 pobi와 crong이다.") {
+                result.winners shouldBe listOf("pobi", "honux")
             }
         }
     }

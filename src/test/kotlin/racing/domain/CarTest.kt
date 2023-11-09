@@ -7,6 +7,8 @@ import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
 class CarTest : BehaviorSpec({
+    val condition: CarRacingCondition = CarRacingConditionImpl
+
     given("자동차는") {
         `when`("이름과 위치를") {
             forAll(
@@ -15,7 +17,7 @@ class CarTest : BehaviorSpec({
                 row("honux", 10)
             ) { name, position ->
                 then("가진다") {
-                    val car = Car.of(name, position)
+                    val car = Car.of(condition, name, position)
                     car.name shouldBe name
                     car.position shouldBe position
                 }
@@ -23,16 +25,17 @@ class CarTest : BehaviorSpec({
         }
 
         `when`("이름이 5자를 초과하면") {
+            val name = "pobicronghonux"
             then("예외가 발생한다") {
                 shouldThrowWithMessage<IllegalArgumentException>("자동차 이름은 5자를 초과할 수 없습니다.") {
-                    Car.of(name = "pobicronghonux")
+                    Car.of(condition, name)
                 }
             }
         }
 
         `when`("초기 위치는") {
             then("1이다") {
-                val car = Car.of(name = "pobi")
+                val car = Car.of(condition, name = "pobi")
                 car.position shouldBe 1
             }
         }
@@ -45,9 +48,9 @@ class CarTest : BehaviorSpec({
                 row(7),
                 row(8),
                 row(9),
-            ) { condition ->
-                val car = Car.of("pobi")
-                car.moveOrStop(condition)
+            ) {
+                val car = Car.of(CarRacingMoveCondition, name = "pobi")
+                car.moveOrStop()
                 then("움직인다") {
                     car.position shouldBe 2
                 }
@@ -60,9 +63,9 @@ class CarTest : BehaviorSpec({
                 row(1),
                 row(2),
                 row(3)
-            ) { condition ->
-                val car = Car.of(name = "pobi")
-                car.moveOrStop(condition)
+            ) {
+                val car = Car.of(CarRacingStopCondition, name = "pobi")
+                car.moveOrStop()
                 then("정지한다") {
                     car.position shouldBe 1
                 }
@@ -73,9 +76,7 @@ class CarTest : BehaviorSpec({
     given("자동차의 이름은") {
         val carNames = "pobi,crong,honux"
         then("쉼표로 구분한다") {
-            val cars = carNames.split(",").map { name ->
-                Car.of(name)
-            }
+            val cars = carNames.split(",").map { name -> Car.of(condition, name) }
             cars.map { it.name } shouldBe carNames.split(",")
         }
     }
