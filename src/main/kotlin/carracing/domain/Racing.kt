@@ -9,7 +9,7 @@ class Racing(
         cars.forEach { it.move(rule.generateMovingFactor()) }
     }
 
-    fun takeSnapshot(): Snapshot = cars.map { it.movingCount }
+    fun takeSnapshot(): Snapshot = Snapshot(cars.associate { it.name to it.movingCount } as LinkedHashMap)
 
     fun playRoundWithSnapshot(): Snapshot {
         playRound()

@@ -1,3 +1,3 @@
 package carracing.domain
 
-typealias Snapshot = List<Int>
+data class Snapshot(val trace: LinkedHashMap<String, Int>)

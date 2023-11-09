@@ -3,6 +3,7 @@ package carracing.controlller
 import carracing.domain.Car
 import carracing.domain.Racing
 import carracing.domain.Snapshot
+import carracing.util.requireNotNullOrBlank
 import carracing.util.toIntOrThrow
 import carracing.view.InputView
 import carracing.view.OutputView
@@ -10,10 +11,11 @@ import carracing.view.OutputView
 class CarRacingController {
 
     fun organize(): Racing {
-        val numberOfCar = InputView.getNumberOfCar()
-            .toIntOrThrow { "'numberOfCar' must be a number" }
-        require(numberOfCar > 0) { "'numberOfCar' must be greater than 0" }
-        return Racing(cars = List(numberOfCar) { Car() })
+        val cars = InputView.getNamesOfCars()
+            .requireNotNullOrBlank { "'namesOfCars' must not be blank or null" }
+            .split(",")
+            .map { Car(it) }
+        return Racing(cars = cars)
     }
 
     fun play(racing: Racing): List<Snapshot> {

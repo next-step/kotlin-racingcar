@@ -2,13 +2,14 @@ package carracing.domain
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import java.util.UUID
 
 class RacingTest {
 
     @Test
     fun `playRound - every car moves once`() {
         // given
-        val cars = List(4) { Car() }
+        val cars = List(4) { Car(UUID.randomUUID().toString()) }
         val racing = Racing(cars, Rule.AlwaysMoveRule())
 
         // when
@@ -23,12 +24,16 @@ class RacingTest {
     @Test
     fun `takeSnapshot - return the current movingCount of all car`() {
         // given
-        val expectedMovingCount = listOf(1, 0, 2)
         val alwaysMoveRule = Rule.AlwaysMoveRule()
+        val expectedMovingCount = linkedMapOf<String, Int>(
+            "A" to 1,
+            "B" to 0,
+            "C" to 3
+        )
         val cars = expectedMovingCount
-            .map {
-                Car().apply {
-                    repeat(it) { move(alwaysMoveRule.generateMovingFactor()) }
+            .map { (name, movingCount) ->
+                Car(name).apply {
+                    repeat(movingCount) { move(alwaysMoveRule.generateMovingFactor()) }
                 }
             }
         val racing = Racing(cars = cars)
@@ -37,15 +42,15 @@ class RacingTest {
         val snapshot = racing.takeSnapshot()
 
         // then
-        snapshot.forEachIndexed { index, movingCount ->
-            assertEquals(expectedMovingCount[index], movingCount)
+        snapshot.trace.forEach { (name, movingCount) ->
+            assertEquals(expectedMovingCount[name], movingCount)
         }
     }
 
     @Test
-    fun `playRoundsWithSnapshots - play rounds numberOfAttempt of times and returns a snapshot list for each round`() {
+    fun `playRoundsWithSnapshots - play rounds 'numberOfAttempt' of times and returns a snapshot list for each round`() {
         // given
-        val cars = List(4) { Car() }
+        val cars = List(4) { Car(UUID.randomUUID().toString()) }
         val racing = Racing(cars, Rule.AlwaysMoveRule())
 
         // when
@@ -54,7 +59,7 @@ class RacingTest {
         // then
         snapshots.forEachIndexed { index, snapshot ->
             val round = index + 1
-            snapshot.forEach { assertEquals(round, it) }
+            snapshot.trace.forEach { assertEquals(round, it.value) }
         }
     }
 }

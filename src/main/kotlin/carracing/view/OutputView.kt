@@ -11,7 +11,7 @@ object OutputView {
     }
 
     fun printSnapshot(snapshot: Snapshot) {
-        snapshot.forEach { println(MOVEMENT.repeat(it)) }
+        snapshot.trace.forEach { println("${it.key} : ${MOVEMENT.repeat(it.value)}") }
         println()
     }
 }
