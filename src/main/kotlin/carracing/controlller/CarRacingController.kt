@@ -18,14 +18,16 @@ class CarRacingController {
         return Racing(cars = cars)
     }
 
-    fun play(racing: Racing): List<Snapshot> {
+    fun play(racing: Racing) {
         val numberOfAttempt = InputView.getNumberOfAttempt()
             .toIntOrThrow { "'numberOfAttempt' must be a number" }
         require(numberOfAttempt > 0) { "'numberOfAttempt' must be greater than 0" }
-        return racing.playRoundsWithSnapshots(numberOfAttempt)
+        val snapshots: List<Snapshot> = racing.playRoundsWithSnapshots(numberOfAttempt)
+        OutputView.printResult(snapshots)
     }
 
-    fun printSnapshots(snapshots: List<Snapshot>) {
-        OutputView.printResult(snapshots)
+    fun finish(racing: Racing) {
+        val winners: List<String> = racing.finish()
+        OutputView.printWinners(winners)
     }
 }

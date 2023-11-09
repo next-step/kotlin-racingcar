@@ -1,7 +1,10 @@
 package carracing.domain
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertIterableEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import java.util.UUID
 
 class RacingTest {
@@ -61,5 +64,50 @@ class RacingTest {
             val round = index + 1
             snapshot.trace.forEach { assertEquals(round, it.value) }
         }
+    }
+
+    @Test
+    fun `winners - if check the winners before the race finish, throw IllegalStateException`() {
+        // given
+        val racing = Racing(cars = List(4) { Car(UUID.randomUUID().toString()) })
+
+        // when, then
+        assertThrows<IllegalStateException> { racing.winners }
+    }
+
+    @Test
+    fun `winners - once decided, the winners doesn't change when we play more rounds`() {
+        // given
+        val racing = Racing(cars = List(4) { Car(UUID.randomUUID().toString()) })
+
+        // when
+        val winners = racing.finish()
+        racing.playRound()
+
+        // then
+        assertIterableEquals(winners, racing.winners)
+    }
+
+    @Test
+    fun `finish - finish racing, determine the winners and return`() {
+        // given
+        val racing = Racing(cars = List(4) { Car(UUID.randomUUID().toString()) })
+
+        // when
+        val winners = racing.finish()
+
+        // then
+        assertEquals(true, racing.isFinish)
+        assertTrue(winners.size > 1)
+    }
+
+    @Test
+    fun `finish - if going to finish already finished racing, throw IllegalStateException`() {
+        // given
+        val racing = Racing(cars = List(4) { Car(UUID.randomUUID().toString()) })
+        racing.finish()
+
+        // when, then
+        assertThrows<IllegalStateException> { racing.finish() }
     }
 }
