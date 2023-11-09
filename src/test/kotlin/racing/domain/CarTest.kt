@@ -70,12 +70,12 @@ class CarTest : BehaviorSpec({
         }
     }
 
-    val carFactory: CarFactory = CarFactoryImpl
-
     given("자동차의 이름은") {
         val carNames = "pobi,crong,honux"
         then("쉼표로 구분한다") {
-            val cars = carFactory.createCars(carNames.split(","))
+            val cars = carNames.split(",").map { name ->
+                Car.of(name)
+            }
             cars.map { it.name } shouldBe carNames.split(",")
         }
     }

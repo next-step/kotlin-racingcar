@@ -9,16 +9,15 @@ import io.kotest.matchers.collections.shouldHaveAtLeastSize
 import io.kotest.matchers.shouldBe
 
 class CarRacingTest : BehaviorSpec({
-    val carFactory: CarFactory = CarFactoryImpl
     val numberStrategy: NumberStrategy = RandomNumberStrategy
     val recorder: CarRacingRecordStrategy = CarRacingRecorder
 
     given("자동차 0대로") {
-        val cars = emptyList<Car>()
+        val carNames = emptyList<String>()
         `when`("자동차 경주를 하면") {
             then("예외가 발생한다") {
                 shouldThrowWithMessage<IllegalArgumentException>("자동차가 0대이면 자동차 경주를 할 수 없습니다.") {
-                    CarRacing(numberStrategy, recorder, cars)
+                    CarRacing.of(numberStrategy, recorder, carNames)
                 }
             }
         }
@@ -30,9 +29,8 @@ class CarRacingTest : BehaviorSpec({
             row(listOf("pobi", "crong", "honux"), 7),
             row(listOf("pobi", "crong", "honux"), 10)
         ) { carNames, tryCount ->
-            val cars: List<Car> = carFactory.createCars(carNames)
             `when`("자동차 게임을 하면") {
-                val (results, winners) = CarRacing(numberStrategy, recorder, cars).race(tryCount)
+                val (cars, results, winners) = CarRacing.of(numberStrategy, recorder, carNames).race(tryCount)
                 then("몇 대의 자동차로 몇 번의 이동한 결과를 반환한다") {
                     results shouldBeSameSizeAs List(tryCount) { cars }
                 }
