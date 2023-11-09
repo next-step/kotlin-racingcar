@@ -11,14 +11,16 @@ data class Car(
 
     fun moveOrStop() {
         val power = engine.powerUp()
-        location += if (isMovablePower(power)) 1 else 0
+        if (isMovablePower(power)) {
+            location++
+        }
     }
 
     override fun toString(): String {
         return "$name : " + CAR_LOCATION_PATH_SYMBOL.repeat(location)
     }
 
-    private fun isMovablePower(power: Int) =
+    private fun isMovablePower(power: Int): Boolean =
         power in MOVABLE_MIN_POWER..MOVABLE_MAX_POWER
 
     companion object {
