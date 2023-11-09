@@ -1,18 +1,16 @@
 package racingcar.domain
 
 class RacingGame(
-    carNames: List<String>,
+    private val cars: List<Car>,
     private val tryCount: Int,
 ) {
-    private val cars: List<Car> = carNames.map { Car(name = it) }
-
-    fun run(): List<RacingGameResult> {
-        return List(tryCount) { runGameOneStage() }
+    fun run(engine: Engine): List<RacingGameResult> {
+        return List(tryCount) { runGameOneStage(engine) }
     }
 
-    private fun runGameOneStage(): RacingGameResult {
+    private fun runGameOneStage(engine: Engine): RacingGameResult {
         cars.forEach { car ->
-            car.moveOrStop(RandomPowerEngine())
+            car.moveOrStop(engine)
         }
         return RacingGameResult(cars.map { it.copy() })
     }
