@@ -9,8 +9,8 @@ sealed class InputView(
 )
 
 class ManualInputView(carNames: List<String>, iterationCount: Int) : InputView(
-    CarsProvider.Manual(carNames),
-    RaceIterationProvider.Manual(iterationCount)
+    CarsProvider.ManualCarsProvider(carNames),
+    RaceIterationProvider.ManualRaceIterationProvider(iterationCount)
 )
 
-class UserInputView : InputView(CarsProvider.UserInput, RaceIterationProvider.UserInput)
+class UserInputView : InputView(UserInputCarsProvider, UserInputRaceIterationProvider)
