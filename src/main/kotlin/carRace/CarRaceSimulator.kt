@@ -1,5 +1,14 @@
 package carRace
 
+import carRace.domain.CarLapRunner
+import carRace.domain.CarMovingStrategy
+import carRace.domain.CarRaceResult
+import carRace.domain.Cars
+import carRace.domain.RandomMovingStrategy
+import carRace.view.InputView
+import carRace.view.ResultView
+import carRace.view.UserInputView
+
 class CarRaceSimulator(
     private val inputView: InputView,
     private val resultView: ResultView = ResultView()
@@ -8,11 +17,11 @@ class CarRaceSimulator(
         val carList = inputView.carsProvider.provide(carMovingStrategy)
         val iterationCount = inputView.iterationProvider.provide()
 
-        val carRaceResult = CarRaceResult(carList)
+        val carRaceResult = CarRaceResult(Cars(carList))
 
-        repeat(iterationCount) {
-            carRaceResult.driveCars(it + 1)
-        }
+        val carLapRunner = CarLapRunner(carRaceResult, iterationCount)
+
+        carLapRunner.runLaps()
 
         resultView.printResult(carRaceResult)
         return carRaceResult

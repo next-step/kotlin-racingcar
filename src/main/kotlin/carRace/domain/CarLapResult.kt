@@ -1,4 +1,4 @@
-package carRace
+package carRace.domain
 
 data class CarLapResult(
     val lap: Int,
