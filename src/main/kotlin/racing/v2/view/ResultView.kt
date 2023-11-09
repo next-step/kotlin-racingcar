@@ -1,4 +1,4 @@
-package racing.v2.console
+package racing.v2.view
 
 import racing.v2.domain.Car
 
@@ -8,7 +8,7 @@ object ResultView {
     fun printResultStart() {
         println(RESULT_PRINT_START_MESSAGE)
     }
-    
+
     fun printCarPosition(cars: List<Car>) {
         cars.forEach { car ->
             println("${car.name} : ${"-".repeat(car.position)}")

@@ -1,28 +1,25 @@
 package racing.v2.domain
 
-import racing.v2.console.ResultView
-import kotlin.random.Random
-
-class CarGame(val cars: List<Car>, val tryCount: Int) {
-    fun start() {
-        ResultView.printResultStart()
-        
-        repeat(tryCount) {
-            moveAllCarsOnce()
-            ResultView.printCarPosition(cars)
-        }
-
-        ResultView.printWinner(findWinners())
+class CarGame(
+    private val cars: List<Car>,
+    private var tryCount: Int,
+    private val drivingPolicy: DrivingPolicy = CarDrivingPolicy()
+) {
+    fun startRound() {
+        moveAllCarsOnce()
+        tryCount--
     }
 
     private fun moveAllCarsOnce() {
         cars.forEach {
-            it.moveForward(CarDrivingPolicy, Random.nextInt(10))
+            it.moveForward(drivingPolicy)
         }
     }
 
-    private fun findWinners(): List<Car> {
+    fun findWinners(): List<Car> {
         val maxPosition = cars.maxOf { it.position }
         return cars.filter { it.position == maxPosition }
     }
+
+    fun hasMoreRounds(): Boolean = tryCount > 0
 }
