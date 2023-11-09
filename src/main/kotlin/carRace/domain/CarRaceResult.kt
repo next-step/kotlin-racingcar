@@ -1,6 +1,6 @@
 package carRace.domain
 
-class CarRaceResult(val currentCars: List<Car>) {
+class CarRaceResult(val cars: Cars) {
     private val _history = mutableListOf<CarLapResult>()
     val history get() = _history.toList()
 
@@ -8,7 +8,7 @@ class CarRaceResult(val currentCars: List<Car>) {
         _history.add(
             CarLapResult(
                 lap,
-                currentCars.map { it.copy() }
+                cars.carList.map { it.copy() }
             )
         )
     }
