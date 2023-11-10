@@ -10,7 +10,7 @@ import racingcar.view.readTryCount
 fun main() {
     val carNames = readCarNames()
     val tryCount = readTryCount()
-    val cars = CarFactory().createCars(carNames)
+    val cars = CarFactory.createCars(carNames)
     val racingGame = RacingGame(cars, tryCount)
     val racingGameResults = racingGame.run(RandomPowerEngine())
     printRacingGameResult(racingGameResults)

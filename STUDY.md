@@ -104,3 +104,27 @@ class User(val nickname: String)
 ```
 
 - 주생성자 파라미터 이름 앞에 val을 추가하는 방식으로 프로퍼티 정의와 초기화를 간략히 쓸 수 있다.
+
+## 싱글턴 객체 생성하기
+
+- object 선언은 싱글턴을 정의하는 방법 중 하나다.
+- 클래스와 마찬가지로 객체 선언 안에도 프로퍼티, 메서드, 초기화 블록 등이 들어갈 수 있다.
+- 하지만, 생성자는(주생성자와 부생성자 모두) 객체 선언에 쓸 수 없다.
+- 일반 클래스 인스턴스와 달리 싱글턴 객체는 객체 선언문이 있는 위치에서 생성자 호출 없이 즉시 만들어진다. 따라서 object 선언에는 생성자 정의가 필요 없다.
+- 예를 들어, Comparator를 구현할 때, 각 클래스마다 하나의 객체면 충분하다. 따라서 Comparator 인스턴스를 만드는 방법으로는 object 선언이 가장 좋은 방법이다.
+
+```kotlin
+object CaseInsensitiveFileComparator : Comparator<File> {
+    override fun compare(file1: File, file2: File): Int {
+        return file1.path.compareTo(file2.path, ignoreCase = true)    
+    }
+}
+```
+
+- object는 유일한 인스턴스에 대한 정적인 필드가 있는 자바 클래스로 컴파일된다.
+- 이때 인스턴스 필드의 이름은 항상 INSTANCE다.
+- 자바 코드에서 코틀린 object를 사용하려면 INSTANCE 필드에 접근하면 된다.
+
+```
+CaseInsensitiveFileComparator.INSTANCE.compare(file1, file2);
+```

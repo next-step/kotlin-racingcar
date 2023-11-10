@@ -1,5 +1,5 @@
 package racingcar.domain
 
-class CarFactory() {
+object CarFactory {
     fun createCars(names: List<String>): List<Car> = names.map { Car(name = it) }
 }
