@@ -6,6 +6,6 @@ private val racingController = CarRacingController()
 
 fun main() {
     val racing = racingController.organize()
-    val snapshots = racingController.play(racing)
-    racingController.printSnapshots(snapshots)
+    racingController.play(racing)
+    racingController.finish(racing)
 }
