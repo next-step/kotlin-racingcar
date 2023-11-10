@@ -9,9 +9,6 @@ class RacingGame(
     }
 
     private fun runGameOneStage(engine: Engine): RacingGameResult {
-        cars.forEach { car ->
-            car.moveOrStop(engine)
-        }
-        return RacingGameResult(cars.map { it.copy() })
+        return RacingGameResult(cars.map { it.moveOrStop(engine) })
     }
 }

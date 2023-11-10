@@ -8,11 +8,12 @@ data class Car(
         require(this.name.length <= CAR_MAX_NAME_LENGTH) { "자동차 이름은 최대 ${CAR_MAX_NAME_LENGTH}글자 입니다" }
     }
 
-    fun moveOrStop(engine: Engine) {
+    fun moveOrStop(engine: Engine): Car {
         val power = engine.powerUp()
         if (isMovablePower(power)) {
             location++
         }
+        return copy()
     }
 
     private fun isMovablePower(power: Int): Boolean =
