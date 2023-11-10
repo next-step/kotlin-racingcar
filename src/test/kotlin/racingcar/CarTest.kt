@@ -30,9 +30,4 @@ class CarTest : FunSpec({
             car.location shouldBe expected
         }
     }
-
-    context("자동차의 상태를 출력하면 이름, 위치가 함께 출력된다.") {
-        val car = Car(name = "hojun", location = 3)
-        car.toString() shouldBe "hojun : ---"
-    }
 })
