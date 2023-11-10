@@ -6,17 +6,16 @@ class Racing(
 ) {
     var isFinish = false
         private set
-    val winners: List<String> by lazy {
-        when (isFinish) {
-            true -> {
-                val maxCount = cars.maxOf { it.movingCount }
-                cars
-                    .filter { it.movingCount == maxCount }
-                    .map { it.name }
-            }
+    val winners: List<String> by lazy { decideWinner() }
 
-            false -> throw IllegalStateException("'winners' can only be determined after racing finish")
+    private fun decideWinner() = when (isFinish) {
+        true -> {
+            val maxCount = cars.maxOf { it.movingCount }
+            cars
+                .filter { it.movingCount == maxCount }
+                .map { it.name }
         }
+        false -> throw IllegalStateException("'winners' can only be determined after racing finish")
     }
 
     fun playRound() {
