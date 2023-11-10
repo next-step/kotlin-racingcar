@@ -6,8 +6,8 @@ class Car(position: Int = DEFAULT_POSITION) {
     var position: Int = position
         private set
 
-    fun move(condition: Int) {
-        if (condition >= FORWARD_CONDITION_NUMBER) {
+    fun move(number: Int, movable: (Int) -> Boolean) {
+        if (movable(number)) {
             position++
         }
     }
@@ -16,14 +16,14 @@ class Car(position: Int = DEFAULT_POSITION) {
 
     companion object {
         private const val DEFAULT_POSITION: Int = 0
-        private const val FORWARD_CONDITION_NUMBER: Int = 4
+        const val FORWARD_CONDITION_NUMBER: Int = 4
     }
 }
 
 class Cars(private val cars: List<Car>) {
     fun move() {
-        cars.forEach {
-            it.move(Random.nextInt(9))
+        cars.forEach { car ->
+            car.move(Random.nextInt(MAX_RANGE_NUMBER)) { it >= Car.FORWARD_CONDITION_NUMBER }
         }
     }
 
@@ -36,6 +36,7 @@ class Cars(private val cars: List<Car>) {
     }
 
     companion object {
+        private const val MAX_RANGE_NUMBER = 9
         fun of(count: Int): Cars {
             val cars = List(count) { Car() }
             return Cars(cars)

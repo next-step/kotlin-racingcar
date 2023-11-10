@@ -24,7 +24,7 @@ class CarTest {
     @ParameterizedTest
     fun `자동차는 무작위 값이 4 이상일 경우 움직인다`(condition: Int) {
         val car = Car()
-        car.move(condition)
+        car.move(condition) { it >= 4 }
         car.position shouldBe 1
     }
 }
