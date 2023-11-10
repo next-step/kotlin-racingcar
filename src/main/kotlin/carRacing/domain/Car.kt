@@ -6,6 +6,10 @@ class Car(val name: String, val movementController: MovementController, position
     var position: Int = position
         private set
 
+    init {
+        require(name.length in 1..5) { "자동차 이름은 1자 이상 5자 이하만 가능합니다." }
+    }
+
     fun move() {
         if (movementController.isMove()) {
             position++
