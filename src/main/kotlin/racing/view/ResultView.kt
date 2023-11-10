@@ -1,4 +1,7 @@
-package racing
+package racing.view
+
+import racing.domain.CarRacingRecord
+import racing.domain.CarRacingResult
 
 object ResultView {
     fun printRacingResult(result: CarRacingResult) {
@@ -13,18 +16,18 @@ object ResultView {
         winners.printRacingWinner()
     }
 
-    private fun List<Car>.printRacingResultPerRound() {
+    private fun List<CarRacingRecord>.printRacingResultPerRound() {
         forEach { car ->
             car.printRacingResultPerRound()
         }
         println()
     }
 
-    private fun Car.printRacingResultPerRound() {
+    private fun CarRacingRecord.printRacingResultPerRound() {
         println("$name : ${transformResult(position)}")
     }
 
-    fun transformResult(position: Int): String {
+    private fun transformResult(position: Int): String {
         return (0 until position).map { "-" }.reduce { a, b -> a + b }
     }
 
