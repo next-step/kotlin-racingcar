@@ -1,13 +1,17 @@
 package racing
 
+import racing.ui.InputView
+
 fun main() {
-    println("자동차 대수는 몇 대인가요?")
-    val carCount = readln().toInt()
+    val carNames = InputView.inputCarNames()
+    val tryCount = InputView.inputTryCount()
 
-    println("시도할 횟수는 몇 회인가요?")
-    val tryCount = readln().toInt()
+    val cars = Racing.prepareRacing(carNames)
+    for (i in 0 until tryCount) {
+        Racing.startRacing(cars) { movable() }
+    }
+}
 
-    val cars = RaceExecutor.prepareCar(carCount)
-    RaceExecutor.raceCarRandomly(cars, tryCount)
-    PrintResultExecutor.execute(cars)
+private fun movable(): Boolean {
+    return (0..9).random() >= 4
 }
