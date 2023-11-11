@@ -2,7 +2,7 @@ package racing.ui
 
 import io.kotest.assertions.throwables.shouldThrow
 import org.junit.jupiter.api.Test
-import racing.Car
+import racing.domain.Car
 
 class InputViewTest {
     @Test

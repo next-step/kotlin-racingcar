@@ -1,4 +1,4 @@
-package racing
+package racing.domain
 
 class Car(val name: String, var position: Int = 0) {
 
@@ -8,6 +8,10 @@ class Car(val name: String, var position: Int = 0) {
 
     fun move() {
         this.position += CAR_FORWARD_COUNT
+    }
+
+    fun isWinner(winnerPosition: Int): Boolean {
+        return this.position == winnerPosition
     }
 
     companion object {

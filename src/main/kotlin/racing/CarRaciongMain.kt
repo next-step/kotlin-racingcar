@@ -1,6 +1,9 @@
 package racing
 
-import racing.ui.InputView
+import racing.domain.CarNameMapper
+import racing.domain.MoveCondition
+import racing.domain.Racing
+import racing.view.InputView
 
 fun main() {
     val carNames = InputView.inputCarNames()

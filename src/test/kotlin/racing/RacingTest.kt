@@ -2,6 +2,8 @@ package racing
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
+import racing.domain.CarNameMapper
+import racing.domain.Racing
 
 class RacingTest : FunSpec({
     test("racing prepare시 position은 0으로 초기화") {
