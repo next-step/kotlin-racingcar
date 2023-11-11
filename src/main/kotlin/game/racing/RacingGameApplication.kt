@@ -6,7 +6,7 @@ import game.racing.domain.RacingManager
 import game.racing.view.InputView
 
 fun main() {
-    val cars = CarFactory.generateCarByCarNames(InputView.inputCarNames())
+    val cars = CarFactory.generateCarByCarNames(InputView.inputCarNames().split(InputView.CAR_NAME_DELIMITER))
     val racingGame = RacingGame(RacingManager(cars), InputView.inputTryNumber())
     racingGame.start()
 }
