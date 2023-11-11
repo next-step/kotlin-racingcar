@@ -4,7 +4,7 @@ import racing.ui.ResultView
 
 object Racing {
     fun prepareRacing(carsName: List<String>): List<Car> {
-        return carsName.map { Car(it, 0) }
+        return carsName.map { Car(it) }
     }
 
     fun startRacing(cars: List<Car>, movable: () -> Boolean) {
