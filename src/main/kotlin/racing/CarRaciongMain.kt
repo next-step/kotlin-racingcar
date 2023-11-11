@@ -8,9 +8,6 @@ fun main() {
 
     val cars = CarNameMapper.map(carNames)
     val racing = Racing(cars, tryCount)
-    racing.startRacing { movable() }
+    racing.startRacing { MoveCondition.movable() }
 }
 
-private fun movable(): Boolean {
-    return (0..9).random() >= 4
-}
