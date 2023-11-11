@@ -14,7 +14,7 @@ class PersonTest {
 
     @Test
     fun `널 타입`() {
-        val actual = Person(name = "Alice", 20, nickname = null)
+        Person(name = "Alice", 20, nickname = null)
     }
 
     @Test

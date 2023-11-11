@@ -1,8 +1,7 @@
-package racing
+package racing.domain
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import racing.domain.CarNameMapper
 
 class CarNameMapperTest : FunSpec({
     test("racing prepare시 position은 0으로 초기화()") {

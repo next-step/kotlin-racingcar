@@ -1,14 +1,8 @@
 package racing.domain
 
-import racing.view.ResultView
-
-class Racing(val cars: List<Car>, val tryCount: Int) {
+class Racing(val cars: List<Car>) {
     fun startRacing(movable: () -> Boolean): List<Car> {
-        for (i in 0 until this.tryCount) {
-            this.cars.filter { movable() }.forEach { it.move() }
-            ResultView.printResult(this.cars)
-        }
-        ResultView.printWinner(this.cars)
+        this.cars.filter { movable() }.forEach { it.move() }
         return this.cars
     }
 }

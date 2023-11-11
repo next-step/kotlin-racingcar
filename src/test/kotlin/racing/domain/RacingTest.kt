@@ -1,9 +1,7 @@
-package racing
+package racing.domain
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import racing.domain.CarNameMapper
-import racing.domain.Racing
 
 class RacingTest : FunSpec({
     test("racing prepare시 position은 0으로 초기화") {
@@ -12,7 +10,7 @@ class RacingTest : FunSpec({
         val cars = CarNameMapper.map(names)
 
         // When
-        val racing = Racing(cars, 5)
+        val racing = Racing(cars)
 
         // Then
         for (car in racing.cars) {
@@ -25,7 +23,7 @@ class RacingTest : FunSpec({
         val names: List<String> = listOf("Jiwon", "Alex", "Bob")
         val cars = CarNameMapper.map(names)
         val movable = { false }
-        val racing = Racing(cars, 5)
+        val racing = Racing(cars)
 
         // When
         racing.startRacing(movable)
@@ -40,14 +38,14 @@ class RacingTest : FunSpec({
         // Given
         val names: List<String> = listOf("Jiwon", "Alex", "Bob")
         val movable = { true }
-        val racing = Racing(CarNameMapper.map(names), 5)
+        val racing = Racing(CarNameMapper.map(names))
 
         // When
         val cars = racing.startRacing(movable)
 
         // Then
         for (car in cars) {
-            car.position shouldBe 5
+            car.position shouldBe 1
         }
     }
 })

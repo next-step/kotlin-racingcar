@@ -1,11 +1,10 @@
-package racing
+package racing.domain
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
-import racing.domain.Car
 import java.lang.IllegalArgumentException
 
 class CarTest : FunSpec({

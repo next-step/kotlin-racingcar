@@ -1,7 +1,9 @@
 package racing.domain
 
 object MoveCondition {
-    fun movable(): Boolean {
-        return (0..9).random() >= 4
+    private val CAR_MOVE_CONDITION: () -> Boolean = { (0..9).random() >= 4 }
+
+    fun movable(condition: () -> Boolean = CAR_MOVE_CONDITION): Boolean {
+        return condition()
     }
 }
