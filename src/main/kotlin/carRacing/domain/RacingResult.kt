@@ -1,17 +1,24 @@
 package carRacing.domain
 
-class RacingResult {
+class RacingResult(private var racingResultHistory: MutableList<CarList>) {
     private lateinit var winnerNames: List<String>
-    private var racingResultHistory: MutableList<CarList> = mutableListOf()
 
     fun getWinnerNames(): List<String> = this.winnerNames
 
+    init {
+        this.winnerNames = this.racingResultHistory.map { this.getWinnerNames(it) }.last()
+    }
+
     fun add(carList: CarList) {
         this.racingResultHistory.add(carList)
-        val readOnlyCarList: List<Car> = carList.getCarList()
+        this.winnerNames = this.getWinnerNames(carList)
+    }
+
+    private fun getWinnerNames(carList: CarList): List<String> {
+        val readOnlyCarList = carList.getCarList()
 
         val maxPosition: Int = readOnlyCarList.maxBy { it.position }.position
-        winnerNames = readOnlyCarList.filter { it.position == maxPosition }.map { it.name }
+        return readOnlyCarList.filter { it.position == maxPosition }.map { it.name }
     }
 
     fun getRacingResultHistory(): List<CarList> = this.racingResultHistory

@@ -4,9 +4,7 @@ class Racing(private val carList: List<Car>) {
     fun getRaceResult(tryCount: Int): RacingResult = start(this.carList, tryCount)
 
     private fun start(carList: List<Car>, tryCount: Int): RacingResult {
-        val racingResult: RacingResult = RacingResult()
-
-        racingResult.add(CarList(carList.toMutableList()))
+        val racingResult: RacingResult = RacingResult(mutableListOf(CarList(carList.toMutableList())))
         repeat(tryCount) {
             val beforeCarList: List<Car> = racingResult.getRacingResultHistory().last().getCarList()
 
