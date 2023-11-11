@@ -128,3 +128,111 @@ object CaseInsensitiveFileComparator : Comparator<File> {
 ```
 CaseInsensitiveFileComparator.INSTANCE.compare(file1, file2);
 ```
+
+## 늦은 초기화하기
+
+- 일반적으로 프로퍼티는 생성자에서 초기화해야 한다.
+- 그러나 그렇게 하는 것이 불편한 경우가 종종 있다.
+  - 의존성 주입을 통해 초기화되는 경우
+  - 단위 테스트의 설정 메서드에서 초기화되는 경우
+- 프로퍼티를 생성자가 아닌 곳에서 초기화할 경우, 클래스 본문 내에서 프로퍼티 참조시 널 검사에 의한 오류가 발생할 것이다.
+- 널 검사를 피하고 싶다면, `lateinit` 제어자를 사용하면 된다.
+
+```kotlin
+class MyTest {
+    lateinit var subject: TestSubject
+
+    @SetUp fun setup() {
+        subject = TestSubject()
+    }
+
+    @Test fun test() {
+        subject.method()  // dereference directly
+    }
+}
+```
+
+참고자료: https://kotlinlang.org/docs/properties.html#late-initialized-properties-and-variables
+
+## 일급 컬렉션이란?
+
+- **Collection**을 **Wrapping**하면서, 그 외 다른 멤버 변수가 없는 상태
+- 일급 컬렉션은 아래의 장점을 지닌다.
+  - 비지니스에 종속적인 자료구조
+  - 상태와 행위를 한 곳에서 처리
+- 구현 방법에 따라 불변성을 보장할 수도, 아닐수도 있다. 불변성을 보장하는 일급 컬렉션을 만드는 방법은 아래의 코드 참조하면 된다.
+
+```java
+public class Lotto {
+  private final List<Integer> lottoNumbers;
+
+  // 불변성 보장 X
+  // 외부에서 파라미터로 전달하는 lottoNumbers를 조작할 수 있음!!!
+  public Lotto(List<Integer> lottoNumbers) {
+    this.lottoNumbers = lottoNumbers;
+  }
+  
+  // 불변성 보장 장치1
+  // 외부에서 파라미터로 전달하는 lottoNumbers의 값을 복사해서 멤버로 초기화하면
+  // 외부로부터의 접근을 방지할 수 있음 -> 불변성 보장 
+  public Lotto(List<Integer> lottoNumbers) {
+    this.lottoNumbers = new ArrayList<>(lottoNumbers);
+  }
+
+  // 불변성 보장 장치2
+  // 외부에서 컬렉션 변경을 금지
+  public List<Integer> getLottoNumbers() {
+    return Collections.unmodifiableList(lottoNumbers);
+  }
+}
+```
+
+### 한 발 더 나아가기: Inline class
+- 비즈니스 로직상 가끔 어떤 타입을 둘러싼 래퍼 클래스가 필요한 경우가 있다.
+- wrapper 클래스로 둘러싸여진 타입이 primitive 타입이라면, 성능은 더욱 악화된다. 왜냐하면 primitive 타입의 성능 최적화 이점을 누릴 수 없기 때문이다.
+  - primitive 타입이 wrapper 타입에 비해 성능이 왜 더 좋을까? (내 생각임)
+    - primitive 타입 데이터는 stack 영역에 저장되므로 곧바로 접근할 수 있다.
+    - 반면에, wrapper 타입은 heap 영역에 객체로 저장된다. stack 영역의 참조변수를 통해 접근할 수 있다. 이 때, 참조변수에는 데이터가 할당된 것이 아니라, heap 영역에 있는 객체의 주소가 저장되어 있기 떄문에 한 번의 이동이 발생한다. 
+- wrapper 클래스 선언으로 인한 성능 저하를 해결하기 위해 inline class 가 등장했다.
+- inline 클래스를 선언하려면 클래스에 `@JvmInline` 어노테이션과 함께 `value` 변경자를 붙이면 된다.
+- inline 클래스는 반드시 주 생성자에 하나의 프로퍼티를 선언해야 한다.
+- 런타임시, inline 클래스의 인스턴스는 상황에 따라 프로퍼티로 대체된다. (마치 Integer 클래스가 상황에 따라 int 타입으로 unboxing 되는 것과 비슷한 원리)
+- inline 클래스는 프로퍼티, 함수, `init` 블록, 부 생성자를 정의할 수 있다.
+- inline 클래스는 [backing 필드](https://kotlinlang.org/docs/properties.html#backing-fields), [delegated 프로퍼티](https://kotlinlang.org/docs/delegated-properties.html), `lateinit`를 제공하지 않는다.
+- inline 클래스는 항상 final이며, 확장이 불가능하다.
+
+```kotlin
+// Inline class 선언 예시
+@JvmInline
+value class Password(private val s:String)
+```
+
+<br/>
+
+```kotlin
+// Main.kt
+//...
+fun foo(racingGameResult: RacingGameResult) {
+  println("foo")
+}
+//...
+```
+
+미션 수행 과정 중 구현한 `RacingGameResult`을 inline 클래스로 선언했을 때와 아닐 때의 차이를 알아보기 위해 `Main.kt` 파일의 자바 코드를 살펴봤다.
+
+
+
+#### `RacingGameResult`가 일반 클래스일 때 
+![img_1.png](image/img_1.png)
+
+
+#### `RacingGameResult`가 inline 클래스일 때
+![img_1.png](image/img_2.png)
+
+#### 참고자료
+- https://kotlinlang.org/docs/inline-classes.html
+- https://www.youtube.com/watch?v=LpqvtgibbsQ&t=30
+- https://tecoble.techcourse.co.kr/post/2020-05-08-First-Class-Collection/
+- https://jojoldu.tistory.com/412
+- https://shanepark.tistory.com/449
+

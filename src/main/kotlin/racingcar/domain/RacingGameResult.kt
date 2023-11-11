@@ -1,6 +1,7 @@
 package racingcar.domain
 
-class RacingGameResult(val cars: List<Car>) {
+@JvmInline
+value class RacingGameResult(val cars: List<Car>) {
 
     fun getWinners(): List<Car> {
         val maxLocation = cars.maxBy { it.location }.location
