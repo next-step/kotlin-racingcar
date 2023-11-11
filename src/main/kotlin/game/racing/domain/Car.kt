@@ -26,5 +26,9 @@ class Car(val name: String) : Comparable<Car> {
         private const val MIN_CAR_NAME_LENGTH = 1
         const val NOT_VALID_CAR_NAME_MESSAGE = "자동차 이름은 1글자 이상 5글자 이하만 가능합니다."
         const val MIN_MOVE_THRESHOLD = 4
+
+        fun generateRandomMoveDecision(): Int {
+            return (MIN_RANDOM_VALUE..MAX_RANDOM_VALUE).random()
+        }
     }
 }
