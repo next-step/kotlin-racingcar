@@ -10,4 +10,3 @@ fun main() {
     val racing = Racing(cars, tryCount)
     racing.startRacing { MoveCondition.movable() }
 }
-
