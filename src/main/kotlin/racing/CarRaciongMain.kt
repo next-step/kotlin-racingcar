@@ -6,10 +6,9 @@ fun main() {
     val carNames = InputView.inputCarNames()
     val tryCount = InputView.inputTryCount()
 
-    val cars = Racing.prepareRacing(carNames)
-    for (i in 0 until tryCount) {
-        Racing.startRacing(cars) { movable() }
-    }
+    val cars = CarNameMapper.map(carNames)
+    val racing = Racing(cars, tryCount)
+    racing.startRacing { movable() }
 }
 
 private fun movable(): Boolean {

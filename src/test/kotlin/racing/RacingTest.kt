@@ -1,36 +1,23 @@
 package racing
 
+import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.api.Test
 
-class RacingTest {
-    @Test
-    fun `racing prepare시 position은 0으로 초기화`() {
+class RacingTest : FunSpec({
+
+    test("racing start시 position이 1씩 증가") {
         // Given
         val names: List<String> = listOf("Jiwon", "Alex", "Bob")
-
-        // When
-        val cars = Racing.prepareRacing(names)
-
-        // Then
-        for (car in cars) {
-            car.position shouldBe 0
-        }
-    }
-
-    @Test
-    fun `racing start시 position이 1씩 증가`() {
-        // Given
-        val names: List<String> = listOf("Jiwon", "Alex", "Bob")
-        val cars = Racing.prepareRacing(names)
+        val cars = CarNameMapper.map(names)
         val movable = { true }
+        val racing = Racing(cars, 5)
 
         // When
-        Racing.startRacing(cars, movable)
+        racing.startRacing(movable)
 
         // Then
         for (car in cars) {
             car.position shouldBe 1
         }
     }
-}
+})
