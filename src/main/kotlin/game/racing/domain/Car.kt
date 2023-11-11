@@ -1,6 +1,6 @@
 package game.racing.domain
 
-class Car(val name: String) {
+class Car(val name: String) : Comparable<Car> {
     var position = MIN_POSITION
         private set
 
@@ -13,6 +13,10 @@ class Car(val name: String) {
             position++
         }
     }
+
+    fun isSamePosition(other: Car): Boolean = this.position == other.position
+
+    override fun compareTo(other: Car): Int = this.position - other.position
 
     companion object {
         const val MIN_RANDOM_VALUE = 0

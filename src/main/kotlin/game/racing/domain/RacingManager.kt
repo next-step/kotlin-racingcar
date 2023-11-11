@@ -9,7 +9,7 @@ class RacingManager(val cars: List<Car>) {
     }
 
     fun determineWinner(): List<Car> {
-        val biggestPosition = cars.maxOf { it.position }
-        return cars.filter { it.position == biggestPosition }
+        val maxPositionCar = cars.max()
+        return cars.filter { maxPositionCar.isSamePosition(it) }
     }
 }
