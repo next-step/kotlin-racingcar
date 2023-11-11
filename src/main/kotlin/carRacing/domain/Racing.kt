@@ -7,9 +7,10 @@ class Racing(private val carList: List<Car>) {
         val racingResult: RacingResult = RacingResult()
 
         repeat(tryCount) {
-            val copyCarList: List<Car> = process(carList).map { it.copy() }
+            val currentRoundCarList: CarList = CarList()
 
-            racingResult.add(copyCarList)
+            currentRoundCarList.addAll(process(carList).map { it.copy() })
+            racingResult.add(currentRoundCarList)
         }
 
         return racingResult

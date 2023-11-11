@@ -1,14 +1,15 @@
 package carRacing.view
 
 import carRacing.domain.Car
+import carRacing.domain.CarList
 import carRacing.enum.Message
 
 class OutputView {
 
     private val messageGenerator: MessageGenerator = MessageGenerator()
 
-    fun printCarNameAndPosition(carList: List<Car>) {
-        for (car in carList) {
+    fun printCarNameAndPosition(carList: CarList) {
+        for (car in carList.getCarList()) {
             printCarNameAndPosition(car)
         }
 

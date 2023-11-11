@@ -1,6 +1,7 @@
 package carRacing
 
 import carRacing.domain.Car
+import carRacing.domain.CarList
 import carRacing.domain.Racing
 import carRacing.domain.RacingResult
 import carRacing.serviceimpl.RandomMovementCarFactory
@@ -28,8 +29,10 @@ class RacingTest {
 
         val result: RacingResult = moveRacing.getRaceResult(tryCount)
 
-        result.getRacingResultHistory().forEach { carList ->
-            assertThat(carList[0].position).isGreaterThan(carList[1].position)
+        result.getRacingResultHistory().forEach { carList: CarList ->
+            val currentCarList: List<Car> = carList.getCarList()
+
+            assertThat(currentCarList[0].position).isGreaterThan(currentCarList[1].position)
         }
     }
 
