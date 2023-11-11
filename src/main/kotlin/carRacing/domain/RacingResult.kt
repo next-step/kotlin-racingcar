@@ -6,6 +6,8 @@ class RacingResult(private var racingResultHistory: MutableList<CarList>) {
     fun getWinnerNames(): List<String> = this.winnerNames
 
     init {
+        require(racingResultHistory.isNotEmpty()) { "racingResultHistory가 비었습니다." }
+
         this.winnerNames = this.racingResultHistory.map { this.getWinnerNames(it) }.last()
     }
 
