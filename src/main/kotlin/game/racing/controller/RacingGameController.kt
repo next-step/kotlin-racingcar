@@ -1,8 +1,10 @@
-package game.racing.domain
+package game.racing.controller
 
+import game.racing.domain.Car
+import game.racing.domain.RacingManager
 import game.racing.view.ResultView
 
-class RacingGame(private val racingManager: RacingManager) {
+class RacingGameController(private val racingManager: RacingManager) {
     fun tryMovesRepeatedly(tryNumber: Int): List<List<Car>> {
         val resultList = mutableListOf<List<Car>>()
         repeat(tryNumber) {

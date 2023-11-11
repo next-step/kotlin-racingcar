@@ -1,14 +1,14 @@
 package game.racing
 
+import game.racing.controller.RacingGameController
 import game.racing.domain.CarFactory
-import game.racing.domain.RacingGame
 import game.racing.domain.RacingManager
 import game.racing.view.InputView
 
 fun main() {
     val cars = CarFactory.generateCarByCarNames(InputView.inputCarNames().split(InputView.CAR_NAME_DELIMITER))
-    val racingGame = RacingGame(RacingManager(cars))
-    racingGame.initializeGame()
-    val resultList = racingGame.tryMovesRepeatedly(InputView.inputTryNumber())
-    racingGame.showGameResult(resultList)
+    val racingGameController = RacingGameController(RacingManager(cars))
+    racingGameController.initializeGame()
+    val resultList = racingGameController.tryMovesRepeatedly(InputView.inputTryNumber())
+    racingGameController.showGameResult(resultList)
 }
