@@ -1,7 +1,7 @@
 package racingcar
 
 fun main() {
-    val carCounts = inputCarNumber()
+    val carName = inputCarName()
     val tryCounts = inputTryCount()
-    racingStart(carCounts, tryCounts)
+    racing(carName, tryCounts)
 }
