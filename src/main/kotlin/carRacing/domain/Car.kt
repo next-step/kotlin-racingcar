@@ -15,6 +15,4 @@ data class Car(val name: String, val movementController: MovementController, val
 
         return this.copy()
     }
-
-    fun getPosition(): String = "-".repeat(position)
 }

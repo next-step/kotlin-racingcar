@@ -17,8 +17,10 @@ class OutputView {
     }
 
     private fun printCarNameAndPosition(car: Car) {
-        println("${car.name} : ${car.getPosition()}")
+        println("${car.name} : ${getPositionDash(car)}")
     }
+
+    private fun getPositionDash(car: Car): String = "-".repeat(car.position)
 
     fun printWithMessage(message: Message, vararg messages: String) {
         println(messageGenerator.getMessage(message, *messages))
