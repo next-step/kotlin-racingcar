@@ -8,17 +8,17 @@ fun main() {
         it.show()
     }
     val racingGame = RacingGame(
-        carSize = inputView.carSize,
+        carNames = inputView.carNames,
         attemptSize = inputView.attemptSize
     )
     val resultView = ResultView()
 
     repeat(inputView.attemptSize) {
         racingGame.attempt(
-            List(racingGame.carSize) {
+            List(racingGame.cars.size) {
                 Random.nextInt(RacingGame.MAX_CONDITION)
             }
         )
     }
-    resultView.printRacingGameHistory(racingGame.history)
+    resultView.printRacingGameHistory(racingGame)
 }
