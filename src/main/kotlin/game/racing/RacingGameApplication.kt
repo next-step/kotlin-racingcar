@@ -7,6 +7,8 @@ import game.racing.view.InputView
 
 fun main() {
     val cars = CarFactory.generateCarByCarNames(InputView.inputCarNames().split(InputView.CAR_NAME_DELIMITER))
-    val racingGame = RacingGame(RacingManager(cars), InputView.inputTryNumber())
-    racingGame.start()
+    val racingGame = RacingGame(RacingManager(cars))
+    racingGame.initializeGame()
+    val resultList = racingGame.tryMovesRepeatedly(InputView.inputTryNumber())
+    racingGame.showGameResult(resultList)
 }

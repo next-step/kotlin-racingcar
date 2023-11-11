@@ -1,6 +1,6 @@
 package game.racing.domain
 
-class Car(val name: String) : Comparable<Car> {
+data class Car(val name: String) : Comparable<Car> {
     var position = MIN_POSITION
         private set
 

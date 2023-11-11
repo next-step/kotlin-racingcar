@@ -2,13 +2,22 @@ package game.racing.domain
 
 import game.racing.view.ResultView
 
-class RacingGame(private val racingManager: RacingManager, private val tryNumber: Int) {
-    fun start() {
-        ResultView.printResultIntroduction()
+class RacingGame(private val racingManager: RacingManager) {
+    fun tryMovesRepeatedly(tryNumber: Int): List<List<Car>> {
+        val resultList = mutableListOf<List<Car>>()
         repeat(tryNumber) {
-            racingManager.moveCars { Car.generateRandomMoveDecision() }
-            ResultView.printResult(racingManager.cars)
+            resultList.add(racingManager.moveCars { Car.generateRandomMoveDecision() }.map { it.copy() })
         }
+        return resultList
+    }
+
+    fun initializeGame() {
+        ResultView.printResultIntroduction()
+        ResultView.printResult(racingManager.cars)
+    }
+
+    fun showGameResult(resultList: List<List<Car>>) {
+        resultList.forEach(ResultView::printResult)
         ResultView.printWinner(racingManager.determineWinner())
     }
 }
