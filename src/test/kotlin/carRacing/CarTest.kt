@@ -23,9 +23,9 @@ class CarTest {
     fun `자동차가 전진할 경우 position 값이 증가한다`() {
         val car: Car = Car("Car", movementController = TestTrueMovementController(), position = 1)
 
-        car.move()
+        val movedCar: Car = car.move()
 
-        assertThat(car.position).isEqualTo(2)
+        assertThat(movedCar.position).isEqualTo(2)
     }
 
     @Test

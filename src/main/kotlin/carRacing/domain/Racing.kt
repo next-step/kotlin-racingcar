@@ -6,19 +6,15 @@ class Racing(private val carList: List<Car>) {
     private fun start(carList: List<Car>, tryCount: Int): RacingResult {
         val racingResult: RacingResult = RacingResult()
 
+        racingResult.add(CarList(carList.toMutableList()))
         repeat(tryCount) {
-            val currentRoundCarList: CarList = CarList()
+            val beforeCarList: List<Car> = racingResult.getRacingResultHistory().last().getCarList()
 
-            currentRoundCarList.addAll(process(carList).map { it.copy() })
-            racingResult.add(currentRoundCarList)
+            racingResult.add(process(beforeCarList))
         }
 
         return racingResult
     }
 
-    private fun process(carList: List<Car>): List<Car> {
-        carList.forEach(Car::move)
-
-        return carList
-    }
+    private fun process(carList: List<Car>): CarList = CarList(carList.map(Car::move).toMutableList())
 }

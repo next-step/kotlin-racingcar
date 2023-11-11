@@ -29,8 +29,9 @@ class RacingTest {
 
         val result: RacingResult = moveRacing.getRaceResult(tryCount)
 
-        result.getRacingResultHistory().forEach { carList: CarList ->
-            val currentCarList: List<Car> = carList.getCarList()
+        val resultCarList: List<CarList> = result.getRacingResultHistory()
+        for (idx: Int in 1 until resultCarList.size) {
+            val currentCarList: List<Car> = resultCarList[idx].getCarList()
 
             assertThat(currentCarList[0].position).isGreaterThan(currentCarList[1].position)
         }

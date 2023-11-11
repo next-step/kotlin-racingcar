@@ -2,21 +2,19 @@ package carRacing.domain
 
 import carRacing.service.MovementController
 
-class Car(val name: String, val movementController: MovementController, position: Int = 1) {
-    var position: Int = position
-        private set
+data class Car(val name: String, val movementController: MovementController, val position: Int = 1) {
 
     init {
         require(name.length in 1..5) { "자동차 이름은 1자 이상 5자 이하만 가능합니다." }
     }
 
-    fun move() {
-        if (movementController.isMove()) {
-            position++
+    fun move(): Car {
+        if (this.movementController.isMove()) {
+            return Car(this.name, this.movementController, this.position + 1)
         }
+
+        return this.copy()
     }
 
     fun getPosition(): String = "-".repeat(position)
-
-    fun copy(): Car = Car(this.name, this.movementController, this.position)
 }
