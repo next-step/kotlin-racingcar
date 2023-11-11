@@ -23,4 +23,15 @@ class CarTest : FunSpec({
             Car("Jiwon Kwon")
         }
     }
+
+    test("자동차는 전진한다") {
+        // Given
+        val car = Car("Jiwon")
+
+        // When
+        car.move()
+
+        // Then
+        car.position shouldBe 1
+    }
 })
