@@ -37,12 +37,11 @@ class RacingTest : FunSpec({
     test("racing start시 movable true면 position이 1씩 증가") {
         // Given
         val names: List<String> = listOf("Jiwon", "Alex", "Bob")
-        val cars = CarNameMapper.map(names)
         val movable = { true }
-        val racing = Racing(cars, 5)
+        val racing = Racing(CarNameMapper.map(names), 5)
 
         // When
-        racing.startRacing(movable)
+        val cars = racing.startRacing(movable)
 
         // Then
         for (car in cars) {
