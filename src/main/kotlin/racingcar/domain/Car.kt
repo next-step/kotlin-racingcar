@@ -5,8 +5,12 @@ class Car {
         private set
 
     fun move(condition: Int) {
-        if (condition >= 4) {
+        if (condition >= CONDITION_TO_MOVE) {
             position++
         }
+    }
+
+    companion object {
+        private const val CONDITION_TO_MOVE: Int = 4
     }
 }
