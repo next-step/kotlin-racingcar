@@ -1,7 +1,7 @@
 package carRacing.domain
 
 class RacingResult(private var racingResultHistory: MutableList<CarList>) {
-    private lateinit var winnerNames: List<String>
+    private var winnerNames: List<String>
 
     fun getWinnerNames(): List<String> = this.winnerNames
 
