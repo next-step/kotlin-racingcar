@@ -1,12 +1,6 @@
 package race.domain
 
-class SimpleCars(carNames: List<String>) {
-    val carList: List<SimpleCar>
-
-    init {
-        this.carList = carNames.map { SimpleCar(it) }
-    }
-
+class SimpleCars(private val carList: List<SimpleCar>) {
     fun findWinners(): List<SimpleCar> {
         val max = carList.maxBy { it.location }
         return carList.filter { it.location == max.location }
@@ -17,4 +11,8 @@ class SimpleCars(carNames: List<String>) {
     }
 
     fun forEach(block: (SimpleCar) -> Unit) = carList.forEach(block)
+
+    companion object {
+        fun byNames(carNames: List<String>) = SimpleCars(carNames.map { SimpleCar(it) })
+    }
 }
