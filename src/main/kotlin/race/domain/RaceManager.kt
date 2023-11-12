@@ -8,6 +8,6 @@ class RaceManager(cars: List<String>, val moves: Int) {
     }
 
     fun move() {
-        cars.moveAll()
+        cars.moveAll(RandomNumGenerator())
     }
 }

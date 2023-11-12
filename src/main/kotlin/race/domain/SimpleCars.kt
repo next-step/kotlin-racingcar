@@ -6,8 +6,8 @@ class SimpleCars(private val carList: List<SimpleCar>) {
         return carList.filter { it.location == max.location }
     }
 
-    fun moveAll() {
-        carList.forEach { it.move((0..9).random()) }
+    fun moveAll(generator: NumberGenerator) {
+        carList.forEach { it.move(generator.generate()) }
     }
 
     fun forEach(block: (SimpleCar) -> Unit) = carList.forEach(block)
