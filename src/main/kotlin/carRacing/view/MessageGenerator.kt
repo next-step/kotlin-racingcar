@@ -3,8 +3,6 @@ package carRacing.view
 import carRacing.enum.ErrorCode
 import carRacing.enum.Message
 
-val VARIABLE_PATTERN: Regex = Regex("\\[\\d+\\]")
-
 class MessageGenerator {
     fun getErrorMessage(errorCode: ErrorCode, vararg variables: String): String = formatMessage(errorCode.message, *variables)
 
@@ -19,10 +17,12 @@ class MessageGenerator {
             throw IllegalArgumentException(getErrorMessage(ErrorCode.MISMATCHED_VARIABLE_COUNT))
         }
 
-        for ((idx, variable) in variables.withIndex()) {
-            formattedMessage = formattedMessage.replace("[$idx]", variable)
-        }
+        variables.forEachIndexed { idx, variable -> formattedMessage = formattedMessage.replace("[$idx]", variable) }
 
         return formattedMessage
+    }
+
+    companion object {
+        val VARIABLE_PATTERN: Regex = Regex("\\[\\d+\\]")
     }
 }

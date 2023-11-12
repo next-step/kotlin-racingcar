@@ -1,33 +1,18 @@
 package carRacing.domain
 
-import carRacing.view.OutputView
-
 class Racing(private val carList: List<Car>) {
-    fun getRaceResult(tryCount: Int): List<Car> = start(this.carList, tryCount)
+    fun getRaceResult(tryCount: Int): RacingResult = start(this.carList, tryCount)
 
-    private fun getWinners(carList: List<Car>): List<Car> {
-        val maxPosition: Int = carList.maxBy { it.position }.position
+    private fun start(carList: List<Car>, tryCount: Int): RacingResult {
+        val racingResult: RacingResult = RacingResult(mutableListOf(CarList(carList.toMutableList())))
+        repeat(tryCount) {
+            val beforeCarList: List<Car> = racingResult.getRacingResultHistory().last().getCarList()
 
-        return carList.filter { it.position == maxPosition }
-    }
-
-    fun getWinnerNames(carList: List<Car>): List<String> = getWinners(carList).map { it.name }
-
-    private fun start(carList: List<Car>, tryCount: Int): List<Car> {
-        var resultCarList: List<Car> = listOf()
-        for (i in 0 until tryCount) {
-            resultCarList = process(carList)
-            OutputView().printMessages(*carList.map { "${it.name} : ${it.getPosition()}" }.toTypedArray())
+            racingResult.add(process(beforeCarList))
         }
 
-        return resultCarList
+        return racingResult
     }
 
-    private fun process(carList: List<Car>): List<Car> {
-        for (car in carList) {
-            car.move()
-        }
-
-        return carList
-    }
+    private fun process(carList: List<Car>): CarList = CarList(carList.map(Car::move).toMutableList())
 }

@@ -1,7 +1,9 @@
 package carRacing
 
 import carRacing.domain.Car
+import carRacing.domain.CarList
 import carRacing.domain.Racing
+import carRacing.domain.RacingResult
 import carRacing.serviceimpl.RandomMovementCarFactory
 import carRacing.testcontroller.TestFalseMovementController
 import carRacing.testcontroller.TestTrueMovementController
@@ -25,9 +27,14 @@ class RacingTest {
 
         val moveRacing = Racing(carList)
 
-        val result: List<Car> = moveRacing.getRaceResult(tryCount)
+        val result: RacingResult = moveRacing.getRaceResult(tryCount)
 
-        assertThat(result[0].position).isGreaterThan(result[1].position)
+        val resultCarList: List<CarList> = result.getRacingResultHistory()
+        for (idx: Int in 1 until resultCarList.size) {
+            val currentCarList: List<Car> = resultCarList[idx].getCarList()
+
+            assertThat(currentCarList[0].position).isGreaterThan(currentCarList[1].position)
+        }
     }
 
     @Test
@@ -41,8 +48,8 @@ class RacingTest {
 
         val moveRacing = Racing(carList)
 
-        val result: List<Car> = moveRacing.getRaceResult(1)
+        val result: RacingResult = moveRacing.getRaceResult(1)
 
-        assertThat(moveRacing.getWinnerNames(result)).isEqualTo(listOf("a"))
+        assertThat(result.getWinnerNames()).isEqualTo(listOf("a"))
     }
 }
