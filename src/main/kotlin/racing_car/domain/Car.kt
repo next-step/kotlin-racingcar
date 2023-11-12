@@ -15,6 +15,14 @@ class Car(
     val position: Int
         get() = carInfo.position
 
+    fun isWin(other: Car): Boolean {
+        return this.position > other.position
+    }
+
+    fun isDraw(other: Car): Boolean {
+        return this.position == other.position
+    }
+
     fun move() {
         if (moveStrategy.canMove()) {
             carInfo = carInfo.copy(position = carInfo.position + 1)

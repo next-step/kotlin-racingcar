@@ -28,7 +28,13 @@ class RacingGame(
 
     fun judgeWinners(): List<String> {
         check(isFinish) { "아직 경주가 끝나지 않았습니다." }
-        val winningPosition = cars.maxOf { it.position }
-        return cars.filter { it.position == winningPosition }.map(Car::name)
+
+        val winners = cars.filter { car ->
+            cars.all { otherCar ->
+                car.isWin(otherCar) || car.isDraw(otherCar)
+            }
+        }
+
+        return winners.map(Car::name)
     }
 }
