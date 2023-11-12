@@ -1,6 +1,10 @@
 package racingcar
 
 class Cars(val cars: List<Car>, private val powerGenerator: PowerGenerator) {
+    init {
+        require(cars.isNotEmpty()) { "자동차는 최소 한 대 이상 존재해야 합니다." }
+    }
+
     fun move(): Cars {
         val movedCars = mutableListOf<Car>()
         cars.forEach { movedCars.add(it.move(powerGenerator.generate())) }
@@ -8,10 +12,10 @@ class Cars(val cars: List<Car>, private val powerGenerator: PowerGenerator) {
     }
 
     companion object {
-        fun initializeWithNumberOfCars(numberOfCars: Int, powerGenerator: PowerGenerator): Cars {
+        fun initialize(numberOfCars: Int, names: List<String>, powerGenerator: PowerGenerator): Cars {
             val cars = mutableListOf<Car>()
             repeat(numberOfCars) {
-                cars.add(Car())
+                cars.add(Car(names[it]))
             }
             return Cars(cars, powerGenerator)
         }

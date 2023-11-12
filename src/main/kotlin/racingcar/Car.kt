@@ -1,12 +1,18 @@
 package racingcar
 
-class Car(val position: Int) {
-    constructor() : this(INITIAL_POSITION)
+class Car(val name: String, val position: Int) {
+    init {
+        require(name.length in MINIMUM_CAR_NAME_LENGTH..MAXIMUM_CAR_NAME_LENGTH) {
+            "자동차의 이름은 ${MINIMUM_CAR_NAME_LENGTH}글자 이상 ${MAXIMUM_CAR_NAME_LENGTH}글자 이하만 가능합니다."
+        }
+    }
+
+    constructor(name: String) : this(name, INITIAL_POSITION)
 
     fun move(power: Int): Car {
         validatePower(power)
         if (power >= MINIMUM_AMOUNT_TO_MOVE) {
-            return Car(position + 1)
+            return Car(name, position + 1)
         }
         return this
     }
@@ -22,5 +28,7 @@ class Car(val position: Int) {
         const val MINIMUM_AMOUNT_TO_MOVE = 4
         const val MAXIMUM_MOVE_POWER = 9
         const val MINIMUM_MOVE_POWER = 0
+        const val MINIMUM_CAR_NAME_LENGTH = 1
+        const val MAXIMUM_CAR_NAME_LENGTH = 5
     }
 }
