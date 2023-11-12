@@ -21,7 +21,7 @@ class RacingGame(
         get() = !isContinuable
 
     fun move() {
-        check(currentRacingRound < racingRound) { "시도회수를 초과하였습니다." }
+        check(isContinuable) { "시도회수를 초과하였습니다." }
         cars.forEach(Car::move)
         currentRacingRound++
     }
