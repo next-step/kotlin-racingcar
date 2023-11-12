@@ -16,7 +16,7 @@ class RacingGameTest : FunSpec({
             val cars = List(numberOfCars) { Car(name = "name") }
             val racingGame = RacingGame(cars = cars, racingRound = 10)
 
-            racingGame.carInfos.size shouldBe numberOfCars
+            racingGame.getCarList().size shouldBe numberOfCars
         }
     }
 
@@ -87,7 +87,7 @@ class RacingGameTest : FunSpec({
 
         for (i in 1..racingRound) {
             racingGame.move()
-            racingGame.carInfos.forEach {
+            racingGame.getCarList().forEach {
                 it.position shouldBe i
             }
         }
@@ -111,7 +111,7 @@ class RacingGameTest : FunSpec({
         }
 
         val winners = racingGame.judgeWinners()
-        winners shouldBe listOf("w1", "w2")
+        winners.map(Car::name) shouldBe listOf("w1", "w2")
     }
 
     context("자동차 경주가 끝나기 전에 우승자를 확인하는 경우 IllegalStateException throw") {

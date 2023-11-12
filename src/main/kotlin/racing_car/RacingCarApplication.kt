@@ -14,7 +14,7 @@ fun main() {
     ResultView.printResultTitle()
     while (racingGame.isContinuable) {
         racingGame.move()
-        ResultView.printPosition(racingGame.carInfos)
+        ResultView.printPosition(racingGame.getCarList())
     }
 
     val winners = racingGame.judgeWinners()
