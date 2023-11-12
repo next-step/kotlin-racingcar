@@ -2,28 +2,27 @@ package racing_car.domain
 
 class RacingGame(
     private val cars: List<Car>,
-    private val racingRound: Int,
+    racingRound: Int,
 ) {
-    private var currentRacingRound: Int = 0
+    private val roundInfo: RoundInfo = RoundInfo(totalRound = racingRound)
 
     init {
         require(cars.size >= 2) { "경주에 필요한 자동차 대수는 2대 이상입니다." }
-        require(racingRound >= 1) { "경주는 1번 이상 시도되어야합니다." }
     }
 
     val carInfos: List<CarInfo>
         get() = cars.map { it.carInfo }
 
     val isContinuable: Boolean
-        get() = currentRacingRound < racingRound
+        get() = roundInfo.isContinuable
 
     val isFinish: Boolean
-        get() = !isContinuable
+        get() = roundInfo.isFinish
 
     fun move() {
         check(isContinuable) { "시도회수를 초과하였습니다." }
         cars.forEach(Car::move)
-        currentRacingRound++
+        roundInfo.increaseCurrentRound()
     }
 
     fun judgeWinners(): List<String> {
