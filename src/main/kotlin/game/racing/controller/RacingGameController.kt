@@ -1,25 +1,21 @@
 package game.racing.controller
 
 import game.racing.domain.Car
-import game.racing.domain.RacingManager
+import game.racing.domain.RacingGame
 import game.racing.view.ResultView
 
-class RacingGameController(private val racingManager: RacingManager) {
-    fun tryMovesRepeatedly(tryNumber: Int): List<List<Car>> {
-        val resultList = mutableListOf<List<Car>>()
-        repeat(tryNumber) {
-            resultList.add(racingManager.moveCars { Car.generateRandomMoveDecision() }.map { it.copy() })
-        }
-        return resultList
-    }
-
-    fun initializeGame() {
+object RacingGameController {
+    fun initializeGame(cars: List<Car>) {
         ResultView.printResultIntroduction()
-        ResultView.printResult(racingManager.cars)
+        ResultView.printResult(cars)
     }
 
-    fun showGameResult(resultList: List<List<Car>>) {
+    fun progressGame(racingGame: RacingGame, tryNumber: Int): List<List<Car>> {
+        return racingGame.tryMovesRepeatedly(tryNumber)
+    }
+
+    fun showGameResult(resultList: List<List<Car>>, winners: List<Car>) {
         resultList.forEach(ResultView::printResult)
-        ResultView.printWinner(racingManager.determineWinner())
+        ResultView.printWinner(winners)
     }
 }
