@@ -3,7 +3,7 @@ package racing
 import kotlin.random.Random
 
 open class Car(
-    val name: String = "이름 없음"
+    val name: String = DEFAULT_NAME
 ) {
     var position: Int = INIT_POSITION
     
@@ -22,6 +22,7 @@ open class Car(
         private const val POSITION_INCREMENT = 1
         private const val RANDOM_LIMIT = 10
         private const val MOVE_POSITION_CONDITION = 4
+        private const val DEFAULT_NAME = "이름 없음"
     }
 
 }

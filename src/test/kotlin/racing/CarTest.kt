@@ -39,4 +39,14 @@ class CarTest {
         car.move()
         assertThat(car.position).isEqualTo(0)
     }
+    
+    @Test
+    fun `자동차 이름`() {
+        val car = Car()
+        assertThat(car.name).isEqualTo("이름 없음")
+        
+        val name = "지훈"
+        val carWithName = Car(name)
+        assertThat(carWithName.name).isEqualTo(name)
+    }
 }
