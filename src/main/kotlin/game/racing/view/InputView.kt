@@ -5,9 +5,9 @@ object InputView {
     private const val HOW_MANY_TRY_MESSAGE = "시도할 회수는 몇 회 인가요?"
     const val CAR_NAME_DELIMITER = ","
 
-    fun inputCarNames(): String {
+    fun inputCarNames(): List<String> {
         println(HOW_MANY_CAR_MESSAGE)
-        return readln()
+        return readln().split(InputView.CAR_NAME_DELIMITER)
     }
 
     fun inputTryNumber(): Int {
