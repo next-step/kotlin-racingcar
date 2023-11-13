@@ -1,9 +1,15 @@
 package carracing.dto
 
+import carracing.CarRacingValidator
+
 data class Car(
-    var name: String,
-    var position: Int = 0,
+    val name: String,
 ) {
+    init {
+        CarRacingValidator().validateCarName(this.name)
+    }
+    var position: Int = 0
+        private set
 
     fun move() {
         position++

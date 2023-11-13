@@ -6,8 +6,8 @@ class InputView {
         return readln().toInt()
     }
 
-    fun inputString(inputType: InputType): String {
+    fun inputString(inputType: InputType): List<String> {
         println(inputType.question)
-        return readln()
+        return readln().split(",")
     }
 }

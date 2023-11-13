@@ -7,9 +7,8 @@ class CarRacingValidatorTest {
     @Test
     fun `자동차 이름 5자 초과`() {
         val carName = "carNameOver"
-        val carNames = listOf(carName)
         assertThrows(IllegalArgumentException::class.java) {
-            CarRacingValidator().validateCarNames(carNames)
+            CarRacingValidator().validateCarName(carName)
         }
     }
 }

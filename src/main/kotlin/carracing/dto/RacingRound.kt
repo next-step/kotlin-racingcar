@@ -2,7 +2,7 @@ package carracing.dto
 
 data class RacingRound(
     val round: Int,
-    var roundResult: List<Car> = emptyList(),
+    val roundResult: List<Car>,
 ) {
     companion object {
         fun of(round: Int, cars: List<Car>): RacingRound {

@@ -8,7 +8,7 @@ class RandomGameTest {
 
     @Test
     fun `랜덤 게임 테스트`() {
-        val name = "carName"
+        val name = "car"
         val cars = listOf(Car(name))
         RandomGame().execute(cars)
         assertThat(cars.first().position).isIn(0, 1)
