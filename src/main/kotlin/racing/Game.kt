@@ -1,23 +1,26 @@
 package racing
 
 class Game(
-    numberOfCar: Int,
+    private val cars: List<Car>,
     private val tryCount: Int
 ) {
-    private val carList = List(numberOfCar) { Car() }
     private val resultView = ResultView()
 
     fun start() {
         repeat(tryCount) {
             run()
         }
+        
+        val maxScore = cars.maxBy { it.position }.position
+        val winners = cars.filter { it.position == maxScore }
+        resultView.viewWinner(winners.map { it.name })
     }
 
     private fun run() {
-        carList.forEach {
+        cars.forEach {
             it.move()
         }
 
-        resultView.view(carList)
+        resultView.view(cars)
     }
 }

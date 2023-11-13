@@ -3,8 +3,10 @@ package racing
 import kotlin.random.Random
 
 open class Car(
-    var position: Int = INIT_POSITION
+    val name: String = "이름 없음"
 ) {
+    var position: Int = INIT_POSITION
+    
     fun move() {
         if (moveOrNot()) {
             position += POSITION_INCREMENT
