@@ -11,12 +11,9 @@ internal class RacingManagerTest {
     fun `우승자를 반환한다`(cars: List<Car>) {
         // when
         val racingManager = RacingManager(cars)
-        cars.filter { it.name == "WIN" }.forEach {
-            it.moveOrStayBySpeed(Car.MIN_MOVE_THRESHOLD)
-        }
 
         // then
-        assertThat(racingManager.determineWinner()).allMatch { it.position == Car.MIN_POSITION + 1 }.allMatch { it.name == "WIN" }
+        assertThat(racingManager.determineWinner()).allMatch { it.name == "WIN" }
     }
 
     @Test
@@ -29,11 +26,19 @@ internal class RacingManagerTest {
     }
 
     companion object {
+        private fun createCar(name: String, position: Int): Car {
+            return Car(name).apply {
+                repeat(position) {
+                    this.moveOrStayBySpeed(Car.MIN_MOVE_THRESHOLD)
+                }
+            }
+        }
+
         @JvmStatic
         fun provideCarList() = listOf(
-            listOf(Car("TEST1"), Car("TEST2"), Car("WIN")),
-            listOf(Car("TEST1"), Car("TEST2"), Car("WIN"), Car("TEST4")),
-            listOf(Car("TEST1"), Car("TEST2"), Car("WIN"), Car("TEST4"), Car("TEST5"))
+            listOf(createCar("TEST1", 1), createCar("TEST2", 2), createCar("WIN", 3)),
+            listOf(createCar("TEST1", 1), createCar("TEST2", 2), createCar("WIN", 3), createCar("TEST4", 2)),
+            listOf(createCar("TEST1", 1), createCar("TEST2", 1), createCar("WIN", 5), createCar("TEST4", 3), createCar("TEST5", 3))
         )
     }
 }
