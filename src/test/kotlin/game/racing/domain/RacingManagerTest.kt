@@ -18,11 +18,13 @@ internal class RacingManagerTest {
 
     @Test
     fun `자동차가 움직인다`() {
-        val cars = arrayOf(Car("TEST1"), Car("TEST2"), Car("TEST3"))
-        val racingManager = RacingManager(cars.toList())
+        val cars = listOf(Car("TEST1"), Car("TEST2"), Car("TEST3"))
+        val racingManager = RacingManager(cars)
         racingManager.moveCars { Car.MIN_MOVE_THRESHOLD }
 
-        assertThat(cars).allMatch { it.position == Car.MIN_POSITION + 1 }
+        assertThat(cars[0].position).isEqualTo(1)
+        assertThat(cars[1].position).isEqualTo(1)
+        assertThat(cars[2].position).isEqualTo(1)
     }
 
     companion object {
