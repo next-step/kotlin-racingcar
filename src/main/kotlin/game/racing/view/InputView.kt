@@ -7,7 +7,7 @@ object InputView {
 
     fun inputCarNames(): List<String> {
         println(HOW_MANY_CAR_MESSAGE)
-        return readln().split(InputView.CAR_NAME_DELIMITER)
+        return readln().split(CAR_NAME_DELIMITER)
     }
 
     fun inputTryNumber(): Int {
