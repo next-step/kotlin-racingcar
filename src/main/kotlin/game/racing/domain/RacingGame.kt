@@ -1,15 +1,16 @@
 package game.racing.domain
 
-import game.racing.util.getRandomValue
-import game.racing.view.ResultView
-
-class RacingGame(private val racingManager: RacingManager, private val tryNumber: Int) {
-    fun start() {
-        ResultView.printResultIntroduction()
+class RacingGame(private val racingManager: RacingManager) {
+    fun tryMovesRepeatedly(tryNumber: Int): List<List<Car>> {
+        val resultList = mutableListOf<List<Car>>()
         repeat(tryNumber) {
-            racingManager.moveCars { getRandomValue() }
-            ResultView.printResult(racingManager.cars)
+            resultList.add(racingManager.moveCars { MovementStrategy.randomMoveStrategy() }.map { it.copy() })
         }
-        ResultView.printWinner(racingManager.determineWinner())
+        return resultList
+    }
+
+    companion object {
+        const val MIN_RANDOM_VALUE = 0
+        const val MAX_RANDOM_VALUE = 9
     }
 }

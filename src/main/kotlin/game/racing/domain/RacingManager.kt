@@ -2,14 +2,15 @@ package game.racing.domain
 
 class RacingManager(val cars: List<Car>) {
 
-    fun moveCars(moveStrategy: () -> Int) {
+    fun moveCars(moveStrategy: () -> Int): List<Car> {
         cars.forEach {
             it.moveOrStayBySpeed(moveStrategy())
         }
+        return cars
     }
 
     fun determineWinner(): List<Car> {
-        val biggestPosition = cars.maxOf { it.position }
-        return cars.filter { it.position == biggestPosition }
+        val maxPositionCar = cars.max()
+        return cars.filter { maxPositionCar.isSamePosition(it) }
     }
 }

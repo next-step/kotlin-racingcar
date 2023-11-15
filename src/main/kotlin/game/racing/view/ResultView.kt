@@ -26,4 +26,8 @@ object ResultView {
         val winnerNames = winners.joinToString(CAR_NAME_DELIMITER) { it.name }
         println("${winnerNames}가 최종 우승했습니다.")
     }
+
+    fun printResults(resultList: List<List<Car>>) {
+        resultList.forEach(this::printResult)
+    }
 }

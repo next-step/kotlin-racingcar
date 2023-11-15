@@ -1,11 +1,17 @@
 package game.racing.domain
 
-class Car(val name: String) {
-    var position = MIN_POSITION
+data class Car(val name: String) : Comparable<Car> {
+    var position: Int = MIN_POSITION
         private set
 
     init {
         require(name.length in MIN_CAR_NAME_LENGTH..MAX_CAR_NAME_LENGTH) { NOT_VALID_CAR_NAME_MESSAGE }
+    }
+
+    fun copy(): Car {
+        val car = Car(name)
+        car.position = position
+        return car
     }
 
     fun moveOrStayBySpeed(speed: Int) {
@@ -14,9 +20,12 @@ class Car(val name: String) {
         }
     }
 
+    fun isSamePosition(other: Car): Boolean = this.position == other.position
+
+    override fun compareTo(other: Car): Int = this.position - other.position
+
     companion object {
-        const val MIN_RANDOM_VALUE = 0
-        const val MAX_RANDOM_VALUE = 9
+
         const val MIN_POSITION = 0
         private const val MAX_CAR_NAME_LENGTH = 5
         private const val MIN_CAR_NAME_LENGTH = 1
