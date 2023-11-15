@@ -49,6 +49,10 @@ enum class Operator(
     DIVIDE("/", { a, b -> a / b });
 
     companion object {
+        private val stores by lazy {
+            values().associateBy { it.symbol }
+        }
+
         fun parse(strings: List<String>): List<Operator> {
             return runCatching {
                 strings.filterIndexed { index, _ -> index % 2 != 0 }.map { Operator.from(it) }
@@ -57,10 +61,6 @@ enum class Operator(
                     throw IllegalArgumentException("올바른 사칙연산자 형식이 아닙니다.")
                 }
             }.getOrThrow()
-        }
-
-        private val stores by lazy {
-            values().associateBy { it.symbol }
         }
 
         private fun from(input: String): Operator {

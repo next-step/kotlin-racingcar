@@ -1,14 +1,10 @@
 package racingcar
 
-fun main() {
-    println("자동차 대수는 몇 대 인가요?")
-    val carCounts = readln().toInt()
-    println("시도할 횟수는 몇 회인가요?")
-    val tryCounts = readln().toInt()
+import racingcar.controller.RacingController
 
-    val cars = Cars.of(carCounts)
-    repeat(tryCounts) {
-        cars.move()
-        println(cars.toMessages())
-    }
+private val racingController: RacingController = RacingController()
+fun main() {
+    val joinRacingCar = racingController.join()
+    val playRacingCar = racingController.play(joinRacingCar)
+    racingController.winner(playRacingCar)
 }
