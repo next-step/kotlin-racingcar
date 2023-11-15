@@ -8,6 +8,12 @@ data class Car(val name: String) : Comparable<Car> {
         require(name.length in MIN_CAR_NAME_LENGTH..MAX_CAR_NAME_LENGTH) { NOT_VALID_CAR_NAME_MESSAGE }
     }
 
+    fun copy(): Car {
+        val car = Car(name)
+        car.position = position
+        return car
+    }
+
     fun moveOrStayBySpeed(speed: Int) {
         if (speed >= MIN_MOVE_THRESHOLD) {
             position++
