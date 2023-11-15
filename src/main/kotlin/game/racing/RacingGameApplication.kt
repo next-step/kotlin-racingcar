@@ -11,7 +11,6 @@ fun main() {
     val racingManager = RacingManager(cars)
     val racingGame = RacingGame(racingManager)
 
-    RacingGameController.initializeGame(racingManager.cars)
     val resultList = RacingGameController.progressGame(racingGame, InputView.inputTryNumber())
     RacingGameController.showGameResult(resultList, racingManager.determineWinner())
 }

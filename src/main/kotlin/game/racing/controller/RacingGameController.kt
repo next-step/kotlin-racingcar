@@ -5,11 +5,6 @@ import game.racing.domain.RacingGame
 import game.racing.view.ResultView
 
 object RacingGameController {
-    fun initializeGame(cars: List<Car>) {
-        ResultView.printResultIntroduction()
-        ResultView.printResult(cars)
-    }
-
     fun progressGame(racingGame: RacingGame, tryNumber: Int): List<List<Car>> {
         return racingGame.tryMovesRepeatedly(tryNumber)
     }
