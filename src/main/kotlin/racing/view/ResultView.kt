@@ -13,7 +13,7 @@ object ResultView {
 
     fun printWinner(cars: List<Car>) {
         val winnerPosition = cars.maxBy { it.position }.position
-        val winners = cars.filter { it.isWinner(winnerPosition) }
+        val winners = cars.filter { it.isFastestPosition(winnerPosition) }
         println("${winners.joinToString { it.name }}가 최종 우승했습니다.")
     }
 }
