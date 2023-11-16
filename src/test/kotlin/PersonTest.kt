@@ -10,7 +10,7 @@ class PersonTest {
         val people = listOf(
             Person("권대원", 20, "KwonDae"),
             Person("권대원", 20, nickname = "KwonDae"),
-            Person(name = "권대원", age =  20, nickname =  "KwonDae")
+            Person(name = "권대원", age = 20, nickname = "KwonDae")
         )
         assertThat(people).allSatisfy {
             assertThat(it.name).isEqualTo("권대원")
