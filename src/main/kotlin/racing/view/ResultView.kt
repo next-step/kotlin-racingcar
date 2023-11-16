@@ -1,6 +1,7 @@
 package racing.view
 
 import racing.domain.Car
+import racing.domain.Winner
 
 object ResultView {
     fun printResult(cars: List<Car>) {
@@ -12,8 +13,7 @@ object ResultView {
     }
 
     fun printWinner(cars: List<Car>) {
-        val fastestPosition = cars.maxBy { it.position }.position
-        val winners = cars.filter { it.isFastestPosition(fastestPosition) }
+        val winners = Winner.findWinners(cars)
         println("${winners.joinToString { it.name }}가 최종 우승했습니다.")
     }
 }
