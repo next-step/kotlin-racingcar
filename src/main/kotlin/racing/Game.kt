@@ -1,26 +1,24 @@
 package racing
 
-class Game(
-    private val cars: List<Car>,
-    private val tryCount: Int
-) {
-    private val resultView = ResultView()
+import kotlin.random.Random
 
-    fun start() {
-        repeat(tryCount) {
-            run()
+class Game(
+    private val cars: List<Car>
+) {
+    fun run(): List<Car> {
+        cars.forEach {
+            it.move(Random.nextInt(RANDOM_LIMIT))
         }
-        
+        return cars
+    }
+    
+    fun end(): List<String> {
         val maxScore = cars.maxBy { it.position }.position
         val winners = cars.filter { it.position == maxScore }
-        resultView.viewWinner(winners.map { it.name })
+        return winners.map { it.name }
     }
-
-    private fun run() {
-        cars.forEach {
-            it.move()
-        }
-
-        resultView.view(cars)
+    
+    companion object {
+        private const val RANDOM_LIMIT = 10
     }
 }
