@@ -4,12 +4,12 @@ class Car(
     val name: String,
     private var mileage: Int = DEFAULT_MILEAGE,
 ) {
+    val currentMileage
+        get() = mileage
 
     init {
         validateCarInfo()
     }
-
-    fun currentMileage() = mileage
 
     private fun validateCarInfo() {
         require(name.isNotBlank()) {
@@ -20,8 +20,8 @@ class Car(
         }
     }
 
-    fun moveOrNotByNum(randomNum: Int) {
-        if (isPossibleToDrive(randomNum)) mileage++
+    fun moveOrNotByNum(accelerationLevel: Int) {
+        if (isPossibleToDrive(accelerationLevel)) mileage++
     }
 
     private fun isPossibleToDrive(randomNum: Int) = randomNum >= MIN_NUM_TO_GO

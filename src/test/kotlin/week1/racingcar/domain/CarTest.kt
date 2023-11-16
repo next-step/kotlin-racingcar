@@ -4,33 +4,55 @@ import io.kotest.matchers.shouldBe
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
-import week1.racingcar.domain.Car.Companion.MIN_NUM_TO_GO
-import week1.racingcar.domain.Car.Companion.RANDOM_NUM_RANGE
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class CarTest {
     @Test
-    fun `생성자 확인`() {
+    fun `자동차 객체가 정상적으로 생성되었는지 확인`() {
         val car1 = Car("James")
         car1.name shouldBe "James"
-
-        assertThrows(IllegalArgumentException::class.java) {
-            Car("Thomas")
-        }
     }
 
     @Test
-    fun `한 턴 진행`() {
-        (0 until RANDOM_NUM_RANGE).forEach {
-            val car = Car("K5")
-            car.moveOrNotByNum(it)
-            val expectedMileage = if (it < MIN_NUM_TO_GO) 0 else 1
-            assertThat(car.currentMileage()).isEqualTo(expectedMileage)
+    fun `자동차 객체 생성 정보의 유효성 확인`() {
+        assertThrows(IllegalArgumentException::class.java) {
+            Car("Thomas")
         }
+        assertThrows(IllegalArgumentException::class.java) {
+            Car("Tho mas")
+        }
+    }
+
+    @ParameterizedTest
+    @MethodSource("makeNumberMovePair")
+    fun `한 턴 진행`(numberMovePair: Pair<Int, Int>) {
+        val number = numberMovePair.first
+        val expectedMileage = numberMovePair.second
+        val car = Car("K5")
+        car.moveOrNotByNum(number)
+        assertThat(car.currentMileage).isEqualTo(expectedMileage)
     }
 
     @Test
     fun `주행거리 비교`() {
         val car = Car("EV6")
-        car.isSameMileage(0)
+        car.isSameMileage(100) shouldBe false
+    }
+
+    companion object {
+        @JvmStatic
+        fun makeNumberMovePair() = listOf(
+            0 to 0,
+            1 to 0,
+            2 to 0,
+            3 to 0,
+            4 to 0,
+            5 to 1,
+            6 to 1,
+            7 to 1,
+            8 to 1,
+            9 to 1,
+        )
     }
 }
