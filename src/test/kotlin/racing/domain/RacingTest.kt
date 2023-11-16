@@ -6,8 +6,7 @@ import io.kotest.matchers.shouldBe
 class RacingTest : FunSpec({
     test("racing prepare시 position은 0으로 초기화") {
         // Given
-        val names: List<String> = listOf("Jiwon", "Alex", "Bob")
-        val cars = CarNameMapper.map(names)
+        val cars = listOf(Car("Jiwon"), Car("Alex"), Car("Bob"))
 
         // When
         val racing = Racing(cars)
