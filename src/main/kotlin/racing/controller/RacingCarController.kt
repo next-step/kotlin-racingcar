@@ -4,9 +4,7 @@ import racing.service.RacingCarService
 import racing.view.InputView
 import racing.view.ResultView
 
-class RacingCarController {
-    private val racingCarService = RacingCarService()
-
+class RacingCarController(private val racingCarService: RacingCarService) {
     fun startRacingGame() {
         val carNames = InputView.inputCarNames()
         val tryCount = InputView.inputTryCount()

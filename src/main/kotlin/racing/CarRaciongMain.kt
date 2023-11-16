@@ -1,7 +1,9 @@
 package racing
 
 import racing.controller.RacingCarController
+import racing.service.RacingCarService
 
 fun main() {
-    RacingCarController().startRacingGame()
+    val racingCarService = RacingCarService()
+    RacingCarController(racingCarService).startRacingGame()
 }
