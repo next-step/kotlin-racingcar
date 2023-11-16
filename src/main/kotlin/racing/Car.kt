@@ -1,26 +1,20 @@
 package racing
 
-import kotlin.random.Random
-
 open class Car(
     val name: String = DEFAULT_NAME
 ) {
     var position: Int = INIT_POSITION
+        private set
     
-    fun move() {
-        if (moveOrNot()) {
+    fun move(condition: Int) {
+        if (condition > MOVE_POSITION_CONDITION) {
             position += POSITION_INCREMENT
         }
     }
 
-    open fun moveOrNot(): Boolean {
-        return Random.nextInt(RANDOM_LIMIT) > MOVE_POSITION_CONDITION
-    }
-    
     companion object {
         private const val INIT_POSITION = 0
         private const val POSITION_INCREMENT = 1
-        private const val RANDOM_LIMIT = 10
         private const val MOVE_POSITION_CONDITION = 4
         private const val DEFAULT_NAME = "이름 없음"
     }
