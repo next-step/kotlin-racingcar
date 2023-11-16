@@ -46,7 +46,7 @@ class CarTest : FunSpec({
 
         // Then
         fastestPosition shouldBe 5
-        car1.isFastestPosition(fastestPosition) shouldBe false
-        car2.isFastestPosition(fastestPosition) shouldBe true
+        car1.isEqualToPosition(fastestPosition) shouldBe false
+        car2.isEqualToPosition(fastestPosition) shouldBe true
     }
 })
