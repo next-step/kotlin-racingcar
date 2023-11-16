@@ -34,4 +34,19 @@ class CarTest : FunSpec({
         // Then
         car.position shouldBe 1
     }
+
+    test("제일 빠른 위치에 있는지 확인") {
+        // Given
+        val car1 = Car("Bob", 3)
+        val car2 = Car("jibob", 5)
+        val carList = listOf(car1, car2)
+
+        // When
+        val fastestPosition = carList.maxBy { it.position }.position
+
+        // Then
+        fastestPosition shouldBe 5
+        car1.isFastestPosition(fastestPosition) shouldBe false
+        car2.isFastestPosition(fastestPosition) shouldBe true
+    }
 })

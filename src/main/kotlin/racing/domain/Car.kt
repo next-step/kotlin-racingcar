@@ -10,8 +10,8 @@ class Car(val name: String, var position: Int = 0) {
         this.position += CAR_FORWARD_COUNT
     }
 
-    fun isFastestPosition(currentPosition: Int): Boolean {
-        return this.position == currentPosition
+    fun isFastestPosition(fastestPosition: Int): Boolean {
+        return this.position == fastestPosition
     }
 
     companion object {
