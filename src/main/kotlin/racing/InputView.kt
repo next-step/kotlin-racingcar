@@ -20,13 +20,7 @@ class InputView {
     }
     
     private fun String.toCars(): List<Car> {
-        val names = this.split(",")
-        val cars = mutableListOf<Car>()
-        repeat(names.size) {
-            cars.add(Car(names[it]))
-        }
-        
-        return cars
+        return this.split(",").map { Car(it) }
     }
 
     private fun retryGet(prompt: String): Int {
