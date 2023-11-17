@@ -1,17 +1,9 @@
 package racing
 
-import racing.ui.InputView
+import racing.controller.RacingCarController
+import racing.service.RacingCarService
 
 fun main() {
-    val carNames = InputView.inputCarNames()
-    val tryCount = InputView.inputTryCount()
-
-    val cars = Racing.prepareRacing(carNames)
-    for (i in 0 until tryCount) {
-        Racing.startRacing(cars) { movable() }
-    }
-}
-
-private fun movable(): Boolean {
-    return (0..9).random() >= 4
+    val racingCarService = RacingCarService()
+    RacingCarController(racingCarService).startRacingGame()
 }

@@ -6,7 +6,7 @@ enum class Operator(val symbol: String, val operationFunction: (a: Int, b: Int) 
     MULTIPLY("*", { a, b -> a * b }),
     DIVIDE("/", { a, b -> a / b }),
 
-    NONE("", { a, b -> a })
+    NONE("", { a, _ -> a })
     ;
 
     companion object {
