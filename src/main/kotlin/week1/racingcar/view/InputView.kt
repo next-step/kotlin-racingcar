@@ -1,4 +1,4 @@
-package week1.racingcar
+package week1.racingcar.view
 
 object InputView {
     fun getValidateRaceInfo(): InputResult {

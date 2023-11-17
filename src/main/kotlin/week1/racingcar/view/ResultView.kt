@@ -1,4 +1,6 @@
-package week1.racingcar
+package week1.racingcar.view
+
+import week1.racingcar.domain.Car
 
 object ResultView {
 
@@ -6,7 +8,7 @@ object ResultView {
         println("실행 결과")
         cars.forEach {
             print("${it.name} : ")
-            println("-".repeat(it.mileage))
+            println("-".repeat(it.currentMileage))
         }
         println()
     }
