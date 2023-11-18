@@ -1,23 +1,21 @@
 package racingcar.view
 
-import racingcar.domain.Car
-import racingcar.domain.Cars
+import racingcar.dto.CarDto
+import racingcar.dto.CarsDto
 
 object OutputView {
 
     private const val WINNER_JOIN_SEPARATOR = ","
-    private const val RACING_COURSE = "-"
-    fun printRacing(racingCars: Cars) {
+    fun printRacing(snapShots: List<CarsDto>) {
         val result = buildString {
-            racingCars.cars.forEach {
-                appendLine("${it.name} : ${RACING_COURSE.repeat(maxOf(0, it.position))}")
+            snapShots.forEach {
+                appendLine(it.racingTrace())
             }
-            appendLine()
         }
         println(result)
     }
 
-    fun printWinners(winnerCars: List<Car>): String = buildString {
+    fun printWinners(winnerCars: List<CarDto>): String = buildString {
         val winnersCarNames = winnerCars
             .joinToString(WINNER_JOIN_SEPARATOR) { it.name }
 

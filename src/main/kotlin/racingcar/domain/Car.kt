@@ -1,5 +1,7 @@
 package racingcar.domain
 
+import racingcar.dto.CarDto
+
 class Car(val name: String) {
     var position: Int = DEFAULT_POSITION
         private set
@@ -33,16 +35,17 @@ class Cars(cars: List<Car>) {
         }
     }
 
-    fun maxOfPositions(): Int {
-        return cars.maxOf { car -> car.position }
-    }
-
     companion object {
-        fun of(names: List<String>): Cars {
+        private const val RACING_CAR_DELIMITER = ","
+
+        fun of(inputName: String): Cars {
+            val names = inputName.split(RACING_CAR_DELIMITER)
             val cars = names.map {
                 Car.from(it)
             }
             return Cars(cars)
         }
     }
+
+    fun toCarDtoList(): List<CarDto> = cars.map { CarDto.from(it) }
 }

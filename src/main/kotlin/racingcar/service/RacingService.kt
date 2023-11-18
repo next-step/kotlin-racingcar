@@ -1,15 +1,16 @@
 package racingcar.service
 
 import racingcar.domain.Cars
-import racingcar.view.OutputView
+import racingcar.dto.CarsDto
 import racingcar.view.inputTryCount
 
 class RacingService {
-    fun play(racingCars: Cars): Cars {
+    fun play(racingCars: Cars): List<CarsDto> {
+        val snapshots = mutableListOf<CarsDto>()
         repeat(inputTryCount()) {
             racingCars.move()
-            OutputView.printRacing(racingCars)
+            snapshots.add(CarsDto(racingCars.toCarDtoList()))
         }
-        return racingCars
+        return snapshots
     }
 }
