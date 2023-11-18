@@ -2,23 +2,24 @@ package racingcar.controller
 
 import racingcar.domain.Cars
 import racingcar.domain.WinnerCar
-import racingcar.inputCarName
-import racingcar.inputTryCount
-import racingcar.view.printRacing
-import racingcar.view.printWinner
+import racingcar.dto.CarsDto
+import racingcar.service.RacingService
+import racingcar.view.OutputView
+import racingcar.view.OutputView.printWinners
+import racingcar.view.inputCarName
 
-class RacingController {
-    fun join(): Cars = Cars.of(inputCarName().split(","))
-
-    fun play(racingCars: Cars): Cars {
-        repeat(inputTryCount()) {
-            racingCars.move()
-            printRacing(racingCars)
-        }
-        return racingCars
+class RacingController(
+    private val racingService: RacingService = RacingService()
+) {
+    fun play(): CarsDto {
+        val snapshots = racingService.play(join())
+        OutputView.printRacing(snapshots)
+        return snapshots.last()
     }
 
-    fun winner(playRacingCar: Cars) {
-        printWinner(WinnerCar.from(playRacingCar))
+    private fun join(): Cars = Cars.of(inputCarName())
+
+    fun win(playRacingCar: CarsDto) {
+        printWinners(WinnerCar.from(playRacingCar))
     }
 }
