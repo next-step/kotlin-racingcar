@@ -1,11 +1,11 @@
-package racing
+package racing.car
 
-open class Car(
+class Car(
     val name: String = DEFAULT_NAME
 ) {
     var position: Int = INIT_POSITION
         private set
-    
+
     fun move(condition: Int) {
         if (condition > MOVE_POSITION_CONDITION) {
             position += POSITION_INCREMENT
@@ -18,5 +18,4 @@ open class Car(
         private const val MOVE_POSITION_CONDITION = 4
         private const val DEFAULT_NAME = "이름 없음"
     }
-
 }

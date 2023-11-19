@@ -1,4 +1,6 @@
-package racing
+package racing.view
+
+import racing.car.Car
 
 class ResultView {
     fun view(cars: List<Car>) {
@@ -7,11 +9,11 @@ class ResultView {
         }
         println()
     }
-    
+
     fun viewWinner(names: List<String>) {
         println("${names.joinToString(", ")}(이)가 최종 우승했습니다.")
     }
-    
+
     private fun viewCar(car: Car) {
         print("${car.name} : ")
         repeat(car.position) {
