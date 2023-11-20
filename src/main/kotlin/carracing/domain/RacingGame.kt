@@ -1,7 +1,4 @@
-package carracing
-
-import carracing.dto.Car
-import carracing.dto.RacingRound
+package carracing.domain
 
 class RacingGame(
     private val carNames: List<String>,

@@ -1,6 +1,7 @@
 package carracing
 
-import carracing.dto.Car
+import carracing.domain.Car
+import carracing.domain.RandomGame
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

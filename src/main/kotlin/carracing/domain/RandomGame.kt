@@ -1,6 +1,5 @@
-package carracing
+package carracing.domain
 
-import carracing.dto.Car
 import kotlin.random.Random
 
 class RandomGame : RacingGameRule {

@@ -1,7 +1,7 @@
 package carracing.view
 
-import carracing.dto.Car
-import carracing.dto.RacingRound
+import carracing.domain.Car
+import carracing.domain.RacingRound
 
 class ResultView {
     fun printResult(racingResult: List<RacingRound>) {

@@ -1,4 +1,4 @@
-package carracing.dto
+package carracing.domain
 
 data class RacingRound(
     val round: Int,

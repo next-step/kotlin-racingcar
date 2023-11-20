@@ -1,6 +1,6 @@
-package carracing
+package carracing.domain
 
-import carracing.dto.Car
+import carracing.domain.Car
 
 interface RacingGameRule {
     fun execute(cars: List<Car>)

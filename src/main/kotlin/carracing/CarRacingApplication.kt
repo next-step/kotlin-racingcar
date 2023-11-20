@@ -1,5 +1,7 @@
 package carracing
 
+import carracing.domain.RacingGame
+import carracing.domain.RandomGame
 import carracing.view.InputType
 import carracing.view.InputView
 import carracing.view.ResultView

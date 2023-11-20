@@ -1,6 +1,4 @@
-package carracing.dto
-
-import carracing.CarRacingValidator
+package carracing.domain
 
 data class Car(
     val name: String,
