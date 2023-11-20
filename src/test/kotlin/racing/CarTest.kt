@@ -1,20 +1,37 @@
 package racing
 
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import racing.domain.Car
+import racing.domain.CarName
+import racing.domain.MovingRule
 
 class CarTest {
-    @Test
-    fun `자동차 forward 테스트`() {
-        val car = Car("TestCar")
-        val movingRule =  RacingMovingRule(1)
-        car.forward(movingRule)
+    class TestMovingRuleTrue(override val movingCount: Int) : MovingRule {
+        override fun isMove(): Boolean {
+            return true
+        }
+    }
 
-        if(movingRule.isMove()){
-            assertTrue(car.route == 1)
+    class TestMovingRuleFalse(override val movingCount: Int) : MovingRule {
+        override fun isMove(): Boolean {
+            return false
         }
-        else{
-            assertTrue(car.route == 0)
-        }
+    }
+
+    @Test
+    fun `자동차 forward 테스트 isMoving=true`() {
+        val car = Car(CarName("test"))
+        val movingRule = TestMovingRuleTrue(1)
+        car.forward(movingRule)
+        Assertions.assertThat(car.route).isEqualTo(1)
+    }
+
+    @Test
+    fun `자동차 forward 테스트 isMoving=false`() {
+        val car = Car(CarName("test"))
+        val movingRule = TestMovingRuleFalse(1)
+        car.forward(movingRule)
+        Assertions.assertThat(car.route).isEqualTo(0)
     }
 }
