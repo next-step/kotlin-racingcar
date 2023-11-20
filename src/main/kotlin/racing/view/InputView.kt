@@ -1,11 +1,13 @@
-package racing
+package racing.view
+
+import racing.car.Car
 
 class InputView {
     fun get(prompt: String): Int {
         print(prompt)
         return readln().toPositiveIntOrNull() ?: retryGet(prompt)
     }
-    
+
     fun getNames(prompt: String): List<Car> {
         print(prompt)
         val cars = readln().toCars()
@@ -18,7 +20,7 @@ class InputView {
         println("다시 입력해 주세요.")
         return getNames(prompt)
     }
-    
+
     private fun String.toCars(): List<Car> {
         return this.split(",").map { Car(it) }
     }
