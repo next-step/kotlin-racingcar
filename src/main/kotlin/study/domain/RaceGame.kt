@@ -9,7 +9,7 @@ class RaceGame internal constructor(
         Random.nextInt(RANDOM_NUMBER_UNTIL) >= MOVE_MINIMUM_NUMBER,
     private val result: MutableMap<Int, List<RaceCar>> = mutableMapOf(),
 ) {
-    fun play(): Pair<List<RaceCar>, Map<Int, List<RaceCar>>> {
+    fun play(): RaceResult {
         repeat(totalRound) { round ->
             raceCars.forEach { car ->
                 if (moveStrategy()) {
@@ -19,7 +19,7 @@ class RaceGame internal constructor(
             result[round + 1] = raceCars.map { RaceCar(it.name, it.position) }
         }
         val winners = pickWinners(raceCars)
-        return Pair(winners, result.toMap())
+        return RaceResult(winners, result.toMap())
     }
 
     override fun equals(other: Any?): Boolean {
@@ -44,7 +44,7 @@ class RaceGame internal constructor(
 
     companion object {
         fun of(totalRound: Int, carNames: List<String>): RaceGame {
-            val raceCars = List(carNames.size) { index -> RaceCar(carNames[index]) }
+            val raceCars = List(carNames.size) { index -> RaceCar(CarName(carNames[index])) }
             return RaceGame(raceCars, totalRound)
         }
     }

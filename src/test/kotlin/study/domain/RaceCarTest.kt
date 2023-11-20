@@ -7,13 +7,13 @@ import org.junit.jupiter.api.assertThrows
 class RaceCarTest {
     @Test
     fun move() {
-        val raceCar = RaceCar("name")
+        val raceCar = RaceCar(CarName("name"))
         raceCar.move()
         assertThat(raceCar.position).isOne
     }
 
     @Test
     fun `이름이 5자 초과 시 에러`() {
-        assertThrows<Exception> { RaceCar("name12") }
+        assertThrows<Exception> { RaceCar(CarName("name12")) }
     }
 }

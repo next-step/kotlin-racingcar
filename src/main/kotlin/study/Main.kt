@@ -9,7 +9,7 @@ fun main() {
     val totalRound = InputView.askTotalRound()
 
     val raceGame = RaceGame.of(totalRound, carNames)
-    val (winners, resultOfEachRound) = raceGame.play()
+    val raceResult = raceGame.play()
 
-    ResultView.showRaceResult(winners, resultOfEachRound)
+    ResultView.showRaceResult(raceResult.winners, raceResult.eachRoundResults)
 }
