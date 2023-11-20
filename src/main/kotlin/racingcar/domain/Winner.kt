@@ -1,11 +1,11 @@
 package racingcar.domain
 
 class Winner(
-    private val finalRacingSituations: RacingSituations,
+    private val finalRacingSituation: RacingSituation,
 ) {
 
-    fun evaluate(): RacingSituations {
-        val maxPosition = finalRacingSituations.maxOfOrNull()
-        return finalRacingSituations.evaluate(maxPosition)
+    fun evaluate(): RacingSituation {
+        val maxPosition = finalRacingSituation.maxOfOrNull()
+        return finalRacingSituation.evaluate(maxPosition)
     }
 }

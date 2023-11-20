@@ -1,9 +1,11 @@
 package racingcar.domain
 
+import racingcar.dto.RacingResult
+
 class RacingGame {
 
-    fun race(car: Car, randomValue: Int): RacingSituation {
+    fun race(car: Car, randomValue: Int): RacingResult {
         car.move(randomValue)
-        return RacingSituation(Car(car.name, car.position))
+        return RacingResult(Car(car.name, car.position))
     }
 }

@@ -1,7 +1,7 @@
 package racingcar.view
 
 import racingcar.domain.RacingSituation
-import racingcar.domain.RacingSituations
+import racingcar.dto.RacingResult
 
 class ResultView {
 
@@ -10,20 +10,20 @@ class ResultView {
             println("\n실행 결과")
         }
 
-        fun printAllRacingSituations(allRacingSituations: List<RacingSituations>) {
-            allRacingSituations.forEach { racingSituations: RacingSituations ->
-                printRacingSituations(racingSituations)
+        fun printAllRacingSituations(allRacingSituations: List<RacingSituation>) {
+            allRacingSituations.forEach { racingSituation: RacingSituation ->
+                printRacingSituations(racingSituation)
             }
         }
 
-        private fun printRacingSituations(racingSituations: RacingSituations) {
-            racingSituations.racingSituations.forEach { racingSituation: RacingSituation ->
-                printPosition(racingSituation)
+        private fun printRacingSituations(racingSituation: RacingSituation) {
+            racingSituation.racingResults.forEach { racingResult: RacingResult ->
+                printPosition(racingResult)
             }
             println()
         }
 
-        private fun printPosition(result: RacingSituation) {
+        private fun printPosition(result: RacingResult) {
             print("${result.car.name} : ")
             List(result.car.position) {
                 print("-")
@@ -31,14 +31,11 @@ class ResultView {
             println()
         }
 
-        fun printWinners(winners: RacingSituations) {
+        fun printWinners(winners: RacingSituation) {
             println(
-                "${
-                    winners.racingSituations.joinToString(
-                        separator = ", ",
-                        postfix = ""
-                    ) { it.car.name }
-                }가 최종 우승했습니다."
+                "${winners.racingResults.joinToString(
+                    separator = ", ", postfix = ""
+                ) { it.car.name }}가 최종 우승했습니다."
             )
         }
     }

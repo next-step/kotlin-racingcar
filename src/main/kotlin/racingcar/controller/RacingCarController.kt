@@ -2,7 +2,7 @@ package racingcar.controller
 
 import racingcar.domain.Car
 import racingcar.domain.RacingGame
-import racingcar.domain.RacingSituations
+import racingcar.domain.RacingSituation
 import racingcar.domain.Winner
 import kotlin.random.Random
 
@@ -12,13 +12,13 @@ class RacingCarController(
     private val racingGame: RacingGame,
 ) {
 
-    fun start(): List<RacingSituations> {
+    fun start(): List<RacingSituation> {
         val cars = carNames.map {
             Car(it)
         }
 
         return List(countOfTry) {
-            RacingSituations(
+            RacingSituation(
                 cars.map {
                     racingGame.race(it, random.nextInt(RANDOM_MAX_VALUE))
                 }
@@ -26,7 +26,7 @@ class RacingCarController(
         }
     }
 
-    fun evaluate(winner: Winner): RacingSituations {
+    fun evaluate(winner: Winner): RacingSituation {
         return winner.evaluate()
     }
 
