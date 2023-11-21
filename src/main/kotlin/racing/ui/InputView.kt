@@ -1,7 +1,6 @@
 package racing.ui
 
 import racing.domain.Car
-import racing.domain.CarName
 
 object InputView {
     private const val MAX_CAR_NAME_LENGTH = 5
@@ -17,6 +16,6 @@ object InputView {
     }
 
     private fun splitCars(cars: String): List<Car> {
-        return cars.replace(" ", "").split(",").map { Car(CarName(it)) }
+        return cars.replace(" ", "").split(",").map { Car(it) }
     }
 }

@@ -4,13 +4,16 @@ data class Car(
     val name: CarName,
     private var _route: Int = 0
 ) {
-    public val route: Int
-        get() {
-            if (_route == 0) {
-                _route = 0
-            }
-            return _route
-        }
+    constructor(value: String) : this(CarName(value), 0) {
+    }
+
+    val route: Int
+        get() = _route
+
+    fun getName(): String {
+        return name.name
+    }
+
     fun forward(movingRule: MovingRule) {
         if (movingRule.isMove())
             _route += 1
