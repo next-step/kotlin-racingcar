@@ -1,9 +1,6 @@
 package study.domain
 
-class RaceCar(
-    val name: String,
-    position: Int = 0
-) {
+class RaceCar(val name: CarName, position: Int = 0) {
     var position: Int = position
         private set
 
