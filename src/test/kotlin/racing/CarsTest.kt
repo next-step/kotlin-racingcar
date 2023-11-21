@@ -27,7 +27,7 @@ class CarsTest {
     @Test
     fun `제일 많이 이동한 자동차가 우승자이다`() {
         val winnerCars = Cars(cars).winner
-        Assertions.assertThat(winnerCars[0].name.name).isEqualTo("x3")
+        Assertions.assertThat(winnerCars[0].getName()).isEqualTo("x3")
     }
 
     @Test

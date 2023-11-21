@@ -9,6 +9,7 @@ object ResultView {
         showCarRoute(carHistorys, cars.size)
         printFinalResult(Cars(cars).winner)
     }
+
     private fun showCarRoute(cars: List<CarHistory>, num: Int) {
         for ((index, car) in cars.withIndex()) {
             println("${car.name} : ${printRoute(car.route)}")
@@ -18,6 +19,7 @@ object ResultView {
             }
         }
     }
+
     private fun printRoute(moveCount: Int): String {
         return "-".repeat(moveCount)
     }

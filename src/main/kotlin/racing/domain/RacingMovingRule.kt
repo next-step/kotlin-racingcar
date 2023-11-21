@@ -2,7 +2,7 @@ package racing.domain
 
 import kotlin.random.Random
 
-class RacingMovingRule(override val movingCount: Int) : MovingRule{
+class RacingMovingRule(override val movingCount: Int) : MovingRule {
     override fun isMove(): Boolean {
         val random = Random.nextInt(RANDOM_START, RANDOM_END)
         return MOVING_VALUE <= random

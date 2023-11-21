@@ -6,7 +6,7 @@ data class RacingGame(private val cars: List<Car>, private val movingRule: Racin
         repeat(movingRule.movingCount) {
             for (car in cars) {
                 car.forward(movingRule)
-                carDtos.add(CarHistory(car.name.name, car.route))
+                carDtos.add(CarHistory(car.getName(), car.route))
             }
         }
         return carDtos
