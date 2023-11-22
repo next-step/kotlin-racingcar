@@ -1,7 +1,6 @@
 package racingcar.dto
 
-import racingcar.domain.Car
-
 data class RacingResult(
-    val car: Car,
+    val carName: String,
+    val currentPosition: Int,
 )

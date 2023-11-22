@@ -11,15 +11,15 @@ class WinnerTest {
         val winner = Winner(
             RacingSituation(
                 listOf(
-                    RacingResult(Car("pobi", 1)),
-                    RacingResult(Car("crong", 1)),
-                    RacingResult(Car("honux", 0))
+                    RacingResult("pobi", 1),
+                    RacingResult("crong", 1),
+                    RacingResult("honux", 0)
                 )
             )
         )
 
         assertEquals(
-            RacingSituation(listOf(RacingResult(Car("pobi", 1)), RacingResult(Car("crong", 1)))),
+            RacingSituation(listOf(RacingResult("pobi", 1), RacingResult("crong", 1))),
             winner.evaluate()
         )
     }

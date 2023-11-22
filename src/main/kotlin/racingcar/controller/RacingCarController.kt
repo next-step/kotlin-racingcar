@@ -4,7 +4,6 @@ import racingcar.domain.Car
 import racingcar.domain.RacingGame
 import racingcar.domain.RacingSituation
 import racingcar.domain.Winner
-import kotlin.random.Random
 
 class RacingCarController(
     private val countOfTry: Int,
@@ -18,20 +17,11 @@ class RacingCarController(
         }
 
         return List(countOfTry) {
-            RacingSituation(
-                cars.map {
-                    racingGame.race(it, random.nextInt(RANDOM_MAX_VALUE))
-                }
-            )
+            RacingSituation(racingGame.race(cars))
         }
     }
 
     fun evaluate(winner: Winner): RacingSituation {
         return winner.evaluate()
-    }
-
-    companion object {
-        private const val RANDOM_MAX_VALUE = 10
-        private val random = Random.Default
     }
 }

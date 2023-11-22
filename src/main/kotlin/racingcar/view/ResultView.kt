@@ -24,8 +24,8 @@ class ResultView {
         }
 
         private fun printPosition(result: RacingResult) {
-            print("${result.car.name} : ")
-            List(result.car.position) {
+            print("${result.carName} : ")
+            List(result.currentPosition) {
                 print("-")
             }
             println()
@@ -35,7 +35,7 @@ class ResultView {
             println(
                 "${winners.racingResults.joinToString(
                     separator = ", ", postfix = ""
-                ) { it.car.name }}가 최종 우승했습니다."
+                ) { it.carName }}가 최종 우승했습니다."
             )
         }
     }

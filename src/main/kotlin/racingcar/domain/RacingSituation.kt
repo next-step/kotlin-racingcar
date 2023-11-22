@@ -7,10 +7,10 @@ data class RacingSituation(
 ) {
 
     fun maxOfOrNull(): Int? {
-        return racingResults.maxOfOrNull { it.car.position }
+        return racingResults.maxOfOrNull { it.currentPosition }
     }
 
     fun evaluate(maxPosition: Int?): RacingSituation {
-        return RacingSituation(racingResults.filter { it.car.position == maxPosition })
+        return RacingSituation(racingResults.filter { it.currentPosition == maxPosition })
     }
 }
