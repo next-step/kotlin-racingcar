@@ -1,18 +1,21 @@
 package racingcar.domain
 
+import racingcar.strategy.MoveStrategy
+
 data class Car(
-    private val name: String,
-    private var position: Int = 0,
+    val name: String,
+    val moveStrategy: MoveStrategy
 ) {
 
-    val carName: String
-        get() = this.name
+    var position: Int = 0
+        private set
 
-    val currentPosition: Int
-        get() = this.position
+    constructor(name: String, moveStrategy: MoveStrategy, position: Int) : this(name, moveStrategy) {
+        this.position = position
+    }
 
-    fun move(value: Int) {
-        if (value >= FORWARD_CONDITION) {
+    fun move() {
+        if (moveStrategy.getMoveCount() >= FORWARD_CONDITION) {
             this.position++
         }
     }

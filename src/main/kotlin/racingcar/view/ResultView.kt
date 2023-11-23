@@ -1,6 +1,7 @@
 package racingcar.view
 
 import racingcar.domain.RacingSituation
+import racingcar.dto.RacingResult
 
 class ResultView {
 
@@ -9,20 +10,20 @@ class ResultView {
             println("\n실행 결과")
         }
 
-        fun printAllRacingSituations(allRacingSituations: List<List<RacingSituation>>) {
-            allRacingSituations.forEach { racingSituations: List<RacingSituation> ->
-                printRacingSituations(racingSituations)
+        fun printAllRacingSituations(allRacingSituations: List<RacingSituation>) {
+            allRacingSituations.forEach { racingSituation: RacingSituation ->
+                printRacingSituations(racingSituation)
             }
         }
 
-        private fun printRacingSituations(racingSituations: List<RacingSituation>) {
-            racingSituations.forEach { racingSituation: RacingSituation ->
-                printPosition(racingSituation)
+        private fun printRacingSituations(racingSituation: RacingSituation) {
+            racingSituation.racingResults.forEach { racingResult: RacingResult ->
+                printPosition(racingResult)
             }
             println()
         }
 
-        private fun printPosition(result: RacingSituation) {
+        private fun printPosition(result: RacingResult) {
             print("${result.carName} : ")
             List(result.currentPosition) {
                 print("-")
@@ -30,8 +31,12 @@ class ResultView {
             println()
         }
 
-        fun printWinners(winners: List<RacingSituation>) {
-            println("${winners.joinToString(separator = ", ", postfix = "") { it.carName }}가 최종 우승했습니다.")
+        fun printWinners(winners: RacingSituation) {
+            println(
+                "${winners.racingResults.joinToString(
+                    separator = ", ", postfix = ""
+                ) { it.carName }}가 최종 우승했습니다."
+            )
         }
     }
 }

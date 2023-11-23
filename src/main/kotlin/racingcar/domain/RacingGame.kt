@@ -1,20 +1,13 @@
 package racingcar.domain
 
-import kotlin.random.Random
+import racingcar.dto.RacingResult
 
-class RacingGame(
-    private val cars: List<Car>,
-) {
+class RacingGame {
 
-    fun race(): List<RacingSituation> {
-        return cars.map { car: Car ->
-            car.move(random.nextInt(RANDOM_MAX_VALUE))
-            RacingSituation(car.carName, car.currentPosition)
+    fun race(cars: List<Car>): List<RacingResult> {
+        return cars.map {
+            it.move()
+            RacingResult(it.name, it.position)
         }
-    }
-
-    companion object {
-        private const val RANDOM_MAX_VALUE = 10
-        private val random = Random.Default
     }
 }

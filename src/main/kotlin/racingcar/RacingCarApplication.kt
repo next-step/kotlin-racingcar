@@ -1,7 +1,6 @@
 package racingcar
 
 import racingcar.controller.RacingCarController
-import racingcar.domain.Car
 import racingcar.domain.RacingGame
 import racingcar.domain.Winner
 import racingcar.view.InputView
@@ -11,11 +10,7 @@ fun main() {
     val carNames = InputView.inputCarNames()
     val countOfTry = InputView.inputCountOfTry()
 
-    val cars = carNames.map {
-        Car(it)
-    }
-
-    val racingCarController = RacingCarController(countOfTry, RacingGame(cars))
+    val racingCarController = RacingCarController(countOfTry, carNames, RacingGame())
     val allRacingSituations = racingCarController.start()
     val winners = racingCarController.evaluate(Winner(allRacingSituations.last()))
 
