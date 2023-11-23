@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.CarInputProvider
 
 class ConsoleCarInputView : CarInputProvider {
     override fun getIntInput(prompt: String): Int {
