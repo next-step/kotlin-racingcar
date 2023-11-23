@@ -1,15 +1,25 @@
 package racingcar.domain
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.api.Test
 import racingcar.dto.RacingResult
 
 class RacingGameTest {
 
-    @CsvSource("pobi, 4, 1", "crong, 3, 0", "honux, 10, 1")
-    @ParameterizedTest
-    fun `레이싱 한다`(name: String, randomValue: Int, position: Int) {
-        assertEquals(RacingResult(name, position), RacingGame().race(Car(name), randomValue))
+    @Test
+    fun `레이싱 한다`() {
+        val cars = listOf(
+            Car("pobi", { 4 }, 1),
+            Car("crong", { 3 }, 0),
+            Car("honux", { 10 }, 1),
+        )
+
+        val expected = listOf(
+            RacingResult("pobi", 2),
+            RacingResult("crong", 0),
+            RacingResult("honux", 2),
+        )
+
+        assertEquals(expected, RacingGame().race(cars))
     }
 }

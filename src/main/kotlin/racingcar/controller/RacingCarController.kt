@@ -4,6 +4,7 @@ import racingcar.domain.Car
 import racingcar.domain.RacingGame
 import racingcar.domain.RacingSituation
 import racingcar.domain.Winner
+import racingcar.strategy.RandomMoveStrategy
 
 class RacingCarController(
     private val countOfTry: Int,
@@ -13,7 +14,7 @@ class RacingCarController(
 
     fun start(): List<RacingSituation> {
         val cars = carNames.map {
-            Car(it)
+            Car(it, RandomMoveStrategy())
         }
 
         return List(countOfTry) {
