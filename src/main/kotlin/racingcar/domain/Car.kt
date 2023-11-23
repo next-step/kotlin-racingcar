@@ -1,15 +1,15 @@
-package racingcar
+package racingcar.domain
 
 class Car(
     val name: String,
     moveCount: Int = 0
 ) {
-    var moveCount = moveCount
+    var moveCount: Int = moveCount
         private set
 
     init {
         require(name.length <= NAME_MAX_LENGTH) {
-            throw IllegalArgumentException("{$name}의 길이는 ${NAME_MAX_LENGTH}를 초과할 수 없습니다.")
+            "{$name}의 길이는 ${NAME_MAX_LENGTH}를 초과할 수 없습니다."
         }
     }
 
@@ -17,6 +17,10 @@ class Car(
         if (condition >= MOVE_THRESHOLD) {
             moveCount++
         }
+    }
+
+    fun copy(): Car {
+        return Car(name, moveCount)
     }
 
     companion object {

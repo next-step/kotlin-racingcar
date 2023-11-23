@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 interface CarResultProvider {
     fun printCars(cars: List<Car>)

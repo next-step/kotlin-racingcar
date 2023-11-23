@@ -1,4 +1,7 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.Car
+import racingcar.domain.CarResultProvider
 
 class ConsoleCarResultView : CarResultProvider {
 

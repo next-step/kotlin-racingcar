@@ -1,11 +1,14 @@
 package racingcar
 
+import racingcar.controller.RacingController
+import racingcar.domain.RacingGame
+
 fun main() {
-    val racingCarService = RacingCarService(
+    val racingController = RacingController(
+        RacingGame(DependencyConfig.moveStrategy),
         DependencyConfig.carInputProvider,
         DependencyConfig.outputProvider,
-        DependencyConfig.carFactory,
     )
 
-    racingCarService.run()
+    racingController.startRace()
 }
