@@ -1,9 +1,7 @@
 package racingcar.domain
 
 class Car {
-    var distance = 0
-
-    private val point = 4
+    private var distance = 0
 
     fun move(num: Int): Int {
         return if (isMoved(num)) {
@@ -14,6 +12,10 @@ class Car {
     }
 
     private fun isMoved(num: Int): Boolean {
-        return num >= point
+        return num >= POINT
+    }
+
+    companion object {
+        const val POINT = 4
     }
 }
