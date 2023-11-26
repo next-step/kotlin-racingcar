@@ -1,13 +1,20 @@
 package carracing.view
 
-class InputView {
+import carracing.domain.CarRacingValidator
+
+class InputView(
+    private val carRacingValidator: CarRacingValidator,
+) {
     fun inputCount(inputType: InputType): Int {
         println(inputType.question)
         return readln().toInt()
     }
 
-    fun inputString(inputType: InputType): List<String> {
+    fun inputNames(inputType: InputType): List<String> {
         println(inputType.question)
-        return readln().split(",")
+        return readln().split(",").map {
+            carRacingValidator.validateCarName(it)
+            it
+        }
     }
 }

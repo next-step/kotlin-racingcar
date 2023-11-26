@@ -6,8 +6,7 @@ data class RacingRound(
 ) {
     companion object {
         fun of(round: Int, cars: List<Car>): RacingRound {
-            val roundResult = cars.map { it.copy() }
-            return RacingRound(round, roundResult)
+            return RacingRound(round, cars.map { it.copy() })
         }
     }
 }
