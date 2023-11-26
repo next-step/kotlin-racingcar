@@ -1,8 +1,7 @@
 package carracing
 
 import carracing.domain.CarRacingValidator
-import carracing.domain.RacingGame
-import carracing.domain.RandomGame
+import carracing.controller.RacingGame
 import carracing.view.InputType
 import carracing.view.InputView
 import carracing.view.ResultView
@@ -12,7 +11,7 @@ fun main() {
     val carNames = inputView.inputNames(InputType.RACING_NAMES)
     val racingCount = inputView.inputCount(InputType.RACING_COUNT)
 
-    val racingGame = RacingGame(carNames, racingCount, RandomGame())
+    val racingGame = RacingGame(carNames, racingCount)
     val racingResult = racingGame.start()
 
     val resultView = ResultView()

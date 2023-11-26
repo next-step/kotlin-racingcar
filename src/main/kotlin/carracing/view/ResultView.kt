@@ -7,13 +7,17 @@ class ResultView {
     fun printResult(racingResult: List<RacingRound>) {
         println(INIT_RESULT)
         racingResult.forEach { round ->
-            round.roundResult.forEach {
-                val name = it.name
-                val value = DASH.repeat(it.position)
-                println("$name : $value")
-            }
-            println()
+            printRoundResult(round.roundResult)
         }
+    }
+
+    private fun printRoundResult(roundResult: List<Car>) {
+        roundResult.forEach {
+            val name = it.name
+            val value = DASH.repeat(it.position)
+            println("$name : $value")
+        }
+        println()
     }
 
     fun printWinners(result: List<Car>) {

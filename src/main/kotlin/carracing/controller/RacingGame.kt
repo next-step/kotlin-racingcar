@@ -1,15 +1,17 @@
-package carracing.domain
+package carracing.controller
+
+import carracing.domain.Car
+import carracing.domain.RacingRound
 
 class RacingGame(
     private val carNames: List<String>,
     private val racingCount: Int,
-    private val racingGameRule: RacingGameRule,
 ) {
     fun start(): List<RacingRound> {
         val cars = carNames.map { Car(it) }
         return mutableListOf<RacingRound>().apply {
             repeat(racingCount) { round ->
-                racingGameRule.execute(cars)
+                cars.map { it.move() }
                 this.add(RacingRound.of(round, cars))
             }
         }
