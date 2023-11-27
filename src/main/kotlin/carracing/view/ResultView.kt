@@ -23,11 +23,12 @@ class ResultView {
     fun printWinners(result: List<Car>) {
         val maxPosition = result.maxOf { it.position }
         val winners = result.filter { it.position == maxPosition }.joinToString(", ") { it.name }
-        println("$winners 가 최종 우승했습니다.")
+        println(WINNER_RESULT.format(winners))
     }
 
     companion object {
         private const val DASH = "-"
         private const val INIT_RESULT = "\n실행 결과"
+        private const val WINNER_RESULT = "%s 가 최종 우승했습니다."
     }
 }
