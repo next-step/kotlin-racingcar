@@ -11,7 +11,7 @@ class Car2Test {
         val position = 0
 
         // when : 자동차 객체 생성 시 이름이 5자를 초과할 때
-        val actual = runCatching { Car2(name = name, _positon = position) }.exceptionOrNull()
+        val actual = runCatching { Car2(name = name, _position = position) }.exceptionOrNull()
 
         // then : 예외를 던진다
         assertThat(actual).isInstanceOf(IllegalArgumentException::class.java)
@@ -22,7 +22,7 @@ class Car2Test {
         // given :
         val name = "oyj"
         val position = 0
-        val car = Car2(name = name, _positon = position)
+        val car = Car2(name = name, _position = position)
 
         // when : 자동차 전진 요청(기본 위치는 0)
         car.move()
