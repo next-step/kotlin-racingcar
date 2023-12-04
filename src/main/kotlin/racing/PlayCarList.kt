@@ -1,7 +1,7 @@
 package racing
 
-class Cars2(private val carList: List<Car2>) {
-    fun getWinners(): List<Car2> {
+class PlayCarList(val carList: List<Car>) {
+    fun getWinners(): List<Car> {
         val maxPosition = carList.maxOfOrNull { it.position }
         return carList.filter { it.position == maxPosition }
     }
@@ -15,7 +15,7 @@ class Cars2(private val carList: List<Car2>) {
     fun carsSize() = carList.size
 
     override fun equals(other: Any?): Boolean {
-        if (other !is Cars2) return false
+        if (other !is PlayCarList) return false
         return this.carList == other.carList
     }
 
