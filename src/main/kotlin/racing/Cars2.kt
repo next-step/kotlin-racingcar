@@ -12,12 +12,14 @@ class Cars2(private val carList: List<Car2>) {
         }
     }
 
+    fun carsSize() = carList.size
+
     override fun equals(other: Any?): Boolean {
         if (other !is Cars2) return false
         return this.carList == other.carList
     }
 
     override fun hashCode(): Int {
-        return carList.hashCode()
+        return this.carList.hashCode()
     }
 }
