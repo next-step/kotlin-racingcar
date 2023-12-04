@@ -19,12 +19,12 @@ data class Car(val name: String, private var _position: Int = 0) {
     }
 
     private fun validateNameLength(carName: String) {
-        require(carName.length > 5) { ERR_MSG_INVALID_NAME_LENGTH_MESSAGE }
+        require(carName.length < 5) { ERR_MSG_INVALID_NAME_LENGTH_MESSAGE }
     }
 
     private fun validateEmpty(carName: String) {
         // 공백을 입력했을 경우
-        require(carName.isBlank()) { ERR_MSG_INVALID_EMPTY_NAME_MESSAGE }
+        require(carName.isNotBlank()) { ERR_MSG_INVALID_EMPTY_NAME_MESSAGE }
     }
 
     override fun equals(other: Any?): Boolean {
