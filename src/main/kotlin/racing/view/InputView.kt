@@ -10,7 +10,7 @@ object InputView {
     }
 
     // 레이싱 횟수
-    fun inputRacingCnt(): String {
+    fun inputRacingPlayCnt(): String {
         println("시도할 횟수는 몇 회인가요?")
         val inputData = readln()
         validateRacingCntInputData(inputData)

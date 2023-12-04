@@ -1,38 +1,31 @@
 package racing.view
 
-import racing.domain.car.Car
+import racing.PlayCarList
+import racing.ResultData
 
 object ResultView {
     private const val FIXED_INDEX = 1
 
-    fun showRacingResult(racingRoundResults: List<List<Car>>) {
-        racingRoundResults.forEachIndexed { index, racingResult ->
+    fun showRacingResult(resultData: ResultData) {
+        val resultDataList = resultData.resultDataList
+
+
+        resultDataList.forEachIndexed { index, racingResult ->
             println("${index + FIXED_INDEX}회차 경주")
             printRacingResult(racingResult)
             println()
         }
-        printRacingCar(getWinnerList(racingRoundResults.last()))
+        printRacingCar(resultData.resultDataList.last())
     }
 
-    private fun printRacingResult(singleRoundResults: List<Car>) {
-        singleRoundResults.forEach {
+    private fun printRacingResult(playCarList: PlayCarList) {
+        playCarList.carList.forEach {
             println("${it.name} " + "-".repeat(it.position))
         }
     }
 
-    private fun printRacingCar(winnerList: List<Car>) {
-        val sb = StringBuilder()
-
-        sb.append(winnerList.first().name)
-        if (winnerList.size > 2) {
-            winnerList.forEach { sb.append(", ${it.name}") }
-        }
-        sb.append("가 우승하였습니다.")
-        println(sb.toString())
-    }
-
-    private fun getWinnerList(lastRacingRoundResult: List<Car>): List<Car> {
-        val maxPosition = lastRacingRoundResult.maxOf { it.position }
-        return lastRacingRoundResult.filter { it.position == maxPosition }
+    private fun printRacingCar(lastPlayResult: PlayCarList) {
+        val winners = lastPlayResult.getWinners().joinToString(", ") { it.name }
+        println("${winners}가 우승하였습니다.")
     }
 }
