@@ -9,7 +9,6 @@ object ResultView {
     fun showRacingResult(resultData: ResultData) {
         val resultDataList = resultData.resultDataList
 
-
         resultDataList.forEachIndexed { index, racingResult ->
             println("${index + FIXED_INDEX}회차 경주")
             printRacingResult(racingResult)

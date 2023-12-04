@@ -2,7 +2,7 @@ package racing
 
 class ResultData {
 
-    private val _resultDataList =  mutableListOf<PlayCarList>()
+    private val _resultDataList = mutableListOf<PlayCarList>()
     val resultDataList: List<PlayCarList>
         get() = _resultDataList.toList()
 
