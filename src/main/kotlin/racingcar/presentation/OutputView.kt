@@ -7,7 +7,7 @@ object OutputView {
 
     fun printResultOfRacing(cars: List<CarDto>) {
         for (car in cars) {
-            println("[name: ${car.name}] ${toDisplayPosition(car.position)}")
+            println("[${car.name}] ${toDisplayPosition(car.position)}")
         }
         println("######################")
     }
@@ -20,5 +20,9 @@ object OutputView {
         }
 
         return stringBuilder.toString()
+    }
+
+    fun printWinner(winners: List<CarDto>) {
+        println("최종 우승자는 ${winners.joinToString(",") { it.name }} 입니다.")
     }
 }

@@ -5,6 +5,14 @@ class Car(
     private val name: String,
     private var position: Int = 0
 ) {
+    init {
+        when {
+            name.length > 5 -> {
+                throw IllegalArgumentException("이름은 5자 이하여야 합니다.")
+            }
+        }
+    }
+
     fun move() {
         if (engine.getPower() >= FORWARD_POWER_CONDITION) {
             position += FORWARD_DISTANCE

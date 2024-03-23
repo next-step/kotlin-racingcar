@@ -19,6 +19,13 @@ class Cars(
         return cars.map { CarDto(it.getName(), it.getLocation()) }
     }
 
+    fun getWinner(): List<CarDto> {
+        val maxLocation = cars.maxOf(Car::getLocation)
+        return cars
+            .filter { it.getLocation() == maxLocation }
+            .map { CarDto(it.getName(), it.getLocation()) }
+    }
+
     companion object {
         const val MIN_CAR_LENGTH = 1
     }

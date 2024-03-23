@@ -8,19 +8,20 @@ import racingcar.presentation.OutputView
 
 class RacingService {
 
-    fun playNewRacingGameToEnd(countOfCars: Int, countOfRacingRound: Int) {
-        val cars = Cars(createRandomCars(countOfCars))
+    fun playNewRacingGameToEnd(listOfCarsName: List<String>, countOfRacingRound: Int) {
+        val cars = Cars(createRandomCars(listOfCarsName))
         val racingGame = RacingGame(cars, countOfRacingRound)
 
         while (!racingGame.isFinished()) {
             racingGame.play()
             OutputView.printResultOfRacing(racingGame.getCars())
         }
+        OutputView.printWinner(cars.getWinner())
     }
 
-    private fun createRandomCars(countOfCars: Int): List<Car> {
-        return (0 until countOfCars)
-            .map { Car(RandomEngine(), it.toString()) }
+    private fun createRandomCars(listOfCarsName: List<String>): List<Car> {
+        return listOfCarsName
+            .map { Car(RandomEngine(), it) }
             .toList()
     }
 }

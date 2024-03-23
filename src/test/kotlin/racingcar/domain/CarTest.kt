@@ -19,5 +19,18 @@ class CarTest: BehaviorSpec({
                 assertEquals(0, car.getLocation())
             }
         }
+        `when`("5글자 이상의 이름을 가지고 생성하면") {
+            then("IllegalArgumentException이 발생한다.") {
+                assertThrows(IllegalArgumentException::class.java) {
+                    Car(FixedEngine(5), "5글자이상의이름")
+                }
+            }
+        }
+        `when`("5글자 이하의 이름을 가지고 생성하면") {
+            then("정상적으로 생성된다.") {
+                val car = Car(FixedEngine(5), "test")
+                assertEquals("test", car.getName())
+            }
+        }
     }
 })
