@@ -25,10 +25,12 @@ class FourBasicOperations {
         operators: MutableList<Char>,
         currentNumber: StringBuilder,
     ) {
+        val operatorList = listOf('+', '-', '*', '/')
+
         for (char in expression) {
             when {
                 char.isDigit() -> currentNumber.append(char)
-                char in listOf('+', '-', '*', '/') -> {
+                char in operatorList -> {
                     if (currentNumber.isEmpty()) {
                         throw IllegalArgumentException(badInputErrorMessage)
                     }
