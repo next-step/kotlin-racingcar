@@ -1,3 +1,14 @@
+fun main() {
+    val operations = FourBasicOperations()
+    val input = readLine() ?: ""
+    try {
+        val result = operations.calculate(input)
+        println("Result: $result")
+    } catch (e: IllegalArgumentException) {
+        println("Error: ${e.message}")
+    }
+}
+
 class FourBasicOperations {
     private val nullInputErrorMessage: String = "입력값이 null이거나 빈 공백 문자입니다."
     private val badInputErrorMessage: String = "입력값이 잘못되었습니다."
