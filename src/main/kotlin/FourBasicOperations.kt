@@ -11,7 +11,7 @@ class FourBasicOperations {
         val cleanedExpression = expression.replace(" ", "")
         val numbers = mutableListOf<Int>()
         val operators = mutableListOf<Char>()
-        var currentNumber = StringBuilder()
+        val currentNumber = StringBuilder()
 
         parseExpression(cleanedExpression, numbers, operators, currentNumber)
         finalizeNumbers(numbers, operators, currentNumber)
