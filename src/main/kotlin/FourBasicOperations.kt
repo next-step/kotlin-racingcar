@@ -4,7 +4,7 @@ class FourBasicOperations {
     private val notSupportedOperatorErrorMessage: String = "사칙연산 기호가 아닙니다."
 
     fun calculate(expression: String): Int {
-        if (expression.isNullOrBlank()) {
+        if (expression.isBlank()) {
             throw IllegalArgumentException(nullInputErrorMessage)
         }
 
