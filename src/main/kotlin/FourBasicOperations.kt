@@ -1,7 +1,11 @@
 class FourBasicOperations {
+    private val nullInputErrorMessage: String = "입력값이 null이거나 빈 공백 문자입니다."
+    private val badInputErrorMessage: String = "입력값이 잘못되었습니다."
+    private val notSupportedOperatorErrorMessage: String = "사칙연산 기호가 아닙니다."
+
     fun calculate(expression: String): Int {
         if (expression.isNullOrBlank()) {
-            throw IllegalArgumentException("입력값이 null이거나 빈 공백 문자입니다.")
+            throw IllegalArgumentException(nullInputErrorMessage)
         }
 
         val cleanedExpression = expression.replace(" ", "")
@@ -9,29 +13,44 @@ class FourBasicOperations {
         val operators = mutableListOf<Char>()
         var currentNumber = StringBuilder()
 
-        for (char in cleanedExpression) {
+        parseExpression(cleanedExpression, numbers, operators, currentNumber)
+        finalizeNumbers(numbers, operators, currentNumber)
+
+        return evaluate(numbers, operators)
+    }
+
+    private fun parseExpression(
+        expression: String,
+        numbers: MutableList<Int>,
+        operators: MutableList<Char>,
+        currentNumber: StringBuilder,
+    ) {
+        for (char in expression) {
             when {
                 char.isDigit() -> currentNumber.append(char)
                 char in listOf('+', '-', '*', '/') -> {
                     if (currentNumber.isEmpty()) {
-                        throw IllegalArgumentException("입력값이 잘못되었습니다.")
+                        throw IllegalArgumentException(badInputErrorMessage)
                     }
-
                     numbers.add(currentNumber.toString().toInt())
-                    currentNumber = StringBuilder()
+                    currentNumber.clear()
                     operators.add(char)
                 }
-                else -> throw IllegalArgumentException("사칙연산 기호가 아닙니다.")
+                else -> throw IllegalArgumentException(notSupportedOperatorErrorMessage)
             }
         }
+    }
 
+    private fun finalizeNumbers(
+        numbers: MutableList<Int>,
+        operators: MutableList<Char>,
+        currentNumber: StringBuilder,
+    ) {
         if (currentNumber.isNotEmpty()) {
             numbers.add(currentNumber.toString().toInt())
         } else if (operators.isNotEmpty()) {
-            throw IllegalArgumentException("입력값이 잘못되었습니다.")
+            throw IllegalArgumentException(badInputErrorMessage)
         }
-
-        return evaluate(numbers, operators)
     }
 
     private fun evaluate(
