@@ -43,4 +43,16 @@ enum class Operator {
         left: Double,
         right: Double,
     ): Double
+
+    companion object {
+        fun from(operator: String): Operator {
+            return when (operator) {
+                "+" -> PLUS
+                "-" -> MINUS
+                "*" -> MULTIPLY
+                "/" -> DIVIDE
+                else -> throw IllegalArgumentException("올바르지 않은 연산자입니다.")
+            }
+        }
+    }
 }

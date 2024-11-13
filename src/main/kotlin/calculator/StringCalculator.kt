@@ -6,7 +6,8 @@ class StringCalculator : Calculator {
         val operators = expression.extractOperators()
 
         return operators.foldIndexed(numbers.first()) { index, acc, operator ->
-            operator.apply(acc, numbers[index + 1])
+            val nextOperand = numbers[index + 1]
+            operator.apply(acc, nextOperand)
         }
     }
 }

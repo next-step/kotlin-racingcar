@@ -11,7 +11,7 @@ class Expression(
     }
 
     fun extractNumbers(): List<Double> {
-        return Pattern.compile("\\d+")
+        return Pattern.compile(NUMBER_REGEX)
             .matcher(expression)
             .results()
             .map(MatchResult::group)
@@ -20,26 +20,16 @@ class Expression(
     }
 
     fun extractOperators(): List<Operator> {
-        return Pattern.compile("[+\\-*/]")
+        return Pattern.compile(OPERATOR_REGEX)
             .matcher(expression)
             .results()
             .map(MatchResult::group)
-            .map(::mapOperator)
+            .map(Operator::from)
             .toList()
     }
 
-    private fun mapOperator(operator: String): Operator {
-        return when (operator) {
-            "+" -> Operator.PLUS
-            "-" -> Operator.MINUS
-            "*" -> Operator.MULTIPLY
-            "/" -> Operator.DIVIDE
-            else -> throw IllegalArgumentException("올바르지 않은 연산자입니다.")
-        }
-    }
-
     private fun validate(expression: String) {
-        val pattern = Pattern.compile("^\\d+( [+\\-*/] \\d+)*$")
+        val pattern = Pattern.compile(EXPRESSION_REGEX)
         val matcher = pattern.matcher(expression)
         val isValid = matcher.matches()
 
