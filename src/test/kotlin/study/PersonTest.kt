@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 class PersonTest {
     @Test
-    fun testNamespace() {
+    fun testNameParameters() {
         val actual = Person(age = 20, name = "닭대가리", nickname = "박찬희")
 
         assertThat(actual.nickname).isEqualTo("박찬희")
@@ -17,7 +17,7 @@ class PersonTest {
     fun testNullType() {
         val actual = Person(age = 20, name = "닭대가리", nickname = null)
 
-        assertThat(actual.nickname).isNull()
+        assertThat(actual.nickname).isNull() 
     }
 
     @Test
