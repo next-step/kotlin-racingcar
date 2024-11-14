@@ -1,3 +1,5 @@
+package operation
+
 enum class Operator(val symbol: String) {
     SUM("+"),
     SUBTRACT("-"),

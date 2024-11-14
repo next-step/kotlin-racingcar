@@ -1,3 +1,5 @@
+package operation
+
 fun main() {
     val operations = FourBasicOperations()
     val input = readLine() ?: ""
