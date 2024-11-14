@@ -4,13 +4,9 @@ class Calculator {
 
         val formula: List<String> = input.split(" ").toList()
 
-        var res = formula.get(0).toInt()
-        for (i in 1 until formula.size step 2) {
-            val operator: String = formula.get(i)
-            val b = formula.get(i + 1).toInt()
-            res = calculate(res, b, operator)
+        return formula.drop(1).chunked(2).fold(formula.first().toInt()) { acc, (operator, value) ->
+            calculate(acc, value.toInt(), operator)
         }
-        return res
     }
 
     private fun calculate(
