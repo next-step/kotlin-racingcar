@@ -10,7 +10,7 @@ class CalculatorTest : DescribeSpec({
         context("Not Null and Not Empty String") {
             it("should correctly perform the operations in the given sequence") {
                 val input = "2 + 3 * 4 / 2"
-                sut.calculate(input) shouldBe 10
+                sut.execute(input) shouldBe 10
             }
         }
 
@@ -19,7 +19,7 @@ class CalculatorTest : DescribeSpec({
                 val input: String? = null
 
                 shouldThrow<IllegalArgumentException> {
-                    sut.calculate(input)
+                    sut.execute(input)
                 }
             }
         }
@@ -29,7 +29,7 @@ class CalculatorTest : DescribeSpec({
                 val input = ""
 
                 shouldThrow<IllegalArgumentException> {
-                    sut.calculate(input)
+                    sut.execute(input)
                 }
             }
 
@@ -37,7 +37,7 @@ class CalculatorTest : DescribeSpec({
                 val input = "  "
 
                 shouldThrow<IllegalArgumentException> {
-                    sut.calculate(input)
+                    sut.execute(input)
                 }
             }
         }
@@ -47,7 +47,7 @@ class CalculatorTest : DescribeSpec({
                 val input = "2 + 3 * 4 & 2"
 
                 shouldThrow<IllegalArgumentException> {
-                    sut.calculate(input)
+                    sut.execute(input)
                 }
             }
         }

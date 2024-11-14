@@ -1,24 +1,48 @@
 class Calculator {
-    fun calculate(input: String?) {
+    fun execute(input: String?): Int {
         require(!input.isNullOrBlank()) { "Input must have a value" }
+
+        val formula: List<String> = input.split(" ").toList()
+
+        var res = formula.get(0).toInt()
+        for (i in 1 until formula.size step 2) {
+            val operator: String = formula.get(i)
+            val b = formula.get(i + 1).toInt()
+            res = calculate(res, b, operator)
+        }
+        return res
     }
 
-    fun sum(
+    private fun calculate(
+        a: Int,
+        b: Int,
+        operator: String,
+    ): Int {
+        return when (operator) {
+            "+" -> sum(a, b)
+            "-" -> subtract(a, b)
+            "*" -> multiply(a, b)
+            "/" -> divide(a, b)
+            else -> throw IllegalArgumentException("Invalid Operator.")
+        }
+    }
+
+    private fun sum(
         a: Int,
         b: Int,
     ): Int = a + b
 
-    fun subtract(
+    private fun subtract(
         a: Int,
         b: Int,
     ): Int = a - b
 
-    fun multiply(
+    private fun multiply(
         a: Int,
         b: Int,
     ): Int = a * b
 
-    fun divide(
+    private fun divide(
         a: Int,
         b: Int,
     ): Int = a / b
