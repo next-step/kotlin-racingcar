@@ -25,8 +25,16 @@ class CalculatorTest : DescribeSpec({
         }
 
         context("empty String") {
-            it("should throw an exception") {
+            it("empty string should throw an exception") {
                 val input = ""
+
+                shouldThrow<IllegalArgumentException> {
+                    sut.calculate(input)
+                }
+            }
+
+            it("blank string should throw an exception") {
+                val input = "  "
 
                 shouldThrow<IllegalArgumentException> {
                     sut.calculate(input)
