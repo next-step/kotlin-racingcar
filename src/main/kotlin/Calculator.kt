@@ -1,12 +1,9 @@
 class Calculator {
     fun calculate(expression: String): Double {
         val (operands, operators) = parseExpression(expression)
-
-        var result = operands.first().value
-        operators.forEachIndexed { index, operator ->
-            result = operator.operate(result, operands[index + 1].value)
+        return operators.foldIndexed(operands[0].value) { index, acc, operator ->
+            operator.operate(acc, operands[index + 1].value)
         }
-        return result
     }
 
     private fun parseExpression(expression: String): MathExpression {
@@ -23,7 +20,7 @@ class Calculator {
     }
 }
 
-data class MathExpression(
+private data class MathExpression(
     val operands: List<Operand>,
     val operators: List<Operator>,
 ) {
@@ -32,14 +29,14 @@ data class MathExpression(
     }
 }
 
-class Operand(
+private class Operand(
     value: String?,
 ) {
     val value: Double = value?.toDouble() ?: throw IllegalArgumentException("사칙 연산이 불가능한 값입니다.")
 }
 
-enum class Operator(
-    private val value: String,
+private enum class Operator(
+    private val symbol: String,
 ) {
     PLUS("+") {
         override fun operate(left: Double, right: Double) = left + right
@@ -56,8 +53,8 @@ enum class Operator(
     ;
 
     companion object {
-        fun parse(value: String): Operator {
-            return entries.find { it.value == value } ?: throw IllegalArgumentException("지원하는 연산자가 아닙니다.")
+        fun parse(symbol: String): Operator {
+            return entries.find { it.symbol == symbol } ?: throw IllegalArgumentException("지원하는 연산자가 아닙니다.")
         }
     }
 
