@@ -17,7 +17,7 @@ class ParameterizedStudyTest {
 
     @ParameterizedTest(name = "NullAndEmptySource는 빈값과 null을 테스트한다")
     @NullAndEmptySource
-    fun nullAndEmptySourceTest(value: String) {
+    fun nullAndEmptySourceTest(value: String?) {
         println("value: $value")
         assertThat(value).isNullOrEmpty()
     }
