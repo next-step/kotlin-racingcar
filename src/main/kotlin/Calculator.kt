@@ -1,14 +1,22 @@
 class Calculator {
     fun calculate(expression: String): Double {
-        val (operands, operators) = parseExpression(expression)
+        val mathExpression = MathExpression(expression)
+        val operands = mathExpression.operands
+        val operators = mathExpression.operators
         return operators.foldIndexed(operands[0].value) { index, acc, operator ->
             operator.operate(acc, operands[index + 1].value)
         }
     }
+}
 
-    private fun parseExpression(expression: String): MathExpression {
+private class MathExpression(
+    expression: String,
+) {
+    val operands: List<Operand>
+    val operators: List<Operator>
+
+    init {
         val splitExpression = expression.split(" ")
-
         val operands = splitExpression
             .filterIndexed { index, _ -> index % 2 == 0 }
             .map { Operand(it) }
@@ -16,16 +24,10 @@ class Calculator {
             .filterIndexed { index, _ -> index % 2 == 1 }
             .map { Operator.parse(it) }
 
-        return MathExpression(operands, operators)
-    }
-}
-
-private data class MathExpression(
-    val operands: List<Operand>,
-    val operators: List<Operator>,
-) {
-    init {
         require(operands.size - operators.size == 1) { "피연산자와 연산자의 개수가 맞지 않습니다." }
+
+        this.operands = operands
+        this.operators = operators
     }
 }
 
