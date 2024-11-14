@@ -20,51 +20,54 @@ class FourBasicOperations {
         }
 
         val cleanedExpression = expression.replace(" ", "")
-        val numbers = mutableListOf<Int>()
-        val operators = mutableListOf<Operator>()
-        val currentNumber = StringBuilder()
-
-        parseExpression(cleanedExpression, numbers, operators, currentNumber)
-        finalizeNumbers(numbers, operators, currentNumber)
+        val numbers = parseNumbers(cleanedExpression)
+        val operators = parseOperators(cleanedExpression)
 
         return evaluate(numbers, operators)
     }
 
-    private fun parseExpression(
-        expression: String,
-        numbers: MutableList<Int>,
-        operators: MutableList<Operator>,
-        currentNumber: StringBuilder,
-    ) {
+    private fun parseNumbers(expression: String): List<Int> {
+        val numbers = mutableListOf<Int>()
+        val currentNumber = StringBuilder()
+
         for (char in expression) {
-            when {
-                char.isDigit() -> currentNumber.append(char)
-                else -> {
-                    if (currentNumber.isEmpty()) {
-                        throw IllegalArgumentException(badInputErrorMessage)
-                    }
-                    numbers.add(currentNumber.toString().toInt())
-                    currentNumber.clear()
-                    try {
-                        operators.add(Operator.from(char.toString()))
-                    } catch (e: IllegalArgumentException) {
-                        throw IllegalArgumentException(notSupportedOperatorErrorMessage)
-                    }
-                }
+            if (char.isDigit()) {
+                currentNumber.append(char)
+            }
+
+            if (currentNumber.isNotEmpty()) {
+                numbers.add(currentNumber.toString().toInt())
+                currentNumber.clear()
             }
         }
-    }
 
-    private fun finalizeNumbers(
-        numbers: MutableList<Int>,
-        operators: MutableList<Operator>,
-        currentNumber: StringBuilder,
-    ) {
         if (currentNumber.isNotEmpty()) {
             numbers.add(currentNumber.toString().toInt())
-        } else if (operators.isNotEmpty()) {
-            throw IllegalArgumentException(badInputErrorMessage)
         }
+
+        return numbers
+    }
+
+    private fun parseOperators(expression: String): List<Operator> {
+        val operators = mutableListOf<Operator>()
+        val currentNumber = StringBuilder()
+        val operatorList = Operator.entries.map { it.symbol }
+
+        for (char in expression) {
+            if (char.isDigit()) {
+                currentNumber.append(char)
+            } else if (operatorList.contains(char.toString())) {
+                if (currentNumber.isEmpty()) {
+                    throw IllegalArgumentException(badInputErrorMessage)
+                }
+                operators.add(Operator.from(char.toString()))
+                currentNumber.clear()
+            } else {
+                throw IllegalArgumentException(notSupportedOperatorErrorMessage)
+            }
+        }
+
+        return operators
     }
 
     private fun evaluate(
