@@ -21,7 +21,7 @@ class FourBasicOperations {
 
         val cleanedExpression = expression.replace(" ", "")
         val numbers = mutableListOf<Int>()
-        val operators = mutableListOf<Char>()
+        val operators = mutableListOf<Operator>()
         val currentNumber = StringBuilder()
 
         parseExpression(cleanedExpression, numbers, operators, currentNumber)
@@ -33,30 +33,31 @@ class FourBasicOperations {
     private fun parseExpression(
         expression: String,
         numbers: MutableList<Int>,
-        operators: MutableList<Char>,
+        operators: MutableList<Operator>,
         currentNumber: StringBuilder,
     ) {
-        val operatorList = listOf('+', '-', '*', '/')
-
         for (char in expression) {
             when {
                 char.isDigit() -> currentNumber.append(char)
-                char in operatorList -> {
+                else -> {
                     if (currentNumber.isEmpty()) {
                         throw IllegalArgumentException(badInputErrorMessage)
                     }
                     numbers.add(currentNumber.toString().toInt())
                     currentNumber.clear()
-                    operators.add(char)
+                    try {
+                        operators.add(Operator.from(char.toString()))
+                    } catch (e: IllegalArgumentException) {
+                        throw IllegalArgumentException(notSupportedOperatorErrorMessage)
+                    }
                 }
-                else -> throw IllegalArgumentException(notSupportedOperatorErrorMessage)
             }
         }
     }
 
     private fun finalizeNumbers(
         numbers: MutableList<Int>,
-        operators: MutableList<Char>,
+        operators: MutableList<Operator>,
         currentNumber: StringBuilder,
     ) {
         if (currentNumber.isNotEmpty()) {
@@ -68,17 +69,17 @@ class FourBasicOperations {
 
     private fun evaluate(
         numbers: List<Int>,
-        operators: List<Char>,
+        operators: List<Operator>,
     ): Int {
         val values = numbers.toMutableList()
         val ops = operators.toMutableList()
 
         var i = 0
         while (i < ops.size) {
-            if (ops[i] == '*' || ops[i] == '/') {
+            if (ops[i] == Operator.MULTIPLY || ops[i] == Operator.DIVIDE) {
                 val left = values[i]
                 val right = values[i + 1]
-                val result = if (ops[i] == '*') left * right else left / right
+                val result = if (ops[i] == Operator.MULTIPLY) left * right else left / right
                 values[i] = result
                 values.removeAt(i + 1)
                 ops.removeAt(i)
@@ -89,7 +90,7 @@ class FourBasicOperations {
 
         var total = values[0]
         for (j in 0 until ops.size) {
-            total = if (ops[j] == '+') total + values[j + 1] else total - values[j + 1]
+            total = if (ops[j] == Operator.SUM) total + values[j + 1] else total - values[j + 1]
         }
 
         return total
