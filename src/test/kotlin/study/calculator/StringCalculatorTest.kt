@@ -12,11 +12,11 @@ import io.kotest.matchers.string.startWith
  */
 class StringCalculatorTest : StringSpec({
     val stringCalculator = StringCalculator()
-    var expression = ""
+    var expression: String
 
     "expressionToArrayDequeue" {
         expression = "1 + 2"
-        val result = stringCalculator.expressionToArrayDequeue(expression)
+        val result = stringCalculator.expressionToArrayDeque(expression)
 
         result.removeFirst() shouldBe "1"
         result.removeFirst() shouldBe "+"
@@ -25,15 +25,15 @@ class StringCalculatorTest : StringSpec({
 
     "validate" {
         expression = "1 + 2"
-        var result = stringCalculator.expressionToArrayDequeue(expression)
+        var result = stringCalculator.expressionToArrayDeque(expression)
         stringCalculator.validate(result)
 
         expression = "1 + 2 - 10 * 20 / 30"
-        result = stringCalculator.expressionToArrayDequeue(expression)
+        result = stringCalculator.expressionToArrayDeque(expression)
         stringCalculator.validate(result)
 
         expression = "1 + 2 +"
-        result = stringCalculator.expressionToArrayDequeue(expression)
+        result = stringCalculator.expressionToArrayDeque(expression)
         var exception =
             shouldThrow<IllegalArgumentException> {
                 stringCalculator.validate(result)
@@ -41,7 +41,7 @@ class StringCalculatorTest : StringSpec({
         exception.message should startWith("first or last is Not number")
 
         expression = "1 - 2 * 10 / 10 "
-        result = stringCalculator.expressionToArrayDequeue(expression)
+        result = stringCalculator.expressionToArrayDeque(expression)
         exception =
             shouldThrow<IllegalArgumentException> {
                 stringCalculator.validate(result)
@@ -49,7 +49,7 @@ class StringCalculatorTest : StringSpec({
         exception.message should startWith("first or last is Not number")
 
         expression = "1 + 2 + 1 & 3"
-        result = stringCalculator.expressionToArrayDequeue(expression)
+        result = stringCalculator.expressionToArrayDeque(expression)
         exception =
             shouldThrow<IllegalArgumentException> {
                 stringCalculator.validate(result)
@@ -57,7 +57,7 @@ class StringCalculatorTest : StringSpec({
         exception.message should endWith("is Not operators..")
 
         expression = ""
-        result = stringCalculator.expressionToArrayDequeue(expression)
+        result = stringCalculator.expressionToArrayDeque(expression)
         exception =
             shouldThrow<IllegalArgumentException> {
                 stringCalculator.validate(result)

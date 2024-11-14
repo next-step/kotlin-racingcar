@@ -6,7 +6,7 @@ import kotlin.collections.ArrayDeque
  * @author 이상준
  */
 class StringCalculator {
-    fun expressionToArrayDequeue(expression: String): ArrayDeque<String> {
+    fun expressionToArrayDeque(expression: String): ArrayDeque<String> {
         return expression.split(" ").toCollection(ArrayDeque())
     }
 
@@ -15,40 +15,22 @@ class StringCalculator {
             throw IllegalArgumentException("first or last is Not number..")
         }
 
-        var temp = 0
-        expressionArray.forEach {
-            if (temp == 0) {
-                if (!isNumber(it)) {
-                    throw IllegalArgumentException("$it is Not number..")
+        expressionArray.forEachIndexed { index, value ->
+            if (index % 2 == 0) {
+                if (!isNumber(value)) {
+                    throw IllegalArgumentException("$value is Not number..")
                 }
+                return@forEachIndexed
+            }
 
-                temp = 1
-            } else {
-                if (it !in listOf(Operators.PLUS, Operators.MINUS, Operators.MULTIPLY, Operators.DIVIDE)) {
-                    throw IllegalArgumentException("$it is Not operators..")
-                }
-
-                temp = 0
+            if (value !in Operators.entries.toList().map { it.operator }) {
+                throw IllegalArgumentException("$value is Not operators..")
             }
         }
     }
 
-    private fun calculate(
-        num1: Double,
-        num2: Double,
-        operator: String,
-    ): Double {
-        return when (operator) {
-            Operators.PLUS -> plus(num1, num2)
-            Operators.MINUS -> minus(num1, num2)
-            Operators.MULTIPLY -> multiply(num1, num2)
-            Operators.DIVIDE -> divide(num1, num2)
-            else -> throw IllegalArgumentException("Invalid operator.")
-        }
-    }
-
     fun expressionCalculate(expression: String): Double {
-        val expressionArray = expressionToArrayDequeue(expression)
+        val expressionArray = expressionToArrayDeque(expression)
         validate(expressionArray)
         return expressionCalculate(expressionArray)
     }
@@ -60,49 +42,16 @@ class StringCalculator {
         while (!expressionArray.isEmpty()) {
             val expression = expressionArray.removeFirst()
 
-            if (expression in listOf(Operators.PLUS, Operators.MINUS, Operators.MULTIPLY, Operators.DIVIDE)) {
+            if (expression in Operators.entries.toList().map { it.operator }) {
                 operator = expression
             }
 
             if (isNumber(expression)) {
-                result =
-                    calculate(
-                        num1 = result,
-                        num2 = expression.toDouble(),
-                        operator = operator,
-                    )
+                result = Operators.findOperator(operator)!!.apply(result, expression.toDouble())
             }
         }
 
         return result
-    }
-
-    private fun plus(
-        num1: Double,
-        num2: Double,
-    ): Double {
-        return num1 + num2
-    }
-
-    private fun minus(
-        num1: Double,
-        num2: Double,
-    ): Double {
-        return num1 - num2
-    }
-
-    private fun multiply(
-        num1: Double,
-        num2: Double,
-    ): Double {
-        return num1 * num2
-    }
-
-    private fun divide(
-        num1: Double,
-        num2: Double,
-    ): Double {
-        return num1 / num2
     }
 
     private fun isNumber(input: String): Boolean {
@@ -110,9 +59,28 @@ class StringCalculator {
     }
 }
 
-object Operators {
-    const val PLUS = "+"
-    const val MINUS = "-"
-    const val MULTIPLY = "*"
-    const val DIVIDE = "/"
+enum class Operators(val operator: String) {
+    PLUS("+"),
+    MINUS("-"),
+    MULTIPLY("*"),
+    DIVIDE("/"),
+    ;
+
+    companion object {
+        fun findOperator(operator: String): Operators? {
+            return entries.find { it.operator == operator }
+        }
+    }
+
+    fun apply(
+        num1: Double,
+        num2: Double,
+    ): Double {
+        return when (this) {
+            PLUS -> num1 + num2
+            MINUS -> num1 - num2
+            MULTIPLY -> num1 * num2
+            DIVIDE -> num1 / num2
+        }
+    }
 }
