@@ -47,7 +47,7 @@ class StringCalculator {
             }
 
             if (isNumber(expression)) {
-                result = Operators.findOperator(operator)!!.apply(result, expression.toDouble())
+                result = Operators.findOperator(operator)!!.operation(result, expression.toDouble())
             }
         }
 
@@ -59,28 +59,16 @@ class StringCalculator {
     }
 }
 
-enum class Operators(val operator: String) {
-    PLUS("+"),
-    MINUS("-"),
-    MULTIPLY("*"),
-    DIVIDE("/"),
+enum class Operators(val operator: String, val operation: (Double, Double) -> Double) {
+    PLUS(operator = "+", operation = { num1, num2 -> num1 + num2 }),
+    MINUS(operator = "-", operation = { num1, num2 -> num1 - num2 }),
+    MULTIPLY(operator = "*", operation = { num1, num2 -> num1 * num2 }),
+    DIVIDE(operator = "/", operation = { num1, num2 -> num1 / num2 }),
     ;
 
     companion object {
         fun findOperator(operator: String): Operators? {
             return entries.find { it.operator == operator }
-        }
-    }
-
-    fun apply(
-        num1: Double,
-        num2: Double,
-    ): Double {
-        return when (this) {
-            PLUS -> num1 + num2
-            MINUS -> num1 - num2
-            MULTIPLY -> num1 * num2
-            DIVIDE -> num1 / num2
         }
     }
 }
