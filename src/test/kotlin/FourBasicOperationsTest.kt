@@ -5,35 +5,68 @@ import io.kotest.matchers.shouldBe
 class FourBasicOperationsTest : StringSpec({
     val operations = FourBasicOperations()
 
-    "사칙연산 테스트1" {
-        operations.calculate("2 + 3 * 4 / 2 - 3") shouldBe 5
+    fun testCalculate(
+        expression: String,
+        expected: Int,
+    ) {
+        operations.calculate(expression) shouldBe expected
     }
 
-    "사칙연산 테스트2" {
-        operations.calculate("4 * 2 * 3 / 6 + 5 - 1") shouldBe 8
+    fun testParseNumbers(
+        expression: String,
+        expected: List<Int>,
+    ) {
+        operations.parseNumbers(expression) shouldBe expected
     }
 
-    "연산 기호 예외 테스트" {
+    fun testParseOperators(
+        expression: String,
+        expected: List<Operator>,
+    ) {
+        operations.parseOperators(expression) shouldBe expected
+    }
+
+    fun testException(expression: String) {
         shouldThrow<IllegalArgumentException> {
-            operations.calculate("2 + 3 % 4")
+            operations.calculate(expression)
         }
     }
 
-    "빈 공백 문자 예외 테스트" {
-        shouldThrow<IllegalArgumentException> {
-            operations.calculate("2 + + 3")
-        }
+    "calculate test 1" {
+        testCalculate("2 + 3 * 4 / 2 - 3", 5)
     }
 
-    "null 예외 테스트" {
-        shouldThrow<IllegalArgumentException> {
-            operations.calculate(null.toString())
-        }
+    "calculate test 2" {
+        testCalculate("4 * 2 * 3 / 6 + 5 - 1", 8)
     }
 
-    "빈 문자 예외 테스트" {
-        shouldThrow<IllegalArgumentException> {
-            operations.calculate("")
-        }
+    "parseNumbers test 1" {
+        testParseNumbers("2 + 3 * 4 / 2 - 3", listOf(2, 3, 4, 2, 3))
     }
+
+    "parseNumbers test 2" {
+        testParseNumbers("4 * 2 * 3 / 6 + 5 - 1", listOf(4, 2, 3, 6, 5, 1))
+    }
+
+    "parseOperators test 1" {
+        testParseOperators(
+            "2 + 3 * 4 / 2 - 3",
+            listOf(Operator.SUM, Operator.MULTIPLY, Operator.DIVIDE, Operator.SUBTRACT),
+        )
+    }
+
+    "parseOperators test 2" {
+        testParseOperators(
+            "4 * 2 * 3 / 6 + 5 - 1",
+            listOf(Operator.MULTIPLY, Operator.MULTIPLY, Operator.DIVIDE, Operator.SUM, Operator.SUBTRACT),
+        )
+    }
+
+    "연산 기호 예외 테스트" { testException("2 + 3 % 4") }
+
+    "빈 공백 문자 예외 테스트" { testException("2 + + 3") }
+
+    "null 예외 테스트" { testException(null.toString()) }
+
+    "빈 문자 예외 테스트" { testException("") }
 })

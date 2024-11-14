@@ -26,18 +26,18 @@ class FourBasicOperations {
         return evaluate(numbers, operators)
     }
 
-    private fun parseNumbers(expression: String): List<Int> {
+    fun parseNumbers(expression: String): List<Int> {
         val numbers = mutableListOf<Int>()
         val currentNumber = StringBuilder()
 
         for (char in expression) {
             if (char.isDigit()) {
                 currentNumber.append(char)
-            }
-
-            if (currentNumber.isNotEmpty()) {
-                numbers.add(currentNumber.toString().toInt())
-                currentNumber.clear()
+            } else if (char != ' ') {
+                if (currentNumber.isNotEmpty()) {
+                    numbers.add(currentNumber.toString().toInt())
+                    currentNumber.clear()
+                }
             }
         }
 
@@ -48,29 +48,38 @@ class FourBasicOperations {
         return numbers
     }
 
-    private fun parseOperators(expression: String): List<Operator> {
+    fun parseOperators(expression: String): List<Operator> {
         val operators = mutableListOf<Operator>()
         val currentNumber = StringBuilder()
         val operatorList = Operator.entries.map { it.symbol }
+        var lastWasOperator = false
 
         for (char in expression) {
             if (char.isDigit()) {
                 currentNumber.append(char)
-            } else if (operatorList.contains(char.toString())) {
-                if (currentNumber.isEmpty()) {
-                    throw IllegalArgumentException(badInputErrorMessage)
+                lastWasOperator = false
+            } else if (char != ' ') {
+                if (operatorList.contains(char.toString())) {
+                    if (currentNumber.isEmpty() && operators.isEmpty()) {
+                        throw IllegalArgumentException(badInputErrorMessage)
+                    }
+
+                    if (lastWasOperator) {
+                        throw IllegalArgumentException(badInputErrorMessage)
+                    }
+
+                    operators.add(Operator.from(char.toString()))
+                    lastWasOperator = true
+                } else {
+                    throw IllegalArgumentException(notSupportedOperatorErrorMessage)
                 }
-                operators.add(Operator.from(char.toString()))
-                currentNumber.clear()
-            } else {
-                throw IllegalArgumentException(notSupportedOperatorErrorMessage)
             }
         }
 
         return operators
     }
 
-    private fun evaluate(
+    fun evaluate(
         numbers: List<Int>,
         operators: List<Operator>,
     ): Int {
