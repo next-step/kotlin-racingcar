@@ -7,6 +7,10 @@ object CarFactory {
         return Car.from(sequence++, position)
     }
 
+    fun createCars(quantity: Int): List<Car> {
+        return (0 until quantity).map { createCar() }
+    }
+
     fun resetSequence() {
         sequence = 0
     }
