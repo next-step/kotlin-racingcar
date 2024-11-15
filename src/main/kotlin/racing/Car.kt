@@ -1,8 +1,13 @@
 package racing
 
-class Car(
+class Car private constructor(
+    private var sequence: Int = 0,
     private var position: Int = 0,
 ) : Vehicle {
+    fun getSequence(): Int {
+        return this.sequence
+    }
+
     fun getPosition(): Int {
         return this.position
     }
@@ -18,9 +23,12 @@ class Car(
     }
 
     companion object {
-        fun from(position: Int): Car {
+        fun from(
+            sequence: Int,
+            position: Int,
+        ): Car {
             require(position >= 0) { "시작 위치는 0 이상이어야 합니다." }
-            return Car(position)
+            return Car(sequence, position)
         }
     }
 }
