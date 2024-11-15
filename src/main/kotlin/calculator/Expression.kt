@@ -30,6 +30,27 @@ class Expression(
 
     private fun validate(expression: String) {
         val pattern = Pattern.compile(EXPRESSION_REGEX)
+        
+        return Pattern.compile("[+\\-*/]")
+            .matcher(expression)
+            .results()
+            .map(MatchResult::group)
+            .map(::mapOperator)
+            .toList()
+    }
+
+    private fun mapOperator(operator: String): Operator {
+        return when (operator) {
+            "+" -> Operator.PLUS
+            "-" -> Operator.MINUS
+            "*" -> Operator.MULTIPLY
+            "/" -> Operator.DIVIDE
+            else -> throw IllegalArgumentException("올바르지 않은 연산자입니다.")
+        }
+    }
+
+    private fun validate(expression: String) {
+        val pattern = Pattern.compile("^\\d+( [+\\-*/] \\d+)*$")
         val matcher = pattern.matcher(expression)
         val isValid = matcher.matches()
 

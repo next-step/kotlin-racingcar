@@ -8,6 +8,7 @@ class StringCalculator : Calculator {
         return operators.foldIndexed(numbers.first()) { index, acc, operator ->
             val nextOperand = numbers[index + 1]
             operator.apply(acc, nextOperand)
+            operator.apply(acc, numbers[index + 1])
         }
     }
 }
