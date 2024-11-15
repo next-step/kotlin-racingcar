@@ -12,13 +12,3 @@ class RandomCountGeneratorTest : StringSpec({
         actual.shouldBeBetween(0, 9)
     }
 })
-
-interface CountGenerator {
-    fun generate(): Int
-}
-
-class RandomCountGenerator : CountGenerator {
-    override fun generate(): Int {
-        return (0..9).random()
-    }
-}
