@@ -1,4 +1,6 @@
 class Car(
     val id: Int,
-    val position: Int = 0,
-)
+    var position: Int = 0,
+) {
+    fun forward() = position++
+}
