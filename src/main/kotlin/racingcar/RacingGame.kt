@@ -25,9 +25,7 @@ class RacingGame(
         return cars.getPositionValues()
     }
 
-    fun extractWinner(): List<String> {
-        val maxPosition = cars.getPositionValues().max()
-        return cars.getCarNames()
-            .filter { cars.getPositionValues()[cars.getCarNames().indexOf(it)] == maxPosition }
+    fun getWinnerNames(): List<String> {
+        return GameWinners(cars).names
     }
 }

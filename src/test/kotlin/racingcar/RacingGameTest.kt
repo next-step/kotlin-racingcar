@@ -64,7 +64,7 @@ class RacingGameTest : StringSpec({
             ),
         ) { game, repeatCount, winner ->
             repeat(repeatCount) { game.play() }
-            game.extractWinner() shouldBe winner
+            game.getWinnerNames() shouldBe winner
         }
     }
 })
