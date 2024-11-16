@@ -15,6 +15,11 @@ class RacingGameTest : StringSpec({
         }
     }
 
+    "게임을 진행 중인 자동차들의 이름을 확인할 수 있다." {
+        val racingGame = RacingGame("good,bad,dino", 2, RandomNumberGenerator())
+        racingGame.extractCarNames() shouldBe listOf("good", "bad", "dino")
+    }
+
     "게임의 상황를 확인할 수 있다." {
         val racingGame =
             RacingGame(
@@ -31,7 +36,7 @@ class RacingGameTest : StringSpec({
 
         expectedResults.forEach { expected ->
             racingGame.play()
-            racingGame.extractCarInfos() shouldBe expected
+            racingGame.extractNowCarPositions() shouldBe expected
         }
     }
 })

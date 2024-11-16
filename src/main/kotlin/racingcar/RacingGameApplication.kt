@@ -11,6 +11,6 @@ fun main() {
     resultView.printResultMessage()
     while (!game.isEnd()) {
         game.play()
-        resultView.print(game.extractCarInfos())
+        resultView.printCurrentSituation(game.extractCarNames(), game.extractNowCarPositions())
     }
 }

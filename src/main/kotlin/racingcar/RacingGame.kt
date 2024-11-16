@@ -17,7 +17,11 @@ class RacingGame(
         return round.isZero()
     }
 
-    fun extractCarInfos(): List<Int> {
+    fun extractCarNames(): List<String> {
+        return cars.getCarNames()
+    }
+
+    fun extractNowCarPositions(): List<Int> {
         return cars.getPositionValues()
     }
 }
