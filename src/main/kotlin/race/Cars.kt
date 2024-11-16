@@ -1,7 +1,7 @@
 package race
 
 class Cars(private val cars: List<Car>) : List<Car> by cars {
-    constructor(carCount: PositiveNumber) : this(List(carCount.value) { Car(PositiveNumber(1)) })
+    constructor(names: Names) : this(names.map { Car(it, PositiveNumber(1)) })
 
     init {
         require(cars.isNotEmpty()) { "최소 1대 이상 입력 해주세요." }

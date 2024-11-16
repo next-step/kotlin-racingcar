@@ -1,7 +1,12 @@
 package race
 
-data class Car(var position: PositiveNumber) {
-    constructor(position: Int) : this(PositiveNumber(position))
+data class Car(val name: Name, var position: PositiveNumber) {
+    val progress: Int
+        get() = position.value
+    val displayName: String
+        get() = name.value
+
+    constructor(a: String, position: Int) : this(Name(a), PositiveNumber(position))
 
     companion object {
         private const val MOVE_POSITION = 1
