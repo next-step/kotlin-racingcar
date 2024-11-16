@@ -1,3 +1,3 @@
 package race
 
-data class RaceRound(val positions: List<PositiveNumber>)
+data class RaceRound(val positions: List<Car>)

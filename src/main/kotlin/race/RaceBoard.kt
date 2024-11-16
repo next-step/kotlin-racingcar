@@ -1,19 +1,17 @@
 package race
 
 class RaceBoard(
-    private val carCount: Int,
+    private val cars: Cars,
     private val retryCount: Int,
     private val numberGenerate: NumberGenerator,
 ) {
     fun start(): RaceResult {
-        val cars = Cars(PositiveNumber(carCount))
-
         return RaceResult(
             (1..retryCount).map {
-                val moveConditions = MoveConditions(carCount) { numberGenerate() }
+                val moveConditions = MoveConditions(cars.size) { numberGenerate() }
 
                 cars.moveAll(moveConditions)
-                RaceRound(cars.map { it.position })
+                RaceRound(cars.map { it })
             },
         )
     }

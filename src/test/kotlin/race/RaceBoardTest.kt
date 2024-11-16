@@ -1,25 +1,37 @@
 package race
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
 class RaceBoardTest {
     @ParameterizedTest
-    @CsvSource(
-        "4, 9",
-        "5, 3",
-        "1, 2",
-        delimiter = ',',
-    )
-    fun `start 시도횟수 만큼 라운드를 반환한다`(
-        carCount: Int,
+    @MethodSource("winnerTestData")
+    fun `start 우승자를 알수있다`(
+        cars: Cars,
         retryCount: Int,
+        winners: List<String>,
     ) {
-        val raceBoard = RaceBoard(carCount, retryCount) { PositiveNumber(1) }
+        val raceBoard = RaceBoard(cars, retryCount) { PositiveNumber(1) }
 
         val actual = raceBoard.start()
 
-        assertThat(actual.rounds).hasSize(retryCount)
+        assertAll(
+            { assertThat(actual.winners).isEqualTo(winners) },
+            { assertThat(actual.rounds).hasSize(retryCount) },
+        )
+    }
+
+    companion object {
+        @JvmStatic
+        fun winnerTestData(): Stream<Arguments> =
+            Stream.of(
+                Arguments.of(Cars(listOf(Car("a", 1), Car("b", 2), Car("c", 3))), 1, listOf("c")),
+                Arguments.of(Cars(listOf(Car("a", 1), Car("b", 3), Car("c", 3))), 1, listOf("b", "c")),
+                Arguments.of(Cars(listOf(Car("a", 3), Car("b", 3), Car("c", 3))), 1, listOf("a", "b", "c")),
+            )
     }
 }
