@@ -7,8 +7,7 @@ import io.kotest.matchers.shouldBe
 class RacingGameTest : StringSpec({
     "시도 횟수 (Round) 만큼 각 자동차의 전진 / 멈춤 행위를 진행시킬 수 있다." {
         val racingGame = RacingGame(3, 2, RandomNumberGenerator())
-        racingGame.play()
-        racingGame.play()
+        repeat(2) { racingGame.play() }
 
         racingGame.isEnd() shouldBe true
         shouldThrowExactly<IllegalArgumentException> {
@@ -24,10 +23,15 @@ class RacingGameTest : StringSpec({
                 CustomNumberGenerator(mutableListOf(4, 0, 0, 7, 6, 1)),
             )
 
-        racingGame.play()
-        racingGame.extractCarInfos() shouldBe listOf(1, 0, 0)
+        val expectedResults =
+            listOf(
+                listOf(1, 0, 0),
+                listOf(2, 1, 0),
+            )
 
-        racingGame.play()
-        racingGame.extractCarInfos() shouldBe listOf(2, 1, 0)
+        expectedResults.forEach { expected ->
+            racingGame.play()
+            racingGame.extractCarInfos() shouldBe expected
+        }
     }
 })

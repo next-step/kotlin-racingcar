@@ -2,12 +2,16 @@ package racingcar
 
 class Cars(private val cars: List<Car>) {
     fun move(numberGenerator: NumberGenerator) {
-        cars.filter { moveCondition(numberGenerator) }
+        cars.filter { checkIsMovable(decideCarAction(numberGenerator)) }
             .forEach { it.move() }
     }
 
-    private fun moveCondition(numberGenerator: NumberGenerator): Boolean {
-        return numberGenerator.generateWithValidation() >= 4
+    private fun checkIsMovable(carAction: CarAction): Boolean {
+        return carAction.isMove()
+    }
+
+    private fun decideCarAction(numberGenerator: NumberGenerator): CarAction {
+        return CarAction.generate(numberGenerator.generate())
     }
 
     fun getPositionValues(): List<Int> {
@@ -16,7 +20,7 @@ class Cars(private val cars: List<Car>) {
 
     companion object {
         fun makeNewCars(count: Int): Cars {
-            return Cars((0 until count).map { Car.makeNewCar() })
+            return Cars(List(count) { Car.makeNewCar() })
         }
     }
 }
