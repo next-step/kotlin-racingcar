@@ -4,8 +4,18 @@ class Car(
     private val name: CarName,
     private var position: CarPosition,
 ) {
-    fun move() {
-        position = position.advance()
+    fun moveOrStand(numberGenerator: NumberGenerator) {
+        if (checkIsMovable(decideCarAction(numberGenerator))) {
+            position = position.advance()
+        }
+    }
+
+    private fun decideCarAction(numberGenerator: NumberGenerator): CarAction {
+        return CarAction.generate(numberGenerator.generate())
+    }
+
+    private fun checkIsMovable(carAction: CarAction): Boolean {
+        return carAction.isMove()
     }
 
     fun getNameValue(): String {

@@ -19,16 +19,16 @@ class CarTest : StringSpec({
         }
     }
 
-    "전진할 수 있다." {
+    "전전 또는 정지할 수 있다." {
         forAll(
-            row(0, 1),
-            row(1, 2),
-            row(5, 6),
-            row(10, 11),
-            row(100, 101),
-        ) { beforeValue, afterValue ->
+            row(0, 4, 1),
+            row(1, 0, 1),
+            row(5, 3, 5),
+            row(10, 9, 11),
+            row(100, 7, 101),
+        ) { beforeValue, number, afterValue ->
             val car = Car(CarName("name"), CarPosition(beforeValue))
-            car.move()
+            car.moveOrStand { number }
             car.getPositionValue() shouldBe afterValue
         }
     }
