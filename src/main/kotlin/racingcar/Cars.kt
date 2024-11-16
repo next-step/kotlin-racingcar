@@ -19,8 +19,11 @@ class Cars(private val cars: List<Car>) {
     }
 
     companion object {
-        fun makeNewCars(count: Int): Cars {
-            return Cars(List(count) { Car.makeNewCar() })
+        fun makeNewCars(nameInput: String): Cars {
+            return Cars(
+                nameInput.split(",")
+                    .map { Car.makeNewCar(it) },
+            )
         }
     }
 }

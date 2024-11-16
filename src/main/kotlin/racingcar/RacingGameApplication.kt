@@ -2,10 +2,10 @@ package racingcar
 
 fun main() {
     val inputView = InputView()
-    val inputCarSize = inputView.inputCarSize()
+    val inputCarNames = inputView.inputCarSize()
     val inputRoundCount = inputView.inputRoundCount()
 
-    val game = RacingGame(inputCarSize, inputRoundCount, RandomNumberGenerator())
+    val game = RacingGame(inputCarNames, inputRoundCount, RandomNumberGenerator())
 
     val resultView = ResultView()
     resultView.printResultMessage()

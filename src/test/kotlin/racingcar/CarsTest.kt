@@ -7,7 +7,13 @@ import io.kotest.matchers.shouldBe
 
 class CarsTest : StringSpec({
     "여러 대의 자동차를 가질 수 있다." {
-        Cars(listOf(Car(CarPosition(0)), Car(CarPosition(0)), Car(CarPosition(0))))
+        Cars(
+            listOf(
+                Car(CarName("name"), CarPosition(0)),
+                Car(CarName("name"), CarPosition(0)),
+                Car(CarName("name"), CarPosition(0)),
+            ),
+        )
     }
 
     "각 자동차의 전진 여부를 결정할 수 있다." {
@@ -20,8 +26,8 @@ class CarsTest : StringSpec({
             val cars =
                 Cars(
                     listOf(
-                        Car(CarPosition(0)),
-                        Car(CarPosition(0)),
+                        Car(CarName("name"), CarPosition(0)),
+                        Car(CarName("name"), CarPosition(0)),
                     ),
                 )
             cars.move(CustomNumberGenerator(mutableListOf(valueA, valueB)))
@@ -33,9 +39,9 @@ class CarsTest : StringSpec({
         val cars =
             Cars(
                 listOf(
-                    Car(CarPosition(0)),
-                    Car(CarPosition(1)),
-                    Car(CarPosition(2)),
+                    Car(CarName("name"), CarPosition(0)),
+                    Car(CarName("name"), CarPosition(1)),
+                    Car(CarName("name"), CarPosition(2)),
                 ),
             )
         cars.getPositionValues() shouldBe listOf(0, 1, 2)

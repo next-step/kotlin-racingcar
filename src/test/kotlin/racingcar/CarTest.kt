@@ -14,7 +14,7 @@ class CarTest : StringSpec({
             row(10),
             row(100),
         ) { value ->
-            val car = Car(CarPosition(value))
+            val car = Car(CarName("name"), CarPosition(value))
             car.getPositionValue() shouldBe value
         }
     }
@@ -27,7 +27,7 @@ class CarTest : StringSpec({
             row(10, 11),
             row(100, 101),
         ) { beforeValue, afterValue ->
-            val car = Car(CarPosition(beforeValue))
+            val car = Car(CarName("name"), CarPosition(beforeValue))
             car.move()
             car.getPositionValue() shouldBe afterValue
         }
