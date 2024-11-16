@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.EmptySource
 
 class NameTest {
     @Test
-    fun `6자 초과시 예외발생`() {
+    fun `5자 초과시 예외발생`() {
         assertThrows<IllegalArgumentException> {
             Name("1234567")
         }
