@@ -9,8 +9,8 @@ class ResultView {
         carNames: List<String>,
         extractCarInfos: List<Int>,
     ) {
-        for (carPosition in extractCarInfos) {
-            print(carNames[extractCarInfos.indexOf(carPosition)] + " : ")
+        for ((carName, carPosition) in carNames.zip(extractCarInfos)) {
+            print("$carName : ")
             println("-".repeat(carPosition))
         }
         println()
