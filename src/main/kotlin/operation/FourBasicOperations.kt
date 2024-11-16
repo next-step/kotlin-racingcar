@@ -90,14 +90,10 @@ class FourBasicOperations {
 
         var i = 0
         while (i < ops.size) {
-            if (ops[i] == Operator.MULTIPLY || ops[i] == Operator.DIVIDE) {
-                val result = ops[i].operation(values[i], values[i + 1])
-                values[i] = result
-                values.removeAt(i + 1)
-                ops.removeAt(i)
-            } else {
-                i++
-            }
+            val result = ops[i].operation(values[i], values[i + 1])
+            values[i] = result
+            values.removeAt(i + 1)
+            ops.removeAt(i)
         }
 
         var total = values[0]

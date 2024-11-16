@@ -35,7 +35,7 @@ class FourBasicOperationsTest : StringSpec({
     }
 
     "calculate test 1" {
-        testCalculate("2 + 3 * 4 / 2 - 3", 5)
+        testCalculate("2 + 3 * 4 / 2 - 3", 7)
     }
 
     "calculate test 2" {
