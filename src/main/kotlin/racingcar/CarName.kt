@@ -1,7 +1,7 @@
 package racingcar
 
-class CarName(val name: String) {
+class CarName(val value: String) {
     init {
-        require(name.length in 1..5) { "자동차 이름은 1자 이상, 5자 이하만 가능합니다." }
+        require(value.length in 1..5) { "자동차 이름은 1자 이상, 5자 이하만 가능합니다." }
     }
 }

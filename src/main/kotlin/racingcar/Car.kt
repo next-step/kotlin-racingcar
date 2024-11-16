@@ -8,6 +8,10 @@ class Car(
         position = position.advance()
     }
 
+    fun getNameValue(): String {
+        return name.value
+    }
+
     fun getPositionValue(): Int {
         return position.value
     }

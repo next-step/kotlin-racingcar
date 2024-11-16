@@ -14,6 +14,10 @@ class Cars(private val cars: List<Car>) {
         return CarAction.generate(numberGenerator.generate())
     }
 
+    fun getCarNames(): List<String> {
+        return cars.map { it.name.value }
+    }
+
     fun getPositionValues(): List<Int> {
         return cars.map { it.getPositionValue() }
     }

@@ -35,15 +35,16 @@ class CarsTest : StringSpec({
         }
     }
 
-    "각 자동차의 위치를 외부에 전달할 수 있다." {
+    "각 자동차의 이름과 위치를 외부에 전달할 수 있다." {
         val cars =
             Cars(
                 listOf(
-                    Car(CarName("name"), CarPosition(0)),
-                    Car(CarName("name"), CarPosition(1)),
-                    Car(CarName("name"), CarPosition(2)),
+                    Car(CarName("good"), CarPosition(0)),
+                    Car(CarName("bad"), CarPosition(1)),
+                    Car(CarName("dino"), CarPosition(2)),
                 ),
             )
+        cars.getCarNames() shouldBe listOf("good", "bad", "dino")
         cars.getPositionValues() shouldBe listOf(0, 1, 2)
     }
 })
