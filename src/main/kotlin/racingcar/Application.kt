@@ -1,7 +1,6 @@
 package racingcar
 
-
-class Application
+import racingcar.service.Game
 
 fun main() {
     println("자동차 대수는 몇 대인가요?")
@@ -11,4 +10,8 @@ fun main() {
     print("시도할 횟수는 몇 회인가요?")
     val raceCount = readlnOrNull()?.toInt() ?: throw IllegalArgumentException("시도할 횟수는 숫자여야 합니다.")
     require(raceCount > 0) { "시도 횟수는 1 이상이어야 합니다." }
+
+    val game = Game(carCount, raceCount)
+    game.start()
+    game.result()
 }
