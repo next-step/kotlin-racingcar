@@ -1,9 +1,7 @@
 package stringCalculator
 
-class StringCalculator {
-    companion object {
-        const val SPACE_SYMBOL = " "
-    }
+object StringCalculator {
+    private const val SPACE_SYMBOL = " "
 
     fun calculate(expression: String?): Int {
         val expressionValues = convertExpressionToList(expression)
