@@ -113,12 +113,12 @@ UI 로직을 InputView, ResultView와 같은 클래스를 추가해 분리한다
     - 우승자는 한명 이상일 수 있다.
 
 ### 작업목록
-- [ ] Name 객체 만들기
-  - [ ] 5자 초과 경우 IllegalArgumentException
+- [X] Name 객체 만들기
+  - [X] 5자 초과 경우 IllegalArgumentException
 - [ ] UI
-  - [ ] 이동시 Name 출력
-  - [ ] 입력은 Name은 쉼표(,) 구분자 문자열
-  - [ ] 완료 후 우승자 함께 출력
+  - [X] 이동시 Name 출력
+  - [X] 입력은 Name은 쉼표(,) 구분자 문자열
+  - [X] 완료 후 우승자 함께 출력
   - RaceResult
-    - [ ] 우승자는 한명 이상일 수 있다.
+    - [X] 우승자는 한명 이상일 수 있다.
 
