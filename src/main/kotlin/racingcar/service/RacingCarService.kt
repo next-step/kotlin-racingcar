@@ -7,8 +7,8 @@ import racingcar.view.InputView
 import racingcar.view.ResultView
 
 class RacingCarService {
-    private var tryCount: TryCount = TryCount()
-    private var forward: Forward = Forward()
+    var tryCount: TryCount = TryCount()
+    var forward: Forward = Forward()
 
     fun startNumberCars(): Int {
         InputView.readNumberCars()
