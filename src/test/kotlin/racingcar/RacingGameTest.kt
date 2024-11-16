@@ -2,6 +2,8 @@ package racingcar
 
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.data.forAll
+import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
 class RacingGameTest : StringSpec({
@@ -37,6 +39,32 @@ class RacingGameTest : StringSpec({
         expectedResults.forEach { expected ->
             racingGame.play()
             racingGame.extractNowCarPositions() shouldBe expected
+        }
+    }
+
+    "게임의 우승자에 대한 정보를 반환할 수 있다." {
+        forAll(
+            row(
+                RacingGame(
+                    "good,bad,dino",
+                    2,
+                    CustomNumberGenerator(mutableListOf(4, 0, 0, 7, 6, 1)),
+                ),
+                2,
+                listOf("good"),
+            ),
+            row(
+                RacingGame(
+                    "good,bad,dino",
+                    2,
+                    CustomNumberGenerator(mutableListOf(4, 1, 3, 2, 3, 7)),
+                ),
+                2,
+                listOf("good", "dino"),
+            ),
+        ) { game, repeatCount, winner ->
+            repeat(repeatCount) { game.play() }
+            game.extractWinner() shouldBe winner
         }
     }
 })

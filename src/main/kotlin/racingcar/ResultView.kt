@@ -15,4 +15,8 @@ class ResultView {
         }
         println()
     }
+
+    fun printWinner(winner: List<String>) {
+        println("${winner.joinToString(", ")}가 최종 우승했습니다.")
+    }
 }

@@ -13,4 +13,6 @@ fun main() {
         game.play()
         resultView.printCurrentSituation(game.extractCarNames(), game.extractNowCarPositions())
     }
+
+    resultView.printWinner(game.extractWinner())
 }
