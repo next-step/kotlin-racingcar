@@ -1,7 +1,7 @@
 package racingcar
 
 class Car(
-    val name: CarName,
+    private val name: CarName,
     private var position: CarPosition,
 ) {
     fun move() {

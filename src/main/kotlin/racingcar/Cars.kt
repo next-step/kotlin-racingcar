@@ -15,7 +15,7 @@ class Cars(private val cars: List<Car>) {
     }
 
     fun getCarNames(): List<String> {
-        return cars.map { it.name.value }
+        return cars.map { it.getNameValue() }
     }
 
     fun getPositionValues(): List<Int> {
