@@ -1,6 +1,7 @@
 package racingcar
 
-data class CarPosition(val value: Int) : Comparable<CarPosition> {
+@JvmInline
+value class CarPosition(val value: Int) : Comparable<CarPosition> {
     init {
         require(value >= ZERO) { POSITION_UNDER_ZERO_MESSAGE }
     }
