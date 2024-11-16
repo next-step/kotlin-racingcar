@@ -3,6 +3,8 @@ package stringCalculator
 import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.data.forAll
+import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
 class StringCalculatorKoTest : StringSpec({
@@ -34,19 +36,12 @@ class StringCalculatorKoTest : StringSpec({
         }
     }
 
-    "입력값에 대해 덧셈을 할 수 있다." {
-        StringCalculator.calculate("1 + 2") shouldBe 3
-    }
-
-    "입력값에 대해 뺄셈을 할 수 있다." {
-        StringCalculator.calculate("5 - 2") shouldBe 3
-    }
-
-    "입력값에 대해 곱셈을 할 수 있다." {
-        StringCalculator.calculate("5 * 2") shouldBe 10
-    }
-
-    "입력값에 대해 나눗셈을 할 수 있다." {
-        StringCalculator.calculate("10 / 2") shouldBe 5
+    "입력값에 대해 올바른 연산을 할 수 있어야 한다." {
+        forAll(
+            row("1 + 2", 3),
+            row("5 - 2", 3),
+            row("5 * 2", 10),
+            row("10 / 2", 5),
+        ) { param, result -> StringCalculator.calculate(param) shouldBe result }
     }
 })
