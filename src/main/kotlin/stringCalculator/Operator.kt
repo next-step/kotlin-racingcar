@@ -26,8 +26,7 @@ enum class Operator(
     companion object {
         fun findByOperator(str: String): Operator {
             val result = entries.firstOrNull { it.operator == str }
-            if (result == null) (throw IllegalArgumentException("올바른 연산자가 아닙니다."))
-            return result
+            return requireNotNull(result) { throw IllegalArgumentException("올바른 연산자가 아닙니다.") }
         }
     }
 }
