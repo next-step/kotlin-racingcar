@@ -2,17 +2,20 @@ package race
 
 class RaceBoard(
     private val cars: Cars,
-    private val retryCount: Int,
-    private val numberGenerate: NumberGenerator,
+    private val generate: RaceIterator<MoveCondition>,
 ) {
     fun start(): RaceResult {
-        return RaceResult(
-            (1..retryCount).map {
-                val moveConditions = MoveConditions(cars.size) { numberGenerate() }
+        val raceRounds =
+            generate.asSequence()
+                .chunked(cars.size)
+                .map { moveConditions ->
+                    moveConditions.forEachIndexed { index, moveCondition ->
+                        cars.moveAt(index, moveCondition)
+                    }
+                    RaceRound(cars.copy())
+                }
+                .toList()
 
-                cars.moveAll(moveConditions)
-                RaceRound(cars.map { it })
-            },
-        )
+        return RaceResult(raceRounds)
     }
 }

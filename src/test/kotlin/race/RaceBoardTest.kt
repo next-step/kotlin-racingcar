@@ -1,7 +1,6 @@
 package race
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -12,26 +11,71 @@ class RaceBoardTest {
     @MethodSource("winnerTestData")
     fun `start 우승자를 알수있다`(
         cars: Cars,
-        retryCount: Int,
+        manualMoveConditionIterator: ManualMoveConditionIterator,
         winners: List<String>,
     ) {
-        val raceBoard = RaceBoard(cars, retryCount) { PositiveNumber(1) }
+        val raceBoard = RaceBoard(cars, manualMoveConditionIterator)
 
         val actual = raceBoard.start()
 
-        assertAll(
-            { assertThat(actual.winners).isEqualTo(winners) },
-            { assertThat(actual.rounds).hasSize(retryCount) },
-        )
+        assertThat(actual.winners).isEqualTo(winners)
     }
 
     companion object {
         @JvmStatic
         fun winnerTestData(): Stream<Arguments> =
             Stream.of(
-                Arguments.of(Cars(listOf(Car("a", 1), Car("b", 2), Car("c", 3))), 1, listOf("c")),
-                Arguments.of(Cars(listOf(Car("a", 1), Car("b", 3), Car("c", 3))), 1, listOf("b", "c")),
-                Arguments.of(Cars(listOf(Car("a", 3), Car("b", 3), Car("c", 3))), 1, listOf("a", "b", "c")),
+                Arguments.of(
+                    Cars(
+                        listOf(
+                            Car("a", 1),
+                            Car("b", 2),
+                            Car("c", 3),
+                        ),
+                    ),
+                    ManualMoveConditionIterator(
+                        listOf(
+                            MoveCondition(PositiveNumber(1)),
+                            MoveCondition(PositiveNumber(2)),
+                            MoveCondition(PositiveNumber(5)),
+                        ),
+                    ),
+                    listOf("c"),
+                ),
+                Arguments.of(
+                    Cars(
+                        listOf(
+                            Car("a", 1),
+                            Car("b", 3),
+                            Car("c", 3),
+                        ),
+                    ),
+                    ManualMoveConditionIterator(
+                        listOf(
+                            MoveCondition(PositiveNumber(1)),
+                            MoveCondition(PositiveNumber(5)),
+                            MoveCondition(PositiveNumber(5)),
+                        ),
+                    ),
+                    listOf("b", "c"),
+                ),
+                Arguments.of(
+                    Cars(
+                        listOf(
+                            Car("a", 1),
+                            Car("b", 1),
+                            Car("c", 1),
+                        ),
+                    ),
+                    ManualMoveConditionIterator(
+                        listOf(
+                            MoveCondition(PositiveNumber(5)),
+                            MoveCondition(PositiveNumber(5)),
+                            MoveCondition(PositiveNumber(5)),
+                        ),
+                    ),
+                    listOf("a", "b", "c"),
+                ),
             )
     }
 }
