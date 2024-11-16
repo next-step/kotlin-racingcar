@@ -1,5 +1,7 @@
 package racingcar.view
 
+import racingcar.model.RacingCar
+
 object ResultView {
     private const val FORWARD_STATUS = "-"
     private const val SHOW_RACING_START_MESSAGE = "실행 결과"
@@ -9,9 +11,9 @@ object ResultView {
         println(SHOW_RACING_START_MESSAGE)
     }
 
-    fun showRacingResult(forwardStatus: MutableMap<Int, Int>) {
-        forwardStatus.forEach { (status) ->
-            println(FORWARD_STATUS.repeat(status))
+    fun showRacingResult(forwardStatus: List<RacingCar>) {
+        forwardStatus.forEach { car ->
+            println(car.toString())
         }
         println()
     }

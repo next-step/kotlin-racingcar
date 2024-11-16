@@ -1,6 +1,7 @@
 package racingcar.service
 
 import racingcar.model.Forward
+import racingcar.model.RacingCar
 import racingcar.model.TryCount
 import racingcar.view.InputView
 import racingcar.view.ResultView
@@ -23,28 +24,18 @@ class RacingCarService {
     fun startRace(
         numberCars: Int,
         tryCount: Int,
-    ): MutableMap<Int, Int> {
+    ): List<RacingCar> {
         ResultView.showRacingStart()
 
-        val raceMap = (1..numberCars).associateWith { 0 }.toMutableMap()
+        val raceCars = (1..numberCars).map { RacingCar(it) }
 
         for (i in 0 until tryCount) {
-            raceMap.keys.forEach { numberCar ->
-                calculateForward(numberCar, raceMap)
+            raceCars.forEach { car ->
+                car.race { forward.pickRandomNumberInRange() >= 4 }
             }
-            ResultView.showRacingResult(raceMap)
+            ResultView.showRacingResult(raceCars)
         }
 
-        return raceMap
-    }
-
-    private fun calculateForward(
-        numberCar: Int,
-        raceMap: MutableMap<Int, Int>,
-    ) {
-        val randomNumber: Int = forward.pickRandomNumberInRange()
-        if (forward.isForward(randomNumber)) {
-            raceMap[numberCar] = raceMap[numberCar]!! + 1
-        }
+        return raceCars
     }
 }
