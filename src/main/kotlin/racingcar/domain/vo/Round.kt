@@ -1,6 +1,7 @@
-package racingcar
+package racingcar.domain.vo
 
-data class Round(private val value: Int) {
+@JvmInline
+value class Round(private val value: Int) {
     init {
         require(value >= ZERO) { VALUE_UNDER_ZERO_MESSAGE }
     }

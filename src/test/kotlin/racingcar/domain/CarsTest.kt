@@ -1,9 +1,12 @@
-package racingcar
+package racingcar.domain
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
+import racingcar.CustomNumberGenerator
+import racingcar.domain.vo.CarName
+import racingcar.domain.vo.CarPosition
 
 class CarsTest : StringSpec({
     "여러 대의 자동차를 가질 수 있다." {

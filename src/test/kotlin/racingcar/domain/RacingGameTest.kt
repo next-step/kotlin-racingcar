@@ -1,10 +1,12 @@
-package racingcar
+package racingcar.domain
 
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
+import racingcar.CustomNumberGenerator
+import racingcar.infrastructure.RandomNumberGenerator
 
 class RacingGameTest : StringSpec({
     "시도 횟수 (Round) 만큼 각 자동차의 전진 / 멈춤 행위를 진행시킬 수 있다." {

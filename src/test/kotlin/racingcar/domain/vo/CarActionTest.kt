@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain.vo
 
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec

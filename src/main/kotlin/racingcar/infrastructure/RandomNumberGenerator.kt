@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.infrastructure
+
+import racingcar.domain.NumberGenerator
 
 class RandomNumberGenerator : NumberGenerator {
     override fun generate(): Int {

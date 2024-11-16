@@ -1,18 +1,12 @@
 package racingcar
 
+import racingcar.controller.RacingGameController
+import racingcar.infrastructure.RandomNumberGenerator
+import racingcar.view.InputView
+import racingcar.view.ResultView
+
 fun main() {
-    val inputView = InputView()
-    val inputCarNames = inputView.inputCarSize()
-    val inputRoundCount = inputView.inputRoundCount()
-
-    val game = RacingGame(inputCarNames, inputRoundCount, RandomNumberGenerator())
-
-    val resultView = ResultView()
-    resultView.printResultMessage()
-    while (!game.isEnd()) {
-        game.play()
-        resultView.printCurrentSituation(game.extractCarNames(), game.extractNowCarPositions())
-    }
-
-    resultView.printWinner(game.getWinnerNames())
+    val racingGameController = RacingGameController(InputView(), ResultView(), RandomNumberGenerator())
+    racingGameController.run()
+    racingGameController.announceWinner()
 }

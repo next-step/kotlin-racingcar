@@ -1,4 +1,6 @@
-package racingcar
+package racingcar.domain.vo
+
+import racingcar.domain.Cars
 
 @JvmInline
 value class GameWinners(val names: List<String>) {

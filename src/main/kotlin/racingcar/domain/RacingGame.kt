@@ -1,4 +1,7 @@
-package racingcar
+package racingcar.domain
+
+import racingcar.domain.vo.GameWinners
+import racingcar.domain.vo.Round
 
 class RacingGame(
     nameInput: String,

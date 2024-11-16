@@ -1,9 +1,11 @@
-package racingcar
+package racingcar.domain
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
+import racingcar.domain.vo.CarName
+import racingcar.domain.vo.CarPosition
 
 class CarTest : StringSpec({
     "위치를 가진다" {

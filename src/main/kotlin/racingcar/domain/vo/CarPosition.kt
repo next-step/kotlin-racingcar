@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain.vo
 
 @JvmInline
 value class CarPosition(val value: Int) : Comparable<CarPosition> {

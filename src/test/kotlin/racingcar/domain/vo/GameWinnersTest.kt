@@ -1,7 +1,9 @@
-package racingcar
+package racingcar.domain.vo
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import racingcar.domain.Car
+import racingcar.domain.Cars
 
 class GameWinnersTest : StringSpec({
     "자동차들(Cars) 중에서 가장 멀리 간 자동차들의 이름을 가진다." {

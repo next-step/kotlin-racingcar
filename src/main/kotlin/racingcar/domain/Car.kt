@@ -1,4 +1,8 @@
-package racingcar
+package racingcar.domain
+
+import racingcar.domain.vo.CarAction
+import racingcar.domain.vo.CarName
+import racingcar.domain.vo.CarPosition
 
 class Car(
     private val name: CarName,
