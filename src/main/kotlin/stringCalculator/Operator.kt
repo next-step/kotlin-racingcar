@@ -1,38 +1,27 @@
 package stringCalculator
 
-enum class Operator(val operator: String) {
-    PLUS("+") {
-        override fun apply(
-            leftValue: Int,
-            rightValue: Int,
-        ) = leftValue + rightValue
-    },
+enum class Operator(
+    val operator: String,
+    val apply: (leftValue: Int, rightValue: Int) -> Int,
+) {
+    PLUS(
+        "+",
+        { leftValue, rightValue -> leftValue + rightValue },
+    ),
+    SUBTRACT(
+        "-",
+        { leftValue, rightValue -> leftValue - rightValue },
+    ),
 
-    SUBTRACT("-") {
-        override fun apply(
-            leftValue: Int,
-            rightValue: Int,
-        ) = leftValue - rightValue
-    },
+    MULTIPLE(
+        "*",
+        { leftValue, rightValue -> leftValue * rightValue },
+    ),
 
-    MULTIPLE("*") {
-        override fun apply(
-            leftValue: Int,
-            rightValue: Int,
-        ) = leftValue * rightValue
-    },
-
-    DIVIDE("/") {
-        override fun apply(
-            leftValue: Int,
-            rightValue: Int,
-        ) = leftValue / rightValue
-    }, ;
-
-    abstract fun apply(
-        leftValue: Int,
-        rightValue: Int,
-    ): Int
+    DIVIDE(
+        "/",
+        { leftValue, rightValue -> leftValue / rightValue },
+    ), ;
 
     companion object {
         fun findByOperator(str: String): Operator {
