@@ -12,6 +12,6 @@ object InputView {
     }
 
     private fun getNumberInput(): Int {
-        return requireNotNull(readln().toIntOrNull()) { throw IllegalArgumentException("숫자를 입력해주세요.") }
+        return requireNotNull(readln().toIntOrNull()) { "숫자를 입력해주세요." }
     }
 }
