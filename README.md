@@ -123,14 +123,9 @@ UI 로직을 InputView, ResultView와 같은 클래스를 추가해 분리한다
     - [X] 우승자는 한명 이상일 수 있다.
 
 ### 4단계 피드백 1차 피드백
-- [ ] MoveCondition 자체를 inferface로 활용
-- [ ] MoveCondition 싱글톤
-- [ ] winners 한번만 계산
-- [ ] 자바로 Decomplie 해보기
-- [ ] 오타 수정 
-- [ ] Car 를 data class -> class 로 변경 
-
-    public final val winners: kotlin.collections.List<kotlin.String> /* compiled code */
-        public final get
-
-    public final val winners: kotlin.collections.List<kotlin.String> /* compiled code */
+- [X] MoveCondition 자체를 inferface로 활용
+- [X] MoveCondition 싱글톤
+- [X] winners 한번만 계산
+- [X] 자바로 Decomplie 해보기
+- [X] 오타 수정 
+- [X] Car 를 data class -> class 로 변경 
