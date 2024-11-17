@@ -14,7 +14,18 @@ class RaceBoardTest {
         manualMoveConditionIterator: ManualMoveConditionIterator,
         winners: List<String>,
     ) {
-        val raceBoard = RaceBoard(cars, manualMoveConditionIterator)
+        val moveConditions =
+            MoveConditions(
+                listOf(
+                    MoveCondition(PositiveNumber(1)),
+                    MoveCondition(PositiveNumber(1)),
+                    MoveCondition(PositiveNumber(1)),
+                    MoveCondition(PositiveNumber(5)),
+                    MoveCondition(PositiveNumber(5)),
+                    MoveCondition(PositiveNumber(5)),
+                ),
+            )
+        val raceBoard = RaceBoard(cars, moveConditions)
 
         val actual = raceBoard.start()
 

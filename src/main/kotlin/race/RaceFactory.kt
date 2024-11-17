@@ -5,7 +5,7 @@ object RaceFactory {
         cars: Cars,
         roundSize: PositiveNumber,
     ): RaceBoard {
-        val iterator = RandomMoveConditionIterator(cars.size * roundSize.value, RandomGenerate())
-        return RaceBoard(cars, iterator)
+        val moveConditions = MoveConditions(cars.size * roundSize.value, RandomGenerate().generate)
+        return RaceBoard(cars, moveConditions)
     }
 }
