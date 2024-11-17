@@ -10,17 +10,18 @@ class RaceResultTest {
             RaceResult(
                 listOf(
                     RaceRound(
+                        // data class RaceRound(val round: List<Pair<String, Int>>)
                         listOf(
-                            Car("a", 1),
-                            Car("b", 2),
-                            Car("c", 3),
+                            "a" to 1,
+                            "b" to 2,
+                            "c" to 3,
                         ),
                     ),
                     RaceRound(
                         listOf(
-                            Car("a", 2),
-                            Car("b", 3),
-                            Car("c", 4),
+                            "a" to 2,
+                            "b" to 3,
+                            "c" to 4,
                         ),
                     ),
                 ),
@@ -36,16 +37,16 @@ class RaceResultTest {
                 listOf(
                     RaceRound(
                         listOf(
-                            Car("a", 1),
-                            Car("b", 2),
-                            Car("c", 3),
+                            "a" to 1,
+                            "b" to 2,
+                            "c" to 3,
                         ),
                     ),
                     RaceRound(
                         listOf(
-                            Car("a", 2),
-                            Car("b", 4),
-                            Car("c", 4),
+                            "a" to 1,
+                            "b" to 5,
+                            "c" to 5,
                         ),
                     ),
                 ),

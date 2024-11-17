@@ -23,6 +23,6 @@ class CarTest {
     fun `movedPosition 으로 위치 확인 가능`() {
         val car = Car("a", 1)
 
-        assertThat(car.position).isEqualTo(PositiveNumber(1))
+        assertThat(car.progress).isEqualTo(1)
     }
 }

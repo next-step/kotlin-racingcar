@@ -1,11 +1,9 @@
 package race
 
-class MoveCondition(private val value: PositiveNumber) {
-    fun shouldMove(): Boolean {
-        return value.isGreaterThanOrEqual(MOVE_CONDITION)
-    }
+object MoveCondition {
+    private val MOVE_CONDITION = PositiveNumber(4)
 
-    companion object {
-        private val MOVE_CONDITION = PositiveNumber(4)
+    fun shouldMove(condition: PositiveNumber): Boolean {
+        return condition.isGreaterThanOrEqual(MOVE_CONDITION)
     }
 }

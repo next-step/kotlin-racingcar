@@ -11,10 +11,11 @@ class RaceBoardTest {
     @MethodSource("winnerTestData")
     fun `start 우승자를 알수있다`(
         cars: Cars,
-        manualMoveConditionIterator: ManualMoveConditionIterator,
+        conditions: List<isMove>,
         winners: List<String>,
     ) {
-        val raceBoard = RaceBoard(cars, manualMoveConditionIterator)
+        val moveConditions = MoveConditions(conditions)
+        val raceBoard = RaceBoard(cars, moveConditions)
 
         val actual = raceBoard.start()
 
@@ -33,13 +34,7 @@ class RaceBoardTest {
                             Car("c", 3),
                         ),
                     ),
-                    ManualMoveConditionIterator(
-                        listOf(
-                            MoveCondition(PositiveNumber(1)),
-                            MoveCondition(PositiveNumber(2)),
-                            MoveCondition(PositiveNumber(5)),
-                        ),
-                    ),
+                    listOf(false, false, true),
                     listOf("c"),
                 ),
                 Arguments.of(
@@ -50,13 +45,7 @@ class RaceBoardTest {
                             Car("c", 3),
                         ),
                     ),
-                    ManualMoveConditionIterator(
-                        listOf(
-                            MoveCondition(PositiveNumber(1)),
-                            MoveCondition(PositiveNumber(5)),
-                            MoveCondition(PositiveNumber(5)),
-                        ),
-                    ),
+                    listOf(false, true, true),
                     listOf("b", "c"),
                 ),
                 Arguments.of(
@@ -67,13 +56,7 @@ class RaceBoardTest {
                             Car("c", 1),
                         ),
                     ),
-                    ManualMoveConditionIterator(
-                        listOf(
-                            MoveCondition(PositiveNumber(5)),
-                            MoveCondition(PositiveNumber(5)),
-                            MoveCondition(PositiveNumber(5)),
-                        ),
-                    ),
+                    listOf(true, true, true),
                     listOf("a", "b", "c"),
                 ),
             )

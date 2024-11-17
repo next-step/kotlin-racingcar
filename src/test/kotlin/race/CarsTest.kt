@@ -9,8 +9,8 @@ class CarsTest {
     fun `moveAt은 주어진 이동 조건에 따라 움직인다`() {
         val cars = Cars(Names("a,b"))
 
-        cars.moveAt(0, MoveCondition(PositiveNumber(4)))
-        cars.moveAt(1, MoveCondition(PositiveNumber(3)))
+        cars.moveAt(0, true)
+        cars.moveAt(1, false)
 
         val expected = listOf(Car("a", 2), Car("b", 1))
         cars.forEachIndexed { index, car ->
