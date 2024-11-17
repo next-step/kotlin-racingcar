@@ -13,6 +13,14 @@ class Cars(private val cars: List<Car>) {
         return cars.map { it.getPositionValue() }
     }
 
+    fun makeCarsMovementTracker(): CarsMovementTracker {
+        return CarsMovementTracker(cars)
+    }
+
+    fun recordPositions(carsMovementTracker: CarsMovementTracker) {
+        cars.forEach { car -> carsMovementTracker.recordCarsPosition(car) }
+    }
+
     companion object {
         fun makeNewCars(nameInput: String): Cars {
             return Cars(

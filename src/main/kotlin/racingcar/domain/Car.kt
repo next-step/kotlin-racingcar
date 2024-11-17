@@ -5,7 +5,7 @@ import racingcar.domain.vo.CarName
 import racingcar.domain.vo.CarPosition
 
 class Car(
-    private val name: CarName,
+    val name: CarName,
     private var position: CarPosition,
 ) {
     fun moveOrStand(numberGenerator: NumberGenerator) {
@@ -20,6 +20,10 @@ class Car(
 
     private fun checkIsMovable(carAction: CarAction): Boolean {
         return carAction.isMove()
+    }
+
+    fun getUnmodifiablePosition(): CarPosition {
+        return CarPosition(position.value)
     }
 
     fun getNameValue(): String {

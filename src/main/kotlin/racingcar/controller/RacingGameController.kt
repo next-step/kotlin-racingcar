@@ -2,28 +2,28 @@ package racingcar.controller
 
 import racingcar.domain.NumberGenerator
 import racingcar.domain.RacingGame
+import racingcar.domain.to.GameHistoryResponse
 import racingcar.view.InputView
-import racingcar.view.ResultView
+import racingcar.view.OutputView
 
 class RacingGameController(
     private val inputView: InputView,
-    private val outputView: ResultView,
+    private val outputView: OutputView,
     private val numberGenerator: NumberGenerator,
 ) {
     private val racingGame: RacingGame
+    private val inputCarNames = inputView.inputCarNames()
+    private val inputRoundCount = inputView.inputRoundCount()
 
     init {
-        val inputCarNames = inputView.inputCarNames()
-        val inputRoundCount = inputView.inputRoundCount()
         racingGame = RacingGame(inputCarNames, inputRoundCount, numberGenerator)
     }
 
     fun run() {
-        outputView.printResultMessage()
         while (!racingGame.isEnd()) {
             racingGame.play()
-            outputView.printCurrentSituation(racingGame.extractCarNames(), racingGame.extractNowCarPositions())
         }
+        outputView.printResult(inputRoundCount, GameHistoryResponse(racingGame.extractRaceHistory()))
     }
 
     fun announceWinner() {
