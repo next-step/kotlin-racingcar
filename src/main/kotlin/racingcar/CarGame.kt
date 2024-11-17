@@ -25,9 +25,7 @@ class CarGame(
 
     fun getResult(): String {
         val sb = StringBuilder()
-        for (car in cars) {
-            sb.appendLine(car.moveCountStr)
-        }
+        cars.forEach { sb.appendLine(it.moveCountStr) }
         return sb.toString()
     }
 
