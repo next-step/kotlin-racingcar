@@ -12,8 +12,8 @@ class GameManagerTest : DescribeSpec({
     beforeTest { sut = GameManager() }
 
     describe("Input from user") {
-        context("when user provides invalid input, should throw exception") {
-            it("test1") {
+        context("when user provides invalid input") {
+            it("number of car input value less than 1, should throw exception") {
                 // given
                 sut.inputView = InputView { "0" }
 
@@ -26,20 +26,20 @@ class GameManagerTest : DescribeSpec({
                 exception.message shouldBe "유효한 값을 입력해주세요" // 예외 메시지 확인
             }
 
-            it("test2") {
+            it("number of car input value is not Int, should throw exception") {
                 // given
                 sut.inputView = InputView { "ABC" }
 
                 // when, then
                 val exception =
                     shouldThrow<IllegalArgumentException> {
-                        sut.start()
+                        sut.getNumberOfCars()
                     }
 
                 exception.message shouldBe "유효한 값을 입력해주세요"
             }
 
-            it("test3") {
+            it("attempt count input value less than 1, should throw exception\"") {
                 // given
                 sut.inputView = InputView { "0" }
 
@@ -52,7 +52,7 @@ class GameManagerTest : DescribeSpec({
                 exception.message shouldBe "유효한 값을 입력해주세요" // 예외 메시지 확인
             }
 
-            it("test4") {
+            it("attempt count input value is not Int, should throw exception") {
                 // given
                 sut.inputView = InputView { "ABC" }
 
