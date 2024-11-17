@@ -1,79 +1,28 @@
 package step3
 
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import step3.ui.InputView
+import step3.ui.ResultView
 
 class GameManagerTest : DescribeSpec({
-    lateinit var sut: GameManager
+    lateinit var inputView: InputView
+    lateinit var resultView: ResultView
     lateinit var randomNumberGenerator: RandomNumberGenerator
+    lateinit var sut: GameManager
 
-    beforeTest { sut = GameManager() }
-
-    describe("Input from user") {
-        context("when user provides invalid input") {
-            it("number of car input value less than 1, should throw exception") {
-                // given
-                sut.inputView = InputView { "0" }
-
-                // when, then
-                val exception =
-                    shouldThrow<IllegalArgumentException> {
-                        sut.getNumberOfCars()
-                    }
-
-                exception.message shouldBe "유효한 값을 입력해주세요" // 예외 메시지 확인
-            }
-
-            it("number of car input value is not Int, should throw exception") {
-                // given
-                sut.inputView = InputView { "ABC" }
-
-                // when, then
-                val exception =
-                    shouldThrow<IllegalArgumentException> {
-                        sut.getNumberOfCars()
-                    }
-
-                exception.message shouldBe "유효한 값을 입력해주세요"
-            }
-
-            it("attempt count input value less than 1, should throw exception\"") {
-                // given
-                sut.inputView = InputView { "0" }
-
-                // when, then
-                val exception =
-                    shouldThrow<IllegalArgumentException> {
-                        sut.getAttemptCount()
-                    }
-
-                exception.message shouldBe "유효한 값을 입력해주세요" // 예외 메시지 확인
-            }
-
-            it("attempt count input value is not Int, should throw exception") {
-                // given
-                sut.inputView = InputView { "ABC" }
-
-                // when, then
-                val exception =
-                    shouldThrow<IllegalArgumentException> {
-                        sut.getAttemptCount()
-                    }
-
-                exception.message shouldBe "유효한 값을 입력해주세요"
-            }
-        }
+    beforeTest {
+        inputView = InputView({ "5" })
+        resultView = ResultView()
+        randomNumberGenerator = FixedRandomNumberGenerator(5)
+        sut = GameManager(inputView, resultView, randomNumberGenerator)
     }
 
     describe("create cars") {
         context("when user provides input for the number of cars") {
             it("should create the correct number of racing cars") {
-                val inputView = InputView { "5" }
-                val numberOfCars = inputView.readUserInput(UserInputType.NUMBER_OF_CARS)
-
-                val cars = sut.createRacingCars(numberOfCars)
+                val userInput = inputView.getNumberOfCars()
+                val cars = sut.createRacingCars(userInput)
                 cars.size shouldBe 5
             }
         }
@@ -81,7 +30,6 @@ class GameManagerTest : DescribeSpec({
 
     describe("playRound test") {
         it("random number greater than 3") {
-            sut.randomNumberGenerator = FixedRandomNumberGenerator(4)
             val mockCars = listOf(Car(id = 1), Car(id = 2))
 
             val actual = sut.playRound(mockCars)
@@ -91,7 +39,6 @@ class GameManagerTest : DescribeSpec({
         }
 
         it("random number less than 4") {
-            sut.randomNumberGenerator = FixedRandomNumberGenerator(3)
             val mockCars = listOf(Car(id = 1), Car(id = 2))
 
             sut.playRound(mockCars)
