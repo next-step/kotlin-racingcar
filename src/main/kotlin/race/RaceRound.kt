@@ -1,3 +1,6 @@
 package race
 
-data class RaceRound(val positions: List<Car>)
+typealias CarName = String
+typealias MoveCount = Int
+
+data class RaceRound(val round: List<Pair<CarName, MoveCount>>)

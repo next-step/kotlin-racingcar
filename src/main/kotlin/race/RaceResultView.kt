@@ -18,8 +18,8 @@ class RaceResultView {
     }
 
     private fun progressPrint(it: RaceRound) {
-        it.positions.forEach {
-            println("${it.displayName} : ${PROGRESS_UNIT.repeat(it.progress)}")
+        it.round.forEach {
+            println("${it.first}: ${PROGRESS_UNIT.repeat(it.second)}")
         }
     }
 }
