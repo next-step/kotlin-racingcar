@@ -1,8 +1,5 @@
 package race
 
-class MoveConditions(val values: List<MoveCondition>) {
-    val size: Int
-        get() = values.size
-
+data class MoveConditions(private val values: List<MoveCondition>) : List<MoveCondition> by values {
     constructor(count: Int, generator: NumberGenerator) : this(List(count) { MoveCondition(generator()) })
 }
