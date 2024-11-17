@@ -1,3 +1,5 @@
+package step3
+
 import kotlin.random.Random
 
 class SingleDigitRandomNumberGenerator : RandomNumberGenerator {

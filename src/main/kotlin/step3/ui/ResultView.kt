@@ -1,6 +1,6 @@
-package ui
+package step3.ui
 
-import Car
+import step3.Car
 
 class ResultView {
     fun printCurrentPosition(racingCars: List<Car>) {

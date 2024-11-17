@@ -1,7 +1,9 @@
-import UserInputType.ATTEMPT_COUNT
-import UserInputType.NUMBER_OF_CARS
-import ui.InputView
-import ui.ResultView
+package step3
+
+import step3.UserInputType.ATTEMPT_COUNT
+import step3.UserInputType.NUMBER_OF_CARS
+import step3.ui.InputView
+import step3.ui.ResultView
 
 class GameManager {
     lateinit var inputView: InputView

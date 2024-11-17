@@ -1,7 +1,7 @@
-package ui
+package step3.ui
 
-import UserInputType
-import util.validInputToInt
+import step3.UserInputType
+import step3.util.validInputToInt
 
 class InputView(private val inputProvider: () -> String) {
     fun readUserInput(userInputType: UserInputType): Int {

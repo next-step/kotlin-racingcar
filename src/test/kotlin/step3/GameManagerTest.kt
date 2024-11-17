@@ -1,7 +1,9 @@
+package step3
+
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import ui.InputView
+import step3.ui.InputView
 
 class GameManagerTest : DescribeSpec({
     lateinit var sut: GameManager

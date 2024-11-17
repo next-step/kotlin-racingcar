@@ -1,8 +1,10 @@
+package step3
+
 import exception.NotImplementedTestException
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.assertThrows
-import util.validInputToInt
+import step3.util.validInputToInt
 
 class UserInputTest : DescribeSpec({
 

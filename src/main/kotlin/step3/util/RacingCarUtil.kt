@@ -1,4 +1,4 @@
-package util
+package step3.util
 
 fun String?.validInputToInt(): Int {
     return this?.toIntOrNull()

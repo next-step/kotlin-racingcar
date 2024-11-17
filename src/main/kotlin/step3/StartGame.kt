@@ -1,5 +1,7 @@
-import ui.InputView
-import ui.ResultView
+package step3
+
+import step3.ui.InputView
+import step3.ui.ResultView
 
 fun main() {
     val gameManager = GameManager()

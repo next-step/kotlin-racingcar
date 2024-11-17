@@ -1,3 +1,5 @@
+package step2
+
 class Calculator {
     fun execute(input: String?): Int {
         require(!input.isNullOrBlank()) { "Input must have a value" }
