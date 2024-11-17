@@ -17,7 +17,7 @@ class CarTest : StringSpec({
             row(100),
         ) { value ->
             val car = Car(CarName("name"), CarPosition(value))
-            car.getPositionValue() shouldBe value
+            car.getUnmodifiablePosition() shouldBe CarPosition(value)
         }
     }
 
@@ -31,7 +31,7 @@ class CarTest : StringSpec({
         ) { beforeValue, number, afterValue ->
             val car = Car(CarName("name"), CarPosition(beforeValue))
             car.moveOrStand { number }
-            car.getPositionValue() shouldBe afterValue
+            car.getUnmodifiablePosition() shouldBe CarPosition(afterValue)
         }
     }
 })

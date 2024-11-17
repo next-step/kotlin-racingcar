@@ -4,8 +4,11 @@ import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
+import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.kotest.matchers.shouldBe
 import racingcar.CustomNumberGenerator
+import racingcar.domain.vo.CarName
+import racingcar.domain.vo.CarPosition
 import racingcar.infrastructure.RandomNumberGenerator
 
 class RacingGameTest : StringSpec({
@@ -19,31 +22,6 @@ class RacingGameTest : StringSpec({
         }
     }
 
-    "게임을 진행 중인 자동차들의 이름을 확인할 수 있다." {
-        val racingGame = RacingGame("good,bad,dino", 2, RandomNumberGenerator())
-        racingGame.extractCarNames() shouldBe listOf("good", "bad", "dino")
-    }
-
-    "게임의 상황를 확인할 수 있다." {
-        val racingGame =
-            RacingGame(
-                "good,bad,dino",
-                2,
-                CustomNumberGenerator(mutableListOf(4, 0, 0, 7, 6, 1)),
-            )
-
-        val expectedResults =
-            listOf(
-                listOf(1, 0, 0),
-                listOf(2, 1, 0),
-            )
-
-        expectedResults.forEach { expected ->
-            racingGame.play()
-            racingGame.extractNowCarPositions() shouldBe expected
-        }
-    }
-
     "게임의 우승자에 대한 정보를 반환할 수 있다." {
         forAll(
             row(
@@ -53,7 +31,7 @@ class RacingGameTest : StringSpec({
                     CustomNumberGenerator(mutableListOf(4, 0, 0, 7, 6, 1)),
                 ),
                 2,
-                listOf("good"),
+                Cars(listOf(Car(CarName("good"), CarPosition(2)))),
             ),
             row(
                 RacingGame(
@@ -62,11 +40,16 @@ class RacingGameTest : StringSpec({
                     CustomNumberGenerator(mutableListOf(4, 1, 3, 2, 3, 7)),
                 ),
                 2,
-                listOf("good", "dino"),
+                Cars(
+                    listOf(
+                        Car(CarName("good"), CarPosition(2)),
+                        Car(CarName("dino"), CarPosition(2)),
+                    ),
+                ),
             ),
         ) { game, repeatCount, winner ->
             repeat(repeatCount) { game.play() }
-            game.getWinnerNames() shouldBe winner
+            game.getWinners() shouldBeEqualToComparingFields winner
         }
     }
 })

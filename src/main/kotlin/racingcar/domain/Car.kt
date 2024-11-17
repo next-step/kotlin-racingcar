@@ -22,6 +22,14 @@ class Car(
         return carAction.isMove()
     }
 
+    fun isSamePosition(otherCar: Car): Boolean {
+        return position == otherCar.position
+    }
+
+    fun comparePosition(otherCar: Car): Int {
+        return position.compareTo(otherCar.position)
+    }
+
     fun getUnmodifiablePosition(): CarPosition {
         return CarPosition(position.value)
     }

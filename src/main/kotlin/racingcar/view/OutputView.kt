@@ -1,6 +1,7 @@
 package racingcar.view
 
 import racingcar.domain.to.GameHistoryResponse
+import racingcar.domain.to.GameWinnerResponse
 
 class OutputView {
     fun printResult(
@@ -20,11 +21,12 @@ class OutputView {
     ) {
         for ((carName, carPositions) in gameHistoryResponse.to) {
             print("$carName : ")
-            println("-".repeat(carPositions[round - 1]))
+            println("-".repeat(carPositions[round]))
         }
     }
 
-    fun printWinner(winner: List<String>) {
-        println("${winner.joinToString(", ")}가 최종 우승했습니다.")
+    fun printWinner(gameWinnerResponse: GameWinnerResponse) {
+        val winnerNames = gameWinnerResponse.to
+        println("${winnerNames.joinToString(", ")}가 최종 우승했습니다.")
     }
 }
