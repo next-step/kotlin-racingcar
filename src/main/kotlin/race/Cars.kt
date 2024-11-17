@@ -8,17 +8,17 @@ data class Cars(val values: List<Car>) : List<Car> by values {
     constructor(names: Names) : this(names.map { Car(it, PositiveNumber(1)) })
 
     fun moveAt(
-        indexedValue: Int,
-        next: MoveCondition,
+        index: Int,
+        condition: isMove,
     ) {
-        move(values[indexedValue], next)
+        move(values[index], condition)
     }
 
     private fun move(
         moveCar: Car,
-        moveCondition: MoveCondition,
+        isMove: isMove,
     ) {
-        if (moveCondition.shouldMove()) {
+        if (isMove) {
             moveCar.move()
         }
     }
