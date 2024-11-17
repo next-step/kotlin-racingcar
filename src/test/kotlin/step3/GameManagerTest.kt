@@ -84,10 +84,10 @@ class GameManagerTest : DescribeSpec({
             sut.randomNumberGenerator = FixedRandomNumberGenerator(4)
             val mockCars = listOf(Car(id = 1), Car(id = 2))
 
-            sut.playRound(mockCars)
+            val actual = sut.playRound(mockCars)
 
-            mockCars[0].position shouldBe 1
-            mockCars[1].position shouldBe 1
+            actual[0].position shouldBe 1
+            actual[1].position shouldBe 1
         }
 
         it("random number less than 4") {
@@ -106,10 +106,8 @@ class GameManagerTest : DescribeSpec({
             it("should to forward") {
                 val car = Car(id = 1)
                 randomNumberGenerator = FixedRandomNumberGenerator(4)
-
-                sut.processCarMovement(car, randomNumberGenerator.generate())
-
-                car.position shouldBe 1
+                val movedCar = sut.processCarMovement(car, randomNumberGenerator.generate())
+                movedCar.position shouldBe 1
             }
         }
 
@@ -117,10 +115,8 @@ class GameManagerTest : DescribeSpec({
             it("should to forward") {
                 val car = Car(id = 1)
                 randomNumberGenerator = FixedRandomNumberGenerator(5)
-
-                sut.processCarMovement(car, randomNumberGenerator.generate())
-
-                car.position shouldBe 1
+                val movedCar = sut.processCarMovement(car, randomNumberGenerator.generate())
+                movedCar.position shouldBe 1
             }
         }
 
@@ -128,37 +124,35 @@ class GameManagerTest : DescribeSpec({
             it("should not move to forward") {
                 val car = Car(id = 1)
                 randomNumberGenerator = FixedRandomNumberGenerator(3)
-
-                sut.processCarMovement(car, randomNumberGenerator.generate())
-
-                car.position shouldBe 0
+                val movedCar = sut.processCarMovement(car, randomNumberGenerator.generate())
+                movedCar.position shouldBe 0
             }
         }
     }
 
     describe("isMovable test") {
         context("less than 4") {
-            it("should it false1") {
+            it("parameter is negative value, should be false") {
                 sut.isMovable(-1) shouldBe false
             }
 
-            it("should it false2") {
+            it("parameter is zero, should be false") {
                 sut.isMovable(0) shouldBe false
             }
 
-            it("should it false3") {
+            it("parameter is 3, should be false") {
                 sut.isMovable(3) shouldBe false
             }
         }
 
         context("greater than 3") {
-            it("should be true1") {
+            it("parameter is 4, should be thue") {
                 sut.isMovable(4) shouldBe true
             }
-            it("should be true1") {
+            it("parameter is 5, should be thue") {
                 sut.isMovable(5) shouldBe true
             }
-            it("should be true1") {
+            it("parameter is 999, should be thue") {
                 sut.isMovable(999) shouldBe true
             }
         }
@@ -167,12 +161,10 @@ class GameManagerTest : DescribeSpec({
     describe("moveForward") {
         it("should to forward car position") {
             val car = Car(id = 2)
-
-            sut.moveForward(car)
-            sut.moveForward(car)
-            sut.moveForward(car)
-
-            car.position shouldBe 3
+            val firstMove = sut.moveForward(car)
+            val secondMove = sut.moveForward(firstMove)
+            val actual = sut.moveForward(secondMove)
+            actual.position shouldBe 3
         }
     }
 })
