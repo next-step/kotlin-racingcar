@@ -3,6 +3,8 @@ package step3.ui
 import step3.Car
 
 class ResultView {
+    fun printRaceResults(racingCars: List<Car>) = printCurrentPosition(racingCars)
+
     fun printCurrentPosition(racingCars: List<Car>) {
         racingCars.forEach { car ->
             println(positionToString(car.position))
