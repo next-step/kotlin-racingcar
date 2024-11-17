@@ -2,34 +2,29 @@ package racingcar
 
 class CarGame(
     carCount: Int,
-    repeatCount: Int,
+    totalPhase: Int,
+    private val numberGenerator: NumberGenerator,
 ) {
-    private var currentPhase: Int
-    private val cars: List<Car>
-    private val numberGenerator: RandomNumberGenerator
+    val cars: List<Car>
+    var currentPhase: Int
+        private set
 
     init {
         validateCount(carCount)
-        validateCount(repeatCount)
-        currentPhase = repeatCount
-        cars = MutableList(carCount) { Car() }
-        numberGenerator = RandomNumberGenerator(RANDOM_FROM, RANDOM_UNTIL)
+        validateCount(totalPhase)
+        currentPhase = totalPhase
+        cars = List(carCount) { Car() }
     }
 
-    fun playGame() {
-        currentPhase -= SINGLE_PHASE
-        for (car in cars) {
-            car.move(numberGenerator.generate())
+    fun playSinglePhase() {
+        check(isPlaying()) {
+            "이미 종료된 게임입니다."
         }
+        currentPhase -= SINGLE_PHASE
+        cars.forEach { it.move(numberGenerator.generate()) }
     }
 
-    fun getResult(): String {
-        val sb = StringBuilder()
-        cars.forEach { sb.appendLine(it.moveCountStr) }
-        return sb.toString()
-    }
-
-    fun isRunning(): Boolean {
+    fun isPlaying(): Boolean {
         return currentPhase > 0
     }
 
@@ -38,8 +33,6 @@ class CarGame(
     }
 
     companion object {
-        const val RANDOM_FROM = 0
-        const val RANDOM_UNTIL = 10
         const val SINGLE_PHASE = 1
     }
 }
