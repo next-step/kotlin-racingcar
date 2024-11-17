@@ -17,8 +17,8 @@ class GameManager {
         val attemptCount = getAttemptCount()
 
         repeat(attemptCount) {
-            playRound(racingCars)
-            printRaceResults(racingCars)
+            val carStatus = playRound(racingCars)
+            printRaceResults(carStatus)
         }
     }
 
@@ -34,8 +34,8 @@ class GameManager {
         return List(numberOfCar) { Car(id = it + 1) }
     }
 
-    fun playRound(racingCars: List<Car>) {
-        racingCars.forEach { car ->
+    fun playRound(racingCars: List<Car>): List<Car> {
+        return racingCars.map { car ->
             val randomNumber = randomNumberGenerator.generate()
             processCarMovement(car, randomNumber)
         }
@@ -44,15 +44,16 @@ class GameManager {
     fun processCarMovement(
         car: Car,
         randomNumber: Int,
-    ) {
+    ): Car {
         if (isMovable(randomNumber)) {
-            moveForward(car)
+            return moveForward(car)
         }
+        return car
     }
 
     fun isMovable(randomNumber: Int): Boolean = randomNumber >= 4
 
-    fun moveForward(car: Car) = car.run { forward() }
+    fun moveForward(car: Car) = car.copy(id = car.id, position = car.position + 1)
 
     fun printRaceResults(racingCars: List<Car>) = resultView.printCurrentPosition(racingCars)
 }
