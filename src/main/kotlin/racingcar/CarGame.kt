@@ -4,12 +4,6 @@ class CarGame(
     carCount: Int,
     repeatCount: Int,
 ) {
-    companion object {
-        const val RANDOM_FROM = 0
-        const val RANDOM_UNTIL = 10
-        const val SINGLE_PHASE = 1
-    }
-
     private var currentPhase: Int
     private val cars: List<Car>
     private val numberGenerator: RandomNumberGenerator
@@ -43,5 +37,11 @@ class CarGame(
 
     private fun validateCount(count: Int) {
         require(count > 0) { "횟수는 0보다 커야합니다." }
+    }
+
+    companion object {
+        const val RANDOM_FROM = 0
+        const val RANDOM_UNTIL = 10
+        const val SINGLE_PHASE = 1
     }
 }
