@@ -3,12 +3,16 @@ package racingcar
 import java.util.Random
 
 class RandomNumberGenerator(
-    private val from: Int,
-    private val until: Int,
-) {
+    val from: Int = 0,
+    val until: Int = 0,
+) : NumberGenerator {
     private val random: Random = Random()
 
-    fun generateRandomNumber(): Int {
-        return random.nextInt(from, until)
+    override fun generate(): Int {
+        return if (from < until) {
+            random.nextInt(from, until)
+        } else {
+            random.nextInt()
+        }
     }
 }

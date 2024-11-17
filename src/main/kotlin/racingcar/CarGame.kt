@@ -19,7 +19,7 @@ class CarGame(
     fun playGame() {
         currentPhase -= SINGLE_PHASE
         for (car in cars) {
-            car.move(numberGenerator.generateRandomNumber())
+            car.move(numberGenerator.generate())
         }
     }
 
