@@ -1,9 +1,14 @@
 package racingcar
 
 class Car(
-    var moveCount: Int = 0,
-    var moveCountStr: String = "",
+    moveCount: Int = 0,
+    moveCountStr: String = "",
 ) {
+    var moveCount: Int = moveCount
+        private set
+    var moveCountStr: String = moveCountStr
+        private set
+
     fun move(number: Int) {
         if (number >= MOVE_MIN_CONDITION) {
             this.moveCount += MOVE_DISTANCE
