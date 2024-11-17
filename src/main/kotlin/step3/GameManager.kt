@@ -10,24 +10,26 @@ class GameManager(
     private val randomNumberGenerator: RandomNumberGenerator,
 ) {
     fun start() {
-        val attemptCount = inputView.readUserInput(ATTEMPT_COUNT)
         val numberOfCar = inputView.getNumberOfCars()
         val racingCars = createRacingCars(numberOfCar)
+        val attemptCount = inputView.readUserInput(ATTEMPT_COUNT)
 
         repeat(attemptCount) {
-            val carStatus = playRound(racingCars)
-            resultView.printRaceResults(carStatus)
+            playRound(racingCars) // 자동차 상태를 업데이트
+            resultView.printRaceResults(racingCars) // 필요시 결과 출력
         }
     }
 
-    fun createRacingCars(numberOfCar: Int): List<Car> {
-        return List(numberOfCar) { Car(id = it + 1) }
+    fun createRacingCars(numberOfCar: Int): MutableList<Car> {
+        return MutableList(numberOfCar) { Car(id = it + 1) }
     }
 
-    fun playRound(racingCars: List<Car>): List<Car> {
-        return racingCars.map { car ->
+    fun playRound(racingCars: MutableList<Car>) {
+        racingCars.forEachIndexed { index, car ->
             val randomNumber = randomNumberGenerator.generate()
-            processCarMovement(car, randomNumber)
+            if (isMovable(randomNumber)) {
+                racingCars[index] = moveForward(car)
+            }
         }
     }
 
