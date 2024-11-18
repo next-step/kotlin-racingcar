@@ -1,10 +1,15 @@
 package racingcar
 
 class Car(
+    val name: String,
     moveCount: Int = 0,
 ) {
     var moveCount: Int = moveCount
         private set
+
+    init {
+        require(validateNameLength(name)) { "${name}은 최대 길이(5자)를 초과합니다." }
+    }
 
     fun move(number: Int) {
         if (number >= MOVE_MIN_CONDITION) {
@@ -12,8 +17,13 @@ class Car(
         }
     }
 
+    private fun validateNameLength(name: String): Boolean {
+        return name.isNotBlank() && name.length <= NAME_LIMIT_LENGTH
+    }
+
     companion object {
         private const val MOVE_MIN_CONDITION = 4
         private const val MOVE_DISTANCE = 1
+        private const val NAME_LIMIT_LENGTH = 5
     }
 }
