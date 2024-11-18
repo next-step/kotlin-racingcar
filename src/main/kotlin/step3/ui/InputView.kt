@@ -6,12 +6,16 @@ import step3.util.validInputToInt
 
 class InputView(private val inputProvider: () -> String) {
     fun getNumberOfCars(): Int {
-        return readUserInput(NUMBER_OF_CARS)
+        val userInput = readUserInput(NUMBER_OF_CARS)
+        return validateUserInput(userInput)
     }
 
-    fun readUserInput(userInputType: UserInputType): Int {
+    fun readUserInput(userInputType: UserInputType): String? {
         println(userInputType.message)
-        val inputValue = inputProvider()
-        return inputValue.validInputToInt()
+        return inputProvider()
+    }
+
+    fun validateUserInput(input: String?): Int {
+        return input.validInputToInt()
     }
 }
