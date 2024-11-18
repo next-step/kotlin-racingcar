@@ -1,8 +1,10 @@
 package race
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertAll
 
 class CarsTest {
     @Test
@@ -26,8 +28,13 @@ class CarsTest {
 
     @Test
     fun `Cars는 최소 1대 이상 입력해야 한다`() {
-        assertThatIllegalArgumentException().isThrownBy {
-            Cars(Names(""))
-        }
+        assertAll(
+            { assertThatIllegalArgumentException().isThrownBy { Cars(Names("")) } },
+            {
+                assertThatExceptionOfType(
+                    IllegalArgumentException::class.java,
+                ).isThrownBy { Cars(listOf()) }.withMessage("최소 1대 이상 입력 해주세요. 입력 값: []")
+            },
+        )
     }
 }
