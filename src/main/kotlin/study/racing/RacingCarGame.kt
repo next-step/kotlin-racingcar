@@ -1,18 +1,14 @@
 package study.racing
 
-import kotlin.random.Random
-
 /**
  * @author 이상준
  */
 class RacingCarGame(
     private val gameSettings: GameSettings,
 ) {
-    private val random = Random
-    private var carList = mutableListOf<Car>()
+    private val carList = mutableListOf<Car>()
 
     private fun init() {
-        this.carList = mutableListOf()
         repeat(gameSettings.carCount) {
             this.carList.add(Car())
         }
@@ -20,7 +16,7 @@ class RacingCarGame(
 
     private fun playGame() {
         carList.forEach {
-            it.position += move()
+            it.move()
             gameMessageView(it)
         }
     }
@@ -34,12 +30,8 @@ class RacingCarGame(
         }
     }
 
-    private fun move(): Int {
-        return if (random.nextInt(GameRule.MIN_RANDOM_POSITION, GameRule.MAX_RANDOM_POSITION) > 3) 1 else 0
-    }
-
     private fun gameMessageView(car: Car) {
-        repeat(car.position) {
+        repeat(car.getPosition()) {
             print(GameRule.RACING_CAR_MOVE_TEXT)
         }
         println()
