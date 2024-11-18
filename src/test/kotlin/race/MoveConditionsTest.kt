@@ -1,11 +1,11 @@
 package race
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertDoesNotThrow
 
 class MoveConditionsTest {
     @Test
     fun `MoveConditions 은 갯수만큼 생성한다`() {
-        assertDoesNotThrow { MoveConditions(3) { PositiveNumber(1) } }
+        assertThat(MoveConditions(2) { PositiveNumber.ONE }.size).isEqualTo(2)
     }
 }

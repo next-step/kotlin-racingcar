@@ -14,4 +14,8 @@ data class PositiveNumber(val value: Int) {
     fun isGreaterThanOrEqual(other: PositiveNumber): Boolean {
         return value >= other.value
     }
+
+    companion object {
+        val ONE: PositiveNumber = PositiveNumber(1)
+    }
 }
