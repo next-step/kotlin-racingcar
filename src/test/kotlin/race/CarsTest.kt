@@ -12,10 +12,8 @@ class CarsTest {
         cars.moveAt(0, true)
         cars.moveAt(1, false)
 
-        val expected = listOf(Car("a", 2), Car("b", 1))
-        cars.forEachIndexed { index, car ->
-            assertThat(car).isEqualTo(expected[index])
-        }
+        val expected = Cars(listOf(Car("a", 2), Car("b", 1)))
+        assertThat(cars).isEqualTo(expected)
     }
 
     @Test

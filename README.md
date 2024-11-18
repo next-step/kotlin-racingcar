@@ -131,6 +131,6 @@ UI 로직을 InputView, ResultView와 같은 클래스를 추가해 분리한다
 - [X] Car 를 data class -> class 로 변경 
 
 ### 4단계 피드백 2차 피드백
-- [ ] Cars 예외 메시지 입력과 전달
+- [X] Cars 예외 메시지 입력과 전달
 - [ ] 자주사용하는 상수 이름을 지정하여 객체화
 - [ ] 객체간의 비교 테스트 개선 (CarsTest.kt)
