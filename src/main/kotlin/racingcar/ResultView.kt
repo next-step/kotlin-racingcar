@@ -15,13 +15,20 @@ object ResultView {
     ) {
         val sb = StringBuilder()
         for (phase in 0 until totalPhase) {
-            scoreBoard.board
-                .forEach { (name, record) ->
-                    sb.appendLine("$name : ${MOVE_SYMBOL.repeat(record[phase])}")
-                }
+            convertPhaseResultToSymbol(scoreBoard, sb, phase)
             sb.appendLine()
         }
         println(sb)
         println("${scoreBoard.winners.joinToString(SEPARATOR)}가 최종 우승했습니다.")
+    }
+
+    private fun convertPhaseResultToSymbol(
+        scoreBoard: ScoreBoard,
+        sb: StringBuilder,
+        phase: Int,
+    ) {
+        scoreBoard.board.forEach { (name, record) ->
+            sb.appendLine("$name : ${MOVE_SYMBOL.repeat(record[phase])}")
+        }
     }
 }

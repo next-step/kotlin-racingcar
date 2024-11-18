@@ -23,7 +23,6 @@ class ScoreBoard(cars: List<Car>) {
     fun recordWinners() {
         val mostMovedDistance = board.values.maxOf { it.max() }
         winners =
-            board.filter { it.value.max() == mostMovedDistance }
-                .keys.toList().sorted()
+            board.filter { it.value.max() == mostMovedDistance }.keys.toList().sorted()
     }
 }
