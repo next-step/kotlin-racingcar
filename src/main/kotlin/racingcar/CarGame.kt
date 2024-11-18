@@ -1,19 +1,29 @@
 package racingcar
 
 class CarGame(
-    carCount: Int,
+    carNames: List<String>,
     totalPhase: Int,
     private val numberGenerator: NumberGenerator,
 ) {
+    val scoreBoard: ScoreBoard
     val cars: List<Car>
     var currentPhase: Int
         private set
 
     init {
-        validateCount(carCount)
+        validateCount(carNames.size)
         validateCount(totalPhase)
         currentPhase = totalPhase
-        cars = List(carCount) { Car() }
+        cars = carNames.map { Car(it) }
+        scoreBoard = ScoreBoard(cars)
+    }
+
+    fun startRace() {
+        while (isPlaying()) {
+            playSinglePhase()
+            scoreBoard.recordPhaseResult(cars)
+        }
+        scoreBoard.recordWinners()
     }
 
     fun playSinglePhase() {
@@ -24,12 +34,12 @@ class CarGame(
         cars.forEach { it.move(numberGenerator.generate()) }
     }
 
-    fun isPlaying(): Boolean {
+    private fun isPlaying(): Boolean {
         return currentPhase > 0
     }
 
     private fun validateCount(count: Int) {
-        require(count > 0) { "횟수는 0보다 커야합니다." }
+        require(count > 0) { "입력된 횟수: ${count}는 0보다 커야 합니다." }
     }
 
     companion object {

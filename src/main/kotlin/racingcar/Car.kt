@@ -8,7 +8,7 @@ class Car(
         private set
 
     init {
-        require(validateNameLength(name)) { "${name}은 최대 길이(5자)를 초과합니다." }
+        require(validateNameLength(name)) { "자동차 이름 ${name}은 최대 길이(5자)를 초과합니다." }
     }
 
     fun move(number: Int) {
