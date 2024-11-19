@@ -1,21 +1,22 @@
 package step3.ui
 
 import step3.UserInputType
+import step3.UserInputType.ATTEMPT_COUNT
 import step3.UserInputType.NUMBER_OF_CARS
 import step3.util.validInputToInt
 
 class InputView(private val inputProvider: () -> String) {
     fun getNumberOfCars(): Int {
-        val userInput = readUserInput(NUMBER_OF_CARS)
-        return validateUserInput(userInput)
+        return getUserInputOrThrow(NUMBER_OF_CARS)
     }
 
-    fun readUserInput(userInputType: UserInputType): String? {
+    fun getAttemptCount(): Int {
+        return getUserInputOrThrow(ATTEMPT_COUNT)
+    }
+
+    private fun getUserInputOrThrow(userInputType: UserInputType): Int {
         println(userInputType.message)
-        return inputProvider()
-    }
-
-    fun validateUserInput(input: String?): Int {
+        val input = inputProvider()
         return input.validInputToInt()
     }
 }
