@@ -43,31 +43,50 @@ class CalculateTest : DescribeSpec({
                     sut.parseOperator(operator)
                 }
 
-            ex.message shouldBe "invalid operator: ++"
+            ex.message shouldBe "Invalid operator: ++"
         }
 
         it("parse to ADD") {
             val operator = "+"
             val actual = sut.parseOperator(operator)
-            actual.shouldBe(OperatorType.ADD)
+            actual.shouldBe(Operator.ADD)
         }
 
         it("parse to SUBTRACT") {
             val operator = "-"
             val actual = sut.parseOperator(operator)
-            actual.shouldBe(OperatorType.SUBTRACT)
+            actual.shouldBe(Operator.SUBTRACT)
         }
 
         it("parse to MULTIPLY") {
             val operator = "*"
             val actual = sut.parseOperator(operator)
-            actual.shouldBe(OperatorType.MULTIPLY)
+            actual.shouldBe(Operator.MULTIPLY)
         }
 
         it("parse to DIVIDE") {
             val operator = "/"
             val actual = sut.parseOperator(operator)
-            actual.shouldBe(OperatorType.DIVIDE)
+            actual.shouldBe(Operator.DIVIDE)
+        }
+    }
+
+    describe("parseNumber Test") {
+        context("when input can parse to Double") {
+            it("should be parse String to Double") {
+                val input = "1.0"
+                val actual = sut.parseNumber(input)
+                actual shouldBe 1.0
+            }
+        }
+
+        context("when input can not parse to Double") {
+            it("should be throw an exception") {
+                val input = "abc"
+                assertThrows<IllegalArgumentException> {
+                    sut.parseNumber(input)
+                }
+            }
         }
     }
 })
