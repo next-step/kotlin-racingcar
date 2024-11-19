@@ -1,6 +1,6 @@
-package step2
+package calculator
 
-import step2.util.getValidateInputOrThrow
+import calculator.util.getValidateInputOrThrow
 
 class CalculatorManger {
     fun start(input: String?): Double {

@@ -1,4 +1,4 @@
-package step3
+package racingcars
 
 enum class UserInputType(val message: String) {
     NUMBER_OF_CARS("자동차 대수는 몇 대인가요?"),

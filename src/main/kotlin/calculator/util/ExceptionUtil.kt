@@ -1,6 +1,6 @@
-package step2.util
+package calculator.util
 
-import step2.Operator
+import calculator.Operator
 
 fun String?.getValidateInputOrThrow(): String {
     return this?.takeIf { it.isNotBlank() } ?: throw IllegalArgumentException("Input must have a value")

@@ -1,7 +1,7 @@
-package step3
+package racingcars
 
-import step3.ui.InputView
-import step3.ui.ResultView
+import racingcars.ui.InputView
+import racingcars.ui.ResultView
 
 fun main() {
     val inputView = InputView { readln() }

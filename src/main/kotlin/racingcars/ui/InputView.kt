@@ -1,9 +1,9 @@
-package step3.ui
+package racingcars.ui
 
-import step3.UserInputType
-import step3.UserInputType.ATTEMPT_COUNT
-import step3.UserInputType.NUMBER_OF_CARS
-import step3.util.validInputToInt
+import racingcars.UserInputType
+import racingcars.UserInputType.ATTEMPT_COUNT
+import racingcars.UserInputType.NUMBER_OF_CARS
+import racingcars.util.validInputToInt
 
 class InputView(private val inputProvider: () -> String) {
     fun getNumberOfCars(): Int {

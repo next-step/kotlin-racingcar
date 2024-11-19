@@ -1,4 +1,4 @@
-package step3
+package racingcars
 
 interface RandomNumberGenerator {
     fun generate(): Int

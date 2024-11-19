@@ -1,7 +1,7 @@
-package step2
+package calculator
 
-import step2.util.toDoubleOrThrow
-import step2.util.toOperatorOrThrow
+import calculator.util.toDoubleOrThrow
+import calculator.util.toOperatorOrThrow
 
 class Calculator(var number: Double) {
     fun execute(splitFormula: List<String>): Double {

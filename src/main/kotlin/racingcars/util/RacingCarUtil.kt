@@ -1,4 +1,4 @@
-package step3.util
+package racingcars.util
 
 private const val MINIMUM_INPUT_NUMBER = 1
 

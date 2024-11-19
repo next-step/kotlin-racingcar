@@ -1,4 +1,4 @@
-package step3.ui
+package racingcars.ui
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec

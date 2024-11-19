@@ -1,4 +1,4 @@
-package step3
+package racingcars
 
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe

@@ -1,10 +1,10 @@
-package step3
+package racingcars
 
 import exception.NotImplementedTestException
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.assertThrows
-import step3.util.validInputToInt
+import racingcars.util.validInputToInt
 
 class UserInputTest : DescribeSpec({
 

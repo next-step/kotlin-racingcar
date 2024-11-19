@@ -1,4 +1,4 @@
-package step3
+package racingcars
 
 data class Car(
     val id: Int,

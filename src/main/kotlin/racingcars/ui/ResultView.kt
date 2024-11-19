@@ -1,6 +1,6 @@
-package step3.ui
+package racingcars.ui
 
-import step3.Car
+import racingcars.Car
 
 class ResultView {
     fun printRaceResults(racingCars: List<Car>) = printCurrentPosition(racingCars)
