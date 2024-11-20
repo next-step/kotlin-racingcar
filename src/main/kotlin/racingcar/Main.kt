@@ -9,6 +9,6 @@ fun main() {
     val carGame = CarGame(carNames, gameCount, RandomNumberGenerator(RANDOM_FROM, RANDOM_UNTIL))
 
     ResultView.printResultTitle()
-    carGame.startRace()
-    ResultView.printRaceResult(gameCount, carGame.scoreBoard)
+    val gameResult = carGame.startRace()
+    ResultView.printRaceResult(gameCount, gameResult)
 }

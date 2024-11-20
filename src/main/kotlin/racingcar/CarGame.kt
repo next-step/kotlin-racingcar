@@ -5,7 +5,7 @@ class CarGame(
     totalPhase: Int,
     private val numberGenerator: NumberGenerator,
 ) {
-    val scoreBoard: ScoreBoard
+    private val raceAggregateSystem: RaceAggregateSystem
     val cars: List<Car>
     var currentPhase: Int
         private set
@@ -15,15 +15,15 @@ class CarGame(
         validateCount(totalPhase)
         currentPhase = totalPhase
         cars = carNames.map { Car(it) }
-        scoreBoard = ScoreBoard(cars)
+        raceAggregateSystem = RaceAggregateSystem(cars)
     }
 
-    fun startRace() {
+    fun startRace(): RaceAggregateSystem {
         while (isPlaying()) {
             playSinglePhase()
-            scoreBoard.recordPhaseResult(cars)
+            raceAggregateSystem.recordPhaseResult(currentPhase, cars)
         }
-        scoreBoard.recordWinners()
+        return raceAggregateSystem
     }
 
     fun playSinglePhase() {

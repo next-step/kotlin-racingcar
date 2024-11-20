@@ -1,28 +1,24 @@
 package racingcar
 
-class ScoreBoard(cars: List<Car>) {
-    val board = mutableMapOf<String, MutableList<Int>>()
-    lateinit var winners: List<String>
-        private set
+class ScoreBoard(carNames: List<String>) {
+    val board = mutableMapOf<String, PhaseResultRow>()
 
     init {
-        require(validateCars(cars)) { "차량 목록은 비어있을 수 없습니다. 현재 전달된 차량 개수: ${cars.size}" }
-        cars.forEach { board[it.name] = mutableListOf() }
+        require(carNames.isNotEmpty()) { "자동차 이름의 목록은 비어있을 수 없습니다." }
+        carNames.forEach { board[it] = PhaseResultRow() }
     }
 
-    fun recordPhaseResult(cars: List<Car>) {
-        cars.forEach {
-            board[it.name]!!.add(it.moveCount)
-        }
+    fun recordPhase(car: Car) {
+        board.computeIfAbsent(car.name) { PhaseResultRow() }
+            .addResult(car.moveCount)
     }
 
-    private fun validateCars(cars: List<Car>): Boolean {
-        return cars.isNotEmpty()
+    fun calculateWinner(): List<String> {
+        val maxDistance = getMaxDistance()
+        return board.filter { it.value.getMax() == maxDistance }.keys.toList().sorted()
     }
 
-    fun recordWinners() {
-        val mostMovedDistance = board.values.maxOf { it.max() }
-        winners =
-            board.filter { it.value.max() == mostMovedDistance }.keys.toList().sorted()
+    private fun getMaxDistance(): Int {
+        return board.values.maxOf { it.getMax() }
     }
 }

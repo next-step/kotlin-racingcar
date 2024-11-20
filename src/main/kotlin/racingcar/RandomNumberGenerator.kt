@@ -3,12 +3,12 @@ package racingcar
 import kotlin.random.Random
 
 class RandomNumberGenerator(
-    val from: Int = 0,
-    val until: Int = 0,
+    private val startNum: Int = 0,
+    private val endNum: Int = 0,
 ) : NumberGenerator {
     override fun generate(): Int {
-        return if (from < until) {
-            Random.nextInt(from, until)
+        return if (startNum < endNum) {
+            (startNum until endNum).random()
         } else {
             Random.nextInt()
         }

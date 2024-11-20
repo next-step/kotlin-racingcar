@@ -11,15 +11,15 @@ object ResultView {
 
     fun printRaceResult(
         totalPhase: Int,
-        scoreBoard: ScoreBoard,
+        raceAggregateSystem: RaceAggregateSystem,
     ) {
         val sb = StringBuilder()
         for (phase in 0 until totalPhase) {
-            convertPhaseResultToSymbol(scoreBoard, sb, phase)
+            convertPhaseResultToSymbol(raceAggregateSystem.scoreBoard, sb, phase)
             sb.appendLine()
         }
         println(sb)
-        println("${scoreBoard.winners.joinToString(SEPARATOR)}가 최종 우승했습니다.")
+        println("${raceAggregateSystem.winners.joinToString(SEPARATOR)}가 최종 우승했습니다.")
     }
 
     private fun convertPhaseResultToSymbol(
@@ -28,7 +28,7 @@ object ResultView {
         phase: Int,
     ) {
         scoreBoard.board.forEach { (name, record) ->
-            sb.appendLine("$name : ${MOVE_SYMBOL.repeat(record[phase])}")
+            sb.appendLine("$name : ${MOVE_SYMBOL.repeat(record.getPhaseRecord(phase))}")
         }
     }
 }
