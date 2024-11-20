@@ -8,6 +8,7 @@ class Car(
         private set
 
     init {
+        require(validateNameBlank(name)) { "자동차 이름은 공백일 수 없습니다." }
         require(validateNameLength(name)) { "자동차 이름 ${name}은 최대 길이(5자)를 초과합니다." }
     }
 
@@ -17,8 +18,12 @@ class Car(
         }
     }
 
+    private fun validateNameBlank(name: String): Boolean {
+        return name.isNotBlank()
+    }
+
     private fun validateNameLength(name: String): Boolean {
-        return name.isNotBlank() && name.length <= NAME_LIMIT_LENGTH
+        return name.length <= NAME_LIMIT_LENGTH
     }
 
     companion object {
