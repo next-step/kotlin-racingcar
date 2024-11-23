@@ -30,7 +30,8 @@ enum class Operator(val symbol: String) : BinaryOperator<Double> {
 
     companion object {
         fun getOperatorBySymbol(symbol: String): Operator {
-            return entries.find { it.symbol == symbol }!!
+            return entries.find { it.symbol == symbol }
+                ?: throw IllegalArgumentException("입력하신 문자열은 허용하지 않는 문자열입니다: $symbol")
         }
     }
 }
