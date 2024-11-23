@@ -1,9 +1,9 @@
 package racingcar.calculator
 
-class Calculator(inputString: String) {
-    val inputStringList: List<String> = PreProcess.splitBySpace(inputString)
-    val numbers: List<Double> = PreProcess.extractNumbers(inputStringList)
-    val operators: List<String> = PreProcess.extractOperators(inputStringList)
+class Calculator(inputString: UserInputString) {
+    private val inputStringList: List<String> = PreProcess.splitBySpace(inputString)
+    private val numbers: List<Double> = PreProcess.extractNumbers(inputStringList)
+    private val operators: List<String> = PreProcess.extractOperators(inputStringList)
 
     fun calculate(): Double {
         var answer = numbers[0]
@@ -12,5 +12,13 @@ class Calculator(inputString: String) {
             answer = currentOperator.apply(answer, numbers[i + 1])
         }
         return answer
+    }
+
+    fun getNumbers(): List<Double> {
+        return numbers
+    }
+
+    fun getOperators(): List<String> {
+        return operators
     }
 }
