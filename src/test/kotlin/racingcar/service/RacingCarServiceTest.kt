@@ -6,7 +6,6 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.mockkStatic
-import io.mockk.verify
 import racingcar.model.Forward
 import racingcar.model.RacingCar
 import racingcar.model.TryCount
@@ -23,7 +22,7 @@ class RacingCarServiceTest : StringSpec({
         mockkStatic("kotlin.io.ConsoleKt")
         every { readln() } returns "kim,da,bo,mi"
 
-        val result = service.readRacingCarNames()
+        val result = service.readRacingCarNames("kim,da,bo,mi")
 
         result shouldBe listOf("kim", "da", "bo", "mi")
     }
@@ -39,7 +38,7 @@ class RacingCarServiceTest : StringSpec({
 
         every { tryCount.getTryCount(any()) } answers { firstArg() }
 
-        val result = service.readTryCount()
+        val result = service.readTryCount(10)
 
         result shouldBe 10
     }
@@ -70,10 +69,10 @@ class RacingCarServiceTest : StringSpec({
 
         val racingCars =
             listOf(
-                RacingCar("kim").apply { position = 4 },
-                RacingCar("da").apply { position = 4 },
-                RacingCar("bo").apply { position = 3 },
-                RacingCar("mi").apply { position = 2 },
+                RacingCar("kim", 4),
+                RacingCar("da", 4),
+                RacingCar("bo", 3),
+                RacingCar("mi", 2),
             )
 
         mockkObject(Winner)
@@ -81,8 +80,8 @@ class RacingCarServiceTest : StringSpec({
 
         every { Winner.determineWinners(racingCars) } returns listOf("kim", "da")
 
-        service.determineAndShowWinners(racingCars)
+        val result = service.determineWinners(racingCars)
 
-        verify { ResultView.showWinner(listOf("kim", "da")) }
+        result shouldBe listOf("kim", "da")
     }
 })

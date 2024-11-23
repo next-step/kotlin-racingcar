@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.model.RacingCar
+import racingcar.dto.RacingCarDto
 
 object ResultView {
     private const val SHOW_RACING_START_MESSAGE = "실행 결과"
@@ -11,9 +11,9 @@ object ResultView {
         println(SHOW_RACING_START_MESSAGE)
     }
 
-    fun showRacingResult(racingCars: List<RacingCar>) {
-        racingCars.forEach { car ->
-            println("${car.carName}: ${FORWARD_STATUS.repeat(car.position)}")
+    fun showRacingResult(racingCarDtos: List<RacingCarDto>) {
+        racingCarDtos.forEach { dto ->
+            println("${dto.racingCarName}: ${FORWARD_STATUS.repeat(dto.position)}")
         }
         println()
     }
