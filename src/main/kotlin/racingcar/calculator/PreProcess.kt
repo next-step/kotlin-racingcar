@@ -6,8 +6,8 @@ class PreProcess {
         private const val SPACE = " "
         private val validOperator = "+-*/"
 
-        fun splitBySpace(s: String): List<String> {
-            return s.split(SPACE)
+        fun splitBySpace(s: UserInputString): List<String> {
+            return s.getUserInputString().split(SPACE)
         }
 
         fun extractNumbers(input: List<String>): List<Double> {
