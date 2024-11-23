@@ -1,6 +1,6 @@
 package racingcar.calculator
 
-class Calculator(inputString: String) {
+class Calculator(inputString: UserInputString) {
     private val inputStringList: List<String> = PreProcess.splitBySpace(inputString)
     private val numbers: List<Double> = PreProcess.extractNumbers(inputStringList)
     private val operators: List<String> = PreProcess.extractOperators(inputStringList)
