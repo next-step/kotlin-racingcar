@@ -1,9 +1,11 @@
 package misson
 
-import misson.car.RacingCar
-import misson.car.RacingCars
+import misson.car.domain.RacingCar
+import misson.car.domain.RacingCars
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class RacingCarsTest {
     @Test
@@ -11,8 +13,9 @@ class RacingCarsTest {
         val racingCars = RacingCars(List(3) { RacingCar() })
         racingCars.moveAll { 4 }
 
-        val positions = racingCars.getPositions()
-        assertThat(positions).containsExactly("-", "-", "-")
+        racingCars.cars.forEach {
+            assertThat(it.position).isEqualTo(1)
+        }
     }
 
     @Test
@@ -20,8 +23,9 @@ class RacingCarsTest {
         val racingCars = RacingCars(List(3) { RacingCar() })
         racingCars.moveAll { 3 }
 
-        val positions = racingCars.getPositions()
-        assertThat(positions).containsExactly("", "", "")
+        racingCars.cars.forEach {
+            assertThat(it.position).isEqualTo(1)
+        }
     }
 
     @Test
@@ -36,7 +40,7 @@ class RacingCarsTest {
             )
 
         val winners = racingCars.findWinners()
-        assertThat(winners.representWinners()).isEqualTo("car1")
+        assertThat(winners.getNames()).containsExactly("car1")
     }
 
     @Test
@@ -51,6 +55,25 @@ class RacingCarsTest {
             )
 
         val winners = racingCars.findWinners()
-        assertThat(winners.representWinners()).isEqualTo("car1, car2")
+        assertThat(winners.getNames()).containsExactly("car1", "car2")
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+        "4, 1",
+        "5, 1",
+        "3, 0",
+        "2, 0",
+    )
+    fun `Param 값에 따라 자동차 그룹이 이동한다`(
+        randomValue: Int,
+        expectedPosition: Int,
+    ) {
+        val racingCars = RacingCars(List(3) { RacingCar() })
+        racingCars.moveAll { randomValue }
+
+        racingCars.cars.forEach { car ->
+            assertThat(car.position).isEqualTo(expectedPosition)
+        }
     }
 }

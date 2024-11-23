@@ -1,6 +1,6 @@
 package misson
 
-import misson.car.RacingCar
+import misson.car.domain.RacingCar
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -8,16 +8,14 @@ import org.junit.jupiter.api.assertThrows
 class RacingCarTest {
     @Test
     fun `이름이 5자를 초과하면 예외가 발생한다`() {
-        assertThrows<IllegalArgumentException> {
-            RacingCar("1234567")
-        }
+        assertThat(assertThrows<IllegalArgumentException> { RacingCar("1234567") }.message)
+            .isEqualTo("이름은 5자 이하만 가능합니다.")
     }
 
     @Test
     fun `이름이 빈 문자열이면 예외가 발생한다`() {
-        assertThrows<IllegalArgumentException> {
-            RacingCar("")
-        }
+        assertThat(assertThrows<IllegalArgumentException> { RacingCar("") }.message)
+            .isEqualTo("이름은 공백일 수 없습니다.")
     }
 
     @Test

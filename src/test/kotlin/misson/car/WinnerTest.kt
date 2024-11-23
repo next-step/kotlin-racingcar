@@ -1,5 +1,7 @@
 package misson.car
 
+import misson.car.domain.RacingCar
+import misson.car.domain.Winners
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -14,6 +16,6 @@ class WinnerTest {
                 ),
             )
 
-        assertThat(winners.representWinners()).isEqualTo("car1, car2")
+        assertThat(winners.getNames()).containsExactly("car1", "car2")
     }
 }

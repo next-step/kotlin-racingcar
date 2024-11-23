@@ -1,5 +1,7 @@
 package misson.car
 
+import misson.car.domain.RacingCar
+import misson.car.domain.RacingCars
 import view.InputView
 import view.ResultView.printRoundResult
 import view.ResultView.printWinner
@@ -20,9 +22,9 @@ class PlayGame(private val racingCars: RacingCars, private val attempts: Int) {
     fun play() {
         repeat(attempts) {
             racingCars.moveAll { (0..9).random() }
-            printRoundResult(racingCars.getPositionsWithName())
+            printRoundResult(racingCars)
         }
 
-        printWinner(racingCars.findWinners().representWinners())
+        printWinner(racingCars.findWinners())
     }
 }
