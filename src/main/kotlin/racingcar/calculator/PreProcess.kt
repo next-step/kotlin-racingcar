@@ -19,7 +19,7 @@ class PreProcess {
             val onlyCharacters = input.filter { !it.matches(Regex("\\d+")) }
             val onlyValidOperator = onlyCharacters.all(validOperator::contains)
             if (!onlyValidOperator) {
-                throw IllegalArgumentException()
+                throw IllegalArgumentException("허용하는 연산자는 +, -, *, / 입니다")
             }
             return input.filter { validOperator.contains(it) }
         }
