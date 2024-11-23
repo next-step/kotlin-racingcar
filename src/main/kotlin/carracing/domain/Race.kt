@@ -1,18 +1,21 @@
 package carracing.domain
 
-import carracing.strategy.RandomGenerator
-import carracing.ui.ResultView
+import carracing.dto.CarDTO
 
 class Race(
     private val cars: List<Car>,
     private val attempts: Int,
     private val randomGenerator: RandomGenerator,
 ) {
-    fun start() {
+    fun start(): List<List<CarDTO>> {
+        val allRounds = mutableListOf<List<CarDTO>>()
+
         repeat(attempts) {
             moveCars()
-            ResultView.printCurrentPosition(cars)
+            allRounds.add(cars.map { it.toDTO() })
         }
+
+        return allRounds
     }
 
     private fun moveCars() {

@@ -1,7 +1,5 @@
 package carracing.domain
 
-import carracing.strategy.RandomGenerator
-import carracing.strategy.Threshold
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
@@ -52,9 +50,9 @@ class RaceTest : StringSpec({
         val alwaysMoveThreshold = Threshold { true }
         val cars =
             listOf(
-                Car("pobi", alwaysMoveThreshold).apply { repeat(5) { move(5) } },
-                Car("crong", alwaysMoveThreshold).apply { repeat(3) { move(5) } },
-                Car("honux", alwaysMoveThreshold).apply { repeat(5) { move(5) } },
+                Car("pobi", alwaysMoveThreshold, position = 5),
+                Car("crong", alwaysMoveThreshold, position = 3),
+                Car("honux", alwaysMoveThreshold, position = 5),
             )
 
         val race = Race(cars, attempts = 5) { 5 }

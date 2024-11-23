@@ -1,4 +1,4 @@
-package carracing.ui
+package carracing.view
 
 object InputView {
     fun getCarNames(): List<String> {
@@ -6,9 +6,6 @@ object InputView {
         val input = readln()
         val carNames = input.split(",").map { it.trim() }
 
-        require(carNames.all { it.length in 1..5 }) {
-            "자동차 이름은 1자 이상, 5자 이하만 가능합니다."
-        }
         return carNames
     }
 

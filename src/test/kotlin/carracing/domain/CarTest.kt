@@ -1,6 +1,5 @@
 package carracing.domain
 
-import carracing.strategy.Threshold
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
