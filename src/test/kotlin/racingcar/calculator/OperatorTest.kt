@@ -2,12 +2,22 @@ package racingcar.calculator
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class OperatorTest {
-    @Test
-    fun `문자열에 맞는 enum 을 생성`() {
-        assertThat(Operator.getOperatorBySymbol("+")).isEqualTo(Operator.PLUS)
-        assertThat(Operator.getOperatorBySymbol("-")).isEqualTo(Operator.MINUS)
+    @ParameterizedTest
+    @CsvSource(
+        "+, PLUS",
+        "-, MINUS",
+        "*, MULTIPLE",
+        "/, DIVIDE",
+    )
+    fun `문자열에 맞는 enum 을 생성`(
+        symbol: String,
+        expectedOperator: Operator,
+    ) {
+        assertThat(Operator.getOperatorBySymbol(symbol)).isEqualTo(expectedOperator)
     }
 
     @Test
