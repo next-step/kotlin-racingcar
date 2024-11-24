@@ -1,6 +1,6 @@
-package racingcar.ui
+package racingcar.view
 
-object CarUiConstant {
+object CarViewConstant {
     const val COMMA = ","
     const val LINE_DELIMITER = "-"
 }

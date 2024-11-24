@@ -1,22 +1,21 @@
-package racingcar.ui
+package racingcar.view
 
-import racingcar.application.Car
-import racingcar.application.CarPosition
-import racingcar.application.RaceBoard
-import racingcar.application.Winner
-import racingcar.ui.CarUiConstant.COMMA
-import racingcar.ui.CarUiConstant.LINE_DELIMITER
+import racingcar.domain.RaceBoard
+import racingcar.domain.dto.CarPosition
+import racingcar.domain.dto.Winner
+import racingcar.view.CarViewConstant.COMMA
+import racingcar.view.CarViewConstant.LINE_DELIMITER
 
 object ResultView {
     fun printRacingResult(raceBoard: RaceBoard) {
+        println("실행 결과")
         raceBoard.raceResultPerRounds
             .forEach { result ->
                 printRacingResultPerRound(result.carPositions)
             }
     }
 
-    fun printWinners(cars: List<Car>) {
-        val winners = Winner.findWinners(cars)
+    fun printWinners(winners: List<Winner>) {
         println("${winners.joinToString(COMMA) { it.name }}가 최종 우승 했습니다.")
     }
 

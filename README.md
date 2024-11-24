@@ -75,3 +75,37 @@
 - [x] ResultView::우승자 판단로직과 출력로직 분리
 - [x] CarTest::전진조건 4미만일 때에 대한 테스트 -> DefaultCarMovementDecider 테스트로 변환
 - [x] CarMovementDecider::fun interface 적용
+
+## Step5 자동차 경주(우승자)
+### Step4 리뷰 반영사항
+
+- [x] DefaultCarMovementDecider::중요하지 않는 테스트를 위한 도메인로직 변경 원복
+- [x] RacingGame::race결과로 race board 반환
+- [x] winner 출력시 race board를 통한 출력
+- [x] RacingGame::card 가 스스로 판단하여 움직이도록 moveForward 시그니처 수정
+- [x] RacingGame::CarMovementDecider를 상태로 두지않고 메서드파라미터로 전달
+- [x] RacingGameTest::fun interface 파라미터 위치 수정과함께 람다식으로 수정
+- [x] Winner::우승자를 찾는 역할을 다른객체에게 위임
+
+### 요구사항
+#### 프로그래밍 요구사항
+- [x] 핵심 비지니스 로직을 가지는 객체를 domain 패키지, UI 관련한 객체를 view 패키지에 구현한다.
+- [x] MVC 패턴 기반으로 리팩토링해 view 패키지의 객체가 domain 패키지 객체에 의존할 수 있지만, domain 패키지의 객체는 view 패키지 객체에 의존하지 않도록 구현한다.
+
+### 리뷰반영사항 - 1
+- [x] Car::에러메시지 상수적용
+- [x] RaceBoard::도메인객체와 DTO 분리
+- [x] ResultView::우승자 출력시 우승자를 파라미터로 추출
+- [x] CarTest::네이밍 공통화
+- [x] ResultView::불필요한 메서드추출 병합
+- [x] InputView::input에서의 도메인객체 의존해제, car생성은 controller에서 수행
+- [x] RacingGame::1줄 forEach 메서드 병합 고려
+- [x] RaceBoard::data class 생성 코드 통일
+
+### 리뷰반영사항 - 2
+- [x] RacingApplication::Car 객체매핑 헬퍼함수로 수정
+- [x] Car::Car name 검증 시 논리적 불필요 로직 제거
+- [x] RaceBoard::carpositions를 getter로 꺼내어 처리하는 것이 아닌 RaceResultPerRound객체에게 역할위임
+
+### 리뷰반영사항 - 3
+- [x] RaceBoard::가독성을 위한 early return 제거
