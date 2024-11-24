@@ -1,4 +1,4 @@
-package week1.step4.racinggame
+package week1.step4.racinggame.domain
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldBeIn
@@ -8,7 +8,7 @@ val alwaysMovingNumberGenerator = RandomNumberGenerator { 4 }
 
 class RacingGameTest : StringSpec({
     "RacingGame의 round를 실행하면 각 자동차들은 해당 라운드를 진행한다" {
-        val carNames = listOf("pobi", "crong", "honux")
+        val carNames = listOf("pobi", "crong", "honux").map { CarName(it) }
         val carRoster = CarRoster(carNames)
 
         val sut = RacingGame(carRoster, alwaysMovingNumberGenerator)
@@ -19,7 +19,7 @@ class RacingGameTest : StringSpec({
     }
 
     "RacingGame 에서 레이스 실행 후 우승자들을 받을 수 있다(3팀 무조건 전진)" {
-        val carNames = listOf("pobi", "crong", "honux")
+        val carNames = listOf("pobi", "crong", "honux").map { CarName(it) }
         val carRoster = CarRoster(carNames)
 
         val sut = RacingGame(carRoster, alwaysMovingNumberGenerator)
@@ -33,13 +33,13 @@ class RacingGameTest : StringSpec({
 
         results.size shouldBe 3
         results.forEach { car ->
-            car.getName() shouldBeIn carNames
+            car.carName shouldBeIn carNames
             car.position shouldBe round
         }
     }
 
     "RacingGame 에서 레이스 실행 후 우승자들을 받을 수 있다(1팀 무조건 전진, 2팀 무조건 멈춤)" {
-        val carNames = listOf("pobi", "crong", "honux")
+        val carNames = listOf("pobi", "crong", "honux").map { CarName(it) }
         val carRoster = CarRoster(carNames)
 
         val candidates = listOf(4, 3, 3)
@@ -59,7 +59,7 @@ class RacingGameTest : StringSpec({
         val results = sut.getWinners()
 
         results.size shouldBe 1
-        results[0].getName() shouldBe "pobi"
+        results[0].carName.value shouldBe "pobi"
         results[0].position shouldBe round
     }
 })

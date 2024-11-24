@@ -1,4 +1,4 @@
-package week1.step4.racinggame
+package week1.step4.racinggame.domain
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec

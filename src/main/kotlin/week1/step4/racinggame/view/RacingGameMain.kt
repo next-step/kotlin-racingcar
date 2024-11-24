@@ -1,4 +1,7 @@
-package week1.step4.racinggame
+package week1.step4.racinggame.view
+
+import week1.step4.racinggame.domain.CarRoster
+import week1.step4.racinggame.domain.RacingGame
 
 fun main() {
     val carNames = InputView.inputCarNames()

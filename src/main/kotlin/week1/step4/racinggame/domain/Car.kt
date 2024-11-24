@@ -1,18 +1,13 @@
-package week1.step4.racinggame
+package week1.step4.racinggame.domain
 
-class Car(name: String, position: Int = DEFAULT_POSITION) {
-    val name = CarName(name)
+class Car(val carName: CarName, position: Int = DEFAULT_POSITION) {
     var position: Int = position
         private set
 
     fun move(randomNumber: RandomNumber) {
-        if (canMove(randomNumber.value)) {
+        if (canMove(randomNumber)) {
             position++
         }
-    }
-
-    fun getName(): String {
-        return name.value
     }
 
     fun isWin(other: Car): Boolean {
@@ -23,8 +18,8 @@ class Car(name: String, position: Int = DEFAULT_POSITION) {
         return position == other.position
     }
 
-    private fun canMove(randomNumber: Int): Boolean {
-        return randomNumber in FORWARDING_NUMBERS
+    private fun canMove(randomNumber: RandomNumber): Boolean {
+        return randomNumber.value in FORWARDING_NUMBERS
     }
 
     companion object {
