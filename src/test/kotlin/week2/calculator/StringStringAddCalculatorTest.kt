@@ -59,3 +59,4 @@ class StringStringAddCalculatorTest {
             .isThrownBy { calculator.add("-1") }
     }
 }
+
