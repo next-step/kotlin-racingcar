@@ -1,8 +1,8 @@
 package car.view
 
-import car.CarRacingGameResult
-import car.MovedCar
-import car.RoundResult
+import car.domain.CarRacingGameResult
+import car.domain.MovedCar
+import car.domain.RoundResult
 
 class OutputView {
     fun printResult(result: CarRacingGameResult) {

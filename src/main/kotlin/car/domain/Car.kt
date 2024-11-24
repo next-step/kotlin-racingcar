@@ -1,4 +1,4 @@
-package car
+package car.domain
 
 class Car(
     private var position: Int = 0,

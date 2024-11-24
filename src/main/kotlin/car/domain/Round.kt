@@ -1,4 +1,4 @@
-package car
+package car.domain
 
 class Round(
     private val cars: List<Car>

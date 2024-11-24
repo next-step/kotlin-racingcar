@@ -1,9 +1,9 @@
 package car.view
 
-import car.Car
-import car.CarRacingGame
-import car.MovePossibilities
-import car.MovePossibility
+import car.domain.Car
+import car.domain.CarRacingGame
+import car.domain.MovePossibilities
+import car.domain.MovePossibility
 
 class InputView {
     fun input(): CarRacingGame {
