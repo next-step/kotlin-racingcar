@@ -1,16 +1,8 @@
 package racingcar.domain
 
-class Car(private var position: Position, private val username: String) {
+class Car(var position: Position, val username: String) {
     fun move(number: Int) {
         this.position = position.move(number)
-    }
-
-    fun position(): Position {
-        return this.position
-    }
-
-    fun username(): String {
-        return this.username
     }
 
     companion object {

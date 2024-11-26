@@ -13,7 +13,7 @@ class CarTest {
 
         car.move(number)
 
-        assertThat(car.position()).isEqualTo(Position(1))
+        assertThat(car.position).isEqualTo(Position(1))
     }
 
     @ParameterizedTest
@@ -23,7 +23,7 @@ class CarTest {
 
         car.move(number)
 
-        assertThat(car.position()).isEqualTo(Position(0))
+        assertThat(car.position).isEqualTo(Position(0))
     }
 
     @ParameterizedTest
