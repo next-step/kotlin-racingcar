@@ -1,20 +1,13 @@
 package racinggame.domain
 
-import kotlin.random.Random
-import kotlin.random.nextInt
-
 class Game(val cars: List<RacingCar>, val totalGameTurn: Int) {
     private var gameTurn = totalGameTurn
-
-    private fun generateRandomNumber(): Int {
-        return Random.nextInt(START_RANGE..END_RANGE)
-    }
 
     fun startTurn() {
         if (checkIsGameStart()) {
             updateGameTurn()
             cars.forEach { car ->
-                car.moveCar(generateRandomNumber())
+                car.moveCar(RandomNumberGenerator.create())
             }
         }
     }
@@ -27,9 +20,11 @@ class Game(val cars: List<RacingCar>, val totalGameTurn: Int) {
         gameTurn--
     }
 
+    fun getResult(): List<RacingCar> {
+        return GameResult.findWinners(cars)
+    }
+
     companion object {
-        private const val START_RANGE = 0
-        private const val END_RANGE = 9
         private const val DELIMITER = ","
 
         fun createGame(
