@@ -1,7 +1,7 @@
 package study
 
 import io.kotest.core.spec.style.DescribeSpec
-import racingcars.Car
+import racingcars.domain.Car
 
 class ImmutableTest : DescribeSpec({
     describe("immutable") {

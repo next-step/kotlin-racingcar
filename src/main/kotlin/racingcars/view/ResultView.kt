@@ -1,6 +1,6 @@
-package racingcars.ui
+package racingcars.view
 
-import racingcars.Car
+import racingcars.domain.Car
 
 class ResultView {
     fun printRaceResults(racingCars: List<Car>) = printCurrentPosition(racingCars)

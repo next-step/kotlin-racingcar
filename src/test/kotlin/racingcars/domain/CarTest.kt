@@ -1,7 +1,8 @@
-package racingcars
+package racingcars.domain
 
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.assertThrows
 
 class CarTest : DescribeSpec({
     lateinit var sut: Car
@@ -29,6 +30,29 @@ class CarTest : DescribeSpec({
                 val randomNumber = 3
                 sut.moveForward(randomNumber)
                 sut.position shouldBe 0
+            }
+        }
+    }
+
+    describe("fromInput") {
+        context("when numberOfCar equals to carNames") {
+            it("should create car lists") {
+                val numberOfCar = 2
+                val carNamesInput = "pobi,crong"
+                val cars = Car.fromInput(numberOfCar, carNamesInput)
+                cars.size shouldBe 2
+                cars[0].name shouldBe "pobi"
+                cars[1].name shouldBe "crong"
+            }
+        }
+
+        context("when numberOfCar not equals to carNames") {
+            it("should create car lists") {
+                val numberOfCar = 3
+                val carNamesInput = "pobi,crong"
+                assertThrows<IllegalArgumentException> {
+                    Car.fromInput(numberOfCar, carNamesInput)
+                }
             }
         }
     }
