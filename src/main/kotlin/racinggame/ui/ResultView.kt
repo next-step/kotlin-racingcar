@@ -3,7 +3,11 @@ package racinggame.ui
 import racinggame.domain.RacingCar
 
 class ResultView {
-    fun printResult(
+    fun printInitialMessage() {
+        println("실행결과\n")
+    }
+
+    fun printResultOfTurn(
         turn: Int,
         cars: List<RacingCar>,
     ) {

@@ -1,6 +1,6 @@
 package racinggame.domain
 
-object FindWinners {
+object GameResult {
     fun findWinners(cars: List<RacingCar>): List<RacingCar> {
         val maxPosition = cars.maxOf { it.getCurrentPosition() }
         return cars.filter { it.getCurrentPosition() == maxPosition }
