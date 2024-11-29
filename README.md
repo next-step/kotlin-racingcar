@@ -92,3 +92,23 @@
    3. getRacingChampions 네이밍 수정
    4. RaceHistory로 위임
 7. startRacing의 raceHistories 개선
+
+### Feedback - 2
+1. startRacing 테스트 가능하게 리팩터링
+2. 우승자 판별 로직 개선 - 우승자 판별하는 역할을 위임할 객체 추가
+3. Car 클래스 - findSamePositionCar - position 관련 로직 추출
+
+## step-5
+1. 패키지명 수정
+2. 의존성 체크
+3. 테스트 가능한 부분과 테스트 어려운 부분을 분리
+
+### Feedback - 1
+1. RaceManager - raceConditionChecker 개선
+   - startRacing 에서 주입
+2. getMovedCars 네이밍 수정
+3. RandomRaceConditionChecker - RANDOM_NUMBER_RANGE private 으로 수정
+4. RaceManagerTest 의 startRacing - Fake 구현체 이용해서 정지하는 케이스 작성
+
+### Feedback - 2
+1. RaceManagerTest - findRacingChampions 테스트 수정

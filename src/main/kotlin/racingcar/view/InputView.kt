@@ -1,4 +1,4 @@
-package racingcar.ui
+package racingcar.view
 
 object InputView {
     fun inputCarNames(): List<String> {
