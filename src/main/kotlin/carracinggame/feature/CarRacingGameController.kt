@@ -1,16 +1,13 @@
 package carracinggame.feature
 
 import carracinggame.core.domain.DetermineCarMovementUseCase
-import carracinggame.core.domain.FindWinnersUseCase
 import carracinggame.core.model.Car
-import carracinggame.core.util.CarFactory
+import carracinggame.core.model.findWinners
 import carracinggame.core.util.StringParser
 
 class CarRacingGameController(
-    private val findWinnersUseCase: FindWinnersUseCase = FindWinnersUseCase(),
-    determineCarMovementUseCase: DetermineCarMovementUseCase = DetermineCarMovementUseCase(),
+    private val determineCarMovementUseCase: DetermineCarMovementUseCase = DetermineCarMovementUseCase(),
 ) {
-    private val carFactory: CarFactory = CarFactory(determineCarMovementUseCase)
     var cars: List<Car> = emptyList()
         private set
     var attemptCount: Int = 0
@@ -23,16 +20,13 @@ class CarRacingGameController(
         val carNames = StringParser.splitByComma(carNamesInput)
         val attemptCounts = StringParser.convertToInt(attemptCountInput)
 
-        cars = carNames.map { carFactory.create(it) }
+        cars = carNames.map { Car(name = it) }
         attemptCount = attemptCounts
     }
 
     fun updateCarDistance() {
-        cars.forEach { it.updateCurrentDistance() }
+        cars.forEach { it.updateCurrentDistance(determineCarMovementUseCase) }
     }
 
-    fun formatWinnerNames(): String {
-        val winners = findWinnersUseCase(cars)
-        return StringParser.combineByComma(winners.map { it.name })
-    }
+    fun formatWinnerNames(): String = StringParser.combineByComma(cars.findWinners().map { it.name })
 }

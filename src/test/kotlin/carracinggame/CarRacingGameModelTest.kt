@@ -1,7 +1,6 @@
 package carracinggame
 
 import carracinggame.core.domain.DetermineCarMovementUseCase
-import carracinggame.core.domain.FindWinnersUseCase
 import carracinggame.feature.CarRacingGameController
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -54,10 +53,7 @@ class CarRacingGameModelTest {
     @Test
     fun `updateCarState를 처리하면 자동차 상태가 업데이트된다`() {
         carRacingGameController =
-            CarRacingGameController(
-                FindWinnersUseCase(),
-                DetermineCarMovementUseCase(TestNumberGeneratorImpl(listOf(4, 5, 4, 5, 4, 5))),
-            )
+            CarRacingGameController(DetermineCarMovementUseCase(TestNumberGeneratorImpl(listOf(4, 5, 4, 5, 4, 5))))
 
         val carNamesInput = "car1,car2"
         val attemptCountInput = "3"
@@ -80,10 +76,7 @@ class CarRacingGameModelTest {
     @Test
     fun `게임 종료 후 우승자가 올바르게 결정된다`() {
         carRacingGameController =
-            CarRacingGameController(
-                FindWinnersUseCase(),
-                DetermineCarMovementUseCase(TestNumberGeneratorImpl(listOf(5, 5, 5, 5, 5, 5))),
-            )
+            CarRacingGameController(DetermineCarMovementUseCase(TestNumberGeneratorImpl(listOf(5, 5, 5, 5, 5, 5))))
 
         val carNamesInput = "car1,car2"
         val attemptCountInput = "3"
