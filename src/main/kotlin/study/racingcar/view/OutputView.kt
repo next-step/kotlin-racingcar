@@ -1,5 +1,6 @@
 package study.racingcar.view
 
+import study.racingcar.dto.RoundResultResponse
 import study.racingcar.entity.Car
 import java.util.logging.Logger
 import java.util.stream.Collectors
@@ -9,25 +10,23 @@ object OutputView {
     private const val DASHBAR_SYMBOL = "-"
     private const val COMMA = ","
 
-    fun printResult(cars: List<Car>) {
-        cars.forEach { car ->
-            printCarDistance(car)
-        }
+    fun printRoundResults(roundResultResponses: List<RoundResultResponse>) {
+        roundResultResponses.forEach { roundResultResponse -> printRoundResult(roundResultResponse.cars) }
     }
 
-    fun printRoundResult(cars: List<Car>) {
+    private fun printRoundResult(cars: List<Car>) {
         cars.forEach { car ->
             printCarNameAndDistance(car)
         }
     }
 
     private fun printCarNameAndDistance(car: Car) {
-        val result = List(car.currentPosition) { DASHBAR_SYMBOL }.joinToString("")
+        val result = DASHBAR_SYMBOL.repeat(car.currentPosition)
         logger.info { "${car.name} : $result" }
     }
 
     private fun printCarDistance(car: Car) {
-        val result = List(car.currentPosition) { DASHBAR_SYMBOL }.joinToString("")
+        val result = DASHBAR_SYMBOL.repeat(car.currentPosition)
         logger.info { result }
     }
 
