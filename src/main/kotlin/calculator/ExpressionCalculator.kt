@@ -1,7 +1,7 @@
 package calculator
 
 data class ExpressionCalculator(var expression: String?, var splitedExpression: SplitedExpression) {
-    constructor(inputExpression: String?) : this("",SplitedExpression("") ) {
+    constructor(inputExpression: String?) : this("", SplitedExpression("")) {
         validateExpression(inputExpression)
         expression = inputExpression
         deleteBlank()
@@ -25,5 +25,4 @@ data class ExpressionCalculator(var expression: String?, var splitedExpression: 
     fun calculateResult(): Int {
         return splitedExpression.calculateResult()
     }
-
 }

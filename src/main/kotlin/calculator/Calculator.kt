@@ -6,7 +6,8 @@ enum class Calculator(val symbol: String, val execute: (Int, Int) -> Int) {
     ADD("+", { number1, number2 -> number1 + number2 }),
     SUBSTRACT("-", { number1, number2 -> number1 - number2 }),
     MULTIPLY("*", { number1, number2 -> number1 * number2 }),
-    DEVIDE("/", { number1, number2 -> floor(number1.toDouble() / number2).toInt() });
+    DEVIDE("/", { number1, number2 -> floor(number1.toDouble() / number2).toInt() }),
+    ;
 
     companion object {
         fun calculate(
@@ -22,5 +23,4 @@ enum class Calculator(val symbol: String, val execute: (Int, Int) -> Int) {
             throw IllegalArgumentException()
         }
     }
-
 }

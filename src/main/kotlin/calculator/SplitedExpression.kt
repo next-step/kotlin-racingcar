@@ -4,13 +4,12 @@ private const val FIRST_INDEX = 0
 private const val SECOND_NUMBER_INDEX = 1
 
 data class SplitedExpression(val numbers: List<String>) {
-
     constructor(inputExpression: String?) : this(
-        buildList{
+        buildList {
             inputExpression?.forEach { char ->
                 add(char.toString())
             }
-        }
+        },
     )
 
     fun calculateResult(): Int {
