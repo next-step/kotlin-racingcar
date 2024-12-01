@@ -1,9 +1,10 @@
 package racingcar.ui
 
-import racingcar.application.NumberReader
+import racingcar.application.MoveAttemptCountReader
 
-object ConsoleNumberReader : NumberReader {
+object ConsoleMoveAttemptCountReader : MoveAttemptCountReader {
     override fun read(): Int {
+        ConsoleMessagePrinter.printMoveAttemptCountQuestion()
         val readLine = ReaderUtils.readLine()
         return convertToInt(readLine)
     }

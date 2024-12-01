@@ -1,5 +1,5 @@
 package racingcar.application
 
-interface NumberReader {
+interface MoveAttemptCountReader {
     fun read(): Int
 }

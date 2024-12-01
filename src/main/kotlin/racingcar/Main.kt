@@ -1,16 +1,16 @@
 package racingcar
 
 import racingcar.application.RacingCarGame
+import racingcar.ui.ConsoleCarNameReader
 import racingcar.ui.ConsoleMessagePrinter
-import racingcar.ui.ConsoleNumberReader
-import racingcar.ui.StringsReaderImpl
+import racingcar.ui.ConsoleMoveAttemptCountReader
 
 fun main() {
     val racingCarGame =
         RacingCarGame(
             messagePrinter = ConsoleMessagePrinter,
-            numberReader = ConsoleNumberReader,
-            stringsReader = StringsReaderImpl,
+            moveAttemptCountReader = ConsoleMoveAttemptCountReader,
+            carNameReader = ConsoleCarNameReader,
         )
     racingCarGame.start()
 }

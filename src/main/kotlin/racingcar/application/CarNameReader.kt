@@ -1,5 +1,5 @@
 package racingcar.application
 
-interface StringsReader {
+interface CarNameReader {
     fun read(): List<String>
 }
