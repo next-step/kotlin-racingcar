@@ -4,11 +4,9 @@ import racingcar.strategy.NumberGeneratorStrategy
 
 class Car(
     point: Int = 0,
-    name: CarName,
+    name: CarName = CarName(BLANK_NAME),
 ) {
     constructor(name: CarName) : this(0, name)
-    constructor(point: Int) : this(point, CarName(BLANK_NAME))
-    constructor() : this(0, CarName(BLANK_NAME))
 
     var point: Int = point
         private set

@@ -1,5 +1,8 @@
-package racingcar.domain
+package racingcar.controller
 
+import racingcar.domain.Cars
+import racingcar.domain.Race
+import racingcar.domain.Scores
 import racingcar.dto.GameCondition
 import racingcar.strategy.NumberGeneratorStrategy
 

@@ -35,7 +35,7 @@ class ScoresTest {
         val score3 = Score(Car(33, CarName("cc")))
         val scores = Scores(listOf(score1, score2, score3))
         val winner = scores.findWinner()
-        val nameList = winner.carNames.map { it.name }
+        val nameList = winner.names.map { it.name }
         nameList[0] shouldBe "cc"
     }
 
@@ -47,8 +47,9 @@ class ScoresTest {
         val score4 = Score(Car(33, CarName("dd")))
         val scores = Scores(listOf(score1, score2, score3, score4))
         val winner = scores.findWinner()
-        winner.carNames.shouldContainExactly(
-            CarName("cc"), CarName("dd")
+        winner.names.shouldContainExactly(
+            CarName("cc"),
+            CarName("dd"),
         )
     }
 }

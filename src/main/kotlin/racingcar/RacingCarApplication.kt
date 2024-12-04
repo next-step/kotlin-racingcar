@@ -1,6 +1,6 @@
 package racingcar
 
-import racingcar.domain.RacingCarGame
+import racingcar.controller.RacingCarGame
 import racingcar.strategy.RandomNumberGeneratorStrategy
 import racingcar.view.InputView
 import racingcar.view.ResultView

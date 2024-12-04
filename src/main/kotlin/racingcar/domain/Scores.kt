@@ -1,18 +1,12 @@
 package racingcar.domain
 
 class Scores(scores: List<Score>) {
-    private val _scores: MutableList<Score> = scores.toMutableList()
+    private val _scores: List<Score> = scores
     private val scores: List<Score>
         get() = _scores.toList()
 
-    constructor() : this(mutableListOf())
-
     fun findAllScores(): List<Score> {
         return _scores
-    }
-
-    fun addScore(score: Score) {
-        _scores.add(score)
     }
 
     fun size(): Int {
@@ -25,20 +19,11 @@ class Scores(scores: List<Score>) {
 
     fun findWinner(): Winners {
         val maxScore = findMaxScore()
-        val winners = Winners()
-        _scores.forEach { score ->
-            if (score.isSameScore(maxScore)) {
-                winners.addWinner(score.carName)
-            }
-        }
-        return winners
+        val winners = _scores.filter { score -> score.isSameScore(maxScore) }
+        return Winners(winners)
     }
 
     private fun findMaxScore(): Int {
-        return let {
-            _scores.maxByOrNull {
-                it.point
-            }?.point ?: 0
-        }
+        return _scores.maxByOrNull { it.point }?.point ?: 0
     }
 }

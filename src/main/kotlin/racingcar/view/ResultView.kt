@@ -38,7 +38,7 @@ object ResultView {
         val lastScores = allRoundScore[allRoundScore.lastIndex]
         val winners = lastScores.findWinner()
         val winnerNameWithDelimiter =
-            winners.carNames.joinToString(
+            winners.names.joinToString(
                 WINNER_NAME_DELIMITER,
                 BLANK_PREFIX_MESSAGE,
                 WINNER_RESULT_POSTFIX_MESSAGE,
