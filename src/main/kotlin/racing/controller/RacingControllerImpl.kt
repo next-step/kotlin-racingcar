@@ -1,49 +1,36 @@
 package racing.controller
 
-import racing.model.car.Car
-import racing.service.generator.NumberGenerator
+import racing.model.CarFactory
+import racing.model.RacingTrack
 import racing.view.input.InputView
 import racing.view.result.ResultView
 
 class RacingControllerImpl(
     private val inputView: InputView,
     private val resultView: ResultView,
-    private val numberGenerator: NumberGenerator,
 ) : RacingController {
     override fun start() {
-        val carNames = inputView.promptAndValidateCarNamesInput()
-        val attemptCount = inputView.promptAndValidateAttemptCountInput()
-
-        val cars = getCarList(carNames)
+        displayCarNamesQuestion()
+        val carNames = inputView.inputCarNames()
+        displayAttemptCountQuestion()
+        val attemptCount = inputView.inputAttemptCount()
+        val racingCars = CarFactory.createCars(carNames)
+        val racingTrack = RacingTrack(racingCars = racingCars, attemptCount = attemptCount)
 
         resultView.printOutputTitle()
-        repeat(attemptCount) {
-            startRound(cars)
-            resultView.displayCarMovement(cars)
+        racingTrack.startRound {
+            resultView.displayCarMovement(racingCars)
         }
-        val raceWinners = getRaceWinners(cars)
-        resultView.displayRaceWinners(raceWinners)
+
+        val winner = racingCars.getRaceWinners()
+        resultView.displayRaceWinners(winner)
     }
 
-    override fun getCarList(carNames: List<String>): List<Car> {
-        return carNames.map { name -> Car(name = name) }
+    private fun displayCarNamesQuestion() {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
     }
 
-    override fun startRound(cars: List<Car>) {
-        startRound(cars, Car.DEFAULT_FORWARD_LIMIT, this.numberGenerator)
-    }
-
-    override fun startRound(
-        cars: List<Car>,
-        forwardLimit: Int,
-        numberGenerator: NumberGenerator,
-    ) {
-        cars.forEach { it.move(forwardLimit, numberGenerator) }
-    }
-
-    override fun getRaceWinners(cars: List<Car>): List<String> {
-        val groupedByPosition = cars.groupBy { it.position }
-        val maxPosition = groupedByPosition.keys.maxOrNull()
-        return groupedByPosition[maxPosition]?.map { it.name } ?: emptyList()
+    private fun displayAttemptCountQuestion() {
+        println("시도할 횟수는 몇 회인가요?")
     }
 }
