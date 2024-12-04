@@ -1,8 +1,9 @@
-package week1.racing
+package week1.racing.domain
 
 class RacingCar(
     val name: String,
-    private val carMovementDecider: MovementDecider
+    private val carMovementDecider: MovementDecider,
+    startingPosition: Int = 1,
 ) {
     init {
         require(name.length <= MAX_CAR_NAME_LENGTH) {
@@ -10,7 +11,7 @@ class RacingCar(
         }
     }
 
-    var currentPosition = 1
+    var currentPosition = startingPosition
         private set
 
     fun moveForward() {

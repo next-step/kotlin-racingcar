@@ -17,9 +17,12 @@ class CalculatorTest {
             "1 + 1=2",
             "2 + 2 + 2=6",
         ],
-        delimiter = '='
+        delimiter = '=',
     )
-    fun `덧셈`(input: String, expected: String) {
+    fun `덧셈`(
+        input: String,
+        expected: String,
+    ) {
         assertEquals(input, expected)
     }
 
@@ -27,10 +30,14 @@ class CalculatorTest {
     @CsvSource(
         value = [
             "1 - 1=0",
-            "1 - 1 - 1=-1"
-        ], delimiter = '='
+            "1 - 1 - 1=-1",
+        ],
+        delimiter = '=',
     )
-    fun `뺄셈`(input: String, expected: String) {
+    fun `뺄셈`(
+        input: String,
+        expected: String,
+    ) {
         assertEquals(input, expected)
     }
 
@@ -39,9 +46,13 @@ class CalculatorTest {
         value = [
             "1 / 1=1",
             "8 / 4 / 2=1",
-        ], delimiter = '='
+        ],
+        delimiter = '=',
     )
-    fun `나눗셈`(input: String, expected: String) {
+    fun `나눗셈`(
+        input: String,
+        expected: String,
+    ) {
         assertEquals(input, expected)
     }
 
@@ -55,9 +66,13 @@ class CalculatorTest {
         value = [
             "9 * 9=81",
             "2 * 2 * 2=8",
-        ], delimiter = '='
+        ],
+        delimiter = '=',
     )
-    fun `곱셈`(input: String, expected: String) {
+    fun `곱셈`(
+        input: String,
+        expected: String,
+    ) {
         assertEquals(input, expected)
     }
 
@@ -78,8 +93,8 @@ class CalculatorTest {
     @ValueSource(
         strings = [
             "1 & 3",
-            "1 % 3"
-        ]
+            "1 % 3",
+        ],
     )
     fun `{given} 사칙연산 기호 포함되지 않은 문자열 {when} calculate() {then} IllegalArgumentException 던짐`(input: String) {
         assertThatIllegalArgumentException()
@@ -89,16 +104,21 @@ class CalculatorTest {
     @ParameterizedTest
     @CsvSource(
         value = [
-            "1 + 2 / 2 * 3 / 3=1"
-        ], delimiter = '='
+            "1 + 2 / 2 * 3 / 3=1",
+        ],
+        delimiter = '=',
     )
     fun `{given} 사칙연산 모두 포함된 문자열 {when} calculate() {then} 연산자 등장 순서대로 계산함`(
-        input: String, expected: String,
+        input: String,
+        expected: String,
     ) {
         assertEquals(input, expected)
     }
 
-    private fun assertEquals(input: String, expected: String) {
+    private fun assertEquals(
+        input: String,
+        expected: String,
+    ) {
         val result = calculator.calculate(input)
         Assertions.assertEquals(expected, result)
     }

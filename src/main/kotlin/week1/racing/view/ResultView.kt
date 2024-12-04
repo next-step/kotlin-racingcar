@@ -1,24 +1,27 @@
 package week1.racing.view
 
-import week1.racing.GameRound
-import week1.racing.RacingGame
+import week1.racing.domain.GameRound
+import week1.racing.domain.RacingCar
 
 class ResultView {
-    fun printRounds(racingGame: RacingGame) {
+    fun printRounds(gameRounds: List<GameRound>) {
         println("\n실행 결과\n")
-        racingGame.gameRounds.forEach { round ->
+        gameRounds.forEach { round ->
             buildMessageForEachRound(round)
             println()
         }
     }
 
-    fun printWinners(racingGame: RacingGame) {
-        val winnerMessage = racingGame.getFinalWinnerNames().joinToString(separator = ", ")
-        println(winnerMessage + "가 최종 우승했습니다.")
+    fun printWinners(winners: List<RacingCar>) {
+        val winnerMessage = winners.joinToString { ", " }
+        println("$winnerMessage 가 최종 우승 했습니다.")
     }
 
     private fun buildMessageForEachRound(round: GameRound) {
-        fun buildMessage(carName: String, positionCount: Int) = buildString {
+        fun buildMessage(
+            carName: String,
+            positionCount: Int,
+        ) = buildString {
             append(carName)
             append(" : ")
             append(PATH_DASH.repeat(positionCount))

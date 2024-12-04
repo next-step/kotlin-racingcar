@@ -1,4 +1,4 @@
-package week1.racing
+package week1.racing.domain
 
 import kotlin.random.Random
 
