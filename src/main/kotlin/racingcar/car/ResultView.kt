@@ -5,7 +5,7 @@ class ResultView {
         fun printResult(cars: Cars) {
             println("printResult")
             for (car in cars) {
-                printDash(car.getPoint())
+                printDash(car.point)
             }
             println()
         }
