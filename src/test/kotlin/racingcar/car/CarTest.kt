@@ -1,23 +1,14 @@
 package racingcar.car
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class CarTest {
     @Test
-    fun `차를 2개 만들고 3번 움직인다`() {
-        val tryCount = 3
+    fun `차가 움직인다`() {
+        var firstCar = Car()
+        firstCar.move(TestMachine.getNumberOne())
 
-        val cars = Cars()
-        cars.addCar(Car())
-        cars.addCar(Car())
-
-        cars.iterator().forEach { car -> car.move(1) }
-
-        for (x in 1..tryCount) {
-            for (car in cars) {
-                car.move(RandomMachine.getMovingNumber())
-            }
-            ResultView.printResult(cars)
-        }
+        assertThat(firstCar.point).isEqualTo(TestMachine.getNumberOne())
     }
 }
