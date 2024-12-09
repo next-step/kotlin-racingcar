@@ -18,3 +18,7 @@
 - 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.
 - 기능을 구현하기 전에 README.md 파일에 구현할 기능 목록을 정리해 추가한다.
 - git의 commit 단위는 앞 단계에서 README.md 파일에 정리한 기능 목록 단위로 추가한다.
+
+## [STEP5] 리팩토링
+- view 패키지인 CarRecordView 검토 -> 로직을 가진 domain 과 자동차 출력 view 분리 
+- RacingGame domain 클래스 개발 및 테스트 코드 작성

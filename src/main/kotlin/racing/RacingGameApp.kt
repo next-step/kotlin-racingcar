@@ -1,7 +1,7 @@
 package racing
 
-import racing.controller.RacingController
-import racing.view.CarRecordView
+import racing.controller.RandomNumberInput
+import racing.domain.RacingGame
 import racing.view.InputRuleView
 
 class RacingGameApp {
@@ -10,16 +10,9 @@ class RacingGameApp {
     // input info
     private val gameInfo = ruleView.inputGameInfo()
 
-    // make domain (model) -> unit test
-    private val carRecordView = CarRecordView(gameInfo, RacingController())
-
-    // output racing result
     fun startGame() {
-        println("실행 결과")
-        repeat(gameInfo.rounds) {
-            carRecordView.nextRound()
-        }
-        println("${carRecordView.getWinnerNames()}가 최종 우승했습니다.")
+        val racingGame = RacingGame(gameInfo, RandomNumberInput())
+        racingGame.startGame()
     }
 }
 
