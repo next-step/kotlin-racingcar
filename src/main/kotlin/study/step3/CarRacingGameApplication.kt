@@ -11,8 +11,8 @@ class CarRacingGameApplication(
     private val scoreboard = Scoreboard()
 
     fun run() {
-        view.numberOfCarView { numberOfCar ->
-            cars.addAll(createCars(numberOfCar))
+        view.numberOfCarView { carNames ->
+            cars.addAll(createCars(carNames))
         }
         view.numberOfRoundView { numberOfRound ->
             startGame(cars, scoreboard, numberOfRound)
@@ -31,10 +31,8 @@ class CarRacingGameApplication(
         }
     }
 
-    private fun createCars(numberOfCar: Int): List<Car> {
-        return List(numberOfCar) {
-            Car()
-        }
+    private fun createCars(carNames: List<String>): List<Car> {
+        return carNames.map { Car(name = it) }
     }
 }
 

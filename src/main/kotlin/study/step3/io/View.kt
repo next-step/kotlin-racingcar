@@ -7,9 +7,9 @@ class View(
     private val output: Output
 ) {
 
-    fun numberOfCarView(getNumberOfCar: (Int) -> Unit) {
-        output.showInputNumberOfCar()
-        input.requestNumberOfCar(getNumberOfCar)
+    fun numberOfCarView(getCarNames: (List<String>) -> Unit) {
+        output.showInputCarNames()
+        input.requestCarNames(getCarNames)
     }
 
     fun numberOfRoundView(getNumberOfRound: (Int) -> Unit) {

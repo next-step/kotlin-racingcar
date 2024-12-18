@@ -10,7 +10,7 @@ class CarRacingGameApplicationTest {
         IntRange(0, 9).map { rpm ->
             TestData(rpm, rpm >= 4)
         }.forEach { (rpm, expected) ->
-            assertThat(Car().canMove(rpm)).isEqualTo(expected)
+            assertThat(Car("").canMove(rpm)).isEqualTo(expected)
         }
     }
 }

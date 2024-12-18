@@ -2,7 +2,7 @@ package study.step3
 
 import kotlin.random.Random
 
-class Car {
+data class Car(val name: String) {
     var mileage: Int = 0
         private set
 

@@ -4,8 +4,8 @@ import study.step3.Scoreboard
 
 class Output {
 
-    fun showInputNumberOfCar() {
-        println("자동차 대수는 몇 대 인가요?")
+    fun showInputCarNames() {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
     }
 
     fun showInputNumberOfRound() {
