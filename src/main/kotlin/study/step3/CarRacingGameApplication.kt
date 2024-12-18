@@ -35,7 +35,7 @@ class CarRacingGameApplication(
     }
 
     private fun createCars(carNames: List<String>): List<Car> {
-        return carNames.map { Car(name = it) }
+        return carNames.map { Car(name = it, carEngine = CarEngine()) }
     }
 }
 

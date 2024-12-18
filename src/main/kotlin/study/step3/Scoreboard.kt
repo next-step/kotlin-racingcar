@@ -19,7 +19,7 @@ class Scoreboard {
                 appendLine()
                 scores.forEach { score ->
                     append("${score.carName} ")
-                    append("-".repeat(score.score))
+                    append("-".repeat(score.score.value))
                     appendLine()
                 }
             }
@@ -31,7 +31,7 @@ class Scoreboard {
 
     private fun showWinners() {
         val finalScores = scoresList.lastOrNull() ?: return
-        val maxScore = finalScores.maxOf { it.score }
+        val maxScore: Mileage = finalScores.maxBy { it.score.value }.score
         val winnerNames: String = finalScores.filter { it.score == maxScore }.joinToString { it.carName }
         println("\n\n${winnerNames}가 최종 우승했습니다.")
     }
