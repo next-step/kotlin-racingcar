@@ -24,8 +24,11 @@ class CarRacingGameApplication(
         repeat(numberOfRound) {
             val scores = cars.onEach { car ->
                 car.move()
-            }.map {
-                Score(it.mileage)
+            }.map { car ->
+                Score(
+                    carName = car.name,
+                    score = car.mileage
+                )
             }
             scoreboard.addScores(scores)
         }

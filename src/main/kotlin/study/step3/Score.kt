@@ -1,4 +1,6 @@
 package study.step3
 
-@JvmInline
-value class Score(val score: Int)
+data class Score(
+    val carName: String,
+    val score: Int
+)
