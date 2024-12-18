@@ -9,6 +9,7 @@ class Scoreboard {
 
     fun show(title: String) {
         showProcess(title)
+        showWinners()
     }
 
     private fun showProcess(title: String) {
@@ -26,5 +27,12 @@ class Scoreboard {
         }.let {
             print(it)
         }
+    }
+
+    private fun showWinners() {
+        val finalScores = scoresList.lastOrNull() ?: return
+        val maxScore = finalScores.maxOf { it.score }
+        val winnerNames: String = finalScores.filter { it.score == maxScore }.joinToString { it.carName }
+        println("\n\n${winnerNames}가 최종 우승했습니다.")
     }
 }
