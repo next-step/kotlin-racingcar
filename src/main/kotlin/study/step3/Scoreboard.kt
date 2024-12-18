@@ -13,19 +13,13 @@ class Scoreboard {
     }
 
     private fun showProcess(title: String) {
-        with(StringBuilder()) {
-            append(title)
-            scoresList.forEach { scores ->
-                appendLine()
-                scores.forEach { score ->
-                    append("${score.carName} ")
-                    append("-".repeat(score.score.value))
-                    appendLine()
-                }
+        println("\n$title")
+        scoresList.joinToString("\n\n") { scores ->
+            scores.joinToString("\n") { score ->
+                "${score.carName} ${"-".repeat(score.score.value)}"
             }
-            toString().dropLast(1)
         }.let {
-            print(it)
+            println(it)
         }
     }
 
@@ -33,6 +27,6 @@ class Scoreboard {
         val finalScores = scoresList.lastOrNull() ?: return
         val maxScore: Mileage = finalScores.maxBy { it.score.value }.score
         val winnerNames: String = finalScores.filter { it.score == maxScore }.joinToString { it.carName }
-        println("\n\n${winnerNames}가 최종 우승했습니다.")
+        print("\n${winnerNames}가 최종 우승했습니다.")
     }
 }
