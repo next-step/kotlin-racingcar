@@ -1,6 +1,6 @@
 package study.step3.io
 
-import study.step3.Scoreboard
+import study.step3.entity.Scoreboard
 
 class View(
     private val input: Input,

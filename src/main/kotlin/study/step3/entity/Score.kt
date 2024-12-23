@@ -1,4 +1,4 @@
-package study.step3
+package study.step3.entity
 
 data class Score(
     val carName: String,

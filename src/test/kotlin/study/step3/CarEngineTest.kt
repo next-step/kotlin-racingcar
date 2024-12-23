@@ -4,6 +4,8 @@ import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import study.step3.entity.CarEngine
+import study.step3.entity.Mileage
 
 class CarEngineTest {
     private lateinit var carEngine: CarEngine

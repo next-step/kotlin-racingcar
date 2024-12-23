@@ -1,5 +1,9 @@
 package study.step3
 
+import study.step3.entity.Car
+import study.step3.entity.CarEngine
+import study.step3.entity.Score
+import study.step3.entity.Scoreboard
 import study.step3.io.Input
 import study.step3.io.Output
 import study.step3.io.View

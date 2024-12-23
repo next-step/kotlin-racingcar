@@ -1,4 +1,4 @@
-package study.step3
+package study.step3.entity
 
 class CarEngine(
     private val minPerToMove: Int = MIN_RPM_TO_MOVE
