@@ -18,6 +18,7 @@ class View(
     }
 
     fun resultView(scoreboard: Scoreboard) {
-        output.showResult(scoreboard)
+        output.showProcess(title = "실행 결과", scoreboard = scoreboard)
+        output.showWinners(scoreboard = scoreboard)
     }
 }

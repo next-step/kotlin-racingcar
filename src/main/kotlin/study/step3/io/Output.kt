@@ -12,7 +12,18 @@ class Output {
         println("시도할 회수는 몇 회 인가요?")
     }
 
-    fun showResult(scoreboard: Scoreboard) {
-        scoreboard.show("실행 결과")
+    fun showProcess(title: String, scoreboard: Scoreboard) {
+        println("\n$title")
+        scoreboard.processes
+            .reduce { acc, s ->
+                "$acc\n\n$s"
+            }
+            .let {
+                println(it)
+            }
+    }
+
+    fun showWinners(scoreboard: Scoreboard) {
+        print("\n${scoreboard.winnerNames}가 최종 우승했습니다.")
     }
 }
