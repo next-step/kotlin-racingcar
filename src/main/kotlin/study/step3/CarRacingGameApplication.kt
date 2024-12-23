@@ -2,7 +2,6 @@ package study.step3
 
 import study.step3.entity.Car
 import study.step3.entity.Engine
-import study.step3.entity.Score
 import study.step3.entity.Scoreboard
 import study.step3.io.Input
 import study.step3.io.Output
@@ -29,12 +28,12 @@ class CarRacingGameApplication(
             val scores = cars.onEach { car ->
                 car.move()
             }.map { car ->
-                Score(
-                    carName = car.name,
-                    score = car.mileage
+                Scoreboard.Item(
+                    title = car.name,
+                    score = car.mileage.value
                 )
             }
-            scoreboard.addScores(scores)
+            scoreboard.add(scores)
         }
     }
 

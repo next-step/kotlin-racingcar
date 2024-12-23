@@ -1,26 +1,27 @@
 package study.step3.entity
 
-class Scoreboard {
-    private val scoresList = mutableListOf<List<Score>>()
+
+class Scoreboard : MutableList<List<Scoreboard.Item>> by mutableListOf() {
 
     val processes: List<String>
         get() {
-            return scoresList.map { scores ->
-                scores.joinToString("\n") { score ->
-                    "${score.carName} ${"-".repeat(score.score.value)}"
+            return map { scores ->
+                scores.joinToString("\n") { item ->
+                    "${item.title} ${"-".repeat(item.score)}"
                 }
             }
         }
 
-    val winnerNames: String
+    val winnerNames: List<String>
         get() {
-            val finalScores = scoresList.lastOrNull() ?: return ""
-            val maxScore: Mileage = finalScores.maxBy { it.score.value }.score
+            val finalScores = lastOrNull() ?: return emptyList()
+            val maxScore: Int = finalScores.maxBy { it.score }.score
             return finalScores.filter { it.score == maxScore }
-                .joinToString { it.carName }
+                .map { it.title }
         }
 
-    fun addScores(scores: List<Score>) {
-        scoresList.add(scores)
-    }
+    data class Item(
+        val title: String,
+        val score: Int,
+    )
 }

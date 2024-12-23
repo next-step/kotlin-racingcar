@@ -24,6 +24,6 @@ class Output {
     }
 
     fun showWinners(scoreboard: Scoreboard) {
-        print("\n${scoreboard.winnerNames}가 최종 우승했습니다.")
+        print("\n${scoreboard.winnerNames.joinToString()}가 최종 우승했습니다.")
     }
 }
