@@ -4,15 +4,15 @@ import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import study.step3.entity.CarEngine
+import study.step3.entity.Engine
 import study.step3.entity.Mileage
 
-class CarEngineTest {
-    private lateinit var carEngine: CarEngine
+class EngineTest {
+    private lateinit var engine: Engine
 
     @BeforeEach
     fun setUp() {
-        carEngine = CarEngine(minPerToMove = 4)
+        engine = Engine(minPerToMove = 4)
     }
 
     @ParameterizedTest
@@ -31,6 +31,6 @@ class CarEngineTest {
         ]
     )
     internal fun `4 이상인 경우 움직일 수 있는지`(rpm: Int, expected: Int) {
-        carEngine.accelerate(rpm) shouldBe Mileage(expected)
+        engine.accelerate(rpm) shouldBe Mileage(expected)
     }
 }

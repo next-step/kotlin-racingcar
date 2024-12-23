@@ -1,7 +1,7 @@
 package study.step3
 
 import study.step3.entity.Car
-import study.step3.entity.CarEngine
+import study.step3.entity.Engine
 import study.step3.entity.Score
 import study.step3.entity.Scoreboard
 import study.step3.io.Input
@@ -39,7 +39,7 @@ class CarRacingGameApplication(
     }
 
     private fun createCars(carNames: List<String>): List<Car> {
-        return carNames.map { Car(name = it, carEngine = CarEngine()) }
+        return carNames.map { Car(name = it, engine = Engine()) }
     }
 }
 

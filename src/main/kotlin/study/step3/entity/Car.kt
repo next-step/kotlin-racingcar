@@ -4,7 +4,7 @@ import kotlin.random.Random
 
 data class Car(
     val name: String,
-    val carEngine: CarEngine,
+    val engine: Engine,
 ) {
     var mileage: Mileage = Mileage(0)
         private set
@@ -17,7 +17,7 @@ data class Car(
 
     fun move() {
         val rpm: Int = Random.nextInt(MAX_RPM + 1)
-        mileage += carEngine.accelerate(rpm = rpm)
+        mileage += engine.accelerate(rpm = rpm)
     }
 
     companion object {
