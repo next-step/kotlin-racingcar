@@ -1,15 +1,15 @@
 package study.step3.io
 
-import study.step3.Scoreboard
+import study.step3.entity.Scoreboard
 
 class View(
     private val input: Input,
     private val output: Output
 ) {
 
-    fun numberOfCarView(getNumberOfCar: (Int) -> Unit) {
-        output.showInputNumberOfCar()
-        input.requestNumberOfCar(getNumberOfCar)
+    fun numberOfCarView(getCarNames: (List<String>) -> Unit) {
+        output.showInputCarNames()
+        input.requestCarNames(getCarNames)
     }
 
     fun numberOfRoundView(getNumberOfRound: (Int) -> Unit) {
@@ -18,6 +18,7 @@ class View(
     }
 
     fun resultView(scoreboard: Scoreboard) {
-        output.showResult(scoreboard)
+        output.showProcess(title = "실행 결과", scoreboard = scoreboard)
+        output.showWinners(scoreboard = scoreboard)
     }
 }

@@ -1,5 +1,8 @@
 package study.step3
 
+import study.step3.entity.Car
+import study.step3.entity.Engine
+import study.step3.entity.Scoreboard
 import study.step3.io.Input
 import study.step3.io.Output
 import study.step3.io.View
@@ -11,8 +14,8 @@ class CarRacingGameApplication(
     private val scoreboard = Scoreboard()
 
     fun run() {
-        view.numberOfCarView { numberOfCar ->
-            cars.addAll(createCars(numberOfCar))
+        view.numberOfCarView { carNames ->
+            cars.addAll(createCars(carNames))
         }
         view.numberOfRoundView { numberOfRound ->
             startGame(cars, scoreboard, numberOfRound)
@@ -24,17 +27,18 @@ class CarRacingGameApplication(
         repeat(numberOfRound) {
             val scores = cars.onEach { car ->
                 car.move()
-            }.map {
-                Score(it.mileage)
+            }.map { car ->
+                Scoreboard.Item(
+                    title = car.name,
+                    score = car.mileage.value
+                )
             }
-            scoreboard.addScores(scores)
+            scoreboard.add(scores)
         }
     }
 
-    private fun createCars(numberOfCar: Int): List<Car> {
-        return List(numberOfCar) {
-            Car()
-        }
+    private fun createCars(carNames: List<String>): List<Car> {
+        return carNames.map { Car(name = it, engine = Engine()) }
     }
 }
 

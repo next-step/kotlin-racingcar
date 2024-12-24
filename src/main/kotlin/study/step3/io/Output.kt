@@ -1,18 +1,29 @@
 package study.step3.io
 
-import study.step3.Scoreboard
+import study.step3.entity.Scoreboard
 
 class Output {
 
-    fun showInputNumberOfCar() {
-        println("자동차 대수는 몇 대 인가요?")
+    fun showInputCarNames() {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
     }
 
     fun showInputNumberOfRound() {
         println("시도할 회수는 몇 회 인가요?")
     }
 
-    fun showResult(scoreboard: Scoreboard) {
-        scoreboard.show("실행 결과")
+    fun showProcess(title: String, scoreboard: Scoreboard) {
+        println("\n$title")
+        scoreboard.processes
+            .reduce { acc, s ->
+                "$acc\n\n$s"
+            }
+            .let {
+                println(it)
+            }
+    }
+
+    fun showWinners(scoreboard: Scoreboard) {
+        print("\n${scoreboard.winnerNames.joinToString()}가 최종 우승했습니다.")
     }
 }
