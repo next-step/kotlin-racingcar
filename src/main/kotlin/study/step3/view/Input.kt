@@ -1,4 +1,4 @@
-package study.step3.io
+package study.step3.view
 
 class Input {
 

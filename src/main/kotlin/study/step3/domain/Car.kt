@@ -1,4 +1,4 @@
-package study.step3.entity
+package study.step3.domain
 
 import kotlin.random.Random
 

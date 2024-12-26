@@ -5,8 +5,8 @@ import io.kotest.assertions.throwables.shouldThrow
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import study.step3.entity.Car
-import study.step3.entity.Engine
+import study.step3.domain.Car
+import study.step3.domain.Engine
 
 class CarTest {
     private lateinit var engine: Engine

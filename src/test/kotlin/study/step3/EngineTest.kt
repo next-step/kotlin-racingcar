@@ -4,8 +4,8 @@ import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import study.step3.entity.Engine
-import study.step3.entity.Mileage
+import study.step3.domain.Engine
+import study.step3.domain.Mileage
 
 class EngineTest {
     private lateinit var engine: Engine

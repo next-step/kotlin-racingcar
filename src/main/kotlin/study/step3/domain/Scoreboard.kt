@@ -1,4 +1,4 @@
-package study.step3.entity
+package study.step3.domain
 
 
 class Scoreboard : MutableList<List<Scoreboard.Item>> by mutableListOf() {
