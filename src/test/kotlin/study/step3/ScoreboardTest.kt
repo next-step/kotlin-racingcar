@@ -3,7 +3,7 @@ package study.step3
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import study.step3.entity.Scoreboard
+import study.step3.domain.Scoreboard
 
 class ScoreboardTest {
     private lateinit var scoreboard: Scoreboard

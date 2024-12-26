@@ -1,4 +1,4 @@
-package study.step3.entity
+package study.step3.domain
 
 @JvmInline
 value class Mileage(val value: Int) {

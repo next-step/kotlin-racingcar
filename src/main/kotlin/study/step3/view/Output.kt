@@ -1,6 +1,6 @@
-package study.step3.io
+package study.step3.view
 
-import study.step3.entity.Scoreboard
+import study.step3.domain.Scoreboard
 
 class Output {
 

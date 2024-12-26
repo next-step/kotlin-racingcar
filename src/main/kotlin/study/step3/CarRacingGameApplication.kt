@@ -1,11 +1,11 @@
 package study.step3
 
-import study.step3.entity.Car
-import study.step3.entity.Engine
-import study.step3.entity.Scoreboard
-import study.step3.io.Input
-import study.step3.io.Output
-import study.step3.io.View
+import study.step3.domain.Car
+import study.step3.domain.Engine
+import study.step3.domain.Scoreboard
+import study.step3.view.Input
+import study.step3.view.Output
+import study.step3.view.View
 
 class CarRacingGameApplication(
     private val view: View,
