@@ -8,6 +8,8 @@ class PersonTest {
     fun `이름 붙인 인자`() {
         val actual = Person(name = "홍길동", nickname = "홍", age = 20)
         assertThat(actual.name).isEqualTo("홍길동")
+        assertThat(actual.age).isEqualTo(20)
+        assertThat(actual.nickname).isEqualTo("길동")
     }
 
     @Test
