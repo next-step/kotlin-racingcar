@@ -7,9 +7,11 @@ class PersonTest {
     @Test
     fun `named arguments`() {
         val people =
-            listOf(Person("Junki Kim", age = 20, nickname = "Ed"),
+            listOf(
+                Person("Junki Kim", age = 20, nickname = "Ed"),
                 Person("Junki Kim", nickname = "Ed", age = 20),
-                Person(nickname = "Ed", age = 20, name = "Junki Kim"))
+                Person(nickname = "Ed", age = 20, name = "Junki Kim"),
+            )
         assertThat(people).allSatisfy {
             assertThat(it.name).isEqualTo("Junki Kim")
             assertThat(it.age).isEqualTo(20)
@@ -45,4 +47,3 @@ class PersonTest {
         assertThat(person2.age).isNull()
     }
 }
-
