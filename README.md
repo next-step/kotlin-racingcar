@@ -2,5 +2,5 @@
 
 Functional Requirements
 
-- [ ] Make `Person` in Kotlin
-- [ ] Make `PersonTest` in Kotlin
+- [x] Make `Person` in Kotlin
+- [x] Make `PersonTest` in Kotlin
