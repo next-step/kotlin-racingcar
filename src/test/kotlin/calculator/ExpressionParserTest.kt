@@ -66,4 +66,19 @@ class ExpressionParserTest {
         // then
         assertThat(actual).containsAnyElementsOf(expected)
     }
+
+    @ParameterizedTest
+    @CsvSource(
+        "2 2 3",
+        "3 ! 9",
+        "4 ) 1",
+        "6 A 3",
+    )
+    fun `Throw IllegalArgumentException when expression has invalid operator`(expression: String) {
+        // given
+        val expressionParser = ExpressionParser(expression)
+
+        // when && then
+        assertThrows<IllegalArgumentException> { expressionParser.getOperators() }
+    }
 }

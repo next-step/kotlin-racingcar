@@ -21,4 +21,4 @@
 - [x] Split input strings to numbers and operators
   - [x] numbers should be returned as Int
 - [x] Throwing an IllegalArgumentException if the input value is null or blank
-- [ ] Throwing an IllegalArgumentException if the input contains symbols other than arithmetic operators
+- [x] Throwing an IllegalArgumentException if the input contains symbols other than arithmetic operators

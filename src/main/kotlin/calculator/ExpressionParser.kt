@@ -6,7 +6,11 @@ class ExpressionParser(private val expression: String) {
     }
 
     fun getOperators(): List<String> {
-        return expression.split(DELIMITER).filterIndexed { index, _ -> index % STEP == OPERATOR_INDEX }
+        val operators = expression.split(DELIMITER).filterIndexed { index, _ -> index % STEP == OPERATOR_INDEX }
+        operators.find { !Operator.contains(it) }?.let { nonOperator ->
+            throw IllegalArgumentException("Invalid Operator: $nonOperator")
+        }
+        return operators
     }
 
     fun getOperands(): List<Int> {
