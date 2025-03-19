@@ -11,11 +11,11 @@
 - [ ] Implementing all four arithmetic operations in one integrated feature
 
 ### Operator
-- [ ] enum class with symbol and action
-- [ ] Addition
-- [ ] Subtraction
-- [ ] Multiplication
-- [ ] Division
+- [x] enum class with symbol and action
+- [x] Addition
+- [x] Subtraction
+- [x] Multiplication
+- [x] Division
 
 ### ExpressionParser
 - [ ] Split input strings to numbers and operators
