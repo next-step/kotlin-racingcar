@@ -1,90 +1,112 @@
 package calculator
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.ValueSource
 
 class CalculatorTest() {
-    private val calculator = Calculator()
-
-    @ParameterizedTest(name = "add {0} and {1} return {2}")
+    @ParameterizedTest(name = "add {0} return {1}")
     @CsvSource(
-        "98, 1, 99",
-        "30, 10, 40",
-        "8, 2, 10",
+        "98 + 1, 99",
+        "30 + 10, 40",
+        "8 + 2, 10",
     )
     fun `add test`(
-        number1: Int,
-        number2: Int,
+        expression: String,
         expected: Int,
     ) {
-        // given & when
-        val actual = calculator.execute("+", number1, number2)
+        // given
+        val expressionParser = ExpressionParser(expression)
+        val calculator = Calculator(expressionParser)
+
+        // when
+        val actual = calculator.execute()
 
         // then
         assertThat(actual).isEqualTo(expected)
     }
 
-    @ParameterizedTest(name = "subtract {0} and {1} return {2}")
+    @ParameterizedTest(name = "subtract {0} return {1}")
     @CsvSource(
-        "98, 1, 97",
-        "30, 10, 20",
-        "8, 2, 6",
+        "98 - 1, 97",
+        "30 - 10, 20",
+        "8 - 2, 6",
     )
     fun `subtract test`(
-        number1: Int,
-        number2: Int,
+        expression: String,
         expected: Int,
     ) {
-        // given & when
-        val actual = calculator.execute("-", number1, number2)
+        // given
+        val expressionParser = ExpressionParser(expression)
+        val calculator = Calculator(expressionParser)
+
+        // when
+        val actual = calculator.execute()
 
         // then
         assertThat(actual).isEqualTo(expected)
     }
 
-    @ParameterizedTest(name = "multiply {0} and {1} return {2}")
+    @ParameterizedTest(name = "multiply {0} return {1}")
     @CsvSource(
-        "98, 1, 98",
-        "30, 10, 300",
-        "8, 2, 16",
+        "98 * 1, 98",
+        "30 * 10, 300",
+        "8 * 2, 16",
     )
     fun `multiply test`(
-        number1: Int,
-        number2: Int,
+        expression: String,
         expected: Int,
     ) {
-        // given & when
-        val actual = calculator.execute("*", number1, number2)
+        // given
+        val expressionParser = ExpressionParser(expression)
+        val calculator = Calculator(expressionParser)
+
+        // when
+        val actual = calculator.execute()
 
         // then
         assertThat(actual).isEqualTo(expected)
     }
 
-    @ParameterizedTest(name = "divide {0} by {1} return {2}")
+    @ParameterizedTest(name = "divide {0} return {1}")
     @CsvSource(
-        "98, 1, 98",
-        "30, 10, 3",
-        "8, 2, 4",
+        "98 / 1, 98",
+        "30 / 10, 3",
+        "8 / 2, 4",
     )
     fun `divide test`(
-        number1: Int,
-        number2: Int,
+        expression: String,
         expected: Int,
     ) {
-        // given & when
-        val actual = calculator.execute("/", number1, number2)
+        // given
+        val expressionParser = ExpressionParser(expression)
+        val calculator = Calculator(expressionParser)
+
+        // when
+        val actual = calculator.execute()
 
         // then
         assertThat(actual).isEqualTo(expected)
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = ["a", "b", " ", ""])
-    fun `throw IllegalArgumentException when symbol is not included in fundamental arithmetic operations`(input: String) {
-        // given & when & then
-        assertThrows<IllegalArgumentException> { calculator.execute(input, 1, 1) }
+    @ParameterizedTest(name = "{0} return {1}")
+    @CsvSource(
+        "98 + 2 / 10 - 5, 5",
+        "30 * 10 / 300, 1",
+        "8 / 2 + 2 * 2 / 6, 2",
+    )
+    fun `Can calculate two operators`(
+        expression: String,
+        expected: Int,
+    ) {
+        // given
+        val expressionParser = ExpressionParser(expression)
+        val calculator = Calculator(expressionParser)
+
+        // when
+        val actual = calculator.execute()
+
+        // then
+        assertThat(actual).isEqualTo(expected)
     }
 }
