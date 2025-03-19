@@ -9,7 +9,7 @@ Functional Requirements
 
 ## Step2 - String calculator
 
-- [ ] Split user entered string input by signs '+','-','*','/'
-- [ ] Remove space and extract number
+- [x] Split user entered string input by signs '+','-','*','/'
+- [x] Remove space and extract number
 - [ ] Implement calculator to make result
 - [ ] Check edge case and fix errors
