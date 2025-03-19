@@ -1,8 +1,10 @@
 package calculator
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
 
 class CalculatorTest() {
     private val calculator = Calculator()
@@ -77,5 +79,12 @@ class CalculatorTest() {
 
         // then
         assertThat(actual).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["a", "b", " ", ""])
+    fun `throw IllegalArgumentException when symbol is not included in fundamental arithmetic operations`(input: String) {
+        // given & when & then
+        assertThrows<IllegalArgumentException> { calculator.execute(input, 1, 1) }
     }
 }
