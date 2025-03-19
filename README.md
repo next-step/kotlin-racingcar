@@ -7,8 +7,8 @@
 
 ## Implementations
 ### Calculator
-- [ ] Throwing an IllegalArgumentException if the input contains symbols other than arithmetic operators
-- [ ] Implementing all four arithmetic operations in one integrated feature
+- [x] Throwing an IllegalArgumentException if the input contains symbols other than arithmetic operators
+- [x] Implementing all four arithmetic operations in one integrated feature
 
 ### Operator
 - [x] enum class with symbol and action
