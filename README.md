@@ -11,5 +11,5 @@ Functional Requirements
 
 - [x] Split user entered string input by signs '+','-','*','/'
 - [x] Remove space and extract number
-- [ ] Implement calculator to make result
+- [x] Implement calculator to make result
 - [ ] Check edge case and fix errors
