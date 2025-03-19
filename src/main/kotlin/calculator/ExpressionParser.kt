@@ -9,8 +9,11 @@ class ExpressionParser(private val expression: String) {
         return expression.split(DELIMITER).filterIndexed { index, _ -> index % STEP == OPERATOR_INDEX }
     }
 
-    fun getOperands(): List<String> {
-        return expression.split(DELIMITER).filterIndexed { index, _ -> index % STEP == OPERAND_INDEX }
+    fun getOperands(): List<Int> {
+        return expression
+            .split(DELIMITER)
+            .filterIndexed { index, _ -> index % STEP == OPERAND_INDEX }
+            .map { it.toInt() }
     }
 
     companion object {

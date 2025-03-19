@@ -61,7 +61,7 @@ class ExpressionParserTest {
 
         // when
         val actual = expressionParser.getOperands()
-        val expected = listOf("10", "7", "2", "4", "2")
+        val expected = listOf(10, 7, 2, 4, 2)
 
         // then
         assertThat(actual).containsAnyElementsOf(expected)
