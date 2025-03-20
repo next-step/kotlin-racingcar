@@ -7,6 +7,8 @@ class CalculatorParser {
             .split(" ")
             .toList()
 
+        validateOnlyArithmeticSymbol(split)
+
         return split
     }
 
@@ -16,4 +18,21 @@ class CalculatorParser {
         }
     }
 
+    private fun validateOnlyArithmeticSymbol(input: List<String>) {
+        for (elem in input) {
+            if (isNumeric(elem)) {
+                continue
+            }
+
+            if (Operator.isOperator(elem)) {
+                continue
+            }
+
+            throw IllegalArgumentException("$elem isn't a arithmetic operator")
+        }
+    }
+
+    private fun isNumeric(input: String): Boolean {
+        return input.toIntOrNull() != null
+    }
 }
