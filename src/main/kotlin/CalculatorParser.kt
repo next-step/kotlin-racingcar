@@ -9,6 +9,7 @@ class CalculatorParser {
 
         validateOnlyArithmeticSymbol(split)
         validateStartWithOperand(split)
+        validateEndWithOperand(split)
 
         return split
     }
@@ -36,6 +37,12 @@ class CalculatorParser {
     private fun validateStartWithOperand(input: List<String>) {
         if (Operator.isOperator(input.first())) {
             throw IllegalArgumentException("first symbol must to numeric")
+        }
+    }
+
+    private fun validateEndWithOperand(input: List<String>) {
+        if (Operator.isOperator(input.last())) {
+            throw IllegalArgumentException("last symbol must to numeric")
         }
     }
 
