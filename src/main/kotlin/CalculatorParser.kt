@@ -8,6 +8,7 @@ class CalculatorParser {
             .toList()
 
         validateOnlyArithmeticSymbol(split)
+        validateStartWithOperand(split)
 
         return split
     }
@@ -29,6 +30,12 @@ class CalculatorParser {
             }
 
             throw IllegalArgumentException("$elem isn't a arithmetic operator")
+        }
+    }
+
+    private fun validateStartWithOperand(input: List<String>) {
+        if (Operator.isOperator(input.first())) {
+            throw IllegalArgumentException("first symbol must to numeric")
         }
     }
 
