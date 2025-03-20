@@ -11,6 +11,7 @@ class CalculatorParser {
         validateStartWithOperand(split)
         validateEndWithOperand(split)
         validateDiscontinuousOperator(split)
+        validateDiscontinuousOperand(split)
 
         return split
     }
@@ -51,6 +52,14 @@ class CalculatorParser {
         for (index in 0 until input.lastIndex) {
             if (Operator.isOperator(input[index]) && Operator.isOperator(input[index + 1])) {
                 throw IllegalArgumentException("continuous operator must not allow operators")
+            }
+        }
+    }
+
+    private fun validateDiscontinuousOperand(input: List<String>) {
+        for (index in 0 until input.lastIndex) {
+            if (isNumeric(input[index]) && isNumeric(input[index + 1])) {
+                throw IllegalArgumentException("continuous operand must not allow operators")
             }
         }
     }
