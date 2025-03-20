@@ -10,6 +10,7 @@ class CalculatorParser {
         validateOnlyArithmeticSymbol(split)
         validateStartWithOperand(split)
         validateEndWithOperand(split)
+        validateDiscontinuousOperator(split)
 
         return split
     }
@@ -43,6 +44,14 @@ class CalculatorParser {
     private fun validateEndWithOperand(input: List<String>) {
         if (Operator.isOperator(input.last())) {
             throw IllegalArgumentException("last symbol must to numeric")
+        }
+    }
+
+    private fun validateDiscontinuousOperator(input: List<String>) {
+        for (index in 0 until input.lastIndex) {
+            if (Operator.isOperator(input[index]) && Operator.isOperator(input[index + 1])) {
+                throw IllegalArgumentException("continuous operator must not allow operators")
+            }
         }
     }
 
