@@ -16,4 +16,10 @@ enum class Operator(val symbol: String) {
 
     abstract fun apply(a: Double, b: Double): Double
 
+    companion object {
+        fun isOperator(symbol: String): Boolean {
+            return entries.any { it.symbol == symbol }
+        }
+    }
+
 }
