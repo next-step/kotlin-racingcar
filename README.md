@@ -8,6 +8,7 @@
   - divided by 0 is impossible
 - [ ] convert symbol to operator
 - [ ] check if a symbol is an operator
+- [ ] apply operator to two numbers
 - [ ] Parse calculator input
   - NOT ALLOWED AS BELOW:
   - blank
