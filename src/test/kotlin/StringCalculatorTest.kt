@@ -1,10 +1,8 @@
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class StringCalculatorTest {
-
     val stringCalculator = StringCalculator()
 
     @Test
@@ -21,5 +19,4 @@ class StringCalculatorTest {
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("Division by zero is not allowed")
     }
-
 }

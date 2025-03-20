@@ -1,7 +1,4 @@
-import java.beans.Expression
-
 class StringCalculator {
-
     fun calculate(expression: List<String>): Double {
         var result = expression.first().toDouble()
 
@@ -12,5 +9,4 @@ class StringCalculator {
         }
         return result
     }
-
 }

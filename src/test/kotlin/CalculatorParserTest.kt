@@ -1,10 +1,8 @@
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class CalculatorParserTest {
-
     val calculatorParser = CalculatorParser()
 
     @Test
@@ -57,5 +55,4 @@ class CalculatorParserTest {
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("a isn't a arithmetic operator")
     }
-
 }

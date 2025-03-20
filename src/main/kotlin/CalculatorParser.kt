@@ -1,11 +1,11 @@
 class CalculatorParser {
-
     fun parse(input: String): List<String> {
         validateBlank(input)
 
-        val split = input.trim()
-            .split(" ")
-            .toList()
+        val split =
+            input.trim()
+                .split(" ")
+                .toList()
 
         validateOnlyArithmeticSymbol(split)
         validateStartWithOperand(split)

@@ -15,5 +15,4 @@ fun main() {
     }
 }
 
-class Main {
-}
+class Main
