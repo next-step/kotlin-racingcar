@@ -5,6 +5,12 @@
 - [ ] Subtraction
 - [ ] Multiplication
 - [ ] Division
-- [ ] Exception Validate
-  - null, blank, symbols other than arithmetic operators
-  - divided by 0
+  - divided by 0 is impossible
+- [ ] Parse calculator input
+  - NOT ALLOWED AS BELOW:
+  - blank
+  - symbols other than arithmetic operators
+  - continuous operators
+  - continuous operand
+  - start with operators
+  - end with operators
