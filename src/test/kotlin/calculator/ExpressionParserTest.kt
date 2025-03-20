@@ -81,4 +81,21 @@ class ExpressionParserTest {
         // when && then
         assertThrows<IllegalArgumentException> { expressionParser.getOperators() }
     }
+
+    @ParameterizedTest
+    @CsvSource(
+        "A + 3",
+        "( - 9",
+        "! * 1",
+        "6 / #",
+        "9 / J",
+        "A / #",
+    )
+    fun `Throw IllegalArgumentException when expression has invalid operand`(expression: String) {
+        // given
+        val expressionParser = ExpressionParser(expression)
+
+        // when && then
+        assertThrows<IllegalArgumentException> { expressionParser.getOperands() }
+    }
 }

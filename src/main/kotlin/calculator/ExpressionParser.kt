@@ -17,7 +17,7 @@ class ExpressionParser(private val expression: String) {
         return expression
             .split(DELIMITER)
             .filterIndexed { index, _ -> index % STEP == OPERAND_INDEX }
-            .map { it.toInt() }
+            .map { it.toIntOrNull() ?: throw IllegalArgumentException("Number should be Int") }
     }
 
     companion object {

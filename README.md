@@ -21,5 +21,6 @@
 ### ExpressionParser
 - [x] Split input strings to numbers and operators
   - [x] numbers should be returned as Int
+  - [x] Throwing an IllegalArgumentException if the number is not able to change to Int
 - [x] Throwing an IllegalArgumentException if the input value is null or blank
 - [x] Throwing an IllegalArgumentException if the input contains symbols other than arithmetic operators
