@@ -20,6 +20,11 @@ enum class Operator(val symbol: String) {
         fun isOperator(symbol: String): Boolean {
             return entries.any { it.symbol == symbol }
         }
+
+        fun fromSymbol(symbol: String): Operator {
+            require(isOperator(symbol)) { "Invalid operator: $symbol" }
+            return entries.find { it.symbol == symbol }!!
+        }
     }
 
 }
