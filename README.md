@@ -18,5 +18,5 @@ Functional Requirements
 
 - [x] Enter how many cars in the race 
 - [x] Enter how many rounds will be played
-- [ ] Generate number for each round and move car randomly
+- [x] Generate number for each round and move car randomly
 - [ ] Print the current state of cars for each round
