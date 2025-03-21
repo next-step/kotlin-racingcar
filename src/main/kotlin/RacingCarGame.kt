@@ -21,6 +21,11 @@ class RacingCarGame {
                     cars[j]++
                 }
             }
+
+            for(j in 0 until amount.toInt()) {
+                println("-".repeat(cars[j]))
+            }
+            println()
         }
     }
 
