@@ -20,3 +20,4 @@ Functional Requirements
 - [x] Enter how many rounds will be played
 - [x] Generate number for each round and move car randomly
 - [x] Print the current state of cars for each round
+- [x] Check edge case and fix errors
