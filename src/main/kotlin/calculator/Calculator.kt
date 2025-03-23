@@ -1,12 +1,10 @@
 package calculator
 
-object Calculator {
-    fun calculate(input: String?): Double {
-        val inputList = InputParser.validateInput(input)
-        return calculate(inputList)
-    }
+import calculator.exceptions.NumberSeparationException
+import calculator.exceptions.OperationBetweenNumbersException
 
-    private fun calculate(inputList: List<String>): Double {
+object Calculator {
+    fun calculate(inputList: List<String>): Double {
         var currentCalculation = 0.0
         var pendingNumber = 0.0
 
@@ -36,12 +34,11 @@ object Calculator {
             Operation.DIVIDE -> a / b
         }
 
-    private fun processNumber(inputNumber: String): Double =
-        inputNumber.toDoubleOrNull() ?: throw IllegalArgumentException("Numbers should be separated with an operation")
+    private fun processNumber(inputNumber: String): Double = inputNumber.toDoubleOrNull() ?: throw OperationBetweenNumbersException()
 
     private fun processOperation(inputOperation: String): Operation =
         Operation.entries.firstOrNull { it.sign == inputOperation }
-            ?: throw NoSuchElementException("Operation $inputOperation is no supported")
+            ?: throw NumberSeparationException()
 
     private enum class Operation(
         val sign: String,

@@ -1,5 +1,9 @@
 package calculator
 
+import calculator.exceptions.BlankInputException
+import calculator.exceptions.EvenNumberElementsException
+import calculator.exceptions.InvalidCharacterException
+import calculator.exceptions.NotEnoughElementsException
 import com.google.common.truth.Truth.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -16,37 +20,37 @@ class InputParserTest {
     }
 
     @Test
-    fun `when input is blank should throw IllegalArgumentException`() {
+    fun `when input is blank should throw BlankInputException`() {
         val input = "    "
 
-        assertThrows<IllegalArgumentException>(message = "No input was provided") { InputParser.validateInput(input) }
+        assertThrows<BlankInputException> { InputParser.validateInput(input) }
     }
 
     @Test
-    fun `when input is null should throw IllegalArgumentException`() {
+    fun `when input is null should throw BlankInputException`() {
         val input = null
 
-        assertThrows<IllegalArgumentException>(message = "No input was provided") { InputParser.validateInput(input) }
+        assertThrows<BlankInputException> { InputParser.validateInput(input) }
     }
 
     @Test
-    fun `when input has invalid characters should throw IllegalArgumentException`() {
+    fun `when input has invalid characters should throw InvalidCharacterException`() {
         val input = "2 ^ 3"
 
-        assertThrows<IllegalArgumentException>(message = "Input contains invalid characters") { InputParser.validateInput(input) }
+        assertThrows<InvalidCharacterException> { InputParser.validateInput(input) }
     }
 
     @Test
-    fun `when input has even number of elements should throw IllegalArgumentException`() {
+    fun `when input has even number of elements should throw EvenNumberElementsException`() {
         val input = "2 + 3 - "
 
-        assertThrows<IllegalArgumentException>(message = "There should be an odd number of elements") { InputParser.validateInput(input) }
+        assertThrows<EvenNumberElementsException> { InputParser.validateInput(input) }
     }
 
     @Test
-    fun `when input has less than 3 elements should throw IllegalArgumentException`() {
+    fun `when input has less than 3 elements should throw NotEnoughElementsException`() {
         val input = "2"
 
-        assertThrows<IllegalArgumentException>(message = "There should beat least 2 elements") { InputParser.validateInput(input) }
+        assertThrows<NotEnoughElementsException> { InputParser.validateInput(input) }
     }
 }
