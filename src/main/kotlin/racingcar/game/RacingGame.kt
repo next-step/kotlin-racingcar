@@ -25,11 +25,9 @@ class RacingGame(
     fun start() {
         while (round.canContinue) {
             cars.moveAll()
-            val roundResult =
-                RaceResult(
-                    cars.values.map { CarDto(it.position, it.name) },
-                )
+            val roundResult = cars.values.toRaceResult()
             gameResult.add(roundResult)
+
             round.proceed()
         }
     }
