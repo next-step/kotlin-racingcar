@@ -9,8 +9,8 @@ class CarsTest : ShouldSpec({
             val cars =
                 Cars(
                     listOf(
-                        Car(canMove = { true }),
-                        Car(canMove = { true }),
+                        Car("sun", canMove = { true }),
+                        Car("brie", canMove = { true }),
                     ),
                 )
 

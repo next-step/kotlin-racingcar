@@ -11,13 +11,13 @@ import racingcar.car.Cars
 class RacingGameTest : ShouldSpec({
     context("Create") {
         withData(
-            1 to 3,
-            5 to 5,
-            1 to 10,
-            10 to 10,
-        ) { (numberOfCars, numberOfRounds) ->
+            listOf("sun", "brie") to 3,
+            listOf("sun", "brie", "1", "2", "3") to 5,
+            listOf("sun") to 10,
+            listOf("sun", "brie", "1", "2", "3") to 10,
+        ) { (carNames, numberOfRounds) ->
             shouldNotThrowAny {
-                RacingGame(numberOfCars, numberOfRounds)
+                RacingGame(carNames, numberOfRounds)
             }
         }
     }
@@ -30,8 +30,8 @@ class RacingGameTest : ShouldSpec({
                 9,
                 10,
             ).forAll { rounds ->
-                val car1 = Car()
-                val car2 = Car()
+                val car1 = Car("sun")
+                val car2 = Car("brie")
 
                 val racingGame =
                     RacingGame(

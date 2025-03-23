@@ -1,6 +1,5 @@
 package racingcar
 
-import racingcar.car.Car
 import racingcar.car.Cars
 
 class RacingGame(
@@ -10,10 +9,10 @@ class RacingGame(
     private val gameResult = mutableListOf<RaceResult>()
 
     constructor(
-        numberOfCars: Int,
+        carNames: List<String>,
         rounds: Int,
     ) : this(
-        Cars(List(numberOfCars) { Car() }),
+        Cars.fromNames(carNames),
         rounds,
     )
 

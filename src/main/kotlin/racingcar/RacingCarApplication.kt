@@ -4,10 +4,10 @@ import racingcar.view.InputView
 import racingcar.view.OutputView
 
 fun main() {
-    val inputNumberOfCars = InputView.requestNumberOfCars()
+    val inputCarNames = InputView.requestCarNames()
     val inputNumberOfRounds = InputView.requestNumberOfRounds()
 
-    val racingGame = RacingGame(inputNumberOfCars, inputNumberOfRounds)
+    val racingGame = RacingGame(inputCarNames, inputNumberOfRounds)
     racingGame.start()
 
     OutputView.printResult(racingGame.getResult())

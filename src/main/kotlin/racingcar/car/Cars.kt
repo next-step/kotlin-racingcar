@@ -6,4 +6,11 @@ class Cars(
     fun moveAll() = values.forEach(Car::move)
 
     fun getPositions() = values.map { it.position }
+
+    companion object {
+        fun fromNames(carNames: List<String>) =
+            Cars(
+                carNames.map { Car(it) },
+            )
+    }
 }
