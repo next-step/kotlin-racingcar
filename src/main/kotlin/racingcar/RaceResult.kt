@@ -1,6 +1,6 @@
 package racingcar
 
-class RaceResult(
+data class RaceResult(
     val names: List<String>,
     val positions: List<Int>,
 )

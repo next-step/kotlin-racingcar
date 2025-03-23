@@ -11,4 +11,5 @@ fun main() {
     racingGame.start()
 
     OutputView.printResult(racingGame.getResult())
+    OutputView.printWinners(racingGame.winningCarNames)
 }

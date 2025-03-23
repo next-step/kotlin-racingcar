@@ -1,20 +1,24 @@
 package racingcar.car
 
 class Car(
-    val name: Name,
-    var position: Int = START_POSITION,
-    private val canMove: () -> Boolean = {
-        (MINIMUM_POWER..MAXIMUM_POWER).random() >= ENGINE_THRESHOLD
-    },
+    position: Int = START_POSITION,
+    private val carName: Name,
+    private val canMove: () -> Boolean = defaultCanMove,
 ) {
     constructor(name: String) : this(
-        name = Name(name),
+        carName = Name(name),
     )
 
     constructor(name: String, canMove: () -> Boolean) : this(
-        name = Name(name),
+        carName = Name(name),
         canMove = canMove,
     )
+
+    val name: String
+        get() = carName.value
+
+    var position: Int = position
+        private set
 
     fun move() {
         if (canMove()) {
@@ -27,5 +31,9 @@ class Car(
         private const val MAXIMUM_POWER = 9
         private const val START_POSITION = 0
         private const val ENGINE_THRESHOLD = 4
+
+        private val defaultCanMove: () -> Boolean = {
+            (MINIMUM_POWER..MAXIMUM_POWER).random() >= ENGINE_THRESHOLD
+        }
     }
 }

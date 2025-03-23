@@ -11,4 +11,8 @@ object OutputView {
             println()
         }
     }
+
+    fun printWinners(winners: List<String>) {
+        println("🏆 Winners: ${winners.joinToString(", ")} 🏆")
+    }
 }

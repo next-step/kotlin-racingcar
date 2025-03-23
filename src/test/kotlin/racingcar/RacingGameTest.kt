@@ -4,6 +4,7 @@ import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.datatest.withData
 import io.kotest.inspectors.forAll
+import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.ranges.shouldBeIn
 import racingcar.car.Car
 import racingcar.car.Cars
@@ -44,6 +45,24 @@ class RacingGameTest : ShouldSpec({
                 car1.position shouldBeIn 0..rounds
                 car2.position shouldBeIn 0..rounds
             }
+        }
+    }
+
+    context("Winners") {
+        should("get winners") {
+            val racingGame =
+                RacingGame(
+                    Cars(
+                        listOf(
+                            Car("sun", canMove = { true }),
+                            Car("brie", canMove = { false }),
+                        ),
+                    ),
+                    3,
+                )
+
+            racingGame.start()
+            racingGame.winningCarNames shouldContainExactly listOf("sun")
         }
     }
 })

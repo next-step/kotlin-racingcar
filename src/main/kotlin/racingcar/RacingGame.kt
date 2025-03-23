@@ -16,6 +16,9 @@ class RacingGame(
         rounds,
     )
 
+    val winningCarNames: List<String>
+        get() = cars.winningCarNames()
+
     fun start() {
         repeat(rounds) {
             cars.moveAll()
