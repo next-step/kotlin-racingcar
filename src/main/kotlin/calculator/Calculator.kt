@@ -4,18 +4,25 @@ import calculator.exceptions.NumberSeparationException
 import calculator.exceptions.OperationBetweenNumbersException
 
 object Calculator {
-    fun calculate(inputList: List<String>): Double {
-        var currentCalculation = 0.0
-        var pendingNumber = 0.0
+    fun calculate(input: String?) = calculate(InputParser.validateInput(input))
 
-        for (index in inputList.indices) {
-            if (index % 2 != 0) {
+    private fun calculate(inputList: List<String>): Double {
+        var currentCalculation = processNumber(inputList.first())
+        var pendingOperation: Operation? = null
+
+        for (index in 1..inputList.lastIndex) {
+            if (index % 2 == 0) {
                 // even element - number
-                pendingNumber = processNumber(inputList[index])
+                val number = processNumber(inputList[index])
+                currentCalculation =
+                    performOperation(
+                        operation = requireNotNull(pendingOperation) { "Operation is required on this step" },
+                        a = currentCalculation,
+                        b = number,
+                    )
             } else {
                 // odd - operation
-                val operation = processOperation(inputList[index])
-                currentCalculation = performOperation(operation, currentCalculation, pendingNumber)
+                pendingOperation = processOperation(inputList[index])
             }
         }
 
