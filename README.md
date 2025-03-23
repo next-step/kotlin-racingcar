@@ -24,9 +24,3 @@
 - Validate correct execution of sequential operations.
 - Test with various input formats, including edge cases.
 - Proper handling of invalid expressions and errors.
-
-### Calculator
-
-- [x] Throwing an IllegalArgumentException if the input contains symbols other than arithmetic operators
-- [x] Implementing all four arithmetic operations in one integrated feature
-- [x] Connect Calculator and ExpressionParser
