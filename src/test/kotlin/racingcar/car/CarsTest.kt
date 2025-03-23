@@ -16,7 +16,7 @@ class CarsTest : ShouldSpec({
 
             cars.moveAll()
 
-            cars.getPositions() shouldBe listOf(1, 1)
+            cars.positions shouldBe listOf(1, 1)
         }
     }
 })

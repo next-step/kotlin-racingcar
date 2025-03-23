@@ -1,7 +1,7 @@
 package racingcar.car
 
 class Car(
-    private val name: Name,
+    val name: Name,
     var position: Int = START_POSITION,
     private val canMove: () -> Boolean = {
         (MINIMUM_POWER..MAXIMUM_POWER).random() >= ENGINE_THRESHOLD

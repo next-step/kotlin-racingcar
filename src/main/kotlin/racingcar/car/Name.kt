@@ -1,7 +1,7 @@
 package racingcar.car
 
 class Name(
-    private val value: String,
+    val value: String,
 ) {
     init {
         require(value.isNotBlank()) { "Name must not be blank." }

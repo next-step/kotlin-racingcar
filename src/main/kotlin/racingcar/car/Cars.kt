@@ -3,9 +3,13 @@ package racingcar.car
 class Cars(
     private val values: List<Car>,
 ) {
-    fun moveAll() = values.forEach(Car::move)
+    val names: List<String>
+        get() = values.map { it.name.value }
 
-    fun getPositions() = values.map { it.position }
+    val positions: List<Int>
+        get() = values.map { it.position }
+
+    fun moveAll() = values.forEach(Car::move)
 
     companion object {
         fun fromNames(carNames: List<String>) =
