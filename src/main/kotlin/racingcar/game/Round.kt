@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.game
 
 class Round(
     private var value: Int,

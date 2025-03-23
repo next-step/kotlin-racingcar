@@ -8,6 +8,8 @@ import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.ranges.shouldBeIn
 import racingcar.car.Car
 import racingcar.car.Cars
+import racingcar.game.RacingGame
+import racingcar.game.Round
 
 class RacingGameTest : ShouldSpec({
     context("Create") {

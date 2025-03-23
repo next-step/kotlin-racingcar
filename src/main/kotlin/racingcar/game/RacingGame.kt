@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.game
 
 import racingcar.car.Cars
 

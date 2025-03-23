@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.RaceResult
+import racingcar.game.RaceResult
 
 object OutputView {
     fun printResult(results: List<RaceResult>) {

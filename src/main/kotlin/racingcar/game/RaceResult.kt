@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.game
 
 data class RaceResult(
     val cars: List<CarDto>,
