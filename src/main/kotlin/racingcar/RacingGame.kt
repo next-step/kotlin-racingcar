@@ -25,7 +25,7 @@ class RacingGame(
     fun start() {
         repeat(rounds) {
             cars.moveAll()
-            val roundResult = RaceResult(cars.names, cars.positions)
+            val roundResult = RaceResult(cars.values)
             gameResult.add(roundResult)
         }
     }

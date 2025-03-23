@@ -1,11 +1,8 @@
 package racingcar.car
 
 class Cars(
-    private val values: List<Car>,
+    val values: List<Car>,
 ) {
-    val names: List<String>
-        get() = values.map { it.name }
-
     val positions: List<Int>
         get() = values.map { it.position }
 
