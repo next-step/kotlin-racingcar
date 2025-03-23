@@ -1,4 +1,4 @@
-package step2
+package calculator
 
 enum class ArithmeticOperator(
     val symbol: String,

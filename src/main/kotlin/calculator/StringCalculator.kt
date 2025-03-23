@@ -1,10 +1,10 @@
-package step2
+package calculator
 
 class StringCalculator(
     input: String,
 ) {
-    private val operands: MutableList<Int> = mutableListOf()
-    private val operators: MutableList<ArithmeticOperator> = mutableListOf()
+    private val operands = mutableListOf<Int>()
+    private val operators = mutableListOf<ArithmeticOperator>()
 
     init {
         require(input.isNotBlank()) {
@@ -14,15 +14,10 @@ class StringCalculator(
         parseInput(input)
     }
 
-    fun calculate(): Int {
-        var calculated = operands.first()
-
-        for (index in operators.indices) {
-            calculated = operators[index].operate(calculated, operands[index + 1])
+    fun calculate() =
+        operators.foldIndexed(operands.first()) { index, acc, operator ->
+            operator.operate(acc, operands[index + 1])
         }
-
-        return calculated
-    }
 
     private fun parseInput(input: String) {
         val splitInput =
@@ -54,12 +49,10 @@ class StringCalculator(
     }
 
     private fun parseOperand(input: String) {
-        runCatching {
-            val value = input.toInt()
-            operands.add(value)
-        }.onFailure {
-            throw IllegalArgumentException("Invalid operand: $input. Must be a number.")
-        }
+        val value =
+            input.toIntOrNull()
+                ?: throw IllegalArgumentException("Invalid operand: $input. Must be a number.")
+        operands.add(value)
     }
 
     private fun parseOperator(input: String) {

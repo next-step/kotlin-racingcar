@@ -1,20 +1,24 @@
-package step2
+package calculator
 
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ShouldSpec
+import io.kotest.datatest.withData
+import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
 
 class StringCalculatorTest : ShouldSpec({
     context("InputValidation") {
         should("throw exception if null or empty") {
-            shouldThrow<IllegalArgumentException> {
-                StringCalculator("")
+            listOf("", " ", null).forAll {
+                shouldThrow<IllegalArgumentException> {
+                    StringCalculator("")
+                }
             }
         }
 
         should("throw exception if split strings are less than 3") {
-            listOf("12 34", "12 +", "+ +").forEach {
+            listOf("12 34", "12 +", "+ +").forAll {
                 shouldThrow<IllegalArgumentException> {
                     StringCalculator(it)
                 }
@@ -22,7 +26,7 @@ class StringCalculatorTest : ShouldSpec({
         }
 
         should("contain at least 3 split strings") {
-            listOf("12 + 56", "12  + 56", "12 + 34", "12 + 34").forEach {
+            listOf("12 + 56", "12  + 56", "12 + 34", "12 + 34").forAll {
                 shouldNotThrowAny {
                     StringCalculator(it)
                 }
@@ -37,7 +41,7 @@ class StringCalculatorTest : ShouldSpec({
                 "1 + 2 + 3",
                 "1 + 2 / 2 * 5",
                 "5 - 1 * 2 / 4",
-            ).forEach {
+            ).forAll {
                 shouldNotThrowAny {
                     StringCalculator(it)
                 }
@@ -50,7 +54,7 @@ class StringCalculatorTest : ShouldSpec({
                 "+ 1 + 11 / 2",
                 "10 - 5 * 2 +",
                 "* 1 + 3 / 2 +",
-            ).forEach {
+            ).forAll {
                 shouldThrow<IllegalArgumentException> {
                     StringCalculator(it)
                 }
@@ -66,7 +70,7 @@ class StringCalculatorTest : ShouldSpec({
                     "2 + 3",
                     "2 + 2 + 1",
                     "4 + 1",
-                ).forEach {
+                ).forAll {
                     StringCalculator(it).calculate() shouldBe 5
                 }
             }
@@ -78,7 +82,7 @@ class StringCalculatorTest : ShouldSpec({
                     "15 - 14",
                     "6 - 2 - 3",
                     "10 - 2 - 7",
-                ).forEach {
+                ).forAll {
                     StringCalculator(it).calculate() shouldBe 1
                 }
             }
@@ -123,6 +127,42 @@ class StringCalculatorTest : ShouldSpec({
                 ).map {
                     StringCalculator(it).calculate()
                 } shouldBe listOf(4, 15, 42)
+            }
+        }
+    }
+
+    context("LearningTests") {
+        context("Inspectors") {
+            should("calculate complex expressions") {
+                listOf(
+                    "2 + 6 / 2" to 4,
+                    "36 / 6 * 2 + 3" to 15,
+                    "88 / 22 + 3 * 6" to 42,
+                ).forAll { (expression, expected) ->
+                    StringCalculator(expression).calculate() shouldBe expected
+                }
+            }
+        }
+
+        context("Data Tests with should-withData") {
+            should("calculate complex expressions") {
+                this@context.withData(
+                    "2 + 6 / 2" to 4,
+                    "36 / 6 * 2 + 3" to 15,
+                    "88 / 22 + 3 * 6" to 42,
+                ) { (expression, expected) ->
+                    StringCalculator(expression).calculate() shouldBe expected
+                }
+            }
+        }
+
+        context("Data Tests with withData") {
+            withData(
+                "2 + 6 / 2" to 4,
+                "36 / 6 * 2 + 3" to 15,
+                "88 / 22 + 3 * 6" to 42,
+            ) { (expression, expected) ->
+                StringCalculator(expression).calculate() shouldBe expected
             }
         }
     }
