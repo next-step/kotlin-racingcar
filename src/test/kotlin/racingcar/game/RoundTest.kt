@@ -1,11 +1,10 @@
-package racingcar
+package racingcar.game
 
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
-import racingcar.game.Round
 
 class RoundTest : ShouldSpec({
     context("Create") {
