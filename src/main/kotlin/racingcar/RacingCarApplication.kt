@@ -10,6 +10,6 @@ fun main() {
     val racingGame = RacingGame(inputCarNames, inputNumberOfRounds)
     racingGame.start()
 
-    OutputView.printResult(racingGame.getResult())
+    OutputView.printResult(racingGame.currentResult)
     OutputView.printWinners(racingGame.winningCarNames)
 }

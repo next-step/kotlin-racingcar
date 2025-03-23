@@ -16,6 +16,9 @@ class RacingGame(
         rounds,
     )
 
+    val currentResult: List<RaceResult>
+        get() = gameResult.toList()
+
     val winningCarNames: List<String>
         get() = cars.winningCarNames()
 
@@ -26,6 +29,4 @@ class RacingGame(
             gameResult.add(roundResult)
         }
     }
-
-    fun getResult() = gameResult.toList()
 }
