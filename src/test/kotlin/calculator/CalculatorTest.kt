@@ -37,8 +37,27 @@ class CalculatorTest {
     @Test
     fun `when input is valid it returns the input`() {
         val input = "2+3"
-        val actual =  Calculator.validateInput(input)
+        val actual = Calculator.validateInput(input)
         val expected = "2+3"
-        assertEquals(expected,actual)
+        assertEquals(expected, actual)
     }
+
+    @Test
+    fun `when input is valid compute returns the correct value`() {
+        val input = "2 * 3"
+        val expected = 6
+        val actual = Calculator.compute(input)
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when input has multiple operations compute sequentially`() {
+        val input = "2 + 3 * 4 / 2"
+        val expected = 10
+        val actual = Calculator.compute(input)
+
+        assertEquals(expected, actual)
+    }
+
 }
