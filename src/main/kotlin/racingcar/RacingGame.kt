@@ -4,16 +4,16 @@ import racingcar.car.Cars
 
 class RacingGame(
     private val cars: Cars,
-    private val rounds: Int,
+    private val round: Round,
 ) {
     private val gameResult = mutableListOf<RaceResult>()
 
     constructor(
         carNames: List<String>,
-        rounds: Int,
+        round: Int,
     ) : this(
         Cars.fromNames(carNames),
-        rounds,
+        Round(round),
     )
 
     val currentResult: List<RaceResult>
@@ -23,10 +23,14 @@ class RacingGame(
         get() = cars.winningCarNames()
 
     fun start() {
-        repeat(rounds) {
+        while (round.canContinue) {
             cars.moveAll()
-            val roundResult = RaceResult(cars.values)
+            val roundResult =
+                RaceResult(
+                    cars.values.map { CarDto(it.position, it.name) },
+                )
             gameResult.add(roundResult)
+            round.proceed()
         }
     }
 }

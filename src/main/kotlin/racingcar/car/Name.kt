@@ -6,7 +6,7 @@ class Name(
     init {
         require(value.isNotBlank()) { "Name must not be blank." }
         require(value.length in MINIMUM_NAME_LENGTH..MAXIMUM_NAME_LENGTH) {
-            "Name must have at least 1 to 5 characters."
+            "Name must be between 1 and 5 characters."
         }
     }
 

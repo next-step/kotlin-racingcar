@@ -1,7 +1,7 @@
 package racingcar.view
 
 private const val MINIMUM_NUMBER_INPUT = 0
-private const val MAXIMUM_NUMBER_INPUT = 10
+private const val MAXIMUM_NUMBER_INPUT = 100
 
 object InputView {
     fun requestCarNames(): List<String> {
@@ -11,6 +11,7 @@ object InputView {
                 ?: throw IllegalArgumentException("No car names were provided.")
 
         return input.split(",")
+            .filter { it.isNotBlank() }
             .map { it.trim() }
     }
 

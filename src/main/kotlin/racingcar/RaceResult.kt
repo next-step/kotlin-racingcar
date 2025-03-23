@@ -1,7 +1,10 @@
 package racingcar
 
-import racingcar.car.Car
-
 data class RaceResult(
-    val cars: List<Car>,
+    val cars: List<CarDto>,
+)
+
+data class CarDto(
+    val position: Int,
+    val name: String,
 )

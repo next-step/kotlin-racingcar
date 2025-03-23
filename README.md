@@ -13,6 +13,9 @@
     - Throw `IllegalArgumentException` when division by 0
 
 ## [Step 3] - Car Racing
+- Round
+  - Round must be between 1 and 10
+  - If round is 0, it cannot proceed
 - Name
   - Name must not be null or blank
   - Name length must be in between 1 and 5

@@ -30,20 +30,20 @@ class RacingGameTest : ShouldSpec({
                 4,
                 9,
                 10,
-            ).forAll { rounds ->
+            ).forAll { round ->
                 val car1 = Car("sun")
                 val car2 = Car("brie")
 
                 val racingGame =
                     RacingGame(
                         Cars(listOf(car1, car2)),
-                        rounds,
+                        Round(round),
                     )
 
                 racingGame.start()
 
-                car1.position shouldBeIn 0..rounds
-                car2.position shouldBeIn 0..rounds
+                car1.position shouldBeIn 0..round
+                car2.position shouldBeIn 0..round
             }
         }
     }
@@ -58,7 +58,7 @@ class RacingGameTest : ShouldSpec({
                             Car("brie", canMove = { false }),
                         ),
                     ),
-                    3,
+                    Round(3),
                 )
 
             racingGame.start()
