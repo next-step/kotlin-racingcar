@@ -1,7 +1,6 @@
 package carracing
 
 class InputView {
-
     fun inputTotalCar(): Int {
         println("How many cars are in the race?")
         return readLine()!!.toInt()

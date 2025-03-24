@@ -1,6 +1,5 @@
 package carracing
 
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
@@ -8,7 +7,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class CarsTest {
-
     val initialPosition = 0
     val minConditionToMove = 4
 
@@ -16,13 +14,14 @@ class CarsTest {
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     fun `car should move when power is greater or equal to 4`(power: Int) {
         // given
-        val cars = Cars.create(
-            listOf(
-                Car(initialPosition, minConditionToMove),
-                Car(2, minConditionToMove),
-                Car(4, minConditionToMove)
+        val cars =
+            Cars.create(
+                listOf(
+                    Car(initialPosition, minConditionToMove),
+                    Car(2, minConditionToMove),
+                    Car(4, minConditionToMove),
+                ),
             )
-        )
         val numberGenerator = FixedNumberGenerator(fixedValue = power)
         // when
         cars.moveAllCars(numberGenerator)
@@ -34,13 +33,14 @@ class CarsTest {
     @ValueSource(ints = [0, 1, 2, 3])
     fun `car should move when power is less than 4`(power: Int) {
         // given
-        val cars = Cars.create(
-            listOf(
-                Car(initialPosition, minConditionToMove),
-                Car(2, minConditionToMove),
-                Car(4, minConditionToMove)
+        val cars =
+            Cars.create(
+                listOf(
+                    Car(initialPosition, minConditionToMove),
+                    Car(2, minConditionToMove),
+                    Car(4, minConditionToMove),
+                ),
             )
-        )
         val numberGenerator = FixedNumberGenerator(fixedValue = power)
         // when
         cars.moveAllCars(numberGenerator)

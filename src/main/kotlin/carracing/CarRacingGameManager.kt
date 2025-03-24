@@ -12,9 +12,8 @@ fun main() {
 class CarRacingGameManager(
     private val inputView: InputView,
     private val outputView: OutputView,
-    private val numberGenerator: NumberGenerator
+    private val numberGenerator: NumberGenerator,
 ) {
-
     fun gameStart() {
         val totalCar = inputView.inputTotalCar()
         val totalRound = inputView.inputTotalRound()
