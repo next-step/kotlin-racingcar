@@ -6,18 +6,21 @@ import calculator.exceptions.InvalidCharacterException
 import calculator.exceptions.NotEnoughElementsException
 
 object InputParser {
+    private val charactersRegex = Regex("[^0-9+\\-*/\\s]")
+    private val splitRegex = Regex("\\s")
+
     fun validateInput(input: String?): List<String> {
         if (input.isNullOrBlank()) {
             throw BlankInputException()
         }
         validateCharacters(input)
-        val inputList = input.split(Regex("\\s")).filterNot { it.isEmpty() }
+        val inputList = input.split(splitRegex).filterNot { it.isEmpty() }
         validateStructure(inputList)
         return inputList
     }
 
     private fun validateCharacters(input: String) {
-        if (input.contains(Regex("[^0-9+\\-*/\\s]"))) {
+        if (input.contains(charactersRegex)) {
             throw InvalidCharacterException()
         }
     }
