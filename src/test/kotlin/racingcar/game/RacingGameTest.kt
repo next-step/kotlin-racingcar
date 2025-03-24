@@ -1,6 +1,7 @@
 package racingcar.game
 
 import io.kotest.assertions.throwables.shouldNotThrowAny
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.datatest.withData
 import io.kotest.inspectors.forAll
@@ -27,15 +28,27 @@ class RacingGameTest : DescribeSpec({
         }
     }
 
-    describe("start") {
-        it("all cars can be moved only until the number of rounds") {
-            listOf(3, 4, 9, 10).forAll { round ->
-                val cars = Cars(listOf(Car("sun"), Car("brie")))
-                val racingGame = RacingGame(cars, Round(round))
-                racingGame.start()
+    describe("play") {
+        context("when racing game is played") {
+            it("all cars should moved only until the number of rounds") {
+                listOf(3, 4, 9, 10).forAll { round ->
+                    val cars = Cars(listOf(Car("sun"), Car("brie")))
+                    val racingGame = RacingGame(cars, Round(round))
+                    racingGame.play()
 
-                cars.positions.forAll { position ->
-                    position shouldBeInRange 0..round
+                    cars.positions.forAll { position ->
+                        position shouldBeInRange 0..round
+                    }
+                }
+            }
+
+            it("should throw exception if there is no round to proceed") {
+                val cars = Cars(listOf(Car("sun"), Car("brie")))
+                val racingGame = RacingGame(cars, Round(1))
+                racingGame.play()
+
+                shouldThrow<IllegalStateException> {
+                    racingGame.play()
                 }
             }
         }
@@ -55,9 +68,9 @@ class RacingGameTest : DescribeSpec({
                         Round(3),
                     )
 
-                racingGame.start()
+                racingGame.play()
 
-                racingGame.winningCarNames shouldContainExactly listOf("sun")
+                racingGame.cars.winningCarNames() shouldContainExactly listOf("sun")
             }
         }
 
@@ -74,9 +87,9 @@ class RacingGameTest : DescribeSpec({
                         Round(3),
                     )
 
-                racingGame.start()
+                racingGame.play()
 
-                racingGame.winningCarNames shouldContainExactly listOf("sun", "brie")
+                racingGame.cars.winningCarNames() shouldContainExactly listOf("sun", "brie")
             }
         }
     }

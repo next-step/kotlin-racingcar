@@ -1,15 +1,11 @@
 package racingcar.view
 
-import racingcar.game.RaceResult
-
 object OutputView {
-    fun printResult(results: List<RaceResult>) {
-        results.forEach { result ->
-            result.cars.forEach {
-                println("${it.name}: ${"-".repeat(it.position)}")
-            }
-            println()
+    fun printCarStatus(cars: List<CarDto>) {
+        cars.forEach {
+            println("${it.name}: ${"-".repeat(it.position)}")
         }
+        println()
     }
 
     fun printWinners(winners: List<String>) {

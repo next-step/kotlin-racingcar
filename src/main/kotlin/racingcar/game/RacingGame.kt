@@ -3,11 +3,9 @@ package racingcar.game
 import racingcar.car.Cars
 
 class RacingGame(
-    private val cars: Cars,
+    val cars: Cars,
     private val round: Round,
 ) {
-    private val gameResult = mutableListOf<RaceResult>()
-
     constructor(
         carNames: List<String>,
         round: Int,
@@ -16,19 +14,15 @@ class RacingGame(
         Round(round),
     )
 
-    val currentResult: List<RaceResult>
-        get() = gameResult.toList()
+    val canStart: Boolean
+        get() = round.canContinue
 
-    val winningCarNames: List<String>
-        get() = cars.winningCarNames()
-
-    fun start() {
-        while (round.canContinue) {
-            cars.moveAll()
-            val roundResult = cars.values.toRaceResult()
-            gameResult.add(roundResult)
-
-            round.proceed()
+    fun play() {
+        check(canStart) {
+            "There is no round to play."
         }
+
+        cars.moveAll()
+        round.proceed()
     }
 }
