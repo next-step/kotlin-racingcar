@@ -1,3 +1,5 @@
+package stringcalculator
+
 fun main() {
     val stringCalculator = StringCalculator()
     val calculatorParser = CalculatorParser()

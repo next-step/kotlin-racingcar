@@ -1,3 +1,5 @@
+package stringcalculator
+
 class StringCalculator {
     fun calculate(expression: List<String>): Double {
         var result = expression.first().toDouble()
