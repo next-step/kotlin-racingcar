@@ -1,4 +1,12 @@
 # kotlin-racingcar
+## Car Racing
+### functionalities
+- [ ] print guidance of input number of cars
+- [ ] print guidance of input number of rounds
+- [ ] print the race result of current round
+- [ ] generate random number between 0 and 9
+- [ ] move car forward
+
 ## String Calculator
 ### functionalities
 #### Operand
