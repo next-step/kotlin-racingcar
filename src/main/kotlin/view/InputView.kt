@@ -20,4 +20,9 @@ class InputView {
         }
         return rounds
     }
+
+    fun enterCarNames(): List<String> {
+        println("Enter the names of the cars (separated by commas):")
+        return readlnOrNull()?.split(",") ?: throw IllegalArgumentException("[ERROR] Enter valid car names")
+    }
 }

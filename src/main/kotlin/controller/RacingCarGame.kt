@@ -10,10 +10,13 @@ fun main() {
 
 class RacingCarGame(private val inputView: InputView, private val resultView: ResultView) {
     fun run() {
-        val cars = inputView.enterAmountOfCars()
+        val names = inputView.enterCarNames()
         val rounds = inputView.enterAmountOfRounds()
 
-        val racingCars: List<RacingCar> = List(cars) { RacingCar() }
+        val racingCars: MutableList<RacingCar> = mutableListOf()
+        for (name: String in names) {
+            racingCars.addFirst(RacingCar(name))
+        }
         resultView.printRaceResultMessage()
         repeat(rounds) {
             resultView.printRacingCarGameState(racingCars)
