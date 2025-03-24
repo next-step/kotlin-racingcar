@@ -36,7 +36,7 @@ class RacingGameTest : DescribeSpec({
                     val racingGame = RacingGame(cars, Round(round))
                     racingGame.play()
 
-                    cars.positions.forAll { position ->
+                    cars.values.map { it.position }.forAll { position ->
                         position shouldBeInRange 0..round
                     }
                 }

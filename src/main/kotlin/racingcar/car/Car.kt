@@ -26,12 +26,16 @@ class Car(
         }
     }
 
+    fun hasHigherPositionThan(other: Car) = this.position > other.position
+
+    fun hasSamePositionTo(other: Car) = this.position == other.position
+
     companion object {
         private const val MINIMUM_POWER = 1
         private const val MAXIMUM_POWER = 9
         private const val START_POSITION = 0
-        private const val ENGINE_THRESHOLD = 4
 
+        private const val ENGINE_THRESHOLD = 4
         private val randomCanMove: () -> Boolean = {
             (MINIMUM_POWER..MAXIMUM_POWER).random() >= ENGINE_THRESHOLD
         }
