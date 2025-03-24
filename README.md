@@ -13,15 +13,29 @@
     - Throw `IllegalArgumentException` when division by 0
 
 ## [Step 3] - Car Racing
+- Round
+  - Round must be between 1 and 10
+  - If round is 0, it cannot proceed
+- Name
+  - Name must not be null or blank
+  - Name length must be in between 1 and 5
+
 - Car
   - Can move forward or stay still
   - Moving policy - if random number is below 4, stay still, else move forward
 
-- Input Number
-  - Used for number of cars and number of rounds
-  - Number must be positive and less or equal to 10
+- Cars
+  - Collection for list of cars
+  - Calculate current winners
+  - Let all cars move
+
+- RacingGame
+  - Create racing game with car names and rounds
+  - Begin racing game for all cars by moving them
+  - Collect results produced by each round
 
 - View
-  - Request number of cars
+  - Request car names
   - Request number of rounds
   - Print current position of the cars
+  - Print final winners of the race

@@ -9,18 +9,18 @@ class CarTest : ShouldSpec({
     context("Create") {
         should("create a car") {
             shouldNotThrowAny {
-                Car()
+                Car("sun")
             }
         }
 
         should("position of the car be 0") {
-            Car().position shouldBe 0
+            Car("sun").position shouldBe 0
         }
     }
 
     context("Move") {
         should("move a car") {
-            val car = Car(canMove = { true })
+            val car = Car("sun", canMove = { true })
             car.move()
 
             car.position shouldBe 1
@@ -28,7 +28,7 @@ class CarTest : ShouldSpec({
 
         should("not move a car") {
             listOf(0, 1, 2, 3).forAll {
-                val car = Car(canMove = { false })
+                val car = Car("sun", canMove = { false })
                 car.move()
 
                 car.position shouldBe 0

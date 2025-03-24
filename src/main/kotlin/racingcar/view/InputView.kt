@@ -1,20 +1,26 @@
 package racingcar.view
 
 private const val MINIMUM_NUMBER_INPUT = 0
-private const val MAXIMUM_NUMBER_INPUT = 10
+private const val MAXIMUM_NUMBER_INPUT = 100
 
 object InputView {
-    fun requestNumberOfCars(): Int {
-        println("How many cars are in the race?")
-        return input()
+    fun requestCarNames(): List<String> {
+        println("Enter the names of the cars (separated by commas):  ")
+        val input =
+            readlnOrNull()
+                ?: throw IllegalArgumentException("No car names were provided.")
+
+        return input.split(",")
+            .filter { it.isNotBlank() }
+            .map { it.trim() }
     }
 
     fun requestNumberOfRounds(): Int {
         println("How many rounds will be played?")
-        return input()
+        return inputNumber()
     }
 
-    private fun input(): Int {
+    private fun inputNumber(): Int {
         val value =
             readlnOrNull()
                 ?.toInt()
