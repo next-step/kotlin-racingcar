@@ -21,3 +21,12 @@ Functional Requirements
 - [x] Generate number for each round and move car randomly
 - [x] Print the current state of cars for each round
 - [x] Check edge case and fix errors
+
+## Step4 - Winner
+
+- [ ] Add name property in RacingCar
+- [ ] Validate name length does not exceed 5 characters
+- [ ] Make possible user to enter each car's name
+- [ ] Print car name before printing its movement
+- [ ] Print winner after printing state of each car's movement
+- [ ] Check edge case and fix errors
