@@ -1,7 +1,8 @@
 package model
 
 private const val MOVING_THRESHOLD = 4
-private const val MAX_NAME_LENGTH = 5
+const val MIN_NAME_LENGTH = 1
+const val MAX_NAME_LENGTH = 5
 
 class RacingCar(
     private var moved: Int,
@@ -11,8 +12,8 @@ class RacingCar(
     constructor(name: String) : this(0, ZeroToNineGenerator(), name)
 
     init {
-        require(name.length in 1..MAX_NAME_LENGTH) {
-            "[ERROR] The car name cannot exceed $MAX_NAME_LENGTH characters."
+        require(name.length in MIN_NAME_LENGTH ..MAX_NAME_LENGTH) {
+            "[ERROR] The car name should be between $MIN_NAME_LENGTH and $MAX_NAME_LENGTH characters."
         }
     }
 

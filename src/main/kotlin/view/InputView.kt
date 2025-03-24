@@ -1,16 +1,6 @@
 package view
 
 class InputView {
-    fun enterAmountOfCars(): Int {
-        println("How many cars in the race?")
-        val cars = (readlnOrNull()
-            ?: throw IllegalArgumentException("[ERROR] Enter valid number for amount of cars")).toInt()
-        if (cars <= 0) {
-            throw IllegalArgumentException("[ERROR] Enter positive number for amount of cars")
-        }
-        return cars
-    }
-
     fun enterAmountOfRounds(): Int {
         println("How many rounds will be played?")
         val rounds = (readlnOrNull()
@@ -23,6 +13,7 @@ class InputView {
 
     fun enterCarNames(): List<String> {
         println("Enter the names of the cars (separated by commas):")
-        return readlnOrNull()?.split(",") ?: throw IllegalArgumentException("[ERROR] Enter valid car names")
+        return readlnOrNull()?.split(",")?.map {it.trim()}
+            ?: throw IllegalArgumentException("[ERROR] Enter valid car names")
     }
 }
