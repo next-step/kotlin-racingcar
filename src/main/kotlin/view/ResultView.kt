@@ -13,4 +13,8 @@ class ResultView {
     fun printRaceResultMessage() {
         println("Race Results:")
     }
+
+    fun printWinners(winnerNames: List<String>) {
+        println("Winners: ${winnerNames.joinToString(", ")}")
+    }
 }

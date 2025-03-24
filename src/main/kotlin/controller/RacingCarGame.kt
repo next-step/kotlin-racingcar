@@ -1,6 +1,7 @@
 package controller
 
 import model.RacingCar
+import model.Referee
 import view.InputView
 import view.ResultView
 
@@ -22,6 +23,7 @@ class RacingCarGame(private val inputView: InputView, private val resultView: Re
             resultView.printRacingCarGameState(racingCars)
             moveRacingCars(racingCars)
         }
+        resultView.printWinners(Referee(racingCars).judge())
     }
 
     private fun moveRacingCars(racingCars: List<RacingCar>) {
