@@ -11,10 +11,11 @@ fun main() {
 
     val racingGame = RacingGame(inputCarNames, inputNumberOfRounds)
 
-    while (racingGame.canStart) {
+    while (racingGame.playable) {
         racingGame.play()
-        val raceResult = racingGame.cars.values.map { CarDto(it.position, it.name) }
-        OutputView.printCarStatus(raceResult)
+
+        val cars = racingGame.cars.values.map { CarDto(it.position, it.name) }
+        OutputView.printCarStatus(cars)
     }
 
     OutputView.printWinners(racingGame.cars.winningCarNames())

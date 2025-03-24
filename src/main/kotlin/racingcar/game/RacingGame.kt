@@ -6,7 +6,7 @@ class RacingGame(
     val cars: Cars,
     private val round: Round,
 ) {
-    val canStart: Boolean
+    val playable: Boolean
         get() = round.canContinue
 
     constructor(
@@ -18,8 +18,8 @@ class RacingGame(
     )
 
     fun play() {
-        check(canStart) {
-            "There is no round to play."
+        check(playable) {
+            "There is no more round left to play."
         }
 
         cars.moveAll()
