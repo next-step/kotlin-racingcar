@@ -6,6 +6,9 @@ class RacingGame(
     val cars: Cars,
     private val round: Round,
 ) {
+    val canStart: Boolean
+        get() = round.canContinue
+
     constructor(
         carNames: List<String>,
         round: Int,
@@ -13,9 +16,6 @@ class RacingGame(
         Cars.fromNames(carNames),
         Round(round),
     )
-
-    val canStart: Boolean
-        get() = round.canContinue
 
     fun play() {
         check(canStart) {

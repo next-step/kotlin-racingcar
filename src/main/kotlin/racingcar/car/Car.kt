@@ -5,6 +5,12 @@ class Car(
     private val carName: Name,
     private val canMove: () -> Boolean = randomCanMove,
 ) {
+    var position: Int = position
+        private set
+
+    val name: String
+        get() = carName.value
+
     constructor(name: String) : this(
         carName = Name(name),
     )
@@ -13,12 +19,6 @@ class Car(
         carName = Name(name),
         canMove = canMove,
     )
-
-    val name: String
-        get() = carName.value
-
-    var position: Int = position
-        private set
 
     fun move() {
         if (canMove()) {
