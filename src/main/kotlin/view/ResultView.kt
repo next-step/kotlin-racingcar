@@ -5,7 +5,7 @@ import model.RacingCar
 class ResultView {
     fun printRacingCarGameState(racingCars: List<RacingCar>) {
         for(racingCar in racingCars) {
-            println("-".repeat(racingCar.getCurrentState()))
+            println("${racingCar.getName()} : " + "-".repeat(racingCar.getCurrentState()))
         }
         println()
     }

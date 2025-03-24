@@ -20,6 +20,10 @@ class RacingCar(
         return moved
     }
 
+    fun getName(): String {
+        return name
+    }
+
     fun moveRandomly() {
         if (generator.generate() >= MOVING_THRESHOLD) {
             moved++

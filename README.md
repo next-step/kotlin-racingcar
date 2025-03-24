@@ -27,6 +27,6 @@ Functional Requirements
 - [x] Add name property in RacingCar
 - [x] Validate name length does not exceed 5 characters
 - [x] Make possible user to enter each car's name
-- [ ] Print car name before printing its movement
+- [x] Print car name before printing its movement
 - [ ] Print winner after printing state of each car's movement
 - [ ] Check edge case and fix errors
