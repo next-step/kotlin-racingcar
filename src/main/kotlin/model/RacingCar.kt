@@ -8,12 +8,11 @@ class RacingCar(
     private val generator: RandomNumberGenerator,
     private val name: String
 ) {
-    constructor(name: String) : this(1, ZeroToNineGenerator(), name)
+    constructor(name: String) : this(0, ZeroToNineGenerator(), name)
 
     init {
-        println("name = ${name}")
-        if(name.length < 0 || name.length > MAX_NAME_LENGTH) {
-            throw IllegalArgumentException("[ERROR] The car name cannot exceed $MAX_NAME_LENGTH characters.")
+        require(name.length in 1..MAX_NAME_LENGTH) {
+            "[ERROR] The car name cannot exceed $MAX_NAME_LENGTH characters."
         }
     }
 
@@ -34,9 +33,7 @@ class RacingCar(
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
-
         other as RacingCar
-
         return name == other.name
     }
 

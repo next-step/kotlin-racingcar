@@ -17,8 +17,8 @@ class RacingCarGame(private val inputView: InputView, private val resultView: Re
 
         resultView.printRaceResultMessage()
         repeat(rounds) {
-            resultView.printRacingCarGameState(racingCars)
             racingCars.moveAll()
+            resultView.printRacingCarGameState(racingCars)
         }
         resultView.printWinners(Referee(racingCars).judge())
     }

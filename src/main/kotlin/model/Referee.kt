@@ -2,18 +2,17 @@ package model
 
 class Referee(private val racingCars: RacingCars) {
     fun judge(): List<String> {
-        var max = 0
-        for (car: RacingCar in racingCars.getRacingCars()) {
-            if(max < car.getCurrentState()) {
-                max = car.getCurrentState()
-            }
-        }
-        val winnerNames: MutableList<String> = mutableListOf()
-        for(car: RacingCar in racingCars.getRacingCars()) {
-            if(car.getCurrentState() == max) {
-                winnerNames.addFirst(car.getName())
-            }
-        }
-        return winnerNames
+        val max = getMaxMovement()
+        return getMaxMovedRacingCarNames(max)
+    }
+
+    private fun getMaxMovement(): Int {
+        return racingCars.getRacingCars().maxOf { it.getCurrentState() }
+    }
+
+    private fun getMaxMovedRacingCarNames(max: Int): List<String> {
+        return racingCars.getRacingCars()
+            .filter { it.getCurrentState() == max }
+            .map { it.getName()}
     }
 }

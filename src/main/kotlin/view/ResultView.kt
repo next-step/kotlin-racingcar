@@ -11,7 +11,7 @@ class ResultView {
     }
 
     fun printRaceResultMessage() {
-        println("Race Results:")
+        println("\nRace Results:")
     }
 
     fun printWinners(winnerNames: List<String>) {
