@@ -1,15 +1,15 @@
 package model
 
-class Referee(private val racingCars: MutableList<RacingCar>) {
+class Referee(private val racingCars: RacingCars) {
     fun judge(): List<String> {
         var max = 0
-        for (car: RacingCar in racingCars) {
+        for (car: RacingCar in racingCars.getRacingCars()) {
             if(max < car.getCurrentState()) {
                 max = car.getCurrentState()
             }
         }
-        var winnerNames: MutableList<String> = mutableListOf()
-        for(car: RacingCar in racingCars) {
+        val winnerNames: MutableList<String> = mutableListOf()
+        for(car: RacingCar in racingCars.getRacingCars()) {
             if(car.getCurrentState() == max) {
                 winnerNames.addFirst(car.getName())
             }

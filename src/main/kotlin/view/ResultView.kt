@@ -1,10 +1,10 @@
 package view
 
-import model.RacingCar
+import model.RacingCars
 
 class ResultView {
-    fun printRacingCarGameState(racingCars: List<RacingCar>) {
-        for(racingCar in racingCars) {
+    fun printRacingCarGameState(racingCars: RacingCars) {
+        for(racingCar in racingCars.getRacingCars()) {
             println("${racingCar.getName()} : " + "-".repeat(racingCar.getCurrentState()))
         }
         println()
