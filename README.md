@@ -24,8 +24,8 @@ Functional Requirements
 
 ## Step4 - Winner
 
-- [ ] Add name property in RacingCar
-- [ ] Validate name length does not exceed 5 characters
+- [x] Add name property in RacingCar
+- [x] Validate name length does not exceed 5 characters
 - [ ] Make possible user to enter each car's name
 - [ ] Print car name before printing its movement
 - [ ] Print winner after printing state of each car's movement
