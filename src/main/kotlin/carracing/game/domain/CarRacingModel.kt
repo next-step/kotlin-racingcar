@@ -22,7 +22,7 @@ class CarRacingModel {
         }
 
     fun assignCarsAmount(input: String?): Boolean {
-        if (input != null && isInputValid(input)) {
+        if (input != null && isInputValid(input = input, min = 1)) {
             carsAmount = input.toInt()
             return true
         }
@@ -30,7 +30,7 @@ class CarRacingModel {
     }
 
     fun assignRoundsAmount(input: String?): Boolean {
-        if (input != null && isInputValid(input)) {
+        if (input != null && isInputValid(input = input, min = 0)) {
             roundsAmount = input.toInt()
             return true
         }
@@ -53,8 +53,11 @@ class CarRacingModel {
         return race.copy(round = race.round + 1)
     }
 
-    private fun isInputValid(input: String): Boolean {
+    private fun isInputValid(
+        input: String,
+        min: Int,
+    ): Boolean {
         val inputInt = input.toIntOrNull()
-        return inputInt != null && inputInt > 0
+        return inputInt != null && inputInt > min
     }
 }
