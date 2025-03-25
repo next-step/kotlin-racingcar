@@ -13,7 +13,7 @@
 - [x] Move forward based on the number
 
 ### InputView
-- [ ] Get the number of cars
+- [x] Get the number of cars
 - [ ] Get the number of rounds
 
 ### OutputView
