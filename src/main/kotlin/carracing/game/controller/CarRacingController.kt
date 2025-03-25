@@ -4,6 +4,8 @@ import carracing.game.domain.CarRacingModel
 import carracing.game.view.CarRacingView
 import carracing.game.view.ErrorView
 import carracing.game.view.InputView
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.runBlocking
 
 class CarRacingController {
     private val inputView = InputView()
@@ -14,6 +16,7 @@ class CarRacingController {
 
     fun startGame() {
         getGameParameters()
+        startRacing()
     }
 
     private fun getGameParameters() {
@@ -37,6 +40,15 @@ class CarRacingController {
         }
     }
 
-    private fun startRacing() {
-    }
+    private fun startRacing() =
+        runBlocking {
+            try {
+                model.getRaceFlow().collectLatest {
+                    carRacingView.printCurrentRaceState(it)
+                }
+            } catch (ex: IllegalArgumentException) {
+                errorView.printError("Initial race values were not initialized")
+                startGame()
+            }
+        }
 }
