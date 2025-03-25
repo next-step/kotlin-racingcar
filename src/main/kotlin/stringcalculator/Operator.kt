@@ -1,3 +1,5 @@
+package stringcalculator
+
 enum class Operator(val symbol: String) {
     PLUS("+") {
         override fun apply(

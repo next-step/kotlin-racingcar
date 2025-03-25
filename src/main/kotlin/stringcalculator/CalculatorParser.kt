@@ -1,3 +1,5 @@
+package stringcalculator
+
 class CalculatorParser {
     fun parse(input: String): List<String> {
         validateBlank(input)
