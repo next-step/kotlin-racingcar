@@ -9,8 +9,8 @@ class RacingCarController(private val inputView: InputView, private val outputVi
         val cars = createCars()
         val roundNumber = inputView.getRoundNumber() ?: DEFAULT_NUMBER
 
+        outputView.printResultGuide()
         repeat(roundNumber) { playRound(cars) }
-
         outputView.printResult(cars)
     }
 
