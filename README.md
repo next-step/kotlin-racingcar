@@ -14,7 +14,7 @@
 
 ### InputView
 - [x] Get the number of cars
-- [ ] Get the number of rounds
+- [x] Get the number of rounds
 
 ### OutputView
 - [ ] Print race results
