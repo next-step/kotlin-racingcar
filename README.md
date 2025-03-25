@@ -10,7 +10,7 @@
 ## Implementations
 ### Car
 - [x] Has position
-- [ ] Move forward based on the number
+- [x] Move forward based on the number
 
 ### InputView
 - [ ] Get the number of cars
