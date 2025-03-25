@@ -7,7 +7,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlin.random.Random
 
-class CarRacingModel {
+class CarRacingModel(
+    private val random: Random = Random,
+) {
     private var carsAmount: Int = 0
     private var roundsAmount: Int = 0
 
@@ -46,7 +48,7 @@ class CarRacingModel {
 
     private fun advanceRace(race: Race): Race {
         race.cars.forEach {
-            if (Random.nextBoolean()) {
+            if (random.nextBoolean()) {
                 it.position++
             }
         }

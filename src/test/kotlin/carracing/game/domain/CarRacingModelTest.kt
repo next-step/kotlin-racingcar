@@ -9,13 +9,18 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
+import org.mockito.Mockito.mock
+import org.mockito.kotlin.whenever
+import kotlin.random.Random
 
 class CarRacingModelTest {
+    private val random = mock<Random>()
     private lateinit var model: CarRacingModel
 
     @BeforeEach
     fun initModel() {
-        model = CarRacingModel()
+        whenever(random.nextBoolean()).thenReturn(true)
+        model = CarRacingModel(random)
     }
 
     @ParameterizedTest
@@ -67,6 +72,22 @@ class CarRacingModelTest {
 
             assertThat(races.size).isEqualTo(5)
             assertThat(races.first().round).isEqualTo(1)
-            assertThat(races.all { it.cars.size == 3 }).isTrue()
+            races.forEach {
+                assertThat(it.cars.size).isEqualTo(3)
+            }
+        }
+
+    @Test
+    fun `when random is true getRaceFlow should update cars positions`() =
+        runTest {
+            model.assignCarsAmount("3")
+            model.assignRoundsAmount("5")
+
+            val flow = model.getRaceFlow()
+            val races = flow.toList()
+
+            races.last().cars.forEach {
+                assertThat(it.position).isEqualTo(6)
+            }
         }
 }
