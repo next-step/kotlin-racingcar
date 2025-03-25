@@ -17,7 +17,7 @@
 - [x] Get the number of rounds
 
 ### OutputView
-- [ ] Print race results
+- [x] Print race results
 
 ---
 
