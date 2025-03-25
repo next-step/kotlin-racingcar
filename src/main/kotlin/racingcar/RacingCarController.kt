@@ -7,7 +7,7 @@ import racingcar.view.OutputView
 class RacingCarController(private val inputView: InputView, private val outputView: OutputView) {
     fun run() {
         val cars = createCars()
-        val roundNumber = inputView.getRoundNumber() ?: 0
+        val roundNumber = inputView.getRoundNumber() ?: DEFAULT_NUMBER
 
         repeat(roundNumber) { playRound(cars) }
 
@@ -15,7 +15,7 @@ class RacingCarController(private val inputView: InputView, private val outputVi
     }
 
     private fun createCars(): List<Car> {
-        val carNumber = inputView.getCarNumber() ?: 0
+        val carNumber = inputView.getCarNumber() ?: DEFAULT_NUMBER
         return List(carNumber) { Car() }
     }
 
@@ -27,6 +27,12 @@ class RacingCarController(private val inputView: InputView, private val outputVi
     }
 
     private fun getRandomNumber(): Int {
-        return (0..9).random()
+        return (MINIMUM_VALUE..MAXIMUM_VALUE).random()
+    }
+
+    companion object {
+        private const val DEFAULT_NUMBER = 0
+        private const val MINIMUM_VALUE = 0
+        private const val MAXIMUM_VALUE = 9
     }
 }
