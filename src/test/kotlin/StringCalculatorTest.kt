@@ -1,4 +1,5 @@
-import org.assertj.core.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class StringCalculatorTest {
@@ -18,10 +19,10 @@ class StringCalculatorTest {
         }
 
         private fun validateExpression(input: List<String>) {
-            if(input.size == 1 && input[0] == "") {
+            if (input.size == 1 && input[0] == "") {
                 throw IllegalArgumentException("Input cannot be blank")
             }
-            if(input.first().toIntOrNull() == null || input.last().toIntOrNull() == null) {
+            if (input.first().toIntOrNull() == null || input.last().toIntOrNull() == null) {
                 throw IllegalArgumentException("Enter a number in the first input or last input")
             }
         }
@@ -38,22 +39,22 @@ class StringCalculatorTest {
         }
 
         private fun validateNumber(input: String) {
-            if(input.toIntOrNull() == null) {
+            if (input.toIntOrNull() == null) {
                 throw IllegalArgumentException("Enter a valid expression")
             }
         }
 
-        private fun apply(result: Int, sign: String, targetNumber: Int): Int{
-            if(sign == "+") {
+        private fun apply(result: Int, sign: String, targetNumber: Int): Int {
+            if (sign == "+") {
                 return result + targetNumber
             }
-            if(sign == "-") {
+            if (sign == "-") {
                 return result - targetNumber
             }
-            if(sign == "*") {
+            if (sign == "*") {
                 return result * targetNumber
             }
-            if(sign == "/") {
+            if (sign == "/") {
                 return result / targetNumber
             }
             throw IllegalArgumentException("The wrong sign was entered. sign : $sign")
@@ -69,18 +70,18 @@ class StringCalculatorTest {
 
     @Test
     fun `throw exception when input value is blank`() {
-        assertThatThrownBy{
+        assertThatThrownBy {
             StringCalculator("").calculate()
         }.isInstanceOf(IllegalArgumentException::class.java)
-        .hasMessageContaining("Input cannot be blank")
+            .hasMessageContaining("Input cannot be blank")
     }
 
     @Test
     fun `throw exception if the input contains symbols other than arithmetic operators`() {
-        assertThatThrownBy{
+        assertThatThrownBy {
             StringCalculator("2 + 1 & 3").calculate()
         }.isInstanceOf(IllegalArgumentException::class.java)
-        .hasMessageMatching("Enter a valid expression")
+            .hasMessageMatching("Enter a valid expression")
     }
 
     @Test

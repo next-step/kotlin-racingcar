@@ -1,6 +1,7 @@
 package controller
 
-import model.RacingCar
+import model.RacingCars
+import model.Referee
 import view.InputView
 import view.ResultView
 
@@ -10,18 +11,15 @@ fun main() {
 
 class RacingCarGame(private val inputView: InputView, private val resultView: ResultView) {
     fun run() {
-        val cars = inputView.enterAmountOfCars()
+        val names = inputView.enterCarNames()
         val rounds = inputView.enterAmountOfRounds()
+        val racingCars = RacingCars.fromNames(names)
 
-        val racingCars: List<RacingCar> = List(cars) { RacingCar() }
         resultView.printRaceResultMessage()
         repeat(rounds) {
+            racingCars.moveAll()
             resultView.printRacingCarGameState(racingCars)
-            moveRacingCars(racingCars)
         }
-    }
-
-    private fun moveRacingCars(racingCars: List<RacingCar>) {
-        racingCars.forEach { car -> car.moveRandomly() }
+        resultView.printWinners(Referee(racingCars).judge())
     }
 }
