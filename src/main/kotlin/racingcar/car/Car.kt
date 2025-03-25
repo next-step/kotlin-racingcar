@@ -5,6 +5,12 @@ class Car(
     private val carName: Name,
     private val canMove: () -> Boolean = randomCanMove,
 ) {
+    var position: Int = position
+        private set
+
+    val name: String
+        get() = carName.value
+
     constructor(name: String) : this(
         carName = Name(name),
     )
@@ -14,17 +20,15 @@ class Car(
         canMove = canMove,
     )
 
-    val name: String
-        get() = carName.value
-
-    var position: Int = position
-        private set
-
     fun move() {
         if (canMove()) {
             position++
         }
     }
+
+    fun hasHigherPositionThan(other: Car) = this.position > other.position
+
+    fun hasSamePositionTo(other: Car) = this.position == other.position
 
     companion object {
         private const val MINIMUM_POWER = 1

@@ -3,10 +3,11 @@ package racingcar.game
 import racingcar.car.Cars
 
 class RacingGame(
-    private val cars: Cars,
+    val cars: Cars,
     private val round: Round,
 ) {
-    private val gameResult = mutableListOf<RaceResult>()
+    val playable: Boolean
+        get() = round.canContinue
 
     constructor(
         carNames: List<String>,
@@ -16,19 +17,12 @@ class RacingGame(
         Round(round),
     )
 
-    val currentResult: List<RaceResult>
-        get() = gameResult.toList()
-
-    val winningCarNames: List<String>
-        get() = cars.winningCarNames()
-
-    fun start() {
-        while (round.canContinue) {
-            cars.moveAll()
-            val roundResult = cars.values.toRaceResult()
-            gameResult.add(roundResult)
-
-            round.proceed()
+    fun play() {
+        check(playable) {
+            "There is no more round left to play."
         }
+
+        cars.moveAll()
+        round.proceed()
     }
 }

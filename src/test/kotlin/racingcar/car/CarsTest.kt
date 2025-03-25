@@ -3,7 +3,6 @@ package racingcar.car
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.collections.shouldContainExactly
-import io.kotest.matchers.shouldBe
 
 class CarsTest : ShouldSpec({
     context("MoveAll") {
@@ -18,7 +17,7 @@ class CarsTest : ShouldSpec({
 
             cars.moveAll()
 
-            cars.positions shouldBe listOf(1, 1)
+            cars.winningCarNames() shouldContainExactly listOf("sun", "brie")
         }
     }
 
