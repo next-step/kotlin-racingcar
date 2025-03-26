@@ -10,56 +10,55 @@ import kotlin.random.Random
 class CarRacingModel(
     private val random: Random = Random,
 ) {
-    private var carsAmount: Int = 0
-    private var roundsAmount: Int = 0
+    private var carsAmount: Int? = null
+    private var roundsAmount: Int? = null
 
-    private val raceFlow: Flow<Race> =
-        flow {
-            var race = Race(round = 0, cars = List(carsAmount) { Car(position = 1) })
-            repeat(roundsAmount) {
-                race = advanceRace(race)
-                emit(race)
-                delay(50)
-            }
+    fun assignCarsAmount(input: String?) {
+        val inputInt = input?.toIntOrNull()
+        if (inputInt == null || inputInt < MIN_CARS_AMOUNT) {
+            throw IllegalArgumentException("Cars amount should be at least $MIN_CARS_AMOUNT")
         }
-
-    fun assignCarsAmount(input: String?): Boolean {
-        if (input != null && isInputValid(input = input, min = 1)) {
-            carsAmount = input.toInt()
-            return true
-        }
-        return false
+        carsAmount = inputInt
     }
 
-    fun assignRoundsAmount(input: String?): Boolean {
-        if (input != null && isInputValid(input = input, min = 0)) {
-            roundsAmount = input.toInt()
-            return true
+    fun assignRoundsAmount(input: String?) {
+        val inputInt = input?.toIntOrNull()
+        if (inputInt == null || inputInt < MIN_ROUNDS_AMOUNT) {
+            throw IllegalArgumentException("Rounds amount should be at least $MIN_ROUNDS_AMOUNT")
         }
-        return false
+        roundsAmount = inputInt
     }
 
     fun getRaceFlow(): Flow<Race> {
-        if (carsAmount <= 0 || roundsAmount <= 0) {
-            throw IllegalArgumentException("Cars and rounds amount should be bigger than 0")
+        val cars = carsAmount
+        val rounds = roundsAmount
+        if (cars != null && rounds != null) {
+            return createRaceFlow(rounds = rounds, cars = cars)
         }
-        return raceFlow
+        throw IllegalStateException("Cars and rounds amount were not initialized")
     }
 
-    private fun advanceRace(race: Race): Race {
-        race.cars.forEach {
-            if (random.nextBoolean()) {
-                it.position++
+    private fun createRaceFlow(
+        rounds: Int,
+        cars: Int,
+    ): Flow<Race> =
+        flow {
+            val race = Race(cars = List(cars) { Car() })
+            repeat(rounds) {
+                advanceRace(race)
+                emit(race)
+                delay(300)
             }
         }
-        return race.copy(round = race.round + 1)
-    }
 
-    private fun isInputValid(
-        input: String,
-        min: Int,
-    ): Boolean {
-        val inputInt = input.toIntOrNull()
-        return inputInt != null && inputInt > min
+    private fun advanceRace(race: Race) {
+        race.cars.forEach {
+            it.move(random.nextInt(until = GENERATED_NUMBER_UPPER_LIMIT))
+        }
+        race.round++
     }
 }
+
+internal const val GENERATED_NUMBER_UPPER_LIMIT = 10
+internal const val MIN_CARS_AMOUNT = 2
+internal const val MIN_ROUNDS_AMOUNT = 1

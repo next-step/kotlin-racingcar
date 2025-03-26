@@ -25,18 +25,24 @@ class CarRacingController {
     }
 
     private fun getCarsParameter() {
-        var carsAmountInput: String? = inputView.inquireCarsAmount()
-        while (!model.assignCarsAmount(carsAmountInput)) {
-            errorView.printError("Cars amount should be an integer")
-            carsAmountInput = inputView.inquireCarsAmount()
+        while (true) {
+            try {
+                model.assignCarsAmount(inputView.inquireCarsAmount())
+                return
+            } catch (e: IllegalArgumentException) {
+                e.message?.let { errorView.printError(it) }
+            }
         }
     }
 
     private fun getRoundsParameter() {
-        var roundsAmountInput: String? = inputView.inquireRoundsAmount()
-        while (!model.assignRoundsAmount(roundsAmountInput)) {
-            errorView.printError("Rounds amount should be an integer")
-            roundsAmountInput = inputView.inquireRoundsAmount()
+        while (true) {
+            try {
+                model.assignRoundsAmount(inputView.inquireRoundsAmount())
+                return
+            } catch (e: IllegalArgumentException) {
+                e.message?.let { errorView.printError(it) }
+            }
         }
     }
 
@@ -47,7 +53,7 @@ class CarRacingController {
                     carRacingView.printCurrentRaceState(it)
                 }
             } catch (ex: IllegalArgumentException) {
-                errorView.printError("Initial race values were not initialized")
+                ex.message?.let { errorView.printError(it) }
                 startGame()
             }
         }

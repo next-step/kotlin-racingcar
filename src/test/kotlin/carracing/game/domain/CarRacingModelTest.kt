@@ -1,15 +1,17 @@
 package carracing.game.domain
 
+import io.kotest.assertions.throwables.shouldNotThrowAny
+import io.kotest.assertions.throwables.shouldThrowExactly
+import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
 import org.mockito.Mockito.mock
+import org.mockito.kotlin.any
 import org.mockito.kotlin.whenever
 import kotlin.random.Random
 
@@ -19,46 +21,47 @@ class CarRacingModelTest {
 
     @BeforeEach
     fun initModel() {
-        whenever(random.nextBoolean()).thenReturn(true)
         model = CarRacingModel(random)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["2", "3"])
-    fun `when assignCarsAmount has valid input should return true`(input: String) {
-        assertThat(model.assignCarsAmount(input)).isTrue()
+    fun `when assignCarsAmount has valid input should assign successfully`(input: String) {
+        shouldNotThrowAny { model.assignCarsAmount(input) }
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["-1", "0", "1", "abc"])
     @NullSource
     fun `when assignCarsAmount has invalid input should return false`(input: String?) {
-        assertThat(model.assignCarsAmount(input)).isFalse()
+        val e = shouldThrowExactly<IllegalArgumentException> { model.assignCarsAmount(input) }
+        e.message shouldBe "Cars amount should be at least $MIN_CARS_AMOUNT"
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["1", "2"])
-    fun `when assignRoundsAmount has valid input should return true`(input: String) {
-        assertThat(model.assignRoundsAmount(input)).isTrue()
+    fun `when assignRoundsAmount has valid input should assign successfully`(input: String) {
+        shouldNotThrowAny { model.assignRoundsAmount(input) }
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["-1", "0", "abc"])
     @NullSource
     fun `when assignRoundsAmount has invalid input should return false`(input: String?) {
-        assertThat(model.assignRoundsAmount(input)).isFalse()
+        val e = shouldThrowExactly<IllegalArgumentException> { model.assignRoundsAmount(input) }
+        e.message shouldBe "Rounds amount should be at least $MIN_ROUNDS_AMOUNT"
     }
 
     @Test
     fun `when cars are not set getRaceFlow should throw exception`() {
         model.assignCarsAmount("3")
-        assertThrows<IllegalArgumentException> { model.getRaceFlow() }
+        shouldThrowExactly<IllegalStateException> { model.getRaceFlow() }
     }
 
     @Test
     fun `when rounds are not set getRaceFlow should throw exception`() {
         model.assignRoundsAmount("3")
-        assertThrows<IllegalArgumentException> { model.getRaceFlow() }
+        shouldThrowExactly<IllegalStateException> { model.getRaceFlow() }
     }
 
     @Test
@@ -70,16 +73,17 @@ class CarRacingModelTest {
             val flow = model.getRaceFlow()
             val races = flow.toList()
 
-            assertThat(races.size).isEqualTo(5)
-            assertThat(races.first().round).isEqualTo(1)
+            races.size shouldBe 5
+            races.last().round shouldBe 5
             races.forEach {
-                assertThat(it.cars.size).isEqualTo(3)
+                it.cars.size shouldBe 3
             }
         }
 
     @Test
     fun `when random is true getRaceFlow should update cars positions`() =
         runTest {
+            whenever(random.nextInt(any())).thenReturn(9)
             model.assignCarsAmount("3")
             model.assignRoundsAmount("5")
 
@@ -87,7 +91,7 @@ class CarRacingModelTest {
             val races = flow.toList()
 
             races.last().cars.forEach {
-                assertThat(it.position).isEqualTo(6)
+                it.position shouldBe 5
             }
         }
 }

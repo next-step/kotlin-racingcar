@@ -1,6 +1,6 @@
 package carracing.game.domain.data
 
 data class Race(
-    val round: Int,
+    var round: Int = 0,
     val cars: List<Car>,
 )
