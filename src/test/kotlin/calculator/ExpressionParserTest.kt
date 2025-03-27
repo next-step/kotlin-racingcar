@@ -6,12 +6,14 @@ import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.EmptySource
 
 class ExpressionParserTest {
-    @Test
-    fun `Throw IllegalArgumentException when expression is blank`() {
+    @EmptySource
+    @ParameterizedTest
+    fun `Throw IllegalArgumentException when expression is blank`(input: String) {
         // given && when && then
-        assertThrows<IllegalArgumentException> { ExpressionParser("") }
+        assertThrows<IllegalArgumentException> { ExpressionParser(input) }
     }
 
     @Test
