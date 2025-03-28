@@ -20,7 +20,7 @@
 - [ ] Has Name
 
 ### Name
-- [ ] Cannot exceed 5 characters
+- [x] Cannot exceed 5 characters
 
 ### Cars
 - [x] Play each of round
