@@ -50,6 +50,42 @@ class CarsTest {
         )
     }
 
+    @Test
+    fun `car1 is winner when car1 has position 1 and car2 has position 0`() {
+        // given
+        val car1 = Car(Name("car1"))
+        val car2 = Car(Name("car2"))
+        val cars = Cars(listOf(car1, car2))
+        val numberPicker = FakeNUmberPicker(mutableListOf(4, 3))
+        val expected = listOf(car1)
+
+        // when
+        cars.play(numberPicker)
+        val actual = cars.getWinners()
+
+
+        // then
+        assertThat(actual).hasSameElementsAs(expected)
+    }
+
+    @Test
+    fun `car1 and car2 are winners when car1 has position 1 and car2 has position 1`() {
+        // given
+        val car1 = Car(Name("car1"))
+        val car2 = Car(Name("car2"))
+        val cars = Cars(listOf(car1, car2))
+        val numberPicker = FakeNUmberPicker(mutableListOf(4, 4))
+        val expected = listOf(car1, car2)
+
+        // when
+        cars.play(numberPicker)
+        val actual = cars.getWinners()
+
+
+        // then
+        assertThat(actual).hasSameElementsAs(expected)
+    }
+
     private class FakeNUmberPicker(private val numbers: MutableList<Int>) : NumberPicker {
         override fun getNumber(): Moving {
             return Moving(numbers.removeFirst())

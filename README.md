@@ -24,7 +24,7 @@
 
 ### Cars
 - [x] Play each of round
-- [ ] Filter winners
+- [x] Filter winners
 
 ### InputView
 - [x] Get the number of cars

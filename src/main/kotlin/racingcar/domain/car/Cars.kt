@@ -6,4 +6,9 @@ class Cars(val cars: List<Car>) {
     fun play(numberPicker: NumberPicker) {
         cars.forEach { car -> car.move(numberPicker.getNumber()) }
     }
+
+    fun getWinners(): List<Car> {
+        val maxiPosition = cars.maxOf { it.position }
+        return cars.filter { it.position == maxiPosition }
+    }
 }
