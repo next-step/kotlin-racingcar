@@ -2,8 +2,7 @@ package racingcar
 
 import racingcar.domain.Car
 import racingcar.domain.Cars
-import racingcar.domain.Moving
-import racingcar.domain.RandomNumberPicker
+import racingcar.domain.numberpicker.RandomNumberPicker
 import racingcar.view.InputView
 import racingcar.view.OutputView
 

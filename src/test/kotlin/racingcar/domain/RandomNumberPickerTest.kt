@@ -2,6 +2,7 @@ package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.RepeatedTest
+import racingcar.domain.numberpicker.RandomNumberPicker
 
 class RandomNumberPickerTest {
     @RepeatedTest(10)

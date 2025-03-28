@@ -1,9 +1,11 @@
-package racingcar.domain
+package racingcar.domain.numberpicker
 
-class RandomNumberPicker {
+import racingcar.domain.Moving
+
+class RandomNumberPicker : NumberPicker {
     private val range = (MINIMUM_VALUE..MAXIMUM_VALUE)
 
-    fun getNumber(): Moving {
+    override fun getNumber(): Moving {
         return Moving(range.random())
     }
 
