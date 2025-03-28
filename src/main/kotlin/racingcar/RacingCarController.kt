@@ -2,6 +2,7 @@ package racingcar
 
 import racingcar.domain.Car
 import racingcar.domain.Moving
+import racingcar.domain.RandomNumberPicker
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -21,19 +22,14 @@ class RacingCarController(private val inputView: InputView, private val outputVi
     }
 
     private fun playRound(cars: List<Car>) {
+        val randomNumberPicker = RandomNumberPicker()
         cars.forEach { car ->
-            car.move(Moving(getRandomNumber()))
+            car.move(randomNumberPicker.getNumber())
         }
         outputView.printResult(cars)
     }
 
-    private fun getRandomNumber(): Int {
-        return (MINIMUM_VALUE..MAXIMUM_VALUE).random()
-    }
-
     companion object {
         private const val DEFAULT_NUMBER = 0
-        private const val MINIMUM_VALUE = 0
-        private const val MAXIMUM_VALUE = 9
     }
 }
