@@ -16,16 +16,20 @@ class CarsTest {
         val car3 = Car(Name("car3"))
         val cars = Cars(listOf(car1, car2, car3))
         val numberPicker = FakeNUmberPicker(mutableListOf(4, 4, 4))
+
         val expected = 1
 
         // when
-        cars.play(numberPicker)
+        val newCars = cars.play(numberPicker)
+        val newCar1 = newCars.cars[0]
+        val newCar2 = newCars.cars[1]
+        val newCar3 = newCars.cars[2]
 
         // then
         assertAll(
-            { assertThat(car1.position).isEqualTo(expected) },
-            { assertThat(car2.position).isEqualTo(expected) },
-            { assertThat(car3.position).isEqualTo(expected) },
+            { assertThat(newCar1.position).isEqualTo(expected) },
+            { assertThat(newCar2.position).isEqualTo(expected) },
+            { assertThat(newCar3.position).isEqualTo(expected) },
         )
     }
 
@@ -57,12 +61,11 @@ class CarsTest {
         val car2 = Car(Name("car2"))
         val cars = Cars(listOf(car1, car2))
         val numberPicker = FakeNUmberPicker(mutableListOf(4, 3))
-        val expected = listOf(car1)
 
         // when
-        cars.play(numberPicker)
-        val actual = cars.getWinners()
-
+        val newCars = cars.play(numberPicker)
+        val expected = listOf(newCars.cars[0])
+        val actual = newCars.getWinners()
 
         // then
         assertThat(actual.cars).hasSameElementsAs(expected)
@@ -75,11 +78,11 @@ class CarsTest {
         val car2 = Car(Name("car2"))
         val cars = Cars(listOf(car1, car2))
         val numberPicker = FakeNUmberPicker(mutableListOf(4, 4))
-        val expected = listOf(car1, car2)
 
         // when
-        cars.play(numberPicker)
-        val actual = cars.getWinners()
+        val newCars = cars.play(numberPicker)
+        val expected = listOf(newCars.cars[0], newCars.cars[1])
+        val actual = newCars.getWinners()
 
 
         // then

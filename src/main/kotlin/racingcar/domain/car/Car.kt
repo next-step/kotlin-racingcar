@@ -3,14 +3,10 @@ package racingcar.domain.car
 import racingcar.domain.Moving
 import racingcar.domain.Name
 
-class Car(val name: Name) {
-    var position: Int = DEFAULT_POSITION
-        private set
-
-    fun move(moving: Moving) {
-        if (moving.value >= MOVE_CONDITION) {
-            position++
-        }
+data class Car(val name: Name, val position: Int = DEFAULT_POSITION) {
+    fun move(moving: Moving): Car {
+        if (moving.value >= MOVE_CONDITION) return copy(position = position + 1)
+        return this
     }
 
     companion object {

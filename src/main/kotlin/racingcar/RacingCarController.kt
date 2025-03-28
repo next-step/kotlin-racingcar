@@ -8,13 +8,13 @@ import racingcar.view.OutputView
 
 class RacingCarController(private val inputView: InputView, private val outputView: OutputView) {
     fun run() {
-        val cars = createCars()
+        var cars = createCars()
         val roundNumber = inputView.getRoundNumber() ?: DEFAULT_NUMBER
 
         outputView.printResultGuide()
         val randomNumberPicker = RandomNumberPicker()
         repeat(roundNumber) {
-            cars.play(randomNumberPicker)
+            cars = cars.play(randomNumberPicker)
             outputView.printResult(cars)
         }
         outputView.printResult(cars)
