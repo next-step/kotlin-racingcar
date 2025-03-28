@@ -65,7 +65,7 @@ class CarsTest {
 
 
         // then
-        assertThat(actual).hasSameElementsAs(expected)
+        assertThat(actual.cars).hasSameElementsAs(expected)
     }
 
     @Test
@@ -83,7 +83,7 @@ class CarsTest {
 
 
         // then
-        assertThat(actual).hasSameElementsAs(expected)
+        assertThat(actual.cars).hasSameElementsAs(expected)
     }
 
     private class FakeNUmberPicker(private val numbers: MutableList<Int>) : NumberPicker {

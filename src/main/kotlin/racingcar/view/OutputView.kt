@@ -18,8 +18,8 @@ class OutputView {
         println(SYMBOL_FORWARD.repeat(car.position))
     }
 
-    fun printWinners(cars: List<Car>) {
-        val names = cars.map { it.name.value }
+    fun printWinners(cars: Cars) {
+        val names = cars.cars.map { it.name.value }
         println(names.joinToString(SEPARATOR))
     }
 

@@ -7,8 +7,8 @@ class Cars(val cars: List<Car>) {
         cars.forEach { car -> car.move(numberPicker.getNumber()) }
     }
 
-    fun getWinners(): List<Car> {
+    fun getWinners(): Cars {
         val maxiPosition = cars.maxOf { it.position }
-        return cars.filter { it.position == maxiPosition }
+        return Cars(cars.filter { it.position == maxiPosition })
     }
 }
