@@ -16,6 +16,7 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core", "1.9.0")
+    testImplementation("org.jetbrains.kotlinx", "kotlinx-coroutines-test", "1.9.0")
     testImplementation("org.mockito.kotlin", "mockito-kotlin", "5.4.0")
     testImplementation("org.junit.jupiter", "junit-jupiter", "5.10.2")
     testImplementation("org.assertj", "assertj-core", "3.25.3")
