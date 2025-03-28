@@ -1,7 +1,9 @@
 package racingcar.domain
 
+import racingcar.domain.numberpicker.NumberPicker
+
 class Cars(val cars: List<Car>) {
-    fun play(numberPicker: RandomNumberPicker) {
+    fun play(numberPicker: NumberPicker) {
         cars.forEach { car -> car.move(numberPicker.getNumber()) }
     }
 }
