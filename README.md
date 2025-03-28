@@ -1,23 +1,42 @@
 # kotlin-racingcar
 
 # Car Racing
-## Requirements
+## Step 3 Requirements
 - Each of the n cars can either move forward or stay still during a given number of rounds.
 - The user should be able to specify the number of cars and the number of rounds.
 - A car moves forward if a randomly generated number between 0 and 9 is 4 or greater.
 - The current state of the cars should be displayed on the screen (there are no specific constraints on when to print the output).
 
+## Step 4 Requirements
+- Each car must have a name, and names cannot exceed 5 characters.
+- When printing the progress of each car, display the car’s name alongside its movement.
+- Car names should be comma-separated when entered by the user.
+- After the race is complete, display the winners. There can be multiple winners if they reach the same final position.
+
 ## Implementations
 ### Car
 - [x] Has position
 - [x] Move forward based on the number
+- [ ] Has Name
+
+### Name
+- [ ] Cannot exceed 5 characters
+
+### Cars
+- [x] Play each of round
+- [ ] Filter winners
 
 ### InputView
 - [x] Get the number of cars
 - [x] Get the number of rounds
+- [ ] Get the name of car
+  - [ ] Car name should be comma-separated
 
 ### OutputView
-- [x] Print race results
+- [x] Display race results
+  - [ ] Display winners
+- [x] Display progress of each car
+  - [ ] Display car names together
 
 ---
 
