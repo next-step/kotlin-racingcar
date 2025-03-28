@@ -4,8 +4,8 @@ class Car {
     var position: Int = DEFAULT_POSITION
         private set
 
-    fun move(number: Int) {
-        if (number >= MOVE_CONDITION) {
+    fun move(moving: Moving) {
+        if (moving.value >= MOVE_CONDITION) {
             position++
         }
     }

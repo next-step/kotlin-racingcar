@@ -1,6 +1,7 @@
 package racingcar
 
 import racingcar.domain.Car
+import racingcar.domain.Moving
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -21,7 +22,7 @@ class RacingCarController(private val inputView: InputView, private val outputVi
 
     private fun playRound(cars: List<Car>) {
         cars.forEach { car ->
-            car.move(getRandomNumber())
+            car.move(Moving(getRandomNumber()))
         }
         outputView.printResult(cars)
     }

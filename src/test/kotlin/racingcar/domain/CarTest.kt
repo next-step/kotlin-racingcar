@@ -22,7 +22,7 @@ class CarTest {
         val car = Car()
 
         // when
-        car.move(number)
+        car.move(Moving(number))
         val expected = 1
 
         // then
@@ -36,7 +36,7 @@ class CarTest {
         val car = Car()
 
         // when
-        car.move(number)
+        car.move(Moving(number))
         val expected = 0
 
         // then
