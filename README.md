@@ -34,9 +34,9 @@
 
 ### OutputView
 - [x] Display race results
-  - [ ] Display winners
+  - [x] Display winners
 - [x] Display progress of each car
-  - [ ] Display car names together
+  - [x] Display car names together
 
 ---
 

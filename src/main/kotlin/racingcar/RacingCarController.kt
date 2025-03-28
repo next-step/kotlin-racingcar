@@ -18,6 +18,9 @@ class RacingCarController(private val inputView: InputView, private val outputVi
             outputView.printResult(cars)
         }
         outputView.printResult(cars)
+
+        val winners = cars.getWinners()
+        outputView.printWinners(winners)
     }
 
     private fun createCars(): Cars {
