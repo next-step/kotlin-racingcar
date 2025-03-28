@@ -1,14 +1,15 @@
 package racingcar.view
 
 import racingcar.domain.Car
+import racingcar.domain.Cars
 
 class OutputView {
     fun printResultGuide() {
         println(MESSAGE_RACE_RESULT)
     }
 
-    fun printResult(cars: List<Car>) {
-        cars.forEach { car -> printRound(car) }
+    fun printResult(cars: Cars) {
+        cars.cars.forEach { car -> printRound(car) }
         println()
     }
 

@@ -1,6 +1,7 @@
 package racingcar
 
 import racingcar.domain.Car
+import racingcar.domain.Cars
 import racingcar.domain.Moving
 import racingcar.domain.RandomNumberPicker
 import racingcar.view.InputView
@@ -12,21 +13,17 @@ class RacingCarController(private val inputView: InputView, private val outputVi
         val roundNumber = inputView.getRoundNumber() ?: DEFAULT_NUMBER
 
         outputView.printResultGuide()
-        repeat(roundNumber) { playRound(cars) }
-        outputView.printResult(cars)
-    }
-
-    private fun createCars(): List<Car> {
-        val carNumber = inputView.getCarNumber() ?: DEFAULT_NUMBER
-        return List(carNumber) { Car() }
-    }
-
-    private fun playRound(cars: List<Car>) {
         val randomNumberPicker = RandomNumberPicker()
-        cars.forEach { car ->
-            car.move(randomNumberPicker.getNumber())
+        repeat(roundNumber) {
+            cars.play(randomNumberPicker)
+            outputView.printResult(cars)
         }
         outputView.printResult(cars)
+    }
+
+    private fun createCars(): Cars {
+        val carNumber = inputView.getCarNumber() ?: DEFAULT_NUMBER
+        return Cars(List(carNumber) { Car() })
     }
 
     companion object {
