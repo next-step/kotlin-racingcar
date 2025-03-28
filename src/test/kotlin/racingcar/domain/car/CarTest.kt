@@ -30,7 +30,7 @@ class CarTest {
         assertAll(
             { assertThat(car.name).isEqualTo(newCar.name) },
             { assertThat(car.position).isEqualTo(newCar.position) },
-            { assertThat(car).isSameAs(newCar) }
+            { assertThat(car).isSameAs(newCar) },
         )
     }
 

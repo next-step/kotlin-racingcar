@@ -84,7 +84,6 @@ class CarsTest {
         val expected = listOf(newCars.cars[0], newCars.cars[1])
         val actual = newCars.getWinners()
 
-
         // then
         assertThat(actual.cars).hasSameElementsAs(expected)
     }
