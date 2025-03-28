@@ -1,10 +1,11 @@
-package racingcar.domain
+package racingcar.domain.car
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.domain.car.Car
+import racingcar.domain.Moving
+import racingcar.domain.Name
 
 class CarTest {
     @Test

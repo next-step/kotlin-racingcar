@@ -1,10 +1,10 @@
-package racingcar.domain
+package racingcar.domain.car
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
-import racingcar.domain.car.Car
-import racingcar.domain.car.Cars
+import racingcar.domain.Moving
+import racingcar.domain.Name
 import racingcar.domain.numberpicker.NumberPicker
 
 class CarsTest {
