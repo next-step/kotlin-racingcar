@@ -29,8 +29,8 @@
 ### InputView
 - [x] Get the number of cars
 - [x] Get the number of rounds
-- [ ] Get the name of car
-  - [ ] Car name should be comma-separated
+- [x] Get the name of car
+  - [x] Car name should be comma-separated
 
 ### OutputView
 - [x] Display race results
