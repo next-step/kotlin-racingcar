@@ -28,6 +28,7 @@
 
 ### InputView
 - [x] Get the number of cars
+  - [x] Remove it
 - [x] Get the number of rounds
 - [x] Get the name of car
   - [x] Car name should be comma-separated

@@ -24,7 +24,6 @@ class RacingCarController(private val inputView: InputView, private val outputVi
     }
 
     private fun createCars(): Cars {
-        val carNumber = inputView.getCarNumber() ?: DEFAULT_NUMBER
         val names = inputView.getNames()
         return Cars(names.map { name -> Car(name) })
     }
