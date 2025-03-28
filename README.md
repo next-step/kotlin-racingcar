@@ -17,7 +17,7 @@
 ### Car
 - [x] Has position
 - [x] Move forward based on the number
-- [ ] Has Name
+- [x] Has Name
 
 ### Name
 - [x] Cannot exceed 5 characters

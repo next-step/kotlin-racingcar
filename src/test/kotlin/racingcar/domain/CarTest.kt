@@ -10,7 +10,7 @@ class CarTest {
     @Test
     fun `Position should be 0 when car is created`() {
         // given && when
-        val car = Car()
+        val car = Car(Name(""))
 
         // then
         assertThat(car.position).isEqualTo(0)
@@ -20,7 +20,7 @@ class CarTest {
     @ParameterizedTest
     fun `Car can move forward when the number is greater than 4`(number: Int) {
         // given
-        val car = Car()
+        val car = Car(Name(""))
 
         // when
         car.move(Moving(number))
@@ -34,7 +34,7 @@ class CarTest {
     @ParameterizedTest
     fun `Car cannot move forward when the number is less than 4`(number: Int) {
         // given
-        val car = Car()
+        val car = Car(Name(""))
 
         // when
         car.move(Moving(number))

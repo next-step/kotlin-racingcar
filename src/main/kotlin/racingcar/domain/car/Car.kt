@@ -1,8 +1,9 @@
 package racingcar.domain.car
 
 import racingcar.domain.Moving
+import racingcar.domain.Name
 
-class Car {
+class Car(val name: Name) {
     var position: Int = DEFAULT_POSITION
         private set
 

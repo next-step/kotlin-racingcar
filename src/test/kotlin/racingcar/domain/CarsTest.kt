@@ -11,9 +11,9 @@ class CarsTest {
     @Test
     fun `all cars move forward when the numbers are over than 4 or equal to 4`() {
         // given
-        val car1 = Car()
-        val car2 = Car()
-        val car3 = Car()
+        val car1 = Car(Name("car1"))
+        val car2 = Car(Name("car2"))
+        val car3 = Car(Name("car3"))
         val cars = Cars(listOf(car1, car2, car3))
         val numberPicker = FakeNUmberPicker(mutableListOf(4, 4, 4))
         val expected = 1
@@ -32,9 +32,9 @@ class CarsTest {
     @Test
     fun `cars doesn't move forward when the numbers are less than 4`() {
         // given
-        val car1 = Car()
-        val car2 = Car()
-        val car3 = Car()
+        val car1 = Car(Name("car1"))
+        val car2 = Car(Name("car2"))
+        val car3 = Car(Name("car3"))
         val cars = Cars(listOf(car1, car2, car3))
         val numberPicker = FakeNUmberPicker(mutableListOf(3, 3, 3))
         val expected = 0
