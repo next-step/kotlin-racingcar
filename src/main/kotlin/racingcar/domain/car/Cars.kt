@@ -4,7 +4,7 @@ import racingcar.domain.numberpicker.NumberPicker
 
 class Cars(val cars: List<Car>) {
     fun play(numberPicker: NumberPicker): Cars {
-        return Cars(cars.map { car -> car.move(numberPicker.getNumber()) })
+        return Cars(cars.map { car -> car.moveOverCondition(numberPicker.getNumber()) })
     }
 
     fun getWinners(): Cars {

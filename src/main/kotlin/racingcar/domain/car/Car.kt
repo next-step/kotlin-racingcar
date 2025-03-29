@@ -3,7 +3,7 @@ package racingcar.domain.car
 import racingcar.domain.Name
 
 data class Car(val name: Name, val position: Int = DEFAULT_POSITION) {
-    fun move(number: Int): Car {
+    fun moveOverCondition(number: Int): Car {
         if (number >= MOVE_CONDITION) return copy(position = position + FORWARD_VALUE)
         return this
     }

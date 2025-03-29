@@ -23,7 +23,7 @@ class CarTest {
         val car = Car(Name(""))
 
         // when
-        val newCar = car.move(3)
+        val newCar = car.moveOverCondition(3)
 
         // then
         assertAll(
@@ -39,7 +39,7 @@ class CarTest {
         val car = Car(Name(""))
 
         // when
-        val newCar = car.move(5)
+        val newCar = car.moveOverCondition(5)
 
         // then
         assertThat(car).isNotSameAs(newCar)
@@ -52,7 +52,7 @@ class CarTest {
         val car = Car(Name(""))
 
         // when
-        val newCar = car.move(number)
+        val newCar = car.moveOverCondition(number)
         val expected = 1
 
         // then
@@ -66,7 +66,7 @@ class CarTest {
         val car = Car(Name(""))
 
         // when
-        val newCar = car.move(number)
+        val newCar = car.moveOverCondition(number)
         val expected = 0
 
         // then
