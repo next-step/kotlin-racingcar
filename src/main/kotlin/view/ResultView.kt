@@ -1,20 +1,27 @@
 package view
 
-import model.RacingCars
+import model.CarHistories
+import model.GameHistories
 
 class ResultView {
-    fun printRacingCarGameState(racingCars: RacingCars) {
-        for(racingCar in racingCars.getRacingCars()) {
-            println("${racingCar.name} : " + "-".repeat(racingCar.moved))
+    fun printRaceResult(gameHistories: GameHistories, winners: List<String>) {
+        println("\nRace Results:")
+        printGameHistories(gameHistories)
+        printWinners(winners)
+    }
+
+    private fun printGameHistories(gameHistories: GameHistories) {
+        gameHistories.histories.forEach {
+            printCarHistories(it)
         }
+    }
+
+    private fun printCarHistories(it: CarHistories) {
+        it.histories.forEach { history -> println("${history.name} : " + "-".repeat(history.moved)) }
         println()
     }
 
-    fun printRaceResultMessage() {
-        println("\nRace Results:")
-    }
-
-    fun printWinners(winnerNames: List<String>) {
+    private fun printWinners(winnerNames: List<String>) {
         println("Winners: ${winnerNames.joinToString(", ")}")
     }
 }

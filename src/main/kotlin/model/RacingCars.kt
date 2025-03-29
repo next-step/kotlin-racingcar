@@ -1,6 +1,6 @@
 package model
 
-data class RacingCars(private val racingCars: List<RacingCar>) {
+data class RacingCars(val racingCars: List<RacingCar>) {
     companion object {
         fun fromNames(names: List<String>): RacingCars {
             val cars = names.map { RacingCar(it) }
@@ -8,11 +8,11 @@ data class RacingCars(private val racingCars: List<RacingCar>) {
         }
     }
 
-    fun getRacingCars(): List<RacingCar> {
-        return racingCars
-    }
-
     fun moveAll() {
         racingCars.forEach { it.moveRandomly() }
+    }
+
+    fun size(): Int {
+        return racingCars.size
     }
 }

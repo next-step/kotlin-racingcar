@@ -30,3 +30,8 @@ Functional Requirements
 - [x] Print car name before printing its movement
 - [x] Print winner after printing state of each car's movement
 - [x] Check edge case and fix errors
+
+## Step5 - Refactoring
+
+- [x] Call view layer only once for response
+- [x] Make variables public if they have getter
