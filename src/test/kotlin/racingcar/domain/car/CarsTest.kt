@@ -3,6 +3,7 @@ package racingcar.domain.car
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
+import org.junit.jupiter.api.assertDoesNotThrow
 import racingcar.domain.Name
 import racingcar.domain.numberpicker.NumberPicker
 
@@ -85,6 +86,17 @@ class CarsTest {
 
         // then
         assertThat(actual.cars).hasSameElementsAs(expected)
+    }
+
+    @Test
+    fun `Can create Cars by passing only names to constructor`() {
+        // given
+        val name1 = Name("wise")
+        val name2 = Name("muji")
+        val names = listOf(name1, name2)
+
+        // when && then
+        assertDoesNotThrow { Cars.from(names) }
     }
 
     private class FakeNUmberPicker(private val numbers: MutableList<Int>) : NumberPicker {
