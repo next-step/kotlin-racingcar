@@ -8,9 +8,9 @@ class Cars(val cars: List<Car>) {
         return Cars(cars.map { car -> car.moveOverCondition(numberPicker.getNumber()) })
     }
 
-    fun getWinners(): Cars {
+    fun getWinners(): Winners {
         val maxiPosition = cars.maxOf { it.position }
-        return Cars(cars.filter { it.position == maxiPosition })
+        return Winners(cars.filter { it.position == maxiPosition })
     }
 
     companion object {

@@ -2,6 +2,7 @@ package racingcar.view
 
 import racingcar.domain.car.Car
 import racingcar.domain.car.Cars
+import racingcar.domain.car.Winners
 
 class OutputView {
     fun printResultGuide() {
@@ -18,7 +19,7 @@ class OutputView {
         println(SYMBOL_FORWARD.repeat(car.position))
     }
 
-    fun printWinners(cars: Cars) {
+    fun printWinners(cars: Winners) {
         val names = cars.cars.map { it.name.value }
         println(names.joinToString(SEPARATOR))
     }
