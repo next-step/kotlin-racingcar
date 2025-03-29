@@ -12,6 +12,6 @@ class RandomNumberPickerTest {
         val expectedStart = 0
         val expectedEnd = 9
 
-        assertThat(actual.value).isBetween(expectedStart, expectedEnd)
+        assertThat(actual).isBetween(expectedStart, expectedEnd)
     }
 }

@@ -3,7 +3,6 @@ package racingcar.domain.car
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
-import racingcar.domain.Moving
 import racingcar.domain.Name
 import racingcar.domain.numberpicker.NumberPicker
 
@@ -89,8 +88,8 @@ class CarsTest {
     }
 
     private class FakeNUmberPicker(private val numbers: MutableList<Int>) : NumberPicker {
-        override fun getNumber(): Moving {
-            return Moving(numbers.removeFirst())
+        override fun getNumber(): Int {
+            return numbers.removeFirst()
         }
     }
 }

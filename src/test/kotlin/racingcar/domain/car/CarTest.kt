@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.domain.Moving
 import racingcar.domain.Name
 
 class CarTest {
@@ -24,7 +23,7 @@ class CarTest {
         val car = Car(Name(""))
 
         // when
-        val newCar = car.move(Moving(3))
+        val newCar = car.move(3)
 
         // then
         assertAll(
@@ -40,7 +39,7 @@ class CarTest {
         val car = Car(Name(""))
 
         // when
-        val newCar = car.move(Moving(5))
+        val newCar = car.move(5)
 
         // then
         assertThat(car).isNotSameAs(newCar)
@@ -53,7 +52,7 @@ class CarTest {
         val car = Car(Name(""))
 
         // when
-        val newCar = car.move(Moving(number))
+        val newCar = car.move(number)
         val expected = 1
 
         // then
@@ -67,7 +66,7 @@ class CarTest {
         val car = Car(Name(""))
 
         // when
-        val newCar = car.move(Moving(number))
+        val newCar = car.move(number)
         val expected = 0
 
         // then
