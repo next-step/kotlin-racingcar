@@ -21,12 +21,11 @@ class OutputView {
 
     fun printWinners(cars: Winners) {
         val names = cars.cars.map { it.name.value }
-        println(names.joinToString(SEPARATOR))
+        println(names.joinToString())
     }
 
     companion object {
         private const val MESSAGE_RACE_RESULT = "Race Results:"
         private const val SYMBOL_FORWARD = "-"
-        private const val SEPARATOR = ", "
     }
 }
