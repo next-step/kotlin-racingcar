@@ -5,9 +5,9 @@ const val MIN_NAME_LENGTH = 1
 const val MAX_NAME_LENGTH = 5
 
 class RacingCar(
-    private var moved: Int,
+    var moved: Int,
     private val generator: RandomNumberGenerator,
-    private val name: String
+    val name: String
 ) {
     constructor(name: String) : this(0, ZeroToNineGenerator(), name)
 
@@ -15,14 +15,6 @@ class RacingCar(
         require(name.length in MIN_NAME_LENGTH ..MAX_NAME_LENGTH) {
             "[ERROR] The car name should be between $MIN_NAME_LENGTH and $MAX_NAME_LENGTH characters."
         }
-    }
-
-    fun getCurrentState(): Int {
-        return moved
-    }
-
-    fun getName(): String {
-        return name
     }
 
     fun moveRandomly() {

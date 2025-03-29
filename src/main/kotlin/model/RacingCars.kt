@@ -3,7 +3,8 @@ package model
 data class RacingCars(private val racingCars: List<RacingCar>) {
     companion object {
         fun fromNames(names: List<String>): RacingCars {
-            return names.map {RacingCar(it)}.run {RacingCars(this)}
+            val cars = names.map { RacingCar(it) }
+            return RacingCars(cars)
         }
     }
 

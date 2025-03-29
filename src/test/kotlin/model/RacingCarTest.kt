@@ -9,14 +9,14 @@ class RacingCarTest {
     fun `car is not moving when generated number is 3`() {
         val racingCar = RacingCar(moved = 2, generator = { 3 }, "Anna")
         racingCar.moveRandomly()
-        assertThat(racingCar.getCurrentState()).isEqualTo(2)
+        assertThat(racingCar.moved).isEqualTo(2)
     }
 
     @Test
     fun `car is moving when generated number is 5`() {
         val racingCar = RacingCar(moved = 3, generator = { 5 }, "Anna")
         racingCar.moveRandomly()
-        assertThat(racingCar.getCurrentState()).isEqualTo(4)
+        assertThat(racingCar.moved).isEqualTo(4)
     }
 
     @Test
