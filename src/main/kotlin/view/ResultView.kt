@@ -1,23 +1,22 @@
 package view
 
-import model.CarHistories
-import model.GameHistories
+import model.RacingCars
 
 class ResultView {
-    fun printRaceResult(gameHistories: GameHistories, winners: List<String>) {
+    fun printRaceResult(histories: List<RacingCars>, winners: List<String>) {
         println("\nRace Results:")
-        printGameHistories(gameHistories)
+        printHistories(histories)
         printWinners(winners)
     }
 
-    private fun printGameHistories(gameHistories: GameHistories) {
-        gameHistories.getHistories().forEach {
-            printCarHistories(it)
-        }
+    private fun printHistories(histories: List<RacingCars>) {
+        histories.forEach(::printCarsHistory)
     }
 
-    private fun printCarHistories(it: CarHistories) {
-        it.histories.forEach { history -> println("${history.name} : " + "-".repeat(history.moved)) }
+    private fun printCarsHistory(racingCars: RacingCars) {
+        racingCars.racingCars.forEach {
+            println("${it.name} : " + "-".repeat(it.getMoved()))
+        }
         println()
     }
 

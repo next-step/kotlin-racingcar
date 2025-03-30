@@ -1,6 +1,5 @@
 package controller
 
-import model.GameHistories
 import model.RacingCars
 import model.Referee
 import view.InputView
@@ -16,11 +15,11 @@ class RacingCarGame(private val inputView: InputView, private val resultView: Re
         val rounds = inputView.enterAmountOfRounds()
         val racingCars = RacingCars.fromNames(names)
 
-        val gameHistories = GameHistories()
+        val histories: MutableList<RacingCars> = mutableListOf()
         repeat(rounds) {
             racingCars.moveAll()
-            gameHistories.add(racingCars)
+            histories.add(racingCars.copy())
         }
-        resultView.printRaceResult(gameHistories, Referee(racingCars).judge())
+        resultView.printRaceResult(histories.toList(), Referee(racingCars).judge())
     }
 }

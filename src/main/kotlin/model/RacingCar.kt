@@ -23,6 +23,10 @@ class RacingCar(
         }
     }
 
+    fun copy(): RacingCar {
+        return RacingCar(moved, generator, name)
+    }
+
     fun getMoved(): Int {
         return moved
     }
