@@ -5,7 +5,7 @@ const val MIN_NAME_LENGTH = 1
 const val MAX_NAME_LENGTH = 5
 
 class RacingCar(
-    var moved: Int,
+    private var moved: Int,
     private val generator: RandomNumberGenerator,
     val name: String
 ) {
@@ -21,6 +21,10 @@ class RacingCar(
         if (generator.generate() >= MOVING_THRESHOLD) {
             moved++
         }
+    }
+
+    fun getMoved(): Int {
+        return moved
     }
 
     override fun equals(other: Any?): Boolean {

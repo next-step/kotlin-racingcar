@@ -11,7 +11,7 @@ class ResultView {
     }
 
     private fun printGameHistories(gameHistories: GameHistories) {
-        gameHistories.histories.forEach {
+        gameHistories.getHistories().forEach {
             printCarHistories(it)
         }
     }

@@ -7,12 +7,12 @@ class Referee(private val racingCars: RacingCars) {
     }
 
     private fun getMaxMovement(): Int {
-        return racingCars.racingCars.maxOf { it.moved }
+        return racingCars.racingCars.maxOf { it.getMoved() }
     }
 
     private fun getMaxMovedRacingCarNames(max: Int): List<String> {
         return racingCars.racingCars
-            .filter { it.moved== max }
+            .filter { it.getMoved()== max }
             .map { it.name }
     }
 }
