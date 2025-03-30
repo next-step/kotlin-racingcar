@@ -1,6 +1,6 @@
 package carracing
 
-class Car(val name: String, var position: Int = 0) {
+class Car(val name: String, var position: Int = INITIAL_POSITION) {
 
     fun move(random: Int) {
         if (random >= MOVE_NUMBER_THRESHOLD) {
@@ -10,5 +10,6 @@ class Car(val name: String, var position: Int = 0) {
 
     companion object {
         const val MOVE_NUMBER_THRESHOLD = 4
+        const val INITIAL_POSITION = 0
     }
 }

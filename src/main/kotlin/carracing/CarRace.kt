@@ -3,19 +3,23 @@ package carracing
 import kotlin.random.Random
 
 class CarRace(val numCars: Int, val numRounds: Int) {
-    val cars = List(numCars) { Car(name = "Car ${it + 1}") }
+    val cars = generateCars()
+
     fun startRace() {
-        require(cars.size >= 2) { "Not enough cars to race" }
-        require(numRounds > 0) { "Select at least one round to start the race" }
+        require(cars.size >= MIN_NUMBER_OF_CARS) { "Not enough cars to race" }
+        require(numRounds > MIN_NUMBER_OF_ROUNDS) { "Select at least one round to start the race" }
         repeat(numRounds) {
             cars.forEach { it.move(random = getRandom()) }
             ResultView.showStatus(cars)
         }
     }
 
+    private fun generateCars() = List(numCars) { Car(name = "Car ${it + 1}") }
     private fun getRandom() = Random.nextInt(RANDOM_NUMBER_BOUNDARY)
 
     companion object {
         const val RANDOM_NUMBER_BOUNDARY = 10
+        const val MIN_NUMBER_OF_CARS = 2
+        const val MIN_NUMBER_OF_ROUNDS = 0
     }
 }
