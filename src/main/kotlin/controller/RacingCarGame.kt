@@ -15,11 +15,11 @@ class RacingCarGame(private val inputView: InputView, private val resultView: Re
         val rounds = inputView.enterAmountOfRounds()
         val racingCars = RacingCars.fromNames(names)
 
-        resultView.printRaceResultMessage()
+        val histories: MutableList<RacingCars> = mutableListOf()
         repeat(rounds) {
             racingCars.moveAll()
-            resultView.printRacingCarGameState(racingCars)
+            histories.add(racingCars.copy())
         }
-        resultView.printWinners(Referee(racingCars).judge())
+        resultView.printRaceResult(histories.toList(), Referee(racingCars).judge())
     }
 }

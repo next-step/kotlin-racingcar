@@ -45,19 +45,23 @@ class StringCalculatorTest {
         }
 
         private fun apply(result: Int, sign: String, targetNumber: Int): Int {
-            if (sign == "+") {
-                return result + targetNumber
+            return when (Sign.get(sign)) {
+                Sign.PLUS -> result + targetNumber
+                Sign.MINUS -> result - targetNumber
+                Sign.MULTIPLY -> result * targetNumber
+                Sign.DIVIDE -> result / targetNumber
             }
-            if (sign == "-") {
-                return result - targetNumber
+        }
+    }
+
+    enum class Sign(val value: String) {
+        PLUS("+"), MINUS("-"), MULTIPLY("*"), DIVIDE("/");
+
+        companion object {
+            fun get(sign: String): Sign {
+                return entries.find { it.value == sign }
+                    ?: throw IllegalArgumentException("The wrong sign was entered. sign : $sign")
             }
-            if (sign == "*") {
-                return result * targetNumber
-            }
-            if (sign == "/") {
-                return result / targetNumber
-            }
-            throw IllegalArgumentException("The wrong sign was entered. sign : $sign")
         }
     }
 

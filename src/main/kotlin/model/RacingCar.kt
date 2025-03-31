@@ -7,7 +7,7 @@ const val MAX_NAME_LENGTH = 5
 class RacingCar(
     private var moved: Int,
     private val generator: RandomNumberGenerator,
-    private val name: String
+    val name: String
 ) {
     constructor(name: String) : this(0, ZeroToNineGenerator(), name)
 
@@ -17,18 +17,18 @@ class RacingCar(
         }
     }
 
-    fun getCurrentState(): Int {
-        return moved
-    }
-
-    fun getName(): String {
-        return name
-    }
-
     fun moveRandomly() {
         if (generator.generate() >= MOVING_THRESHOLD) {
             moved++
         }
+    }
+
+    fun copy(): RacingCar {
+        return RacingCar(moved, generator, name)
+    }
+
+    fun getMoved(): Int {
+        return moved
     }
 
     override fun equals(other: Any?): Boolean {
