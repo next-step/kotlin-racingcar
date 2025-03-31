@@ -1,56 +1,34 @@
 package calculator
 
-import calculator.Operator.ADDITION
-import calculator.Operator.DIVISION
-import calculator.Operator.MULTIPLICATION
-import calculator.Operator.SUBTRACTION
-
 object Calculator {
     fun compute(input: String): Int {
-        validateInput(input)
+        val inputList = validateInput(input)
+        return calculate(inputList = inputList)
+    }
+
+    fun validateInput(input: String?): List<String> {
+        require(!input.isNullOrBlank()) { "Input is null or blank" }
+        require(input.all { it in ALLOWED_CHARS }) { "Input has invalid characters" }
         val inputList = input.toInputList()
-        return calculate(inputs = inputList)
+        require(inputList.isNotEmpty()) { "No valid inputs provided" }
+        return inputList
     }
 
-    fun validateInput(input: String?): String {
-        if (input.isNullOrBlank()) throw IllegalArgumentException("Input is null or blank")
-        if (input.any { it !in ALLOWED_CHARS }) throw IllegalArgumentException("Input has invalid characters")
-        return input
-    }
-
-    private fun calculate(inputs: List<String>): Int {
-        if (inputs.isEmpty()) {
-            throw IllegalArgumentException("No valid inputs provided")
-        }
+    private fun calculate(inputList: List<String>): Int {
         var result =
-            inputs[0].toIntOrNull() ?: throw IllegalArgumentException("Invalid number:${inputs[0]}")
+            inputList[0].toIntOrNull()
+                ?: throw IllegalArgumentException("Invalid number:${inputList[0]}")
         var index = 1
-        while (index < inputs.size) {
-            val operator = inputs[index].toOperator()
+        while (index < inputList.size) {
+            val operator = Operator.toOperator(inputList[index])
             val next =
-                inputs.getOrNull(index + 1)?.toIntOrNull()
+                inputList.getOrNull(index + 1)?.toIntOrNull()
                     ?: throw IllegalArgumentException("Number is expected after operator")
-            result = operate(
-                param1 = result,
-                param2 = next,
-                operator = operator
-            )
+            result = operator.operate(result, next)
             index += 2
         }
         return result
     }
-
-    private fun operate(param1: Int, param2: Int, operator: Operator): Int =
-        when (operator) {
-            ADDITION -> param1 + param2
-            SUBTRACTION -> param1 - param2
-            MULTIPLICATION -> param1 * param2
-            DIVISION -> param1 / param2
-        }
-
-    private fun String.toOperator(): Operator = Operator.entries.find {
-        it.value == this
-    } ?: throw IllegalArgumentException("Unsupported Operator")
 
     private fun String.toInputList(): List<String> = this
         .split(" ")
