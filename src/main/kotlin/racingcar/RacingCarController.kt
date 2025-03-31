@@ -1,38 +1,28 @@
 package racingcar
 
-import racingcar.domain.Car
+import racingcar.domain.car.Cars
+import racingcar.domain.numberpicker.RandomNumberPicker
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class RacingCarController(private val inputView: InputView, private val outputView: OutputView) {
     fun run() {
-        val cars = createCars()
+        var cars = Cars.from(inputView.getNames())
         val roundNumber = inputView.getRoundNumber() ?: DEFAULT_NUMBER
 
         outputView.printResultGuide()
-        repeat(roundNumber) { playRound(cars) }
-        outputView.printResult(cars)
-    }
-
-    private fun createCars(): List<Car> {
-        val carNumber = inputView.getCarNumber() ?: DEFAULT_NUMBER
-        return List(carNumber) { Car() }
-    }
-
-    private fun playRound(cars: List<Car>) {
-        cars.forEach { car ->
-            car.move(getRandomNumber())
+        val randomNumberPicker = RandomNumberPicker()
+        repeat(roundNumber) {
+            cars = cars.play(randomNumberPicker)
+            outputView.printResult(cars)
         }
         outputView.printResult(cars)
-    }
 
-    private fun getRandomNumber(): Int {
-        return (MINIMUM_VALUE..MAXIMUM_VALUE).random()
+        val winners = cars.getWinners()
+        outputView.printWinners(winners)
     }
 
     companion object {
         private const val DEFAULT_NUMBER = 0
-        private const val MINIMUM_VALUE = 0
-        private const val MAXIMUM_VALUE = 9
     }
 }

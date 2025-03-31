@@ -1,19 +1,27 @@
 package racingcar.view
 
-import racingcar.domain.Car
+import racingcar.domain.car.Car
+import racingcar.domain.car.Cars
+import racingcar.domain.car.Winners
 
 class OutputView {
     fun printResultGuide() {
         println(MESSAGE_RACE_RESULT)
     }
 
-    fun printResult(cars: List<Car>) {
-        cars.forEach { car -> printRound(car) }
+    fun printResult(cars: Cars) {
+        cars.cars.forEach { car -> printRound(car) }
         println()
     }
 
     private fun printRound(car: Car) {
+        print("${car.name.value}: ")
         println(SYMBOL_FORWARD.repeat(car.position))
+    }
+
+    fun printWinners(cars: Winners) {
+        val names = cars.cars.map { it.name.value }
+        println(names.joinToString())
     }
 
     companion object {
