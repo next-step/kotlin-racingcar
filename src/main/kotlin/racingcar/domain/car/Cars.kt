@@ -9,8 +9,7 @@ class Cars(val cars: List<Car>) {
     }
 
     fun getWinners(): Winners {
-        val maxPosition = cars.maxOf { it.position }
-        return Winners(cars.filter { it.position == maxPosition })
+        return Winners.of(cars)
     }
 
     companion object {
