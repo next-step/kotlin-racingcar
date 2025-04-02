@@ -1,9 +1,9 @@
 package carracing
 
+import carracing.view.ResultView
 import kotlin.random.Random
 
-class CarRace(val numCars: Int, val numRounds: Int) {
-    val cars = generateCars()
+class CarRace(val cars: List<Car>, val numRounds: Int) {
 
     init {
         require(cars.size >= MIN_NUMBER_OF_CARS) { "Not enough cars to race" }
@@ -18,7 +18,6 @@ class CarRace(val numCars: Int, val numRounds: Int) {
         }
     }
 
-    private fun generateCars() = List(numCars) { Car(name = "Car ${it + 1}") }
     private fun getRandom() = Random.nextInt(RANDOM_NUMBER_BOUNDARY)
 
     companion object {
