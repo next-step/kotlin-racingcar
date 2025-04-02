@@ -5,9 +5,13 @@ import kotlin.random.Random
 class CarRace(val numCars: Int, val numRounds: Int) {
     val cars = generateCars()
 
-    fun startRace() {
+    init {
         require(cars.size >= MIN_NUMBER_OF_CARS) { "Not enough cars to race" }
         require(numRounds > MIN_NUMBER_OF_ROUNDS) { "Select at least one round to start the race" }
+    }
+
+    fun startRace() {
+
         repeat(numRounds) {
             cars.forEach { it.move(random = getRandom()) }
             ResultView.showStatus(cars)

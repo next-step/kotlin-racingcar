@@ -8,8 +8,8 @@ import kotlin.test.assertNotEquals
 class CarRaceTest {
     @Test
     fun `when number of cars are less than 2 should throw exception with appropriate message`() {
-        val race = CarRace(numCars = 1, numRounds = 3)
         val exception = assertFailsWith<IllegalArgumentException> {
+            val race = CarRace(numCars = 1, numRounds = 3)
             race.startRace()
         }
         assertEquals("Not enough cars to race", exception.message)
@@ -17,8 +17,8 @@ class CarRaceTest {
 
     @Test
     fun `when number of rounds is zero should throw exception with appropriate message`() {
-        val race = CarRace(numCars = 3, numRounds = 0)
         val exception = assertFailsWith<IllegalArgumentException> {
+            val race = CarRace(numCars = 3, numRounds = 0)
             race.startRace()
         }
         assertEquals("Select at least one round to start the race", exception.message)
