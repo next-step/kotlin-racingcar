@@ -1,4 +1,4 @@
-package carracing
+package carracing.view
 
 object InputView {
     fun getInput(promptQuestion: String): Int {

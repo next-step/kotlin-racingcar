@@ -1,4 +1,7 @@
-package carracing
+package carracing.view
+
+import carracing.Car
+
 
 object ResultView {
     fun showStatus(cars: List<Car>) {
