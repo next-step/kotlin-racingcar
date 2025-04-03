@@ -6,8 +6,8 @@ import calculator.exceptions.InvalidCharacterException
 import calculator.exceptions.NotEnoughElementsException
 
 object InputParser {
-    private val charactersRegex = Regex("[^0-9+\\-*/\\s]")
-    private val splitRegex = Regex("\\s")
+    private val charactersRegex = Regex(CHARACTERS_PATTERN)
+    private val splitRegex = Regex(SPLIT_PATTERN)
 
     fun validateInput(input: String?): List<String> {
         if (input.isNullOrBlank()) {
@@ -36,3 +36,5 @@ object InputParser {
 }
 
 private const val MIN_ELEMENTS_AMOUNT = 3
+private const val CHARACTERS_PATTERN = "[^0-9+\\-*/\\s]"
+private const val SPLIT_PATTERN = "\\s"

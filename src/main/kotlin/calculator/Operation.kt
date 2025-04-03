@@ -4,40 +4,16 @@ import calculator.exceptions.NumberSeparationException
 
 enum class Operation(
     private val sign: String,
+    val apply: (Double, Double) -> Double,
 ) {
-    ADD("+") {
-        override fun apply(
-            a: Double,
-            b: Double,
-        ) = a + b
-    },
-    SUBTRACT("-") {
-        override fun apply(
-            a: Double,
-            b: Double,
-        ) = a - b
-    },
-    MULTIPLY("*") {
-        override fun apply(
-            a: Double,
-            b: Double,
-        ) = a * b
-    },
-    DIVIDE("/") {
-        override fun apply(
-            a: Double,
-            b: Double,
-        ) = a / b
-    },
+    ADD("+", { a, b -> a + b }),
+    SUBTRACT("-", { a, b -> a - b }),
+    MULTIPLY("*", { a, b -> a * b }),
+    DIVIDE("/", { a, b -> if (b == 0.0) throw ArithmeticException("Division by zero") else a / b }),
     ;
 
-    abstract fun apply(
-        a: Double,
-        b: Double,
-    ): Double
-
     companion object {
-        fun parseOperation(inputOperation: String) =
+        fun from(inputOperation: String) =
             Operation.entries.firstOrNull { it.sign == inputOperation }
                 ?: throw NumberSeparationException()
     }
