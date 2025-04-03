@@ -1,4 +1,4 @@
-package carracing.game.view
+package carracing.game
 
 import carracing.game.controller.CarRacingController
 

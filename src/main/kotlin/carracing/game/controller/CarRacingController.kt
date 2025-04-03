@@ -4,9 +4,7 @@ import carracing.game.domain.CarRacingModel
 import carracing.game.view.CarRacingView
 import carracing.game.view.ErrorView
 import carracing.game.view.InputView
-import kotlinx.coroutines.DelicateCoroutinesApi
 
-@OptIn(DelicateCoroutinesApi::class)
 class CarRacingController(
     private val inputView: InputView = InputView(),
     private val errorView: ErrorView = ErrorView(),

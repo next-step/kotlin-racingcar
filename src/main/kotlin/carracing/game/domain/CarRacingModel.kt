@@ -12,16 +12,16 @@ class CarRacingModel(
 
     fun assignCarsAmount(input: String?) {
         val inputInt = input?.toIntOrNull()
-        if (inputInt == null || inputInt < MIN_CARS_AMOUNT) {
-            throw IllegalArgumentException("Cars amount should be at least $MIN_CARS_AMOUNT")
+        require(inputInt != null && inputInt >= MIN_CARS_AMOUNT) {
+            "Cars amount should be at least $MIN_CARS_AMOUNT"
         }
         carsAmount = inputInt
     }
 
     fun assignRoundsAmount(input: String?) {
         val inputInt = input?.toIntOrNull()
-        if (inputInt == null || inputInt < MIN_ROUNDS_AMOUNT) {
-            throw IllegalArgumentException("Rounds amount should be at least $MIN_ROUNDS_AMOUNT")
+        require(inputInt != null && inputInt >= MIN_ROUNDS_AMOUNT) {
+            "Rounds amount should be at least $MIN_ROUNDS_AMOUNT"
         }
         roundsAmount = inputInt
     }
