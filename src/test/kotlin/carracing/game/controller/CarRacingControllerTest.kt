@@ -7,24 +7,15 @@ import carracing.game.domain.data.Race
 import carracing.game.view.CarRacingView
 import carracing.game.view.ErrorView
 import carracing.game.view.InputView
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.emptyFlow
-import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.TestScope
-import kotlinx.coroutines.test.advanceUntilIdle
-import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.*
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class CarRacingControllerTest {
-    private val scope = TestScope(StandardTestDispatcher())
     private val inputView = mock<InputView>()
     private val errorView = mock<ErrorView>()
     private val carRacingView = mock<CarRacingView>()
-    private val model = mock<CarRacingModel> { on { getRaceFlow() } doReturn emptyFlow() }
+    private val model = mock<CarRacingModel> { on { getRaceSequence() } doReturn emptySequence() }
 
     private lateinit var controller: CarRacingController
 
@@ -36,7 +27,6 @@ class CarRacingControllerTest {
                 errorView = errorView,
                 carRacingView = carRacingView,
                 model = model,
-                scope = scope,
             )
     }
 
@@ -77,38 +67,34 @@ class CarRacingControllerTest {
     }
 
     @Test
-    fun `when parameters are set should start the race and show current state`() =
-        runTest(scope.testScheduler) {
-            val race = Race(cars = emptyList())
-            val raceFlow = MutableStateFlow(race)
-            whenever(inputView.inquireCarsAmount()).thenReturn("5")
-            whenever(inputView.inquireRoundsAmount()).thenReturn("4")
-            whenever(model.getRaceFlow()).thenReturn(raceFlow)
+    fun `when parameters are set should start the race and show current state`() {
+        val race = Race(cars = emptyList())
+        val raceSequence =
+            sequenceOf(
+                race,
+                race.copy(round = 1),
+                race.copy(round = 2),
+            )
+        whenever(inputView.inquireCarsAmount()).thenReturn("5")
+        whenever(inputView.inquireRoundsAmount()).thenReturn("4")
+        whenever(model.getRaceSequence()).thenReturn(raceSequence)
 
-            controller.startGame()
-            advanceUntilIdle()
+        controller.startGame()
 
-            raceFlow.emit(Race(round = 1, cars = emptyList()))
-            advanceUntilIdle()
-            raceFlow.emit(Race(round = 2, cars = emptyList()))
-            advanceUntilIdle()
-
-            verify(carRacingView, times(3)).printCurrentRaceState(any())
-        }
+        verify(carRacingView, times(3)).printCurrentRaceState(any())
+    }
 
     @Test
-    fun `when parameters are not set should print error and ask parameters again`() =
-        runTest(scope.testScheduler) {
-            val exception = IllegalArgumentException("Message")
-            whenever(inputView.inquireCarsAmount()).thenReturn("5")
-            whenever(inputView.inquireRoundsAmount()).thenReturn("4")
-            whenever(model.getRaceFlow()).thenThrow(exception).thenReturn(emptyFlow())
+    fun `when parameters are not set should print error and ask parameters again`() {
+        val exception = IllegalArgumentException("Message")
+        whenever(inputView.inquireCarsAmount()).thenReturn("5")
+        whenever(inputView.inquireRoundsAmount()).thenReturn("4")
+        whenever(model.getRaceSequence()).thenThrow(exception).thenReturn(emptySequence())
 
-            controller.startGame()
-            advanceUntilIdle()
+        controller.startGame()
 
-            verify(errorView).printError("Message")
-            verify(inputView, times(2)).inquireCarsAmount()
-            verify(inputView, times(2)).inquireRoundsAmount()
-        }
+        verify(errorView).printError("Message")
+        verify(inputView, times(2)).inquireCarsAmount()
+        verify(inputView, times(2)).inquireRoundsAmount()
+    }
 }

@@ -2,9 +2,6 @@ package carracing.game.domain
 
 import carracing.game.domain.data.Car
 import carracing.game.domain.data.Race
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlin.random.Random
 
 class CarRacingModel(
@@ -29,25 +26,24 @@ class CarRacingModel(
         roundsAmount = inputInt
     }
 
-    fun getRaceFlow(): Flow<Race> {
+    fun getRaceSequence(): Sequence<Race> {
         val cars = carsAmount
         val rounds = roundsAmount
         if (cars != null && rounds != null) {
-            return createRaceFlow(rounds = rounds, cars = cars)
+            return createRaceSequence(rounds = rounds, cars = cars)
         }
         throw IllegalStateException("Cars and rounds amount were not initialized")
     }
 
-    private fun createRaceFlow(
+    private fun createRaceSequence(
         rounds: Int,
         cars: Int,
-    ): Flow<Race> =
-        flow {
+    ): Sequence<Race> =
+        sequence {
             val race = Race(cars = List(cars) { Car() })
             repeat(rounds) {
                 advanceRace(race)
-                emit(race)
-                delay(300)
+                yield(race)
             }
         }
 

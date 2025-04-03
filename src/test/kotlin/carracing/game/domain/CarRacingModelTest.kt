@@ -3,7 +3,6 @@ package carracing.game.domain
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.matchers.shouldBe
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -53,25 +52,25 @@ class CarRacingModelTest {
     }
 
     @Test
-    fun `when cars are not set getRaceFlow should throw exception`() {
+    fun `when cars are not set getRaceSequence should throw exception`() {
         model.assignCarsAmount("3")
-        shouldThrowExactly<IllegalStateException> { model.getRaceFlow() }
+        shouldThrowExactly<IllegalStateException> { model.getRaceSequence() }
     }
 
     @Test
-    fun `when rounds are not set getRaceFlow should throw exception`() {
+    fun `when rounds are not set getRaceSequence should throw exception`() {
         model.assignRoundsAmount("3")
-        shouldThrowExactly<IllegalStateException> { model.getRaceFlow() }
+        shouldThrowExactly<IllegalStateException> { model.getRaceSequence() }
     }
 
     @Test
-    fun `getRaceFlow should emit correct number of race updates`() =
+    fun `getRaceSequence should emit correct number of race updates`() =
         runTest {
             model.assignCarsAmount("3")
             model.assignRoundsAmount("5")
 
-            val flow = model.getRaceFlow()
-            val races = flow.toList()
+            val sequence = model.getRaceSequence()
+            val races = sequence.toList()
 
             races.size shouldBe 5
             races.last().round shouldBe 5
@@ -81,14 +80,14 @@ class CarRacingModelTest {
         }
 
     @Test
-    fun `when random is true getRaceFlow should update cars positions`() =
+    fun `when random is true getRaceSequence should update cars positions`() =
         runTest {
             whenever(random.nextInt(any())).thenReturn(9)
             model.assignCarsAmount("3")
             model.assignRoundsAmount("5")
 
-            val flow = model.getRaceFlow()
-            val races = flow.toList()
+            val sequence = model.getRaceSequence()
+            val races = sequence.toList()
 
             races.last().cars.forEach {
                 it.position shouldBe 5

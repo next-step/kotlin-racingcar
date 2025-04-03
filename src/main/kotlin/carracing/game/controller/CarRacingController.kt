@@ -4,10 +4,7 @@ import carracing.game.domain.CarRacingModel
 import carracing.game.view.CarRacingView
 import carracing.game.view.ErrorView
 import carracing.game.view.InputView
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 @OptIn(DelicateCoroutinesApi::class)
 class CarRacingController(
@@ -15,7 +12,6 @@ class CarRacingController(
     private val errorView: ErrorView = ErrorView(),
     private val carRacingView: CarRacingView = CarRacingView(),
     private val model: CarRacingModel = CarRacingModel(),
-    private val scope: CoroutineScope = GlobalScope,
 ) {
     fun startGame() {
         getGameParameters()
@@ -50,14 +46,12 @@ class CarRacingController(
     }
 
     private fun startRacing() =
-        scope.launch {
-            try {
-                model.getRaceFlow().collect {
-                    carRacingView.printCurrentRaceState(it)
-                }
-            } catch (ex: IllegalArgumentException) {
-                ex.message?.let { errorView.printError(it) }
-                startGame()
+        try {
+            model.getRaceSequence().forEach {
+                carRacingView.printCurrentRaceState(it)
             }
+        } catch (ex: IllegalArgumentException) {
+            ex.message?.let { errorView.printError(it) }
+            startGame()
         }
 }
