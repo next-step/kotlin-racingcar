@@ -8,9 +8,7 @@ class Cars(val cars: List<Car>) {
         return Cars(cars.map { car -> car.moveOverCondition(numberPicker.getNumber()) })
     }
 
-    fun getWinners(): Winners {
-        return Winners.of(cars)
-    }
+    val getWinners: Winners get() = Winners.of(cars)
 
     companion object {
         fun from(names: List<Name>): Cars {
