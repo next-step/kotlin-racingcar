@@ -1,36 +1,39 @@
 package racingcar.domain.car
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 import racingcar.domain.Name
+import java.util.stream.Stream
 
 class WinnersTest {
-    @Test
-    fun `car1 and car2 are winners when car1 has position 1 and car2 has position 1`() {
-        // given
-        val car1 = Car(Name("car1"), 1)
-        val car2 = Car(Name("car2"), 1)
-        val cars = listOf(car1, car2)
-
-        // when
+    @MethodSource("provideCarsAndWinners")
+    @ParameterizedTest
+    fun `Return correct winners from given cars`(
+        cars: List<Car>,
+        expectedWinners: List<Car>,
+    ) {
+        // given && when
         val actual = Winners.of(cars)
 
         // then
-        assertThat(actual.cars).hasSameElementsAs(cars)
+        assertThat(actual.cars).hasSameElementsAs(expectedWinners)
     }
 
-    @Test
-    fun `car1 is winner when car1 has position 1 and car2 has position 0`() {
-        // given
-        val car1 = Car(Name("car1"), 1)
-        val car2 = Car(Name("car2"), 0)
-        val expected = listOf(car1)
-        val cars = listOf(car1, car2)
-
-        // when
-        val actual = Winners.of(cars)
-
-        // then
-        assertThat(actual.cars).hasSameElementsAs(expected)
+    companion object {
+        @JvmStatic
+        fun provideCarsAndWinners(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(
+                    listOf(Car(Name("car1"), 1), Car(Name("car2"), 1)),
+                    listOf(Car(Name("car1"), 1), Car(Name("car2"), 1)),
+                ),
+                Arguments.of(
+                    listOf(Car(Name("car1"), 1), Car(Name("car2"), 0)),
+                    listOf(Car(Name("car1"), 1)),
+                ),
+            )
+        }
     }
 }
