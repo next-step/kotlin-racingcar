@@ -13,6 +13,10 @@
 - Car names should be comma-separated when entered by the user.
 - After the race is complete, display the winners. There can be multiple winners if they reach the same final position.
 
+## Step 5 Requirements
+- Implement objects containing core business logic in the domain package and UI-related objects in the view package.
+- Refactor using the MVC pattern, ensuring that objects in the view package can depend on objects in the domain package, but not the other way around.
+
 ## Implementations
 ### Car
 - [x] Has position

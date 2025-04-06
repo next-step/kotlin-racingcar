@@ -18,7 +18,7 @@ class RacingCarController(private val inputView: InputView, private val outputVi
         }
         outputView.printResult(cars)
 
-        val winners = cars.getWinners()
+        val winners = cars.getWinners
         outputView.printWinners(winners)
     }
 
