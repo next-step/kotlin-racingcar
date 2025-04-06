@@ -1,6 +1,15 @@
 package carracing.game.domain.data
 
-data class Race(
-    var round: Int = 0,
+class Race(
     val cars: List<Car>,
-)
+) {
+    var round: Int = 0
+        private set
+
+    fun advanceRace() {
+        cars.forEach {
+            it.move()
+        }
+        round++
+    }
+}

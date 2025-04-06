@@ -5,11 +5,12 @@ private const val MIN_NUMBER_TO_MOVE = 4
 
 data class Car(
     private var _position: Int = INITIAL_POSITION,
+    private val generateMoveNumber: () -> Int,
 ) {
     val position: Int get() = _position
 
-    fun move(number: Int) {
-        if (number >= MIN_NUMBER_TO_MOVE) {
+    fun move() {
+        if (generateMoveNumber() >= MIN_NUMBER_TO_MOVE) {
             _position++
         }
     }

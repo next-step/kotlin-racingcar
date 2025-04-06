@@ -72,8 +72,8 @@ class CarRacingControllerTest {
         val raceSequence =
             sequenceOf(
                 race,
-                race.copy(round = 1),
-                race.copy(round = 2),
+                race.apply { advanceRace() },
+                race.apply { advanceRace() },
             )
         whenever(inputView.inquireCarsAmount()).thenReturn("5")
         whenever(inputView.inquireRoundsAmount()).thenReturn("4")

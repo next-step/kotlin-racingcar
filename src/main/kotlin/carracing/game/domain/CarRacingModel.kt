@@ -40,19 +40,21 @@ class CarRacingModel(
         cars: Int,
     ): Sequence<Race> =
         sequence {
-            val race = Race(cars = List(cars) { Car() })
+            val race =
+                Race(
+                    cars =
+                        List(cars) {
+                            Car(
+                                generateMoveNumber =
+                                    { random.nextInt(GENERATED_NUMBER_UPPER_LIMIT) },
+                            )
+                        },
+                )
             repeat(rounds) {
-                advanceRace(race)
+                race.advanceRace()
                 yield(race)
             }
         }
-
-    private fun advanceRace(race: Race) {
-        race.cars.forEach {
-            it.move(random.nextInt(until = GENERATED_NUMBER_UPPER_LIMIT))
-        }
-        race.round++
-    }
 }
 
 internal const val GENERATED_NUMBER_UPPER_LIMIT = 10

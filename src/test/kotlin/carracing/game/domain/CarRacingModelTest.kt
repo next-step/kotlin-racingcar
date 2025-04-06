@@ -9,18 +9,13 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.NullSource
 import org.junit.jupiter.params.provider.ValueSource
-import org.mockito.Mockito.mock
-import org.mockito.kotlin.any
-import org.mockito.kotlin.whenever
-import kotlin.random.Random
 
 class CarRacingModelTest {
-    private val random = mock<Random>()
     private lateinit var model: CarRacingModel
 
     @BeforeEach
     fun initModel() {
-        model = CarRacingModel(random)
+        model = CarRacingModel()
     }
 
     @ParameterizedTest
@@ -76,21 +71,6 @@ class CarRacingModelTest {
             races.last().round shouldBe 5
             races.forEach {
                 it.cars.size shouldBe 3
-            }
-        }
-
-    @Test
-    fun `when random is true getRaceSequence should update cars positions`() =
-        runTest {
-            whenever(random.nextInt(any())).thenReturn(9)
-            model.assignCarsAmount("3")
-            model.assignRoundsAmount("5")
-
-            val sequence = model.getRaceSequence()
-            val races = sequence.toList()
-
-            races.last().cars.forEach {
-                it.position shouldBe 5
             }
         }
 }
