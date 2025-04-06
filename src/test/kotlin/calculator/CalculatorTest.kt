@@ -19,7 +19,7 @@ class CalculatorTest {
 
     @Test
     fun `when input contains two numbers in a row should throw exception`() {
-        val input = "2 - 2 3 -"
+        val input = "2 - 2 3 1"
 
         assertThrows<NumberSeparationException> { Calculator.calculate(input) }
     }

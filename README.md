@@ -24,3 +24,19 @@
 - Validate correct execution of sequential operations.
 - Test with various input formats, including edge cases.
 - Proper handling of invalid expressions and errors.
+
+## [Step 3] - Car Racing
+
+### Implementation
+
+1. Implement a Car class with current position
+2. Create a Model class that controls the race, including the number of cars and the number of rounds.
+3. During each round, each car will either move forward or stay still based on a randomly generated number between 0 and 9
+4. Display the current state of each car after each round 
+5. Allow the user to specify the number of cars and the number of rounds at the start of the game.
+
+Testing
+- Validate correct movement of cars based on random number generation
+- Test with different numbers of cars and rounds
+- Test the model methods invocation in a wrong sequence
+- Handle input edge cases, such as zero cars or zero rounds

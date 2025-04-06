@@ -4,9 +4,9 @@ import calculator.exceptions.BlankInputException
 import calculator.exceptions.EvenNumberElementsException
 import calculator.exceptions.InvalidCharacterException
 import calculator.exceptions.NotEnoughElementsException
-import com.google.common.truth.Truth.assertThat
+import io.kotest.assertions.throwables.shouldThrowExactly
+import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 
 class InputParserTest {
     @Test
@@ -16,41 +16,41 @@ class InputParserTest {
 
         val actual = InputParser.validateInput(input)
 
-        assertThat(actual).isEqualTo(expected)
+        actual shouldBe expected
     }
 
     @Test
     fun `when input is blank should throw BlankInputException`() {
         val input = "    "
 
-        assertThrows<BlankInputException> { InputParser.validateInput(input) }
+        shouldThrowExactly<BlankInputException> { InputParser.validateInput(input) }
     }
 
     @Test
     fun `when input is null should throw BlankInputException`() {
         val input = null
 
-        assertThrows<BlankInputException> { InputParser.validateInput(input) }
+        shouldThrowExactly<BlankInputException> { InputParser.validateInput(input) }
     }
 
     @Test
     fun `when input has invalid characters should throw InvalidCharacterException`() {
         val input = "2 ^ 3"
 
-        assertThrows<InvalidCharacterException> { InputParser.validateInput(input) }
+        shouldThrowExactly<InvalidCharacterException> { InputParser.validateInput(input) }
     }
 
     @Test
     fun `when input has even number of elements should throw EvenNumberElementsException`() {
         val input = "2 + 3 - "
 
-        assertThrows<EvenNumberElementsException> { InputParser.validateInput(input) }
+        shouldThrowExactly<EvenNumberElementsException> { InputParser.validateInput(input) }
     }
 
     @Test
     fun `when input has less than 3 elements should throw NotEnoughElementsException`() {
         val input = "2"
 
-        assertThrows<NotEnoughElementsException> { InputParser.validateInput(input) }
+        shouldThrowExactly<NotEnoughElementsException> { InputParser.validateInput(input) }
     }
 }
