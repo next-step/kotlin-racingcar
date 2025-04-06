@@ -40,3 +40,10 @@ Testing
 - Test with different numbers of cars and rounds
 - Test the model methods invocation in a wrong sequence
 - Handle input edge cases, such as zero cars or zero rounds
+
+## [Step 4] - Car Racing (Winner)
+1. Add a name property to Car with constraint of 5 characters
+2. Implement car name input flow and test handle incorrect input (separation not by comma)
+3. Update CarRacing view to display the car’s name alongside its movement
+4. Define winners (multiple winners if final position is same)
+5. Update CarRacing view to show winners
