@@ -18,7 +18,7 @@ class CarRace(val cars: List<Car>, val numRounds: Int) {
         ResultView.displayWinners(winners = getWinners())
     }
 
-    private fun getWinners(): List<Car> {
+     fun getWinners(): List<Car> {
         val maxPosition = cars.maxOf { it.position }
         return cars.filter { it.position == maxPosition }
     }
