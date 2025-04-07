@@ -12,5 +12,4 @@ fun main() {
     val race = CarRace(cars = cars, numRounds = numRounds)
 
     race.startRace()
-
 }

@@ -15,7 +15,6 @@ class Car(val name: String, var position: Int = INITIAL_POSITION) {
     companion object {
         const val MOVE_NUMBER_THRESHOLD = 4
         const val INITIAL_POSITION = 0
-        private const val ALLOWED_LENGTH_CAR_NAME = 5
-
+        const val ALLOWED_LENGTH_CAR_NAME = 5
     }
 }

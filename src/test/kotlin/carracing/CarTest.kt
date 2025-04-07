@@ -6,12 +6,13 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
+
 class CarTest {
 
     @Test
     fun `test car has an initial position of zero`() {
         val car = Car(name = "pobi")
-
+        
         assertEquals(expected = 0, actual = car.position)
     }
 
