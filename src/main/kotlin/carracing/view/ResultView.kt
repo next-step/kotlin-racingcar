@@ -9,4 +9,9 @@ object ResultView {
             println("${it.name}: ${"-".repeat(it.position)}")
         }
     }
+
+    fun displayWinners(winners: List<Car>) {
+        val winnerNames = winners.joinToString(",") { it.name }
+        println("Winners: $winnerNames")
+    }
 }
