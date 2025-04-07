@@ -2,5 +2,5 @@ package carracing
 
 
 object CarGenerator {
-     fun generateCars(numCars: Int) = List(numCars) { Car(name = "Car ${it + 1}") }
+    fun generateCars(cars: List<String>) = cars.map { Car(name = it) }
 }

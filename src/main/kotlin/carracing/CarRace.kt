@@ -11,7 +11,6 @@ class CarRace(val cars: List<Car>, val numRounds: Int) {
     }
 
     fun startRace() {
-
         repeat(numRounds) {
             cars.forEach { it.move(random = getRandom()) }
             ResultView.showStatus(cars)
