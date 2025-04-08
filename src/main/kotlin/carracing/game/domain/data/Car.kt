@@ -14,6 +14,8 @@ class Car private constructor(
         }
     }
 
+    override fun toString(): String = "$name : ${"-".repeat(position)}"
+
     companion object {
         const val NAME_MAX_LENGTH = 5
 

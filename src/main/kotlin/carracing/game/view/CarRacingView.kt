@@ -6,7 +6,7 @@ class CarRacingView {
     fun printCurrentRaceState(race: Race) {
         println("Round ${race.round}")
         race.cars.forEach {
-            println("-".repeat(it.position))
+            println(it.toString())
         }
     }
 }
