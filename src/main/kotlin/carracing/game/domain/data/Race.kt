@@ -12,4 +12,6 @@ class Race(
         }
         round++
     }
+
+    fun getWinners(): List<Car> = cars.filter { car -> car.position == cars.maxOf { it.position } }
 }
