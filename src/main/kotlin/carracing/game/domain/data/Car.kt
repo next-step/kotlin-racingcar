@@ -15,6 +15,8 @@ class Car private constructor(
     }
 
     companion object {
+        const val NAME_MAX_LENGTH = 5
+
         fun of(
             position: Int = INITIAL_POSITION,
             name: String?,
@@ -28,7 +30,5 @@ class Car private constructor(
             }
             return trimmedName
         }
-
-        private const val NAME_MAX_LENGTH = 5
     }
 }
