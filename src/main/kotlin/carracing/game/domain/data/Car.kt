@@ -14,7 +14,7 @@ class Car private constructor(
         }
     }
 
-    override fun toString(): String = "$name : ${"-".repeat(position)}"
+    override fun toString(): String = "${name.padEnd(NAME_MAX_LENGTH)} : ${"-".repeat(position)}"
 
     companion object {
         const val NAME_MAX_LENGTH = 5
