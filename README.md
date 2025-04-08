@@ -62,3 +62,21 @@
     - Needs to has at least 2 cars to start the race
     - Needs to have at least 1 round to start the race
     - Race starts successfully if conditions are met
+
+## Step 4 - Car racing(Winner)
+
+### Functional requirements
+    - Each car must have a name, and names cannot exceed 5 characters.
+    - When printing the progress of each car, display the car's name alongside its movement.
+    - Car names should be comma-separated when entered by the user.
+    - After the race is complete, display the winners. There can be multiple winners if they reach the same final position.
+
+### Implementation
+    - refactor Car and other parts of code to accept string and process 
+    - Add a function to determine the winner
+
+### Test scope
+    - Make the existing tests pass with the refactor
+    - Add new test cases for checking car name length
+    - New test for winner logic
+

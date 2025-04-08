@@ -1,9 +1,15 @@
 package carracing
 
-fun main() {
-    val numCars = InputView.getInput(promptQuestion = "How many cars are in the race?")
-    val numRounds = InputView.getInput(promptQuestion = "How many rounds will be played?")
+import carracing.view.InputView.getCarNames
+import carracing.view.InputView.getRoundInput
 
-    val race = CarRace(numCars = numCars, numRounds = numRounds)
+fun main() {
+    val carsInput =
+        getCarNames(promptQuestion = "Enter the names of the cars (separated by commas):")
+    val numRounds = getRoundInput(promptQuestion = "How many rounds will be played?")
+
+    val cars = CarGenerator.generateCars(carsInput)
+    val race = CarRace(cars = cars, numRounds = numRounds)
+
     race.startRace()
 }
