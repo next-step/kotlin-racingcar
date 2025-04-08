@@ -14,6 +14,7 @@ class CarRacingController(
     fun startGame() {
         getGameParameters()
         startRacing()
+        showWinners()
     }
 
     private fun getGameParameters() {
@@ -52,4 +53,14 @@ class CarRacingController(
             ex.message?.let { errorView.printError(it) }
             startGame()
         }
+
+    private fun showWinners() {
+        try {
+            val winners = model.defineWinners()
+            carRacingView.printWinners(winners.map { it.name })
+        } catch (ex: IllegalArgumentException) {
+            ex.message?.let { errorView.printError(it) }
+            startGame()
+        }
+    }
 }

@@ -9,6 +9,7 @@ class CarRacingModel(
 ) {
     private var cars: List<Car>? = null
     private var roundsAmount: Int? = null
+    private var race: Race? = null
 
     fun assignCars(input: String?) {
         val carsNames = input?.split(',')
@@ -35,15 +36,19 @@ class CarRacingModel(
         throw IllegalStateException("Cars and rounds amount were not initialized")
     }
 
+    fun defineWinners(): List<Car> = requireNotNull(race) { "Race should've started" }.getWinners()
+
     private fun createRaceSequence(
         rounds: Int,
         cars: List<Car>,
     ): Sequence<Race> =
         sequence {
-            val race = Race(cars)
-            repeat(rounds) {
-                race.advanceRace()
-                yield(race)
+            with(Race(cars)) {
+                race = this
+                repeat(rounds) {
+                    advanceRace()
+                    yield(this)
+                }
             }
         }
 

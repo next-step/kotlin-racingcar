@@ -3,7 +3,6 @@ package carracing.game.domain
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.matchers.shouldBe
-import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -60,18 +59,36 @@ class CarRacingModelTest {
     }
 
     @Test
-    fun `getRaceSequence should emit correct number of race updates`() =
-        runTest {
-            model.assignCars("c1,c2,c3")
-            model.assignRoundsAmount("5")
+    fun `getRaceSequence should emit correct number of race updates`() {
+        model.assignCars("c1,c2,c3")
+        model.assignRoundsAmount("5")
 
-            val sequence = model.getRaceSequence()
-            val races = sequence.toList()
+        val sequence = model.getRaceSequence()
+        val races = sequence.toList()
 
-            races.size shouldBe 5
-            races.last().round shouldBe 5
-            races.forEach {
-                it.cars.size shouldBe 3
-            }
+        races.size shouldBe 5
+        races.last().round shouldBe 5
+        races.forEach {
+            it.cars.size shouldBe 3
         }
+    }
+
+    @Test
+    fun `defineWinners should throw exception if race hasn't started`() {
+        model.assignCars("c1,c2,c3")
+        model.assignRoundsAmount("5")
+
+        shouldThrowExactly<IllegalArgumentException> { model.defineWinners() }
+    }
+
+    @Test
+    fun `when race has ended, defineWinners should return winners`() {
+        model.assignCars("c1,c2,c3")
+        model.assignRoundsAmount("5")
+
+        val races = model.getRaceSequence().toList()
+        val winners = model.defineWinners()
+
+        winners shouldBe races.last().getWinners()
+    }
 }
