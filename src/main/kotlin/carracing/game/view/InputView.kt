@@ -1,8 +1,8 @@
 package carracing.game.view
 
 class InputView {
-    fun inquireCarsAmount(): String? {
-        println("How many cars are in the race?")
+    fun inquireCarsNames(): String? {
+        println("Input names of each car")
         return readlnOrNull()
     }
 

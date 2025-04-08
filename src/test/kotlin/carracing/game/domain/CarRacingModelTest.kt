@@ -21,14 +21,14 @@ class CarRacingModelTest {
     @ParameterizedTest
     @ValueSource(strings = ["2", "3"])
     fun `when assignCarsAmount has valid input should assign successfully`(input: String) {
-        shouldNotThrowAny { model.assignCarsAmount(input) }
+        shouldNotThrowAny { model.assignCars(input) }
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["-1", "0", "1", "abc"])
     @NullSource
     fun `when assignCarsAmount has invalid input should return false`(input: String?) {
-        val e = shouldThrowExactly<IllegalArgumentException> { model.assignCarsAmount(input) }
+        val e = shouldThrowExactly<IllegalArgumentException> { model.assignCars(input) }
         e.message shouldBe "Cars amount should be at least $MIN_CARS_AMOUNT"
     }
 
@@ -48,7 +48,7 @@ class CarRacingModelTest {
 
     @Test
     fun `when cars are not set getRaceSequence should throw exception`() {
-        model.assignCarsAmount("3")
+        model.assignCars("3")
         shouldThrowExactly<IllegalStateException> { model.getRaceSequence() }
     }
 
@@ -61,7 +61,7 @@ class CarRacingModelTest {
     @Test
     fun `getRaceSequence should emit correct number of race updates`() =
         runTest {
-            model.assignCarsAmount("3")
+            model.assignCars("3")
             model.assignRoundsAmount("5")
 
             val sequence = model.getRaceSequence()

@@ -32,31 +32,31 @@ class CarRacingControllerTest {
 
     @Test
     fun `when start game is invoked should ask user for race parameters`() {
-        whenever(inputView.inquireCarsAmount()).thenReturn("5")
+        whenever(inputView.inquireCarsNames()).thenReturn("5")
         whenever(inputView.inquireRoundsAmount()).thenReturn("4")
 
         controller.startGame()
 
-        verify(inputView).inquireCarsAmount()
+        verify(inputView).inquireCarsNames()
         verify(inputView).inquireRoundsAmount()
     }
 
     @Test
     fun `when cars amount is incorrect should print error and ask again`() {
         val exception = IllegalArgumentException("Message")
-        whenever(inputView.inquireCarsAmount()).thenReturn("-1")
-        whenever(model.assignCarsAmount(any())).thenThrow(exception).doAnswer { }
+        whenever(inputView.inquireCarsNames()).thenReturn("-1")
+        whenever(model.assignCars(any())).thenThrow(exception).doAnswer { }
 
         controller.startGame()
 
         verify(errorView).printError("Message")
-        verify(inputView, times(2)).inquireCarsAmount()
+        verify(inputView, times(2)).inquireCarsNames()
     }
 
     @Test
     fun `when rounds amount is incorrect should print error and ask again`() {
         val exception = IllegalArgumentException("Message")
-        whenever(inputView.inquireCarsAmount()).thenReturn("5")
+        whenever(inputView.inquireCarsNames()).thenReturn("5")
         whenever(inputView.inquireRoundsAmount()).thenReturn("-1")
         whenever(model.assignRoundsAmount(any())).thenThrow(exception).doAnswer { }
 
@@ -75,7 +75,7 @@ class CarRacingControllerTest {
                 race.apply { advanceRace() },
                 race.apply { advanceRace() },
             )
-        whenever(inputView.inquireCarsAmount()).thenReturn("5")
+        whenever(inputView.inquireCarsNames()).thenReturn("5")
         whenever(inputView.inquireRoundsAmount()).thenReturn("4")
         whenever(model.getRaceSequence()).thenReturn(raceSequence)
 
@@ -87,14 +87,14 @@ class CarRacingControllerTest {
     @Test
     fun `when parameters are not set should print error and ask parameters again`() {
         val exception = IllegalArgumentException("Message")
-        whenever(inputView.inquireCarsAmount()).thenReturn("5")
+        whenever(inputView.inquireCarsNames()).thenReturn("5")
         whenever(inputView.inquireRoundsAmount()).thenReturn("4")
         whenever(model.getRaceSequence()).thenThrow(exception).thenReturn(emptySequence())
 
         controller.startGame()
 
         verify(errorView).printError("Message")
-        verify(inputView, times(2)).inquireCarsAmount()
+        verify(inputView, times(2)).inquireCarsNames()
         verify(inputView, times(2)).inquireRoundsAmount()
     }
 }

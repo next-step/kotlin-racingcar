@@ -24,7 +24,7 @@ class CarRacingController(
     private fun getCarsParameter() {
         while (true) {
             try {
-                model.assignCarsAmount(inputView.inquireCarsAmount())
+                model.assignCars(inputView.inquireCarsNames())
                 return
             } catch (e: IllegalArgumentException) {
                 e.message?.let { errorView.printError(it) }

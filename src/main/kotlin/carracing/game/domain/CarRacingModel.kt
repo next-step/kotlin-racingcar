@@ -7,15 +7,15 @@ import kotlin.random.Random
 class CarRacingModel(
     private val random: Random = Random,
 ) {
-    private var carsAmount: Int? = null
+    private var cars: List<String>? = null
     private var roundsAmount: Int? = null
 
-    fun assignCarsAmount(input: String?) {
-        val inputInt = input?.toIntOrNull()
-        require(inputInt != null && inputInt >= MIN_CARS_AMOUNT) {
+    fun assignCars(input: String?) {
+        val carsNames = input?.split(',')
+        require(carsNames != null && carsNames.size >= MIN_CARS_AMOUNT) {
             "Cars amount should be at least $MIN_CARS_AMOUNT"
         }
-        carsAmount = inputInt
+        this.cars = carsNames
     }
 
     fun assignRoundsAmount(input: String?) {
@@ -27,34 +27,37 @@ class CarRacingModel(
     }
 
     fun getRaceSequence(): Sequence<Race> {
-        val cars = carsAmount
+        val cars = cars
         val rounds = roundsAmount
         if (cars != null && rounds != null) {
-            return createRaceSequence(rounds = rounds, cars = cars)
+            return createRaceSequence(rounds = rounds, carsNames = cars)
         }
         throw IllegalStateException("Cars and rounds amount were not initialized")
     }
 
     private fun createRaceSequence(
         rounds: Int,
-        cars: Int,
+        carsNames: List<String>,
     ): Sequence<Race> =
         sequence {
-            val race =
-                Race(
-                    cars =
-                        List(cars) {
-                            Car(
-                                generateMoveNumber =
-                                    { random.nextInt(GENERATED_NUMBER_UPPER_LIMIT) },
-                            )
-                        },
-                )
+            val race = initRace(carsNames)
             repeat(rounds) {
                 race.advanceRace()
                 yield(race)
             }
         }
+
+    private fun initRace(carsNames: List<String>): Race =
+        Race(
+            cars =
+                List(carsNames.size) {
+                    Car.of(
+                        name = carsNames[it],
+                        generateMoveNumber =
+                            { random.nextInt(GENERATED_NUMBER_UPPER_LIMIT) },
+                    )
+                },
+        )
 }
 
 internal const val GENERATED_NUMBER_UPPER_LIMIT = 10
