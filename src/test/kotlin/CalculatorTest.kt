@@ -1,7 +1,5 @@
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.assertj.core.api.Assertions.assertThatThrownBy
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -28,6 +26,28 @@ class CalculatorTest {
             calculator.compute(value)
         }.isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageContaining("Input contains invalid symbols")
+    }
+
+    @Test
+    fun `throw IllegalArgumentException if tokens size of input is less than 3`() {
+        val calculator = Calculator()
+        val testInput = "2 +"
+
+        assertThatThrownBy {
+            calculator.compute(testInput)
+        }.isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("Expression is too short to compute")
+    }
+
+    @Test
+    fun `throw IllegalArgumentException if there is missing operand after operator`() {
+        val calculator = Calculator()
+        val testInput = "2 + 8 * "
+
+        assertThatThrownBy {
+            calculator.compute(testInput)
+        }.isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("Missing operand after operator '*'")
     }
 
     @Test

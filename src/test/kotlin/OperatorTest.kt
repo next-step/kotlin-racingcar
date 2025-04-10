@@ -1,3 +1,4 @@
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
@@ -9,7 +10,15 @@ class OperatorTest {
         assertEquals(Operator.minus, Operator.from("-"))
         assertEquals(Operator.multiply, Operator.from("*"))
         assertEquals(Operator.divide, Operator.from("/"))
-        assertNull(Operator.from("%"))
+    }
+
+    @Test
+    fun `throw exception when symbol does not exist`() {
+        val symbol = "$"
+
+        assertThatThrownBy { Operator.from(symbol) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("Unsupported operator: '$symbol'")
     }
 
     @Test
@@ -25,5 +34,13 @@ class OperatorTest {
         assertEquals(-1, Operator.minus.apply(2, 3))
         assertEquals(6, Operator.multiply.apply(2, 3))
         assertEquals(2, Operator.divide.apply(6, 3))
+    }
+
+    @Test
+    fun `throw IllegalArgumentException when divide by zero`() {
+        assertThatThrownBy {
+            Operator.divide.apply(3, 0)
+        }.isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("Cannot divide by zero")
     }
 }
