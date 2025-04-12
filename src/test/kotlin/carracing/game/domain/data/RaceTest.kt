@@ -33,7 +33,7 @@ class RaceTest {
 
             val race = Race(cars = listOf(car1, car2, car3))
 
-            race.getWinners() shouldBe listOf(car3)
+            race.winners shouldBe listOf(car3)
         }
 
     @Test
@@ -45,6 +45,6 @@ class RaceTest {
 
             val race = Race(cars = listOf(car1, car2, car3))
 
-            race.getWinners() shouldBe listOf(car2, car3)
+            race.winners shouldBe listOf(car2, car3)
         }
 }

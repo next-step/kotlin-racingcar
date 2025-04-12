@@ -36,7 +36,7 @@ class CarRacingModel(
         throw IllegalStateException("Cars and rounds amount were not initialized")
     }
 
-    fun defineWinners(): List<Car> = requireNotNull(race) { "Race should've started" }.getWinners()
+    fun defineWinners(): List<Car> = requireNotNull(race) { "Race should've started" }.winners
 
     private fun createRaceSequence(
         rounds: Int,

@@ -6,12 +6,16 @@ class Race(
     var round: Int = 0
         private set
 
+    val winners: List<Car>
+        get() {
+            val maxPosition = cars.maxOf { it.position }
+            return cars.filter { car -> car.position == maxPosition }
+        }
+
     fun advanceRace() {
         cars.forEach {
             it.move()
         }
         round++
     }
-
-    fun getWinners(): List<Car> = cars.filter { car -> car.position == cars.maxOf { it.position } }
 }

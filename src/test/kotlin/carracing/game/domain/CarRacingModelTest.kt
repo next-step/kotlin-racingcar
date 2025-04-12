@@ -89,6 +89,6 @@ class CarRacingModelTest {
         val races = model.getRaceSequence().toList()
         val winners = model.defineWinners()
 
-        winners shouldBe races.last().getWinners()
+        winners shouldBe races.last().winners
     }
 }
