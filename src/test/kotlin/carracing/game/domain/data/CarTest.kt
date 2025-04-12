@@ -9,32 +9,32 @@ class CarTest :
     StringSpec({
         "when randomNumber > 3 should increment position" {
             listOf(4, 5).forEach { randomNumber ->
-                Car.of(name = "Car", generateMoveNumber = { randomNumber }).apply { move() }.position shouldBe 1
+                Car(name = "Car", generateMoveNumber = { randomNumber }).apply { move() }.position shouldBe 1
             }
         }
 
         "when randomNumber < 4 should do nothing" {
             listOf(-1, 3).forEach { randomNumber ->
-                Car.of(name = "Car", generateMoveNumber = { randomNumber }).apply { move() }.position shouldBe 0
+                Car(name = "Car", generateMoveNumber = { randomNumber }).apply { move() }.position shouldBe 0
             }
         }
 
         "when name is valid should create Car" {
             listOf("Cart1", " Car   ").forEach { name ->
-                shouldNotThrowAny { Car.of(name = name, generateMoveNumber = { 1 }) }
+                shouldNotThrowAny { Car(name = name, generateMoveNumber = { 1 }) }
             }
         }
 
         "when name in invalid should throw exception" {
-            listOf(null, "   ", "Long name").forEach { name ->
-                shouldThrowExactly<IllegalArgumentException> { Car.of(name = name, generateMoveNumber = { 1 }) }
+            listOf("   ", "Long name").forEach { name ->
+                shouldThrowExactly<IllegalArgumentException> { Car(name = name, generateMoveNumber = { 1 }) }
             }
         }
 
         "toString should return formatted name and position" {
-            val car = Car.of(name = "car", generateMoveNumber = { 1 })
+            val car = Car(name = "car", generateMoveNumber = { 1 })
             car.toString() shouldBe "car   : "
-            val car1 = Car.of(position = 2, name = "car1", generateMoveNumber = { 1 })
+            val car1 = Car(position = 2, name = "car1", generateMoveNumber = { 1 })
             car1.toString() shouldBe "car1  : --"
         }
     })

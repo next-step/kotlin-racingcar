@@ -54,7 +54,7 @@ class CarRacingModel(
 
     private fun initCars(carsNames: List<String>): List<Car> =
         List(carsNames.size) {
-            Car.of(
+            Car(
                 name = carsNames[it],
                 generateMoveNumber =
                     { random.nextInt(GENERATED_NUMBER_UPPER_LIMIT) },
