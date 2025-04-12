@@ -27,9 +27,9 @@ class RaceTest {
     @Test
     fun `when a car has max position, getWinners should return the car`() =
         runTest {
-            val car1 = Car.of(position = 1, name = "car", generateMoveNumber = { 1 })
-            val car2 = Car.of(position = 2, name = "car2", generateMoveNumber = { 1 })
-            val car3 = Car.of(position = 3, name = "car3", generateMoveNumber = { 1 })
+            val car1 = Car(position = 1, name = "car", generateMoveNumber = { 1 })
+            val car2 = Car(position = 2, name = "car2", generateMoveNumber = { 1 })
+            val car3 = Car(position = 3, name = "car3", generateMoveNumber = { 1 })
 
             val race = Race(cars = listOf(car1, car2, car3))
 
@@ -39,9 +39,9 @@ class RaceTest {
     @Test
     fun `when multiple cars have max position, getWinners should return all such cars`() =
         runTest {
-            val car1 = Car.of(position = 1, name = "car", generateMoveNumber = { 1 })
-            val car2 = Car.of(position = 2, name = "car2", generateMoveNumber = { 1 })
-            val car3 = Car.of(position = 2, name = "car3", generateMoveNumber = { 1 })
+            val car1 = Car(position = 1, name = "car", generateMoveNumber = { 1 })
+            val car2 = Car(position = 2, name = "car2", generateMoveNumber = { 1 })
+            val car3 = Car(position = 2, name = "car3", generateMoveNumber = { 1 })
 
             val race = Race(cars = listOf(car1, car2, car3))
 

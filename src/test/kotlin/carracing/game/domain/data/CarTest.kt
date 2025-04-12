@@ -33,8 +33,6 @@ class CarTest :
 
         "toString should return formatted name and position" {
             val car = Car(name = "car", generateMoveNumber = { 1 })
-            car.toString() shouldBe "car   : "
-            val car1 = Car(position = 2, name = "car1", generateMoveNumber = { 1 })
-            car1.toString() shouldBe "car1  : --"
+            car.toString() shouldBe "Car(name='car', position=0)"
         }
     })

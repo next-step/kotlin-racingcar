@@ -20,7 +20,7 @@ class Car(
         }
     }
 
-    override fun toString(): String = "${name.padEnd(NAME_MAX_LENGTH)} : ${"-".repeat(position)}"
+    override fun toString(): String = "Car(name='$name', position=$position)"
 
     private fun validateName(name: String?): String {
         val trimmedName = name?.trim()
