@@ -80,3 +80,14 @@
     - Add new test cases for checking car name length
     - New test for winner logic
 
+## Step 5 - Car racing(Refactoring)
+
+### Functional requirements
+    - Implement objects containing core business logic in the domain package and UI-related objects in the view package.
+    - Refactor using the MVC pattern, ensuring that objects in the view package can depend on objects in the domain package, but not the other way around.
+    - Separate testable and non-testable parts of the code and write unit tests only for the testable parts.
+
+### Implementation details
+    - Refactor CarRace to only focus on contolling the race flow
+    - Extract the output handling logic from CarRace
+    - Refactor the winners logic to so that the logic expresses tell the cars to check if they are winners, rather than ask the cars for their position and figure it out externally
