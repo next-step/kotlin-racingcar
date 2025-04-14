@@ -1,7 +1,8 @@
 package carracing
 
 import carracing.RandomNumberGenerator.getRandom
-import carracing.view.ResultView
+
+typealias RaceHistory = List<List<Car>>
 
 class CarRace(val cars: List<Car>, val numRounds: Int) {
 
@@ -10,17 +11,19 @@ class CarRace(val cars: List<Car>, val numRounds: Int) {
         require(numRounds > MIN_NUMBER_OF_ROUNDS) { "Select at least one round to start the race" }
     }
 
-    fun startRace() {
+    private val raceHistory = mutableListOf<List<Car>>()
+    fun startRace(): RaceHistory {
         repeat(numRounds) {
             cars.forEach { it.move(random = getRandom()) }
-            ResultView.showStatus(cars)
+            raceHistory.add(cars.map { Car(it.name, it.position) })
         }
-        ResultView.displayWinners(winners = getWinners())
+        return raceHistory
     }
 
-     fun getWinners(): List<Car> {
+    fun getWinners(): List<Car> {
         val maxPosition = cars.maxOf { it.position }
-        return cars.filter { it.position == maxPosition }
+        cars.forEach { it.setAsWinner(maxPosition) }
+        return cars.filter { it.isWinner }
     }
 
     companion object {
