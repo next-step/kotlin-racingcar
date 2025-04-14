@@ -22,7 +22,8 @@ class CarRace(val cars: List<Car>, val numRounds: Int) {
 
     fun getWinners(): List<Car> {
         val maxPosition = cars.maxOf { it.position }
-        return cars.filter { it.position == maxPosition }
+        cars.forEach { it.setAsWinner(maxPosition) }
+        return cars.filter { it.isWinner }
     }
 
     companion object {
