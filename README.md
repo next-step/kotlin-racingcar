@@ -91,3 +91,4 @@
     - Refactor CarRace to only focus on contolling the race flow
     - Extract the output handling logic from CarRace
     - Refactor the winners logic to so that the logic expresses tell the cars to check if they are winners, rather than ask the cars for their position and figure it out externally
+

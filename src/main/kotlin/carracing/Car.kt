@@ -1,11 +1,13 @@
 package carracing
 
 
+
 class Car(
     val name: String,
     var position: Int = INITIAL_POSITION,
     var isWinner: Boolean = false
 ) {
+
     init {
         require(name.length <= ALLOWED_LENGTH_CAR_NAME) { "Name cannot exceed 5 characters" }
     }

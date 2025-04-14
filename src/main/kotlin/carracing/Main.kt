@@ -14,4 +14,5 @@ fun main() {
     val raceHistory: RaceHistory = race.startRace()
     raceHistory.forEach { _ -> ResultView.showStatus(cars) }
     ResultView.displayWinners(winners = race.getWinners())
+
 }
