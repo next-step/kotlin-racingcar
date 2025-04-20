@@ -22,6 +22,20 @@ class Car(
 
     override fun toString(): String = "Car(name='$name', position=$position)"
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Car) return false
+
+        if (position != other.position) return false
+        return position == other.position && name == other.name
+    }
+
+    override fun hashCode(): Int {
+        var result = position
+        result = 31 * result + name.hashCode()
+        return result
+    }
+
     private fun validateName(name: String?): String {
         val trimmedName = name?.trim()
         require(!trimmedName.isNullOrBlank() && trimmedName.length <= NAME_MAX_LENGTH) {

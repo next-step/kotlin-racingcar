@@ -1,10 +1,14 @@
 package carracing.game.domain.data
 
 class Race(
-    val cars: List<Car>,
+    carsNames: List<String>,
+    carsFactory: CarsFactory = CarsFactory,
+    private val totalRounds: Int,
 ) {
     var round: Int = 0
         private set
+
+    val cars: List<Car> = carsFactory.from(carsNames)
 
     val winners: List<Car>
         get() {
@@ -12,7 +16,15 @@ class Race(
             return cars.filter { car -> car.position == maxPosition }
         }
 
-    fun advanceRace() {
+    fun generateRaceSequence(): Sequence<Race> =
+        sequence {
+            repeat(totalRounds) {
+                advanceRace()
+                yield(this@Race)
+            }
+        }
+
+    private fun advanceRace() {
         cars.forEach {
             it.move()
         }
