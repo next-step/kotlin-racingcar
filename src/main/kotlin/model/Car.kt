@@ -5,13 +5,13 @@ import kotlin.random.Random
 open class Car(val name: String) {
     private var position = 0
 
-    fun move() {
+    open fun move() {
         if (generateRandomNumber() >= 4) {
             position++
         }
     }
 
-    fun getPosition(): Int {
+    open fun getPosition(): Int {
         return position
     }
 
