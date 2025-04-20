@@ -6,8 +6,8 @@ class CarTest {
 
     @Test
     fun createCar_validName() {
-        val car = Car("pobi")
-        assertEquals("pobi", car.name)
+        val car = Car("car")
+        assertEquals("car", car.name)
         assertEquals(0, car.position)
     }
 

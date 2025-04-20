@@ -14,7 +14,6 @@ data class Car(val name: String, var position: Int = 0) {
         if (canMove()) position++
 
     }
-    fun displayPosition() = "$name : ${"-".repeat(position) + "-".repeat(position)}"
-    fun isAt(position: Int): Boolean = this.position == position
 
+    fun displayPosition() = "$name : ${"-".repeat(position) + "-".repeat(position)}"
 }

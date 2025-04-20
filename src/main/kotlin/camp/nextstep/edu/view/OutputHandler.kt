@@ -11,9 +11,18 @@ object OutputHandler {
     fun displayWinners(winners: List<Car>) {
         if (winners.isNotEmpty()) {
             val winnerNames = winners.joinToString(", ") { it.name }
-            println("\n우승자: $winnerNames")
+            println("우승자: $winnerNames")
         } else {
-            println("\n우승자가 없습니다.")
+            println("우승자가 없습니다.")
         }
     }
+
+    fun displayStartMessage() {
+        println("경주 시작!")
+    }
+
+    fun displayRoundStartMessage(round: Int) {
+        println("$round 번째 이동")
+    }
+
 }

@@ -15,9 +15,13 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.junit.jupiter", "junit-jupiter", "5.10.2")
-    testImplementation("org.assertj", "assertj-core", "3.25.3")
-    testImplementation("io.kotest", "kotest-runner-junit5", "5.8.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+    testImplementation("org.assertj:assertj-core:3.25.3")
+    testImplementation("io.kotest:kotest-runner-junit5:5.8.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
+    testImplementation("io.kotest:kotest-runner-junit5:5.7.7")
+    testImplementation("io.kotest:kotest-assertions-core:5.7.7")
+    testImplementation("io.mockk:mockk:1.13.8")
 }
 
 tasks {

@@ -1,26 +1,41 @@
 package camp.nextstep.edu.controller
+
 import camp.nextstep.edu.model.Car
 import camp.nextstep.edu.model.RacingGame
 import camp.nextstep.edu.view.InputHandler
 import camp.nextstep.edu.view.OutputHandler
 
-object RacingController {
+class RacingController(
+    private val inputHandler: InputHandler,
+    private val racingGame: RacingGame,
+    private val outputHandler: OutputHandler
+) {
 
-    fun run() {
-        val carNames = InputHandler.readCarNames()
-        val cars = carNames.map(::Car)
-        val numberOfMoves = InputHandler.getNumberOfMoves()
+    fun startGame() {
+        val carNames = inputHandler.readCarNames()
+        val cars = createCars(carNames)
+        val numberOfMoves = inputHandler.getNumberOfMoves()
 
-        println("\n경주 시작!")
-        repeat(numberOfMoves) { round ->
-            println("\n${round + 1} 번째 이동")
-            RacingGame.playRound(cars)
-            val positions = RacingGame.getCarPositions(cars)
-            OutputHandler.displayRoundResult(positions)
-        }
-
-        val winners = RacingGame.findWinners(cars)
-        OutputHandler.displayWinners(winners)
+        outputHandler.displayStartMessage()
+        playRounds(cars, numberOfMoves)
+        displayResults(cars)
     }
 
+    fun createCars(carNames: List<String>): List<Car> {
+        return carNames.map(::Car)
+    }
+
+    private fun playRounds(cars: List<Car>, numberOfMoves: Int) {
+        repeat(numberOfMoves) { round ->
+            outputHandler.displayRoundStartMessage(round + 1)
+            racingGame.playRound(cars)
+            val positions = racingGame.getCarPositions(cars)
+            outputHandler.displayRoundResult(positions)
+        }
+    }
+
+    private fun displayResults(cars: List<Car>) {
+        val winners = racingGame.findWinners(cars)
+        outputHandler.displayWinners(winners)
+    }
 }
