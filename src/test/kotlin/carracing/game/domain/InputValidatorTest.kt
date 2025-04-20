@@ -1,6 +1,7 @@
 package carracing.game.domain
 
 import io.kotest.assertions.throwables.shouldThrowExactly
+import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -10,14 +11,14 @@ import org.junit.jupiter.params.provider.ValueSource
 class InputValidatorTest {
     @Test
     fun `when validateCarNames has valid input should return car names`() {
-        listOf("c1,c2", "c1,c2,c3").forEach {
+        listOf("c1,c2", "c1,c2,c3").forAll {
             InputValidator.validateCarNames(it) shouldBe it.split(',')
         }
     }
 
     @Test
     fun `when validateCarNames has invalid input should throw exception`() {
-        listOf("c1:c2", null).forEach {
+        listOf("c1:c2", null).forAll {
             val e = shouldThrowExactly<IllegalArgumentException> { InputValidator.validateCarNames(it) }
             e.message shouldBe "Cars amount should be at least $MIN_CARS_AMOUNT"
         }

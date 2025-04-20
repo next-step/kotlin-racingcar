@@ -4,7 +4,6 @@ package carracing.game.controller
 
 import carracing.game.domain.InputValidator
 import carracing.game.domain.data.Race
-import carracing.game.view.CarRacingView
 import carracing.game.view.ErrorView
 import carracing.game.view.InputView
 import io.kotest.matchers.shouldBe
@@ -20,7 +19,6 @@ class RaceParametersControllerTest {
             on { validateRoundsAmount(any()) } doReturn 2
         }
     private val errorView = mock<ErrorView>()
-    private val carRacingView = mock<CarRacingView>()
 
     private lateinit var controller: RaceParametersController
 
