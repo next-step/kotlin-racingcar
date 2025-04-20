@@ -9,13 +9,17 @@ class CarTest :
     StringSpec({
         "when randomNumber > 3 should increment position" {
             listOf(4, 5).forEach { randomNumber ->
-                Car(name = "Car", generateMoveNumber = { randomNumber }).apply { move() }.position shouldBe 1
+                val car = Car(name = "Car", generateMoveNumber = { randomNumber })
+                car.move()
+                car.position shouldBe 1
             }
         }
 
         "when randomNumber < 4 should do nothing" {
             listOf(-1, 3).forEach { randomNumber ->
-                Car(name = "Car", generateMoveNumber = { randomNumber }).apply { move() }.position shouldBe 0
+                val car = Car(name = "Car", generateMoveNumber = { randomNumber })
+                car.move()
+                car.position shouldBe 0
             }
         }
 
