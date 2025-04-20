@@ -1,12 +1,19 @@
+import controller.RacingController
+
 fun main() {
     try {
-        val carNames = getValidCarNames()
-        println("최종 입력된 자동차 이름:")
-        carNames.forEach { println(it) }
+        val racingController = RacingController()
 
-        val attempCount = getValidAttemptCount()
-        println("최종 입력된 횟수:")
-        println(attempCount)
+        val carNames = getValidCarNames()
+        val attemptCount = getValidAttemptCount()
+        val cars = racingController.createCars(carNames)
+
+        println("\n실행 결과")
+        val raceResults = racingController.startRace(cars, attemptCount)
+        raceResults.forEach { println(it) }
+
+        val winners = racingController.getWinners(cars)
+        println("최종 우승자 : ${winners.joinToString(", ") { it.name }}")
     } catch (e: IllegalArgumentException) {
         println("[ERROR] ${e.message}")
     } catch (e: IllegalStateException) {
