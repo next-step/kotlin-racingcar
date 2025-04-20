@@ -3,6 +3,10 @@ fun main() {
         val carNames = getValidCarNames()
         println("최종 입력된 자동차 이름:")
         carNames.forEach { println(it) }
+
+        val attempCount = getValidAttemptCount()
+        println("최종 입력된 횟수:")
+        println(attempCount)
     } catch (e: IllegalArgumentException) {
         println("[ERROR] ${e.message}")
     } catch (e: IllegalStateException) {
@@ -39,4 +43,36 @@ fun inputCarNames(input: String?): List<String> {
         throw IllegalArgumentException("자동차 이름 5자 초과")
     }
     return carNames
+}
+
+fun getValidAttemptCount(): Int {
+    while (true) {
+        try {
+            println("시도할 회수는 몇회인가요?")
+            val attemptCount = readLine()
+            return  inputAttemptCount(attemptCount)
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] ${e.message}")
+        } catch (e: IllegalStateException) {
+            println("[ERROR] ${e.message}")
+        }
+    }
+}
+
+fun inputAttemptCount(input: String?): Int {
+    if (input == null) {
+        throw IllegalStateException("입력 값 null")
+    } else if (input.isEmpty()) {
+        throw IllegalArgumentException("입력 값 empty")
+    }
+
+    return try {
+        val count = input.toInt()
+        if (count <= 0) {
+            throw IllegalArgumentException("시도 횟수는 양수만 가능")
+        }
+        count
+    } catch (e: NumberFormatException) {
+        throw IllegalArgumentException("시도 횟수는 숫자만 가능")
+    }
 }
