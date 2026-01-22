@@ -20,35 +20,28 @@ class CalculatorController(private val calculator: Calculator) {
         return applyExpression(num1, num2)
     }
 
+    private data class ParsedExpression(
+        val numbers: List<Int>,
+        val operators: List<Char>
+    )
+
+    private fun parseInput(input: String): ParsedExpression {
+        val numbers = input.split(Regex("[+\\-*/]"))
+            .map { it.trim().toInt() }
+        val operators = Regex("[+\\-*/]")
+            .findAll(input)
+            .map { it.value[0] }
+            .toList()
+        return ParsedExpression(numbers, operators)
+    }
+
     fun calc(input: String): Int {
-        var result = 0
-        var expression: Char = '+'
+        val (numbers, operators) = parseInput(input)
 
-        val inputWithoutBlank = input.replace(" ", "")
-
-        var tempStr = StringBuilder()
-        for (char in inputWithoutBlank) {
-            when (char) {
-                '+', '-', '*', '/' -> {
-                    val prevNum = tempStr.toString().toInt()
-                    result = calcTwoNums(result, expression, prevNum)
-
-                    tempStr.clear()
-                    expression = char
-                }
-
-                ' ' -> {
-                    continue
-                }
-
-                else -> {
-                    tempStr.append(char)
-                }
-            }
+        var result = numbers[0]
+        for (i in operators.indices) {
+            result = calcTwoNums(result, operators[i], numbers[i + 1])
         }
-        val prevNum = tempStr.toString().toInt()
-        result = calcTwoNums(result, expression, prevNum)
-
         return result
     }
 }
