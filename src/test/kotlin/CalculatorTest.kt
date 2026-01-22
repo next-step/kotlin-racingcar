@@ -10,4 +10,14 @@ class CalculatorTest {
 
         assertThat(actual).isEqualTo(3)
     }
+
+    fun 계산기에서_더하기를_수행할_수_있다() {
+        val input = "2 + 3"
+
+        val calculator = Calculator();
+
+        val actual = calculator.calc(input);
+
+        assertThat(actual).isEqualTo(3)
+    }
 }
