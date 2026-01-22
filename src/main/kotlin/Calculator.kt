@@ -3,29 +3,43 @@ class Calculator {
         return num1 + num2
     }
 
+    fun selectExpression(exp: Char): (Int, Int) -> Int {
+        when (exp) {
+            '+' -> {
+                return ::add
+            }
+
+            else -> {
+                return ::add
+            }
+        }
+    }
+
     fun calc(input: String): Int {
-        var prevNumber = 0
-        var expression = "+"
         var result = 0
 
-        for (s in input) {
-            if (isInteger(s.toString())) {
-                prevNumber = s.toString().toInt()
-                if (expression == "+") {
-                    result = add(prevNumber, result)
+        val inputWithoutBlank = input.replace(" ", "")
+
+        var tempStr: String = ""
+        for (char in inputWithoutBlank) {
+            when (char) {
+                '+', '-', '*', '/' -> {
+                    val applyExpression = selectExpression(char)
+                    val num = tempStr.toInt()
+                    result = applyExpression(num, result)
                 }
-                continue
+
+                ' ' -> {
+                    continue
+                }
+
+                else -> {
+                    tempStr += char
+                }
             }
-            if (s.toString() == " ") {
-                continue
-            }
-            expression = s.toString()
         }
         return result
     }
 }
 
 
-fun isInteger(string: String): Boolean {
-    return string.toIntOrNull() != null
-}
