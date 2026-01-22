@@ -47,7 +47,7 @@ class CalculatorController(private val calculator: Calculator) {
             when (char) {
                 '+', '-', '*', '/' -> {
                     val prevNum = tempStr.toInt()
-                    result = calcTwoNums(prevNum, expression, result)
+                    result = calcTwoNums(result, expression, prevNum)
 
                     tempStr = ""
                     expression = char
@@ -63,7 +63,7 @@ class CalculatorController(private val calculator: Calculator) {
             }
         }
         val prevNum = tempStr.toInt()
-        result = calcTwoNums(prevNum, expression, result)
+        result = calcTwoNums(result, expression, prevNum)
 
         return result
     }
