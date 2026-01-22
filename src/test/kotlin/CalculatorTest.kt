@@ -20,4 +20,14 @@ class CalculatorTest {
 
         assertThat(actual).isEqualTo(3)
     }
+
+    fun 계산기에서_두자리수_계산을_수행할_수_있다() {
+        val input = "14 + 25"
+
+        val calculator = Calculator();
+
+        val actual = calculator.calc(input);
+
+        assertThat(actual).isEqualTo(39)
+    }
 }
