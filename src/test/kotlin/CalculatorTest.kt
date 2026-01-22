@@ -11,6 +11,7 @@ class CalculatorTest {
         assertThat(actual).isEqualTo(3)
     }
 
+    @Test
     fun 더하기를_수행한다() {
         val input = "2 + 3"
 
@@ -18,9 +19,10 @@ class CalculatorTest {
 
         val actual = calculator.calc(input);
 
-        assertThat(actual).isEqualTo(3)
+        assertThat(actual).isEqualTo(5)
     }
 
+    @Test
     fun 두자리수_더하기를_수행한다() {
         val input = "14 + 25"
 
@@ -31,6 +33,7 @@ class CalculatorTest {
         assertThat(actual).isEqualTo(39)
     }
 
+    @Test
     fun 여러개의_연산자를_받아서_연산을_수행한다() {
         val input = "14 + 25 + 5"
 

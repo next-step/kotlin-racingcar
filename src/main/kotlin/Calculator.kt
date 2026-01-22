@@ -15,8 +15,14 @@ class Calculator {
         }
     }
 
+    fun calcTwoNums(num1: Int, expression: Char, num2: Int): Int {
+        val applyExpression = selectExpression(expression)
+        return applyExpression(num1, num2)
+    }
+
     fun calc(input: String): Int {
         var result = 0
+        var expression: Char = '+'
 
         val inputWithoutBlank = input.replace(" ", "")
 
@@ -24,9 +30,11 @@ class Calculator {
         for (char in inputWithoutBlank) {
             when (char) {
                 '+', '-', '*', '/' -> {
-                    val applyExpression = selectExpression(char)
-                    val num = tempStr.toInt()
-                    result = applyExpression(num, result)
+                    val prevNum = tempStr.toInt()
+                    result = calcTwoNums(prevNum, expression, result)
+
+                    tempStr = ""
+                    expression = char
                 }
 
                 ' ' -> {
@@ -38,6 +46,9 @@ class Calculator {
                 }
             }
         }
+        val prevNum = tempStr.toInt()
+        result = calcTwoNums(prevNum, expression, result)
+
         return result
     }
 }
