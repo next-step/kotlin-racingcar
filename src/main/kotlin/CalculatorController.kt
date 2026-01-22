@@ -26,14 +26,14 @@ class CalculatorController(private val calculator: Calculator) {
 
         val inputWithoutBlank = input.replace(" ", "")
 
-        var tempStr: String = ""
+        var tempStr = StringBuilder()
         for (char in inputWithoutBlank) {
             when (char) {
                 '+', '-', '*', '/' -> {
-                    val prevNum = tempStr.toInt()
+                    val prevNum = tempStr.toString().toInt()
                     result = calcTwoNums(result, expression, prevNum)
 
-                    tempStr = ""
+                    tempStr.clear()
                     expression = char
                 }
 
@@ -42,11 +42,11 @@ class CalculatorController(private val calculator: Calculator) {
                 }
 
                 else -> {
-                    tempStr += char
+                    tempStr.append(char)
                 }
             }
         }
-        val prevNum = tempStr.toInt()
+        val prevNum = tempStr.toString().toInt()
         result = calcTwoNums(result, expression, prevNum)
 
         return result
