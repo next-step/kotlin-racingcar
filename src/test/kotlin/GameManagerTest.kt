@@ -2,6 +2,7 @@ import game.car.Car
 import game.manager.GameManager
 import game.manager.MOVE_THRESHOLD
 import game.randomnumbergenerator.RandomNumberGenerator
+import game.view.GameView
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -24,7 +25,7 @@ fun createGameManager(
 ): GameManager {
     val cars = List(carsCount) { Car(position = 0) }
 
-    return GameManager(cars, RandomNumberGenerator)
+    return GameManager(cars, RandomNumberGenerator, GameView())
 }
 
 class GameManagerTest {

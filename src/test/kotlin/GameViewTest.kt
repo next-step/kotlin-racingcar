@@ -12,8 +12,6 @@ class GameViewTest {
 
         val resultToList = result.split(DELIMITER).filter { it.isNotEmpty() }
 
-        resultToList.forEach { it ->
-            assertThat(it).isEqualTo("-".repeat(it.length))
-        }
+        resultToList.forEach { assertThat(it).isEqualTo("-".repeat(it.length)) }
     }
 }

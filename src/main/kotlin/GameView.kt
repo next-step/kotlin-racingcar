@@ -12,6 +12,8 @@ class GameView {
             result.append("\n")
         }
 
+        println(result.toString())
+
         return result.toString()
     }
 }
