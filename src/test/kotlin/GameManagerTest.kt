@@ -1,5 +1,6 @@
 import game.car.Car
 import game.manager.GameManager
+import game.manager.MOVE_THRESHOLD
 import game.randomnumbergenerator.RandomNumberGenerator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -43,12 +44,34 @@ class GameManagerTest {
 
         // When
         repeat(movingCount) {
-            gameManager.moveOrNot(car)
+            gameManager.tryMove(car)
         }
 
         // Then
         assertThat(car.position).isEqualTo(movingCount)
     }
 
+    @Test
+    fun 라운드_진행시_전체시_모든_자동차가_전진_또는_정지한다() {
+        // Given
+        val gameManager =
+            createGameManager(
+                carsCount = 3,
+                RandomNumberGenerator = FakeRandomNumberGenerator(
+                    listOf(
+                        MOVE_THRESHOLD - 1,
+                        MOVE_THRESHOLD,
+                        MOVE_THRESHOLD + 1
+                    )
+                )
+            )
 
+        // When
+        gameManager.playRound()
+
+        // Then
+        assertThat(gameManager.cars[0].position).isEqualTo(0)
+        assertThat(gameManager.cars[1].position).isEqualTo(1)
+        assertThat(gameManager.cars[2].position).isEqualTo(1)
+    }
 }
