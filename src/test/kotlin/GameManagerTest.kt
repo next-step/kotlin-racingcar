@@ -70,9 +70,10 @@ class GameManagerTest {
         gameManager.playRound()
 
         // Then
-        assertThat(gameManager.cars[0].position).isEqualTo(0)
-        assertThat(gameManager.cars[1].position).isEqualTo(1)
-        assertThat(gameManager.cars[2].position).isEqualTo(1)
+        val carsPosition = gameManager.getCarsPosition()
+        assertThat(carsPosition[0]).isEqualTo(0)
+        assertThat(carsPosition[1]).isEqualTo(1)
+        assertThat(carsPosition[2]).isEqualTo(1)
     }
 
     @Test
@@ -95,8 +96,9 @@ class GameManagerTest {
         gameManager.playRounds(round = roundsCount)
 
         // Then
-        assertThat(gameManager.cars[0].position).isEqualTo(0)
-        assertThat(gameManager.cars[1].position).isEqualTo(10)
-        assertThat(gameManager.cars[2].position).isEqualTo(10)
+        val carsPosition = gameManager.getCarsPosition()
+        assertThat(carsPosition[0]).isEqualTo(0)
+        assertThat(carsPosition[1]).isEqualTo(10)
+        assertThat(carsPosition[2]).isEqualTo(10)
     }
 }

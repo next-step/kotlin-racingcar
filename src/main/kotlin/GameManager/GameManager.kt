@@ -25,4 +25,8 @@ class GameManager(val cars: List<Car>, val RandomNumberGenerator: RandomNumberGe
             playRound()
         }
     }
+
+    fun getCarsPosition(): List<Int> {
+        return cars.map { car -> car.position }
+    }
 }
