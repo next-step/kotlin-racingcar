@@ -1,12 +1,14 @@
 package game.view
 
+val DELIMITER = "-"
+
 class GameView {
 
     fun showResult(list: List<Int>): String {
         val result = StringBuilder()
 
         for (item in list) {
-            result.append("-".repeat(item))
+            result.append(DELIMITER.repeat(item))
             result.append("\n")
         }
 

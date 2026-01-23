@@ -1,3 +1,4 @@
+import game.view.DELIMITER
 import game.view.GameView
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -9,7 +10,7 @@ class GameViewTest {
 
         val result = gameView.showResult(listOf(1, 2, 3))
 
-        val resultToList = result.split("\n").filter { it.isNotEmpty() }
+        val resultToList = result.split(DELIMITER).filter { it.isNotEmpty() }
 
         resultToList.forEach { it ->
             assertThat(it).isEqualTo("-".repeat(it.length))
