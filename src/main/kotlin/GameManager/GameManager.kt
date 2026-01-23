@@ -11,7 +11,7 @@ val MOVE_THRESHOLD = 4
 class GameManager(
     val cars: List<Car>,
     val RandomNumberGenerator: RandomNumberGenerator = RealRandomNumberGenerator(),
-    val GameView: GameView
+    val gameView: GameView
 ) {
     fun tryMove(car: Car) {
         val randomNumber = RandomNumberGenerator.generate()
@@ -28,7 +28,7 @@ class GameManager(
     fun playRounds(round: Int) {
         repeat(round) {
             playRound()
-            GameView.showResult(getCarsPosition())
+            gameView.showResult(getCarsPosition())
         }
     }
 
