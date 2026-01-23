@@ -74,4 +74,29 @@ class GameManagerTest {
         assertThat(gameManager.cars[1].position).isEqualTo(1)
         assertThat(gameManager.cars[2].position).isEqualTo(1)
     }
+
+    @Test
+    fun 여러_라운드_진행() {
+        // Given
+        val gameManager =
+            createGameManager(
+                carsCount = 3,
+                RandomNumberGenerator = FakeRandomNumberGenerator(
+                    listOf(
+                        MOVE_THRESHOLD - 1,
+                        MOVE_THRESHOLD,
+                        MOVE_THRESHOLD + 1
+                    )
+                )
+            )
+        val roundsCount = 10
+
+        // When
+        gameManager.playRounds(round = roundsCount)
+
+        // Then
+        assertThat(gameManager.cars[0].position).isEqualTo(0)
+        assertThat(gameManager.cars[1].position).isEqualTo(10)
+        assertThat(gameManager.cars[2].position).isEqualTo(10)
+    }
 }

@@ -19,4 +19,10 @@ class GameManager(val cars: List<Car>, val RandomNumberGenerator: RandomNumberGe
     fun playRound() {
         cars.forEach { car -> tryMove(car) }
     }
+
+    fun playRounds(round: Int) {
+        repeat(round) {
+            playRound()
+        }
+    }
 }
