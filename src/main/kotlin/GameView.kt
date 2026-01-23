@@ -11,9 +11,7 @@ class GameView {
             result.append(DELIMITER.repeat(item))
             result.append("\n")
         }
-
-        println(result.toString())
-
+        
         return result.toString()
     }
 }

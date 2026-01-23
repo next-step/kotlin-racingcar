@@ -28,7 +28,7 @@ class GameManager(
     fun playRounds(round: Int) {
         repeat(round) {
             playRound()
-            gameView.showResult(getCarsPosition())
+            println(gameView.showResult(getCarsPosition()))
         }
     }
 
