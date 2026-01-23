@@ -11,7 +11,7 @@ fun main() {
 
     val cars = List(carsCount) { Car(position = 1) }
     val gameView = GameView()
-    val gameManager = GameManager(cars = cars, gameView = GameView())
+    val gameManager = GameManager(cars = cars, gameView = gameView)
     println("실행 결과")
     gameManager.playRounds(tryCount)
 
